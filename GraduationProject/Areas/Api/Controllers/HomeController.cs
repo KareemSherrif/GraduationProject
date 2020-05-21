@@ -17,5 +17,6 @@ namespace GraduationProject.Areas.Api.Controllers
         {
             return Ok(new { Name="Home" });
         }
+
     }
 }
