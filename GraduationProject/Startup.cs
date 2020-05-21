@@ -2,9 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using GraduationProject.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -24,6 +27,18 @@ namespace GraduationProject
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddIdentity<ApplicationUser, IdentityRole>(a =>
+            {
+                a.Password.RequireDigit = false;
+                a.Password.RequireLowercase = false;
+                a.Password.RequireNonAlphanumeric = false;
+                a.Password.RequireUppercase = false;
+            }).AddEntityFrameworkStores<ApplicationDbContext>();
+
+            services.AddDbContext<ApplicationDbContext>(a =>
+            {
+                a.UseSqlServer(Configuration.GetConnectionString("con"));
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
