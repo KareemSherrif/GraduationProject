@@ -32,6 +32,8 @@ namespace GraduationProject.Models
         public virtual DbSet<ApplicationUser> Users { get; set; }
         public virtual DbSet<UsersRatings> UsersRatings { get; set; }
         public virtual DbSet<UsersReviews> UsersReviews { get; set; }
+        public DbSet<City> Cities { get; set; }
+        public DbSet<Area> Areas { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

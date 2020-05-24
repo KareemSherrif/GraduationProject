@@ -4,14 +4,16 @@ using GraduationProject.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace GraduationProject.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200524215634_AddTableCityAndArea")]
+    partial class AddTableCityAndArea
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -25,12 +27,6 @@ namespace GraduationProject.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("AccessFailedCount")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Address")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("AreaID")
                         .HasColumnType("int");
 
                     b.Property<string>("ConcurrencyStamp")
@@ -83,8 +79,6 @@ namespace GraduationProject.Migrations
                         .HasMaxLength(256);
 
                     b.HasKey("Id");
-
-                    b.HasIndex("AreaID");
 
                     b.HasIndex("NormalizedEmail")
                         .HasName("EmailIndex");
@@ -548,15 +542,6 @@ namespace GraduationProject.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
-                });
-
-            modelBuilder.Entity("GraduationProject.Models.ApplicationUser", b =>
-                {
-                    b.HasOne("GraduationProject.Models.Area", "Area")
-                        .WithMany("ApplicationUsers")
-                        .HasForeignKey("AreaID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("GraduationProject.Models.Area", b =>

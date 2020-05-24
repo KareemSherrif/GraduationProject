@@ -7,12 +7,12 @@
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Admin\Models\" />
-    <Folder Include="Areas\Api\Data\" />
-    <Folder Include="Areas\Api\Models\" />
-    <Folder Include="Areas\Api\Views\" />
+    <Folder Include="Areas\Api\Profiles\" />
+    <Folder Include="Areas\Api\VIewModels\" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.4" />
     <PackageReference Include="Microsoft.EntityframeworkCore.sqlServer" Version="3.1.4" />
     <PackageReference Include="Microsoft.EntityframeworkCore.tools" Version="3.1.4">
