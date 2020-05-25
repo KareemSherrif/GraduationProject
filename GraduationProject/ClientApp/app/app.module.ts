@@ -10,6 +10,10 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { HomeComponent } from './home/home.component';
 import { AreasService } from './services/areas.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatInputModule} from '@angular/material/input';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+
 
 const router: Routes = [
   { path: '', component: HomeComponent },
@@ -27,7 +31,10 @@ const router: Routes = [
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    RouterModule.forRoot(router,{useHash:true})
+    MatInputModule,
+    RouterModule.forRoot(router,{useHash:true}),
+    BrowserAnimationsModule,
+    MatCheckboxModule
   ],
   providers: [AreasService,CitiesService],
   bootstrap: [AppComponent]
