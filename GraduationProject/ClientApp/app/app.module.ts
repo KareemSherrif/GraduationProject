@@ -13,6 +13,11 @@ import { AreasService } from './services/areas.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatInputModule} from '@angular/material/input';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+
+
+
 
 
 const router: Routes = [
@@ -34,7 +39,9 @@ const router: Routes = [
     MatInputModule,
     RouterModule.forRoot(router,{useHash:true}),
     BrowserAnimationsModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   providers: [AreasService,CitiesService],
   bootstrap: [AppComponent]

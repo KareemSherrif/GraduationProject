@@ -62,7 +62,7 @@ namespace GraduationProject
 
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Shahenda Tech", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Nareeden Api", Version = "v1" });
 
             });
 

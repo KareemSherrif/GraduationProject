@@ -4,6 +4,9 @@ let RegistrationComponent = class RegistrationComponent {
     constructor() { }
     ngOnInit() {
     }
+    OnRegistration(data) {
+        console.log(data);
+    }
 };
 RegistrationComponent = __decorate([
     Component({

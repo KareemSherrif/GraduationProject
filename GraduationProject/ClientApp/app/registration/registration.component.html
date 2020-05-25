@@ -1,80 +1,127 @@
 <!-- @format -->
 
 <div class="container mt-3">
-    <h2>Registration</h2>
- 
+	<h2>Registration</h2>
 
+	<form #form="ngForm" (ngSubmit)="OnRegistration(form)">
+		<mat-form-field  class="control-item-50">
+			<mat-label>FirstName</mat-label>
+			<input
+				matInput
+				placeholder="FirstName"
+                ngModel
+                #firstName="ngModel"
+				name="firstName"
+                class="control-item-50"
+                required
+			/>
+			<mat-error *ngIf="firstName.invalid && firstName.touched"> 
+                The FirstName is Required
+                 </mat-error>
+		</mat-form-field>
 
-        <mat-form-field class="example-full-width" class="control-item-50">
-          <mat-label>FirstName</mat-label>
-          <input matInput placeholder="FirstName" ngModel name="firstName" class="control-item-50">
-        </mat-form-field>
+		<mat-form-field  class="control-item-50">
+			<mat-label>LastName</mat-label>
+			<input
+				matInput
+				placeholder="LastName"
+				ngModel
+				name="lastName"
+                class="control-item-50"
+                #lastname="ngModel"
+                required
+            />
+            <mat-error *ngIf="lastname.invalid && lastname.touched">
+                The LastName is Required
+            </mat-error>
+		</mat-form-field>
 
-        <mat-form-field class="example-full-width" class="control-item-50">
-            <mat-label>LastName</mat-label>
-            <input matInput placeholder="LastName" ngModel name="lastName" class="control-item-50">
-          </mat-form-field>
-  
+		<mat-form-field class="example-full-width" class="control-item-100">
+			<mat-label>Email</mat-label>
+			<input
+                matInput
+                type="email"
+				placeholder="Email"
+				ngModel
+				name="email"
+                class="control-item-100"
+                required 
+                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+            />
+            <mat-error>
 
-          <mat-form-field class="example-full-width" class="control-item-100">
-            <mat-label>Email</mat-label>
-            <input matInput placeholder="Email" ngModel name="email" class="control-item-100">
-          </mat-form-field>
-    
+            </mat-error>
+		</mat-form-field>
 
-    
-          <mat-form-field class="example-full-width" class="control-item-100">
-            <mat-label>UserName</mat-label>
-            <input matInput placeholder="UserName" ngModel name="userName" class="control-item-100">
-          </mat-form-field>
+		<mat-form-field class="example-full-width" class="control-item-100">
+			<mat-label>UserName</mat-label>
+			<input
+				matInput
+				placeholder="UserName"
+				ngModel
+				name="userName"
+				class="control-item-100"
+			/>
+		</mat-form-field>
 
-    <div class="form-group">
-		<input
-			type="password"
-			placeholder="password"
-			ngModel
-			name="password"
-			#password
-			class="form-control"
-		/>
-    </div>
+		<mat-form-field  class="control-item-50">
+			<mat-label>Password</mat-label>
+			<input
+				matInput
+				type="password"
+				placeholder="Password"
+				ngModel
+				name="password"
+				class="control-item-50"
+			/>
+		</mat-form-field>
 
-    <div class="form-group">
-		<input
-			type="password"
-			placeholder="confirmPassword"
-			ngModel
-			name="confirmPassword"
-			#confirmPassword
-			class="form-control"
-		/>
-    </div>
+		<mat-form-field  class="control-item-50">
+			<mat-label>Password Confirm</mat-label>
+			<input
+				matInput
+				type="password"
+				placeholder="Password "
+				class="control-item-50"
+			/>
+		</mat-form-field>
 
-    <div class="form-group">
-		<input
-			type="dateOfBirth"
-			placeholder="dateOfBirth"
-			ngModel
-			name="dateOfBirth"
-			#dateOfBirths
-			class="form-control"
-		/>
-    </div>
+		<mat-form-field class="control-item-50">
+			<mat-label>Date of Birth</mat-label>
+			<input matInput [matDatepicker]="picker" class="control-item-50" />
+			<mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+			<mat-datepicker #picker></mat-datepicker>
+		</mat-form-field>
 
-    
-  
+		<mat-form-field class="example-full-width" class="control-item-50">
+			<mat-label>Phone</mat-label>
+			<input matInput placeholder="Phone" class="control-item-50" />
+		</mat-form-field>
 
-    <div class="form-group">
-		<select class="form-control">
-            <option >Hello</option>
-            <option >Hello</option>
-        </select>
-    </div>
+		<mat-form-field class="example-full-width" class="control-item-50">
+			<mat-label>City</mat-label>
+			<select matNativeControl>
+				<option value="" selected></option>
+				<option value="volvo">Volvo</option>
+				<option value="saab" disabled>Saab</option>
+				<option value="mercedes">Mercedes</option>
+				<option value="audi">Audi</option>
+			</select>
+		</mat-form-field>
 
+		<mat-form-field class="example-full-width" class="control-item-50">
+			<mat-label>Area</mat-label>
+			<select matNativeControl>
+				<!-- <option value="" selected></option>
+				<option value="volvo">Volvo</option>
+				<option value="saab" disabled>Saab</option>
+				<option value="mercedes">Mercedes</option>
+				<option value="audi">Audi</option> -->
+			</select>
+		</mat-form-field>
 
-    
-    <div class="form-group">
-        <button class="btn btn-success">Submit</button>
-    </div>
-
+		<div class="form-group">
+			<button class="btn btn-success">Submit</button>
+		</div>
+	</form>
 </div>
