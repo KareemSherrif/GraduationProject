@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 
 using GraduationProject.Models;
+using GraduationProject.Repositry;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -15,6 +16,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
+using Microsoft.OpenApi.Models;
 
 namespace GraduationProject
 {
@@ -30,6 +32,16 @@ namespace GraduationProject
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            #region Business Classes
+
+            services.AddTransient<IAreaRepositry, AreaRepositry>();
+            services.AddTransient<ICitiesRepositry, CitiesRepositry>();
+            #endregion
+
+
+
+
             services.AddControllersWithViews();
             services.AddIdentity<ApplicationUser, IdentityRole>(a =>
             {
@@ -47,7 +59,14 @@ namespace GraduationProject
             {
                 a.UseSqlServer(Configuration.GetConnectionString("con"));
             });
-            
+
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Shahenda Tech", Version = "v1" });
+
+            });
+
+
 
         }
 
@@ -72,7 +91,12 @@ namespace GraduationProject
             app.UseRouting();
 
             app.UseAuthorization();
-      
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+            });
+
 
             app.UseEndpoints(endpoints =>
             {
