@@ -1,9 +1,12 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using AutoMapper.Configuration;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace GraduationProject.Models
 {
@@ -249,9 +252,7 @@ namespace GraduationProject.Models
             {
                 entity.Property(e => e.Id).ValueGeneratedNever();
 
-                entity.Property(e => e.Name)
-                    .IsRequired()
-                    .HasMaxLength(50);
+             
 
 
             });
@@ -295,6 +296,69 @@ namespace GraduationProject.Models
             base.OnModelCreating(modelBuilder);
         }
 
-       
+        public static async Task CreateDefaultAccounts(IServiceProvider service, Microsoft.Extensions.Configuration.IConfiguration configuration)
+        {
+            UserManager<ApplicationUser> userManager = service.GetRequiredService<UserManager<ApplicationUser>>();
+            RoleManager<IdentityRole> roleManager = service.GetRequiredService<RoleManager<IdentityRole>>();
+           var result = roleManager.Roles.FirstOrDefault(a => a.Name == "Admin");
+            if(result == null)
+            {
+               await roleManager.CreateAsync(new IdentityRole("Admin"));
+            }
+             result = roleManager.Roles.FirstOrDefault(a => a.Name == "User");
+            if(result == null)
+            {
+                await roleManager.CreateAsync(new IdentityRole("User"));
+
+            }
+
+            string userName = configuration["DefaultAdmin:UserName"];
+            string password = configuration["DefaultAdmin:Password"];
+            string email = configuration["DefaultAdmin:Email"];
+            string address = configuration["DefaultAdmin:Address"];
+            string UserName = configuration["DefaultAdmin:UserName"];
+            string role = configuration["DefaultAdmin:Role"];
+            string firstName = configuration["DefaultAdmin:FirstName"];
+            string lastName = configuration["DefaultAdmin:LastName"];
+            string phone = configuration["DefaultAdmin:Phone"];
+            string city = configuration["DefaultAdmin:City"];
+            string area = configuration["DefaultAdmin:Area"];
+            ApplicationUser checkUser = await userManager.FindByNameAsync(userName);
+            if(checkUser == null)
+            {
+                ApplicationUser defaultUser = new ApplicationUser()
+                {
+                    Email = email,
+                    FirstName = firstName,
+                    LastName = lastName,
+                    Address = address,
+                    UserName = userName,
+                    PhoneNumber = phone,
+                    Area = new Area()
+                    {
+                        AreaName = area,
+                        City = new City()
+                        {
+                            CityName = city
+                        }
+                    }
+
+
+                };
+              IdentityResult identityResult =  await userManager.CreateAsync(defaultUser,password);
+                if (identityResult.Succeeded)
+                {
+                  await  userManager.AddToRoleAsync(defaultUser, role);
+                }
+            }
+
+
+
+
+
+
+
+        }
+
     }
 }
