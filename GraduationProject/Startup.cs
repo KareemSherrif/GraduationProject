@@ -89,7 +89,7 @@ namespace GraduationProject
             app.UseStaticFiles();
             app.UseNodeModules();
             app.UseRouting();
-
+            app.UseAuthentication();
             app.UseAuthorization();
             app.UseSwagger();
             app.UseSwaggerUI(c =>

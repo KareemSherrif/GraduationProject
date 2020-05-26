@@ -26,10 +26,16 @@ namespace GraduationProject.Areas.Api.Controllers
      
 
         [HttpGet]
-       public ActionResult<IEnumerable<AreasViewModel>> GetAreas()
+       public ActionResult<IEnumerable<AreasViewModel>> GetAreas([FromQuery]int? ID)
         {
+            if(ID == null)
+            {
+                return BadRequest();
+            }
+            
            
-            return Ok(Mapper.Map<IEnumerable<Area>,IEnumerable<AreasViewModel>>(AreaRepositry.GetAll()));
+            return Ok(Mapper.Map<IEnumerable<Area>,IEnumerable<AreasViewModel>>(AreaRepositry.GetAreaByCityID(ID.Value)));
         }
+    
     }
 }

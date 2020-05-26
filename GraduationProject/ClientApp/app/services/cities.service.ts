@@ -1,9 +1,16 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { City } from '../model/city';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CitiesService {
 
-  constructor() { }
+  constructor(private http:HttpClient) { 
+
+  }
+  GetCities() {
+    return this.http.get<City[]>("/api/Cities");
+  }
 }

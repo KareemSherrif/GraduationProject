@@ -8,6 +8,7 @@ namespace GraduationProject.Repositry
 {
    public interface IAreaRepositry :IRepositry<Area,int>
     {
-
+        IEnumerable<Area> GetAreaByCityID(int ID);
+        
     }
 }

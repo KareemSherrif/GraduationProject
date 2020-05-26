@@ -8,23 +8,33 @@
 			<mat-label>FirstName</mat-label>
 			<input
 				matInput
-				placeholder="FirstName"
+			
                 ngModel
                 #firstName="ngModel"
 				name="firstName"
                 class="control-item-50"
-                required
+				required
+				minlength="3"
+				maxlength="10"
 			/>
-			<mat-error *ngIf="firstName.invalid && firstName.touched"> 
-                The FirstName is Required
-                 </mat-error>
+				   <mat-error *ngIf="firstName.invalid && firstName.touched">
+                   <mat-error *ngIf="firstName.errors.required">
+					FirstName is Required
+				   </mat-error>
+				   <mat-error *ngIf="firstName.errors.minlength">
+						FirstName should be minimum 3 characters
+				   </mat-error>
+			
+				</mat-error>
+				
+			
 		</mat-form-field>
 
 		<mat-form-field  class="control-item-50">
 			<mat-label>LastName</mat-label>
 			<input
 				matInput
-				placeholder="LastName"
+			
 				ngModel
 				name="lastName"
                 class="control-item-50"
@@ -41,15 +51,24 @@
 			<input
                 matInput
                 type="email"
-				placeholder="Email"
+		
 				ngModel
 				name="email"
                 class="control-item-100"
-                required 
+				required 
+				#email="ngModel"
                 pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
             />
-            <mat-error>
+            <mat-error *ngIf="email.touched && email.invalid">
 
+				<mat-error *ngIf="email.errors.required">
+					Please Write your Email
+				</mat-error>
+				<mat-error *ngIf="email.errors.pattern">
+				 invalid Email
+				</mat-error>
+
+				
             </mat-error>
 		</mat-form-field>
 
@@ -57,11 +76,17 @@
 			<mat-label>UserName</mat-label>
 			<input
 				matInput
-				placeholder="UserName"
+			    required
 				ngModel
 				name="userName"
 				class="control-item-100"
+				#userName="ngModel"
+				
 			/>
+			<mat-error *ngIf="userName.invalid && userName.touched">
+				The UserName is Required
+			</mat-error>
+
 		</mat-form-field>
 
 		<mat-form-field  class="control-item-50">
@@ -69,11 +94,17 @@
 			<input
 				matInput
 				type="password"
-				placeholder="Password"
 				ngModel
+				#password="ngModel"
 				name="password"
+				(change)="this.OComparePasswords(password,confirmpassword)"
 				class="control-item-50"
+				required
 			/>
+
+			<mat-error *ngIf="password.invalid && password.touched">
+				The password is Required
+			</mat-error>
 		</mat-form-field>
 
 		<mat-form-field  class="control-item-50">
@@ -81,10 +112,21 @@
 			<input
 				matInput
 				type="password"
-				placeholder="Password "
 				class="control-item-50"
+				ngModel
+				name="confirmpassword"
+				#confirmpassword ="ngModel"
+			   required
+			   (change)="this.OComparePasswords(password,confirmpassword)"
 			/>
+		
+		
+		
+
 		</mat-form-field>
+			<mat-error *ngIf="passwordConfirmation">
+				The password doesn't much parent or Empty
+			</mat-error>
 
 		<mat-form-field class="control-item-50">
 			<mat-label>Date of Birth</mat-label>
@@ -100,28 +142,23 @@
 
 		<mat-form-field class="example-full-width" class="control-item-50">
 			<mat-label>City</mat-label>
-			<select matNativeControl>
-				<option value="" selected></option>
-				<option value="volvo">Volvo</option>
-				<option value="saab" disabled>Saab</option>
-				<option value="mercedes">Mercedes</option>
-				<option value="audi">Audi</option>
+			<select matNativeControl #city (change)="OnCityChange(city)">
+				<option value="0">...</option>
+				<option *ngFor="let item of cities" [value]="item.id" >{{item.cityName}}</option>
 			</select>
 		</mat-form-field>
 
 		<mat-form-field class="example-full-width" class="control-item-50">
 			<mat-label>Area</mat-label>
 			<select matNativeControl>
-				<!-- <option value="" selected></option>
-				<option value="volvo">Volvo</option>
-				<option value="saab" disabled>Saab</option>
-				<option value="mercedes">Mercedes</option>
-				<option value="audi">Audi</option> -->
+			   <option *ngFor="let item of areas" [value]="item.id" >{{item.areaName}}</option>
 			</select>
 		</mat-form-field>
 
 		<div class="form-group">
-			<button class="btn btn-success">Submit</button>
+			<button class="btn btn-success"  [disabled]="form.invalid">Submit</button>
 		</div>
 	</form>
 </div>
+
+
