@@ -1,5 +1,6 @@
-﻿function tablePlugin(selector, url, columns) {
-    $(selector).DataTable({
+﻿function tablePlugin(selector, url, columns) { 
+  
+    $(selector).DataTable({ //"#citytbl"
         lengthChange: false,
         info: true,
         searching: true,
@@ -19,12 +20,16 @@
             url: url,
             async: true,
             dataSrc: function (json) {
+
                 console.log(json);
                 return json.data;
             }
 
         },
-        columns: columns
+        columns:columns
 
     });
+    
+
 }
+
