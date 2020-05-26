@@ -24,7 +24,7 @@ namespace GraduationProject.Controllers
       
         public IActionResult Index()
         {
-           
+           /*Hello World*/
             return View();
         }
 
