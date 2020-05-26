@@ -24,7 +24,6 @@ let RegistrationComponent = class RegistrationComponent {
         if (data.value != 0) {
             this.areaService.GetAreas(data.value).subscribe(a => {
                 this.areas = a;
-                console.log(a);
             });
         }
         else {
