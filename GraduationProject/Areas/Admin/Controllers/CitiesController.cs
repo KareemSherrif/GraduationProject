@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
 using GraduationProject.Models;
 using GraduationProject.Repositry;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+
 
 namespace GraduationProject.Areas.Admin.Controllers
 {
@@ -29,78 +31,91 @@ namespace GraduationProject.Areas.Admin.Controllers
             return Json(CitiesRepositry.GetDataTable(start, length, a => a.CityName.Contains(search), a => a.ID));
         }
 
-        // GET: Cities/Details/5
+       
         public ActionResult Details(int id)
         {
             return View();
         }
 
-        // GET: Cities/Create
+      
         public ActionResult Create()
         {
-            return View();
+            return PartialView("Create");
+
         }
 
-        // POST: Cities/Create
+       
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(City city)
         {
-            try
-            {
-                // TODO: Add insert logic here
 
-                return RedirectToAction(nameof(Index));
-            }
-            catch
+            if (ModelState.IsValid)
             {
-                return View();
+                this.CitiesRepositry.Add(city);
+                this.CitiesRepositry.SaveAll();
+                return Ok("The City has been Added");
+
             }
+            return BadRequest("The Model is Valid");
+           
         }
 
         // GET: Cities/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int? id)
         {
-            return View();
+            if(id == null)
+            {
+                return BadRequest("The ID is not Found");
+            }
+           City city = this.CitiesRepositry.Get(id.Value);
+            if(city == null)
+            {
+                return NotFound("The Employee is not found");
+            }
+
+            return PartialView("Edit", city);
         }
 
-        // POST: Cities/Edit/5
+      
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(City city)
         {
             try
             {
-                // TODO: Add update logic here
-
-                return RedirectToAction(nameof(Index));
+                if (ModelState.IsValid)
+                {
+                    this.CitiesRepositry.Edit(city);
+                    this.CitiesRepositry.SaveAll();
+                    return Ok("The City Data has Changed");
+                }
+                return BadRequest("The City data is not valid");
+               
             }
             catch
             {
-                return View();
+                return BadRequest("The City Data is Locked now Try again later");
             }
         }
 
-        // GET: Cities/Delete/5
+       
+
+       
+        [HttpPost]
         public ActionResult Delete(int id)
         {
-            return View();
-        }
-
-        // POST: Cities/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
             try
             {
-                // TODO: Add delete logic here
 
-                return RedirectToAction(nameof(Index));
+               City city = CitiesRepositry.Get(id);
+                CitiesRepositry.Delete(city);
+                CitiesRepositry.SaveAll();
+                return Ok("The City has been deleted");
             }
             catch
             {
-                return View();
+                return BadRequest("The City has Areas Please Delete the Included Areas");
             }
         }
     }

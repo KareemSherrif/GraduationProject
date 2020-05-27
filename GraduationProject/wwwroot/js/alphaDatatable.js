@@ -1,6 +1,6 @@
 ﻿function tablePlugin(selector, url, columns) { 
   
-    $(selector).DataTable({ //"#citytbl"
+   var x = $(selector).DataTable({ //"#citytbl"
         lengthChange: false,
         info: true,
         searching: true,
@@ -29,7 +29,8 @@
         columns:columns
 
     });
-    
+    console.log(x);
+    return x;
 
 }
 
