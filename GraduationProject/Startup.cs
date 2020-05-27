@@ -37,6 +37,8 @@ namespace GraduationProject
 
             services.AddTransient<IAreaRepositry, AreaRepositry>();
             services.AddTransient<ICitiesRepositry, CitiesRepositry>();
+            // did you forget this 
+            services.AddTransient<IBrandRepository, BrandRepository>();
             #endregion
 
 
