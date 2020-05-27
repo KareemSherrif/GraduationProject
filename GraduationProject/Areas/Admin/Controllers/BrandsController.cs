@@ -10,46 +10,48 @@ using Microsoft.AspNetCore.Mvc;
 namespace GraduationProject.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    public class CitiesController : Controller
+    public class BrandsController : Controller
     {
-        public ICitiesRepositry CitiesRepositry { get; }
-        public CitiesController(ICitiesRepositry citiesRepositry)
+        private IBrandRepository BrandRepository { get; }
+
+        public BrandsController(IBrandRepository brandRepository)
         {
-            CitiesRepositry = citiesRepositry;
+            BrandRepository = brandRepository;
         }
+
+        // GET: Brand
         public ActionResult Index()
         {
-            return View();
+            return View(BrandRepository.GetAll());
         }
+
         [HttpGet]
-        public ActionResult GetCities(int start = 0, int length = 10)
+        public ActionResult GetBrands(int start, int lenght)
         {
-            string search = HttpContext.Request.Query["search[value]"];
-
-            return Json(CitiesRepositry.GetDataTable(start, length, a => a.CityName.Contains(search), a => a.ID));
+            return Json(BrandRepository.GetDataTable(start, lenght, a => a.Name.Contains(""), a => a.Id));
         }
 
-        // GET: Cities/Details/5
+        // GET: Brand/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            return View(BrandRepository.Get(id));
         }
 
-        // GET: Cities/Create
+        // GET: Brand/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Cities/Create
+        // POST: Brandd/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(Brand brand)
         {
             try
             {
-                // TODO: Add insert logic here
-
+                BrandRepository.Add(brand);
+                BrandRepository.SaveAll();
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -58,21 +60,22 @@ namespace GraduationProject.Areas.Admin.Controllers
             }
         }
 
-        // GET: Cities/Edit/5
+        // GET: Brandd/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: Cities/Edit/5
+        // POST: Brandd/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(int id, Brand brand)
         {
             try
             {
                 // TODO: Add update logic here
-
+                BrandRepository.Edit(brand);
+                BrandRepository.SaveAll();
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -81,21 +84,21 @@ namespace GraduationProject.Areas.Admin.Controllers
             }
         }
 
-        // GET: Cities/Delete/5
+        // GET: Brandd/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: Cities/Delete/5
+        // POST: Brandd/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete(int id, Brand brand)
         {
             try
             {
-                // TODO: Add delete logic here
-
+                BrandRepository.Delete(brand);
+                BrandRepository.SaveAll();
                 return RedirectToAction(nameof(Index));
             }
             catch
