@@ -11,12 +11,10 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace GraduationProject.Areas.Admin.Controllers
 {
-    //without #
     [Area("Admin")]
     public class CitiesController : Controller
     {
         public ICitiesRepositry CitiesRepositry { get; }
-
         public CitiesController(ICitiesRepositry citiesRepositry)
         {
             CitiesRepositry = citiesRepositry;
@@ -26,11 +24,11 @@ namespace GraduationProject.Areas.Admin.Controllers
             return View();
         }
         [HttpGet]
-        public ActionResult GetCities(int start =0, int length=10)
+        public ActionResult GetCities(int start = 0, int length = 10)
         {
             string search = HttpContext.Request.Query["search[value]"];
-           
-            return Json(CitiesRepositry.GetDataTable(start,length,a=>a.CityName.Contains(search),a=>a.ID));
+
+            return Json(CitiesRepositry.GetDataTable(start, length, a => a.CityName.Contains(search), a => a.ID));
         }
 
        
