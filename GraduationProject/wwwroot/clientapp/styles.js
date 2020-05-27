@@ -376,8 +376,8 @@ module.exports = function (list, options) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! F:\MyApplication\GraduationProject\GraduationProject\GraduationProject\node_modules\@angular\material\prebuilt-themes\indigo-pink.css */"./node_modules/@angular/material/prebuilt-themes/indigo-pink.css");
-module.exports = __webpack_require__(/*! F:\MyApplication\GraduationProject\GraduationProject\GraduationProject\ClientApp\styles.css */"./ClientApp/styles.css");
+__webpack_require__(/*! D:\Nardeen iti\Graduation Project\gradProject\GraduationProject\node_modules\@angular\material\prebuilt-themes\indigo-pink.css */"./node_modules/@angular/material/prebuilt-themes/indigo-pink.css");
+module.exports = __webpack_require__(/*! D:\Nardeen iti\Graduation Project\gradProject\GraduationProject\ClientApp\styles.css */"./ClientApp/styles.css");
 
 
 /***/ })

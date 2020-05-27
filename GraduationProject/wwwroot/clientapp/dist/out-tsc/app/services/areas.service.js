@@ -5,7 +5,7 @@ let AreasService = class AreasService {
         this.http = http;
     }
     GetAreas(id) {
-        return this.http.get("/api/Areas/" + id);
+        return this.http.get("/api/Areas/?ID=" + id);
     }
 };
 AreasService = __decorate([
