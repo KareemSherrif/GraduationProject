@@ -7,6 +7,7 @@ using GraduationProject.Repositry;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
+
 namespace GraduationProject.Areas.Admin.Controllers
 {
     [Area("Admin")]
@@ -30,7 +31,7 @@ namespace GraduationProject.Areas.Admin.Controllers
             return Json(CitiesRepositry.GetDataTable(start,length,a=>a.CityName.Contains(search),a=>a.ID));
         }
 
-        // GET: Cities/Details/5
+       
         public ActionResult Details(int id)
         {
             return View();

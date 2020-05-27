@@ -7,7 +7,7 @@
     <link href="~/admin/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" />
 }
 <h1>City</h1>
-<button id="btnCreate" class="btn btn-success">Create New City </button>
+<a id="btn" class="btn btn-success">Create New City </a>
 
 <table id="citytbl" class="table">
     <thead>
@@ -21,14 +21,9 @@
     </tbody>
 </table>
 
-<div class="modal fade" id="controllModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content" id="modalData">
 
+<div id="testing">
 
-
-        </div>
-    </div>
 </div>
 
 
@@ -36,35 +31,37 @@
 @section scripts{
     <script src="~/admin/vendor/datatables/jquery.dataTables.js"></script>
     <script src="~/admin/vendor/datatables/dataTables.bootstrap4.min.js"></script>
-    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
-    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
     <script src="~/jquery-ajax-unobtrusive/jquery.unobtrusive-ajax.min.js"></script>
     <script src="~/js/alphaDatatable.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+
+
     <script>
         $(document).ready(function () {
             let dataColumns = [{ data: "cityName" }, {
                 data: "id", render: function () {
                     return `<a href="" class="btn btn-primary"> Edit </a> |
-                                      <a href="" class="btn btn-danger"> Delete </a>`
+                                                  <a href="" class="btn btn-danger"> Delete </a>`
                 }
             }];
 
             tablePlugin("#citytbl", "/admin/Cities/GetCities", dataColumns);
-
-            $("#btnCreate").click(function () {
-
+            $("#btn").click(function () {
                 $.ajax({
                     url: "/admin/Cities/Create",
                     success: function (data) {
-                        $("#modalData").html(data);
-                        $("#controllModel").modal("show");
-
+                        $("#testing").html(data);
+                        var form = $("form");
+                        form.removeData('validator');
+                        form.removeData('unobtrusiveValidation');
+                        $.validator.unobtrusive.parse(form);
 
                     }
-
                 });
+            })
 
-            });
+
 
         });
 
