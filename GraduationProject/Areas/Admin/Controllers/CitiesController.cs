@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace GraduationProject.Areas.Admin.Controllers
 {
+    //without #
     [Area("Admin")]
     public class CitiesController : Controller
     {
