@@ -22,13 +22,15 @@ namespace GraduationProject.Areas.Admin.Controllers
         // GET: Brand
         public ActionResult Index()
         {
-            return View(BrandRepository.GetAll());
+            return View();
         }
 
         [HttpGet]
-        public ActionResult GetBrands(int start=0, int lenght=10)
+        public ActionResult GetBrands(int start = 0, int lenght = 10)
         {
-            return Json(BrandRepository.GetDataTable(start, lenght, a => a.Name.Contains(""), a => a.Id));
+           
+            string search = HttpContext.Request.Query["search[value]"];
+            return Json(BrandRepository.GetDataTable(start, lenght, a => a.Name.Contains(search), a => a.Id));
         }
 
         // GET: Brand/Details/5
@@ -40,10 +42,10 @@ namespace GraduationProject.Areas.Admin.Controllers
         // GET: Brand/Create
         public ActionResult Create()
         {
-            return View();
+            return PartialView("Create");
         }
 
-        // POST: Brandd/Create
+        // POST: Brand/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(Brand brand)
@@ -77,7 +79,7 @@ namespace GraduationProject.Areas.Admin.Controllers
             return PartialView("Edit", brand);
         }
 
-        // POST: Brandd/Edit/5
+        // POST: Brand/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(Brand brand)
@@ -88,12 +90,10 @@ namespace GraduationProject.Areas.Admin.Controllers
                 {
                     this.BrandRepository.Edit(brand);
                     this.BrandRepository.SaveAll();
-                    Ok("The Brand Data has Changed");
-                    return RedirectToAction("Index");
+                    return Ok("The Brand Data has Changed");
 
                 }
                 return BadRequest("The Brand data is not valid");
-
             }
             catch
             {
@@ -101,13 +101,13 @@ namespace GraduationProject.Areas.Admin.Controllers
             }
         }
 
-        // GET: Brandd/Delete/5
+        // GET: Brand/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: Brandd/Delete/5
+        // POST: Brand/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, Brand brand)

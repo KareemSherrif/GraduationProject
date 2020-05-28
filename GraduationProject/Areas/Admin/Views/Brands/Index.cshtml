@@ -9,33 +9,21 @@
     <link href="~/admin/sweetAlert/sweetalert2.min.css" rel="stylesheet" />
 }
 <h1>Barnd</h1>
-<button id="btn" class="btn btn-success">Create New Brand </button>
+<button id="btn" class="btn btn-success" onclick="editModal('@Url.Action("Create", "Brands")')"> Create New Brand </button>
 
 <table id="brandtbl" class="table">
     <thead>
         <tr>
             <th>Name</th>
-            <th></th>
+           <th></th>
 
         </tr>
     </thead>
     <tbody>
-        @foreach(var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayNameFor(item => item.Name)
-                </td>
-                <td>
-                    <button class="btn btn-primary" type="submit" onclick="editModal('@Url.Action("Edit", "Brands" , new {id=item.Id })')">Edit</button>
-                </td>
-                <td>
-                    <button class="btn btn-primary" type="submit">Delete</button>
-                </td>
-            </tr>
-        }
+       
     </tbody>
 </table>
+@**@
 
 
 <div class="modal fade" id="brandModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -57,13 +45,51 @@
     <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
     <script src="~/admin/sweetAlert/sweetalert2.min.js"></script>
     @*<script src="~/admin/crud/city.js"></script>*@
-    
-    <script>
+
+<script>
+
+
+        dataColumns = [{ data: "name" }, {
+            data: "id", render: function (data) {
+
+                return `<button class="btn btn-primary" type="submit" onclick="editModal('/admin/Brands/Edit/${data}')">Edit</button> |
+                  <button class="btn btn-primary" type="submit" onclick="editModal('/admin/Brands/Edit/${data}')">Edit</button>`;
+            }
+        }];
+
+        tbl = tablePlugin("#brandtbl", "/admin/Brands/GetBrands", dataColumns);
+
         function editModal(url) {
             $('#brandcontent').load(url);
             $('#brandModel').modal('show');
         }
-    </script>
+        Complated = function (xhr) {
+
+            if (xhr.status == 200) {
+                tbl.ajax.reload();
+                $('#brandModel').modal('hide');
+                Swal.fire({
+                    icon: 'success',
+                    title: xhr.responseText,
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+
+            }
+            else if (xhr.status == 400) {
+                Swal.fire({
+                    icon: 'error',
+                    title: xhr.responseText,
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+
+            }
+
+
+        }
+
+</script>
 
 }
 

@@ -50,7 +50,7 @@ namespace GraduationProject.Models
         {
             modelBuilder.Entity<Attributes>(entity =>
             {
-                entity.Property(e => e.Id).ValueGeneratedNever();
+             
 
                 entity.Property(e => e.Name)
                     .IsRequired()
@@ -59,7 +59,7 @@ namespace GraduationProject.Models
 
             modelBuilder.Entity<Brand>(entity =>
             {
-                entity.Property(e => e.Id).ValueGeneratedNever();
+                
 
                 entity.Property(e => e.Name)
                     .IsRequired()
