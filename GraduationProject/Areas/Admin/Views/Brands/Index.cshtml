@@ -1,13 +1,15 @@
-﻿
+﻿@model IEnumerable<Brand>
+
 @{
     ViewData["Title"] = "Index";
 }
 
 @section styles{
     <link href="~/admin/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" />
+    <link href="~/admin/sweetAlert/sweetalert2.min.css" rel="stylesheet" />
 }
-<h1>Brand</h1>
-<button id="btnCreate" class="btn btn-success">Create New Brand </button>
+<h1>Barnd</h1>
+<button id="btn" class="btn btn-success">Create New Brand </button>
 
 <table id="brandtbl" class="table">
     <thead>
@@ -18,14 +20,27 @@
         </tr>
     </thead>
     <tbody>
+        @foreach(var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayNameFor(item => item.Name)
+                </td>
+                <td>
+                    <button class="btn btn-primary" type="submit" onclick="editModal('@Url.Action("Edit", "Brands" , new {id=item.Id })')">Edit</button>
+                </td>
+                <td>
+                    <button class="btn btn-primary" type="submit">Delete</button>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
 
-<div class="modal fade" id="controllModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+
+<div class="modal fade" id="brandModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
-        <div class="modal-content" id="modalData">
-
-
+        <div class="modal-content" id="brandcontent">
 
         </div>
     </div>
@@ -36,16 +51,18 @@
 @section scripts{
     <script src="~/admin/vendor/datatables/jquery.dataTables.js"></script>
     <script src="~/admin/vendor/datatables/dataTables.bootstrap4.min.js"></script>
-    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
-    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
     <script src="~/jquery-ajax-unobtrusive/jquery.unobtrusive-ajax.min.js"></script>
     <script src="~/js/alphaDatatable.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/admin/sweetAlert/sweetalert2.min.js"></script>
+    @*<script src="~/admin/crud/city.js"></script>*@
+    
     <script>
-        $(document).ready(function () {
-
-        });
-
-
+        function editModal(url) {
+            $('#brandcontent').load(url);
+            $('#brandModel').modal('show');
+        }
     </script>
 
 }

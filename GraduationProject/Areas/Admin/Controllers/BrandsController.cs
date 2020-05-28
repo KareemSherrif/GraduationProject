@@ -26,7 +26,7 @@ namespace GraduationProject.Areas.Admin.Controllers
         }
 
         [HttpGet]
-        public ActionResult GetBrands(int start, int lenght)
+        public ActionResult GetBrands(int start=0, int lenght=10)
         {
             return Json(BrandRepository.GetDataTable(start, lenght, a => a.Name.Contains(""), a => a.Id));
         }
@@ -61,26 +61,43 @@ namespace GraduationProject.Areas.Admin.Controllers
         }
 
         // GET: Brandd/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int? id)
         {
-            return View();
+
+            if (id == null)
+            {
+                return BadRequest("The ID is not Found");
+            }
+            Brand brand = this.BrandRepository.Get(id.Value);
+            if (brand == null)
+            {
+                return NotFound("The Brand is not found");
+            }
+
+            return PartialView("Edit", brand);
         }
 
         // POST: Brandd/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, Brand brand)
+        public ActionResult Edit(Brand brand)
         {
             try
             {
-                // TODO: Add update logic here
-                BrandRepository.Edit(brand);
-                BrandRepository.SaveAll();
-                return RedirectToAction(nameof(Index));
+                if (ModelState.IsValid)
+                {
+                    this.BrandRepository.Edit(brand);
+                    this.BrandRepository.SaveAll();
+                    Ok("The Brand Data has Changed");
+                    return RedirectToAction("Index");
+
+                }
+                return BadRequest("The Brand data is not valid");
+
             }
             catch
             {
-                return View();
+                return BadRequest("The Brand Data is Locked now Try again later");
             }
         }
 
