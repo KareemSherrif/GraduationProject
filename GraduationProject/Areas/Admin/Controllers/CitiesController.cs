@@ -7,7 +7,7 @@ using GraduationProject.Models;
 using GraduationProject.Repositry;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace GraduationProject.Areas.Admin.Controllers
 {
@@ -40,6 +40,8 @@ namespace GraduationProject.Areas.Admin.Controllers
       
         public ActionResult Create()
         {
+           
+       
             return PartialView("Create");
 
         }
