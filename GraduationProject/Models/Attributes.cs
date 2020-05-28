@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace GraduationProject.Models
 {
@@ -11,6 +12,7 @@ namespace GraduationProject.Models
         }
 
         public int Id { get; set; }
+        [Required]
         public string Name { get; set; }
 
         public virtual ICollection<CategoryAttributes> CategoryAttributes { get; set; }
