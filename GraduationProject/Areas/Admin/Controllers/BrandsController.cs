@@ -26,7 +26,7 @@ namespace GraduationProject.Areas.Admin.Controllers
         }
 
         [HttpGet]
-        public ActionResult GetBrands(int start=0, int lenght=10)
+        public ActionResult GetBrands(int start = 0, int lenght = 10)
         {
             return Json(BrandRepository.GetDataTable(start, lenght, a => a.Name.Contains(""), a => a.Id));
         }
@@ -43,7 +43,7 @@ namespace GraduationProject.Areas.Admin.Controllers
             return View();
         }
 
-        // POST: Brandd/Create
+        // POST: Brand/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(Brand brand)
@@ -77,7 +77,7 @@ namespace GraduationProject.Areas.Admin.Controllers
             return PartialView("Edit", brand);
         }
 
-        // POST: Brandd/Edit/5
+        // POST: Brand/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(Brand brand)
@@ -88,12 +88,10 @@ namespace GraduationProject.Areas.Admin.Controllers
                 {
                     this.BrandRepository.Edit(brand);
                     this.BrandRepository.SaveAll();
-                    Ok("The Brand Data has Changed");
-                    return RedirectToAction("Index");
+                    return Ok("The Brand Data has Changed");
 
                 }
                 return BadRequest("The Brand data is not valid");
-
             }
             catch
             {
@@ -101,13 +99,13 @@ namespace GraduationProject.Areas.Admin.Controllers
             }
         }
 
-        // GET: Brandd/Delete/5
+        // GET: Brand/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: Brandd/Delete/5
+        // POST: Brand/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, Brand brand)

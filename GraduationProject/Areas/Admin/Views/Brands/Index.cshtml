@@ -9,7 +9,7 @@
     <link href="~/admin/sweetAlert/sweetalert2.min.css" rel="stylesheet" />
 }
 <h1>Barnd</h1>
-<button id="btn" class="btn btn-success">Create New Brand </button>
+<button id="btn" class="btn btn-success" onclick="editModal('@Url.Action("Create", "Brands")')"> Create New Brand </button>
 
 <table id="brandtbl" class="table">
     <thead>
@@ -24,7 +24,7 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayNameFor(item => item.Name)
+                    @item.Name
                 </td>
                 <td>
                     <button class="btn btn-primary" type="submit" onclick="editModal('@Url.Action("Edit", "Brands" , new {id=item.Id })')">Edit</button>
@@ -63,6 +63,31 @@
             $('#brandcontent').load(url);
             $('#brandModel').modal('show');
         }
+        Complated = function (xhr) {
+
+            if (xhr.status == 200) {
+               // tbl.ajax.reload();
+                Swal.fire({
+                    icon: 'success',
+                    title: xhr.responseText,
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+
+            }
+            else if (xhr.status == 400) {
+                Swal.fire({
+                    icon: 'error',
+                    title: xhr.responseText,
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+
+            }
+
+
+        }
+
     </script>
 
 }
