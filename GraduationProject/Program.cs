@@ -2,26 +2,46 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using GraduationProject.Models;
+
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.DependencyInjection;
+using GraduationProject.Models;
 
 namespace GraduationProject
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static async Task  Main(string[] args)
         {
-            CreateHostBuilder(args).Build().Run();
+
+            //CreateHostBuilder(args)
+            //   .Build().Run();
+
+            var host = CreateHostBuilder(args).Build();
+
+            using (var scope = host.Services.CreateScope())
+            {
+                var serviceProvider = scope.ServiceProvider;
+                var config = serviceProvider.GetRequiredService<IConfiguration>();
+
+                await ApplicationDbContext.CreateDefaultAccounts(serviceProvider, config);
+            }
+
+            await host.RunAsync();
+
+
+
         }
-        
+
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
+                   
                     webBuilder.UseStartup<Startup>();
                 });
     }

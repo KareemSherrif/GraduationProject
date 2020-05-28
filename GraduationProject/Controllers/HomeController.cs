@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using GraduationProject.Models;
 using Microsoft.AspNetCore.Authorization;
+using GraduationProject.ExtenstionMethods;
 
 namespace GraduationProject.Controllers
 {
+ 
  
     public class HomeController : Controller
     {
@@ -19,9 +21,10 @@ namespace GraduationProject.Controllers
         {
             _logger = logger;
         }
-
+      
         public IActionResult Index()
         {
+           /*Hello World*/
             return View();
         }
 

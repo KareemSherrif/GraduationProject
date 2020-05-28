@@ -5,8 +5,10 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
+
 using GraduationProject.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using GraduationProject.Repositry;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -14,8 +16,10 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 
 namespace GraduationProject
 {
@@ -31,6 +35,17 @@ namespace GraduationProject
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            #region Business Classes
+
+            services.AddTransient<IAreaRepositry, AreaRepositry>();
+            services.AddTransient<ICitiesRepositry, CitiesRepositry>();
+            services.AddTransient<IBrandRepository, BrandRepository>();
+            #endregion
+
+
+
+
             services.AddControllersWithViews();
             services.AddIdentity<ApplicationUser, IdentityRole>(a =>
             {
@@ -59,10 +74,21 @@ namespace GraduationProject
 
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
+ 
+
             services.AddDbContext<ApplicationDbContext>(a =>
             {
                 a.UseSqlServer(Configuration.GetConnectionString("con"));
             });
+
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Nareeden Api", Version = "v1" });
+
+            });
+
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -79,11 +105,18 @@ namespace GraduationProject
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-          
+           
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseNodeModules();
             app.UseRouting();
+            app.UseAuthentication();
+            app.UseAuthorization();
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+            });
 
             app.UseAuthentication();
             app.UseAuthorization();
