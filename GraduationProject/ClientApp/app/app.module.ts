@@ -20,6 +20,7 @@ import { LoginComponent } from './user/login/login.component';
 import { UserService } from './services/user.service';
 import { AuthGuard } from './guards/auth.guard';
 import { AuthInterceptor } from './guards/auth-interceptor';
+import { Routes, RouterModule } from '@angular/router';
 
 const router: Routes = [
   { path: '', component: HomeComponent },
@@ -31,8 +32,7 @@ const router: Routes = [
     AppComponent,
     NavbarComponent,
     RegistrationComponent,
-    HomeComponent
-    AppComponent,
+    HomeComponent,
     LoginComponent
   ],
   imports: [
@@ -46,14 +46,8 @@ const router: Routes = [
     MatDatepickerModule,
     MatNativeDateModule
   ],
-  providers: [AreasService,CitiesService],
-      BrowserModule,
-      AppRoutingModule,
-      FormsModule,
-      HttpClientModule
-      
-  ],
     providers: [
+        [AreasService, CitiesService],
         UserService,
         AuthGuard,
         {

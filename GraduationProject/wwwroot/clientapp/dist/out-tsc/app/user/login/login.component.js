@@ -10,8 +10,8 @@ let LoginComponent = class LoginComponent {
     Save(formData) {
         this.userService.userAuthentication(formData.value).subscribe((data) => {
             console.log('Login Data ', data);
-            localStorage.setItem('token', data.access_token);
-            localStorage.setItem('userId', data.id);
+            localStorage.setItem('token', data.token);
+            localStorage.setItem('userId', data.userId);
             localStorage.setItem('userName', data.userName);
             //localStorage.setItem('userRole', data.Role);
             let returnUrl = this.route.snapshot.queryParamMap.get('returnUrl');
