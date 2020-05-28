@@ -4,13 +4,13 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace GraduationProject.Areas.Api.ViewModels
+namespace GraduationProject.Areas.Api.VIewModels
 {
     public class LoginViewModel
     {
-        [Required(ErrorMessage = "User Name is required")]
+        [Required]
         public string UserName { get; set; }
-        [Required(ErrorMessage = "Password is required")]
+        [Required]
         public string Password { get; set; }
     }
 }
