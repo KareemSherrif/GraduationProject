@@ -22,13 +22,15 @@ namespace GraduationProject.Areas.Admin.Controllers
         // GET: Brand
         public ActionResult Index()
         {
-            return View(BrandRepository.GetAll());
+            return View();
         }
 
         [HttpGet]
         public ActionResult GetBrands(int start = 0, int lenght = 10)
         {
-            return Json(BrandRepository.GetDataTable(start, lenght, a => a.Name.Contains(""), a => a.Id));
+           
+            string search = HttpContext.Request.Query["search[value]"];
+            return Json(BrandRepository.GetDataTable(start, lenght, a => a.Name.Contains(search), a => a.Id));
         }
 
         // GET: Brand/Details/5
@@ -40,7 +42,7 @@ namespace GraduationProject.Areas.Admin.Controllers
         // GET: Brand/Create
         public ActionResult Create()
         {
-            return View();
+            return PartialView("Create");
         }
 
         // POST: Brand/Create
