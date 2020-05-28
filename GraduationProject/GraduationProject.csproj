@@ -5,14 +5,27 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Areas\Api\Profiles\**" />
+    <Content Remove="Areas\Api\Profiles\**" />
+    <EmbeddedResource Remove="Areas\Api\Profiles\**" />
+    <None Remove="Areas\Api\Profiles\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="ClientApp\app\app-routing.module.ts" />
+    <None Remove="ClientApp\app\guards\auth-interceptor.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Admin\Models\" />
-    <Folder Include="Areas\Api\Profiles\" />
-    <Folder Include="Areas\Api\VIewModels\" />
+    <Folder Include="ClientApp\app\models\" />
+    <Folder Include="ClientApp\app\services\" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.4" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.4" />
     <PackageReference Include="Microsoft.EntityframeworkCore.sqlServer" Version="3.1.4" />
     <PackageReference Include="Microsoft.EntityframeworkCore.tools" Version="3.1.4">
@@ -21,6 +34,11 @@
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.3" />
     <PackageReference Include="OdeToCode.UseNodeModules" Version="3.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\app\app-routing.module.ts" />
+    <TypeScriptCompile Include="ClientApp\app\guards\auth-interceptor.ts" />
   </ItemGroup>
 
 </Project>
