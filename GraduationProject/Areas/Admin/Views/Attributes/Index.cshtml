@@ -113,6 +113,28 @@
                 });
 
             });
+
+            $("#attributetbl").on("click", ".delete-button", function () {
+                var ID = $(this).attr("attribute");
+                $.ajax({
+                    url: "/admin/Attributes/Delete/",
+                    data: { id: ID },
+                    method: "POST",
+                    success(data) {
+                        Swal.fire({
+                            icon: 'success',
+                            title: data,
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                    },
+                    complete: Complated
+                });
+
+            });
+
+
+
         });
 
     </script>
