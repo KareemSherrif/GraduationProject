@@ -208,7 +208,7 @@ a#scrollUp i {
 }
 
 .shop-menu ul li a {
-    background: #FFFFFF;
+    background-color:transparent ;
     color: #696763;
     font-family: 'Roboto', sans-serif;
     font-size: 14px;
@@ -2462,5 +2462,10 @@ textarea {
 }
 .text-center{
     background-color: transparent;
+}
+.navbar-nav li a:active,
+.navbar-nav li a:focus {
+    background-color: transparent !important;
+    background: transparent !important;
 }
 
