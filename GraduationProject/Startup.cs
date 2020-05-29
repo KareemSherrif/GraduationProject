@@ -43,6 +43,7 @@ namespace GraduationProject
             services.AddTransient<IBrandRepository, BrandRepository>();
             services.AddTransient<IAttributeRepositry, AttributeRepositry>();
             services.AddTransient<ICategoryRepositry, CategoryRepositry>();
+            services.AddTransient<IModelRepositry, ModelsRepositry>();
             #endregion
 
 

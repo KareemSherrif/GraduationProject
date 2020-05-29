@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GraduationProject.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200529132112_InitialModel")]
-    partial class InitialModel
+    [Migration("20200529205039_intialModelForModel")]
+    partial class intialModelForModel
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -272,7 +272,9 @@ namespace GraduationProject.Migrations
             modelBuilder.Entity("GraduationProject.Models.Model", b =>
                 {
                     b.Property<int>("Id")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");

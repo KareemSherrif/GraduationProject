@@ -141,7 +141,7 @@ namespace GraduationProject.Models
 
             modelBuilder.Entity<Model>(entity =>
             {
-                entity.Property(e => e.Id).ValueGeneratedNever();
+               
 
                 entity.Property(e => e.Name)
                     .IsRequired()
