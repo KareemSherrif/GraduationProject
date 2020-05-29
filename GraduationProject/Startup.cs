@@ -2,10 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
 
 using GraduationProject.Models;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using GraduationProject.Repositry;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -16,6 +18,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 
 namespace GraduationProject
@@ -38,6 +41,7 @@ namespace GraduationProject
             services.AddTransient<IAreaRepositry, AreaRepositry>();
             services.AddTransient<ICitiesRepositry, CitiesRepositry>();
             services.AddTransient<IBrandRepository, BrandRepository>();
+            services.AddTransient<IAttributeRepositry, AttributeRepositry>();
             #endregion
 
 
@@ -51,9 +55,26 @@ namespace GraduationProject
                 a.Password.RequireNonAlphanumeric = false;
                 a.Password.RequireUppercase = false;
             }).AddEntityFrameworkStores<ApplicationDbContext>();
-      
+
+            services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(options =>
+            {
+                options.SaveToken = true;
+                options.TokenValidationParameters = new TokenValidationParameters()
+                {
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Tokens:Key"].ToString())),
+                    ValidateIssuer = false,
+                    ValidateAudience = false,
+                };
+            });
+
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
-          
+
  
 
             services.AddDbContext<ApplicationDbContext>(a =>
@@ -98,6 +119,8 @@ namespace GraduationProject
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
             });
 
+            app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {

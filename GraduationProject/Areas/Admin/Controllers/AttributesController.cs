@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using GraduationProject.Models;
+using GraduationProject.Repositry;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,84 +12,115 @@ namespace GraduationProject.Areas.Admin.Controllers
     [Area("Admin")]
     public class AttributesController : Controller
     {
-        // GET: Attributes
+        public IAttributeRepositry AttributeRepositry { get; }
+
+        public AttributesController(IAttributeRepositry attributeRepositry)
+        {
+            AttributeRepositry = attributeRepositry;
+        }
+  
         public ActionResult Index()
         {
+            
             return View();
         }
 
-        // GET: Attributes/Details/5
+        [HttpGet]
+        public ActionResult GetAttribute(int start = 0, int length = 10)
+        {
+            string search = HttpContext.Request.Query["search[value]"];
+          
+            return Json(AttributeRepositry.GetDataTable(start, length, a => a.Name.Contains(search), a => a.Id));
+        }
+
+
+
         public ActionResult Details(int id)
         {
             return View();
         }
 
-        // GET: Attributes/Create
+      
         public ActionResult Create()
         {
             return PartialView("Create");
         }
 
-        // POST: Attributes/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(Attributes colllection)
         {
             try
             {
-                // TODO: Add insert logic here
-
-                return RedirectToAction(nameof(Index));
+                if (ModelState.IsValid)
+                {
+                    AttributeRepositry.Add(colllection);
+                    AttributeRepositry.SaveAll();
+                    return Ok("The Attribute has been Added");
+                }
+                return BadRequest(" The Attribute Data is not Valid ");
             }
             catch
             {
-                return View();
+                return BadRequest("There is an Error in Attribute");
             }
         }
 
-        // GET: Attributes/Edit/5
-        public ActionResult Edit(int id)
+       
+        public ActionResult Edit(int ? id)
         {
-            return View();
+
+            if(id == null)
+            {
+                return BadRequest("The Request is not Valid");
+            }
+            Attributes attributes = this.AttributeRepositry.Get(id.Value);
+            if(attributes == null)
+            {
+                return NotFound("The Attribute is not found");
+            }
+
+
+            return PartialView("Edit", attributes);
         }
 
-        // POST: Attributes/Edit/5
+       
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(Attributes attributes)
         {
             try
             {
-                // TODO: Add update logic here
-
-                return RedirectToAction(nameof(Index));
+                if (ModelState.IsValid)
+                {
+                    this.AttributeRepositry.Edit(attributes);
+                    this.AttributeRepositry.SaveAll();
+                    return Ok("The Attribute has been edited");
+                }
+                return BadRequest("The Attribute is not valid");
             }
             catch
             {
-                return View();
+                return BadRequest("Error has been occured");
             }
         }
 
-        // GET: Attributes/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
+      
 
-        // POST: Attributes/Delete/5
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete(int Id)
         {
             try
             {
-                // TODO: Add delete logic here
-
-                return RedirectToAction(nameof(Index));
+               
+                 Attributes attributes =  this.AttributeRepositry.Get(Id);
+                this.AttributeRepositry.Delete(attributes);
+                this.AttributeRepositry.SaveAll();
+                return Ok("The Attribute has been Deleted");
             }
             catch
             {
-                return View();
+              return Ok("The Attribute didn't  Deleted may been is has Relational Data");
             }
         }
     }

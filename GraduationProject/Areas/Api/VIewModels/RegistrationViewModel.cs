@@ -27,8 +27,11 @@ namespace GraduationProject.Areas.Api.VIewModels
         public string ConfirmPassword { get; set; }
         [Required]
         public string Address { get; set; }
+
         [Required]
-        public DateTime DateOfBirth { get; set; }
+        [StringLength(11)]
+        public string Phonenumber { get; set; }
+
         [Required]
         public int AreaID { get; set; }
     }

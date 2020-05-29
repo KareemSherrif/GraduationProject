@@ -1,7 +1,7 @@
-﻿@model GraduationProject.Models.City
+﻿@model GraduationProject.Models.Attributes
 
 <div class="modal-body">
-    <form data-ajax-url="/Admin/Cities/Edit" method="post" id="createForms" data-ajax="true" data-ajax-complete="Complated" data-ajax-method="post">
+    <form data-ajax-url="/Admin/Attributes/Edit" method="post" id="createForms" data-ajax="true" data-ajax-complete="Complated" data-ajax-method="post">
         <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLongTitle">Cities</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -14,12 +14,12 @@
 
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-                    <input asp-for="ID" type="hidden"  class="form-control" />
-                  
+                <input asp-for="Id" type="hidden" class="form-control" />
+
                 <div class="form-group">
-                    <label asp-for="CityName" class="control-label">CityName</label>
-                    <input asp-for="CityName" placeholder="City Name" class="form-control" />
-                    <span asp-validation-for="CityName" class="text-danger"></span>
+                    <label asp-for="Name" class="control-label">CityName</label>
+                    <input asp-for="Name" placeholder="City Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
                 </div>
 
 
