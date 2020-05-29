@@ -28,7 +28,7 @@ namespace GraduationProject.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult GetBrands(int start = 0, int lenght = 10)
         {
-           
+
             string search = HttpContext.Request.Query["search[value]"];
             return Json(BrandRepository.GetDataTable(start, lenght, a => a.Name.Contains(search), a => a.Id));
         }
@@ -50,19 +50,19 @@ namespace GraduationProject.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(Brand brand)
         {
-            try
+            if (ModelState.IsValid)
             {
                 BrandRepository.Add(brand);
                 BrandRepository.SaveAll();
-                return RedirectToAction(nameof(Index));
+                return Ok("The Brand has been Added");
             }
-            catch
+            else
             {
-                return View();
+                return BadRequest("The Model isn't Valid");
             }
         }
 
-        // GET: Brandd/Edit/5
+        // GET: Brand/Edit/5
         public ActionResult Edit(int? id)
         {
 
@@ -101,26 +101,21 @@ namespace GraduationProject.Areas.Admin.Controllers
             }
         }
 
-        // GET: Brand/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
         // POST: Brand/Delete/5
-        [HttpPost]
+        [HttpDelete]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, Brand brand)
+        public ActionResult Delete(int id)
         {
             try
             {
+                Brand brand = BrandRepository.Get(id);
                 BrandRepository.Delete(brand);
                 BrandRepository.SaveAll();
-                return RedirectToAction(nameof(Index));
+                return Ok("The Brand has been Deleted");
             }
             catch
             {
-                return View();
+                return BadRequest("The Brand is in use, couldn't be Deleted");
             }
         }
     }

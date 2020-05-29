@@ -100,10 +100,7 @@ namespace GraduationProject.Areas.Admin.Controllers
                 return BadRequest("The City Data is Locked now Try again later");
             }
         }
-
-       
-
-       
+ 
         [HttpPost]
         public ActionResult Delete(int id)
         {
