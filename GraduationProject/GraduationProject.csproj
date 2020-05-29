@@ -5,13 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Areas\Api\Profiles\**" />
-    <Content Remove="Areas\Api\Profiles\**" />
-    <EmbeddedResource Remove="Areas\Api\Profiles\**" />
-    <None Remove="Areas\Api\Profiles\**" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Remove="ClientApp\app\app-routing.module.ts" />
     <None Remove="ClientApp\app\guards\auth-interceptor.ts" />
   </ItemGroup>

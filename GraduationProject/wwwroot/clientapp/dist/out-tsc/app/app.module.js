@@ -22,7 +22,8 @@ import { AuthInterceptor } from './guards/auth-interceptor';
 import { RouterModule } from '@angular/router';
 const router = [
     { path: '', component: HomeComponent },
-    { path: 'Registration', component: RegistrationComponent }
+    { path: 'Registration', component: RegistrationComponent },
+    { path: 'Login', component: LoginComponent }
 ];
 let AppModule = class AppModule {
 };
