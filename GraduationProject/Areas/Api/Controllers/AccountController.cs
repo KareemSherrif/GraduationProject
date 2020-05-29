@@ -80,6 +80,7 @@ namespace GraduationProject.Areas.Api.Controllers
         [Route("Register")]
         public async Task<IActionResult> Register([FromBody] RegistrationViewModel model)
         {
+            //If the user-entered data is validated, Create the user in the database.
             if (ModelState.IsValid)
             {
                 try
@@ -97,7 +98,7 @@ namespace GraduationProject.Areas.Api.Controllers
                     };
 
                 var result = await _userManager.CreateAsync(user, model.Password);
-
+            //If the user is successfully created, asign them to the role of "User"
                     if (result.Succeeded)
                     {
                     await _userManager.AddToRoleAsync(user, "User");
