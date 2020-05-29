@@ -7,8 +7,10 @@ using System.Threading.Tasks;
 
 namespace GraduationProject.Areas.Admin.ViewModels
 {
-    public class CategoryCreateViewModel
+    public class CategoryEditViewModel
     {
+        [JsonProperty("ID")]
+        public int ID { get; set; }
         [JsonProperty("CategoryName")]
         [Required]
         public string CategoryName { get; set; }

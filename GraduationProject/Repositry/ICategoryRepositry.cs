@@ -8,5 +8,6 @@ namespace GraduationProject.Repositry
 {
     public interface ICategoryRepositry:IRepositry<Category,int>
     {
+        public Category GetCategoryWithAttributes(int ID);
     }
 }

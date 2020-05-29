@@ -95,47 +95,68 @@ namespace GraduationProject.Areas.Admin.Controllers
         // GET: Categories/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+          
+           Category category =  this.category.GetCategoryWithAttributes(id);
+            ViewBag.GetAttributes = this.Attribute.GetAll();
+            return PartialView("Edit",category);
         }
 
         // POST: Categories/Edit/5
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit([FromBody] CategoryEditViewModel categoryEditView)
         {
             try
             {
-                // TODO: Add update logic here
+                if (ModelState.IsValid)
+                {
+                    Category category = this.category.GetCategoryWithAttributes(categoryEditView.ID);
+                    category.Name = categoryEditView.CategoryName;
+                    category.CategoryAttributes.Clear();
+                    foreach (var item in categoryEditView.AttributesID)
+                    {
+                        category.CategoryAttributes.Add(new CategoryAttributes()
+                        {
+                            CategoryAttributeId = item
+                        });
+                    }
+                    this.category.Edit(category);
+                    this.category.SaveAll();
+                    return Ok("Category has been changed");
 
-                return RedirectToAction(nameof(Index));
+                }
+
+                return Ok("Category data is not valid");
             }
             catch
             {
-                return View();
+                return BadRequest("Category Data is not valid");
             }
         }
 
-        // GET: Categories/Delete/5
+      
+
+        [HttpPost]
         public ActionResult Delete(int id)
         {
-            return View();
-        }
-
-        // POST: Categories/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
             try
             {
-                // TODO: Add delete logic here
+               Category category1 =   category.GetCategoryWithAttributes(id);
 
-                return RedirectToAction(nameof(Index));
+                if(category1 == null)
+                {
+                    return NotFound("The Category is not found");
+                }
+                category1.CategoryAttributes.Clear();
+                category.Delete(category1);
+                category.SaveAll();
+                return Ok("The Category has been Deleted");
             }
             catch
             {
-                return View();
+                return BadRequest("Error has been occurred");
             }
         }
+        
     }
+    
 }
