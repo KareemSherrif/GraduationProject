@@ -1,6 +1,6 @@
 ﻿@model GraduationProject.Models.Attributes
 
- <form asp-action="Create" method="post">
+ <form asp-action="Create" method="post" data-ajax-url="/Admin/Attributes/Create" data-ajax="true" data-ajax-complete="Complated" data-ajax-method="post">
         <div class="modal-header">
             <h5 class="modal-title">Attibute Modal</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
