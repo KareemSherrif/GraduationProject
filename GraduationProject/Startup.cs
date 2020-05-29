@@ -42,11 +42,12 @@ namespace GraduationProject
             services.AddTransient<ICitiesRepositry, CitiesRepositry>();
             services.AddTransient<IBrandRepository, BrandRepository>();
             services.AddTransient<IAttributeRepositry, AttributeRepositry>();
+            services.AddTransient<ICategoryRepositry, CategoryRepositry>();
             #endregion
 
 
-
-
+            services.AddControllers().AddNewtonsoftJson();
+            
             services.AddControllersWithViews();
             services.AddIdentity<ApplicationUser, IdentityRole>(a =>
             {

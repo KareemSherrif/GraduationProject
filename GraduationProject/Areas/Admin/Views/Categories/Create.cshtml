@@ -1,0 +1,42 @@
+﻿@model GraduationProject.Models.Category
+
+<div class="modal-body">
+    
+  
+        <div class="row mt-2">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label asp-for="@Model.Name" class="control-label">Category Name</label>
+                    <input id="CategoryName" asp-for="@Model.Name" placeholder="Category Name" class="form-control" />
+                    <span asp-validation-for="@Model.Name" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="col-md-12" id="container-attribute">
+                <div class="row attribute-row mt-2">
+                    <div class="col-9">
+                       @Html.DropDownList("GetAttributes", null, new { @class = "form-control attribute" })
+                    </div>
+
+                   
+
+                    <div class="col-3">
+                        <button class="btn btn-success addbtn">+</button>
+                        <button class="btn btn-danger removerbtn">-</button>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    <div>
+
+        
+    </div>
+    
+
+</div>
+
+<div class="modal-footer">
+    <input type="submit" id="submitform" value="Create" class="btn btn-primary" />
+
+</div>
