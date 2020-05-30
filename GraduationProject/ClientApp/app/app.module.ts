@@ -21,6 +21,7 @@ import { UserService } from './services/user.service';
 import { AuthGuard } from './guards/auth.guard';
 import { AuthInterceptor } from './guards/auth-interceptor';
 import { Routes, RouterModule } from '@angular/router';
+import { ToastrModule } from 'ngx-toastr';
 
 const router: Routes = [
   { path: '', component: HomeComponent },
@@ -45,7 +46,8 @@ const router: Routes = [
     BrowserAnimationsModule,
     MatCheckboxModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    ToastrModule.forRoot()
   ],
     providers: [
         [AreasService, CitiesService],

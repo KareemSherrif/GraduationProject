@@ -1,4 +1,4 @@
-export interface RegistrationViewModel {
+export interface Registration {
     firstName: string;
     lastName: string;
     email: string;
@@ -6,6 +6,6 @@ export interface RegistrationViewModel {
     password: string;
     confirmPassword: string;
     address: string;
-    dateOfBirth: string;
+    phonenumber: string;
     areaID: number;
 }

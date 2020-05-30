@@ -51,15 +51,13 @@
 				class="control-item-100"
 				required
 				#email="ngModel"
-				pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+			
 			/>
 			<mat-error *ngIf="email.touched && email.invalid">
 				<mat-error *ngIf="email.errors.required">
 					Please Write your Email
 				</mat-error>
-				<mat-error *ngIf="email.errors.pattern">
-					invalid Email
-				</mat-error>
+			
 			</mat-error>
 		</mat-form-field>
 
@@ -103,7 +101,7 @@
 				type="password"
 				class="control-item-50"
 				ngModel
-				name="confirmpassword"
+				name="confirmPassword"
 				#confirmpassword="ngModel"
 				required
 				(change)="this.OComparePasswords(password, confirmpassword)"
@@ -113,26 +111,6 @@
 			The password doesn't much parent or Empty
 		</mat-error>
 
-		<mat-form-field class="control-item-50">
-			<mat-label>Date of Birth</mat-label>
-			<input
-				matInput
-				#dateOfBirth="ngModel"
-				ngModel
-				name="dateOfBirth"
-				[matDatepicker]="picker"
-				required
-				class="control-item-50"
-			/>
-			<mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-			<mat-datepicker #picker></mat-datepicker>
-			<mat-error *ngIf="dateOfBirth.invalid && dateOfBirth.touched">
-				<mat-error *ngIf="dateOfBirth.errors.required">
-					The Date Is Required</mat-error
-				>
-			</mat-error>
-		</mat-form-field>
-
 		<mat-form-field class="example-full-width" class="control-item-50">
 			<mat-label>Phone</mat-label>
 			<input
@@ -140,7 +118,7 @@
 				type="text"
 				ngModel
 				#phone="ngModel"
-				name="phone"
+				name="phonenumber"
 				class="control-item-50"
 				required
 				pattern="^[0-9]{9,15}$"
@@ -152,7 +130,30 @@
 				</mat-error>
 			</mat-error>
 		</mat-form-field>
+		<mat-form-field class="example-full-width" class="control-item-50">
+			<mat-label>Address</mat-label>
+			<input
+				matInput
+				type="text"
+				ngModel
+				#address="ngModel"
+				name="address"
+				class="control-item-50"
+				required
+				minlength="11"
+				
+			/>
+			<mat-error *ngIf="address.invalid">
+			
+				<mat-error *ngIf="address.errors.required">
+					the Address is required
+				</mat-error>
+				<mat-error *ngIf="address.errors.minlength">
+					The Address should be more than 11 charachter
+				</mat-error>
 
+			</mat-error>
+		</mat-form-field>
 		<mat-form-field class="example-full-width" class="control-item-50">
 			<mat-label>City</mat-label>
 			<select matNativeControl #city (change)="OnCityChange(city)">
@@ -165,7 +166,7 @@
 
 		<mat-form-field class="example-full-width" class="control-item-50">
 			<mat-label>Area</mat-label>
-			<select required matNativeControl>
+			<select required matNativeControl ngModel name="areaID" #areaID="ngModel" >
 				<option *ngFor="let item of areas" [value]="item.id">{{
 					item.areaName
 				}}</option>
