@@ -1,7 +1,9 @@
 import { __decorate } from "tslib";
 import { Component } from '@angular/core';
 let NavbarComponent = class NavbarComponent {
-    constructor() { }
+    constructor(userService) {
+        this.userService = userService;
+    }
     ngOnInit() {
     }
 };

@@ -5,9 +5,9 @@ let UserService = class UserService {
         this.http = http;
         this.router = router;
     }
-    //user Authentication(
-    userAuthentication(formData) {
-        return this.http.post('api/account/login', formData);
+    //user Authentication Login 
+    userAuthentication(loginData) {
+        return this.http.post('api/account/login', loginData);
     }
     //check if the user login or not 
     IsLogin() {
