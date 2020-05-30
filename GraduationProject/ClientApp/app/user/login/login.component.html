@@ -1,39 +1,32 @@
 
 <section class="container">
-    <!--<div class="col-lg-12 tm-section-header-container margin-bottom-30">
-        <h2 class="tm-section-header gold-text tm-handwriting-font">
-            <img src="img/logo.png" alt="Logo"
-                 class="tm-site-logo"> Login
-        </h2>
-        <div class="tm-hr-container">
-            <hr class="tm-hr">
-        </div>
-    </div>-->
+    <h2>Login</h2>
     <form #f="ngForm" (ngSubmit)="Save(f)">
-        <div class="col-lg-7 col-md-7">
-            <div class="form-group">
-                <label for="userName">UserName</label>
-                <input type="text" id="userName" ngModel name="userName" class="form-control"
-                       placeholder="Enter your User Name" required #userName="ngModel" />
-                <div class="alert alert-danger" *ngIf="userName.touched && userName.invalid">
-                    User Name is required
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" ngModel id="password" name="password" class="form-control"
-                       placeholder="Enter your Password" required #password="ngModel" />
-                <div class="alert alert-danger" *ngIf="password.touched && password.invalid">
-                    Password is required
-                </div>
-            </div>
+        <mat-form-field class="control-item-100">
+            <mat-label for="userName">username</mat-label>
+            <input matInput type="text" id="userName" ngModel name="userName"
+                   placeholder="Enter your Username" required #userName="ngModel" />
+            <mat-error *ngIf="userName.touched && userName.invalid">
+                User Name is required
+            </mat-error>
+        </mat-form-field>
+        <br />
+        <mat-form-field class="control-item-100">
+            <mat-label for="password">Password</mat-label>
+            <input type="password" matInput ngModel id="password" name="password"
+                   placeholder="Enter your Password" required #password="ngModel" />
+            <mat-error *ngIf="password.touched && password.invalid">
+                Password is required
+            </mat-error>
+        </mat-form-field>
             <br>
-            <div *ngIf="notLogin" class="alert alert-danger">
-                <div>Incorrect username or password Try again</div>
-            </div>
+            <mat-error *ngIf="notLogin">
+                Incorrect username or password Try again.
+            </mat-error>
+        <br />
             <div class="form-group">
-                <button class="btn btn-primary" type="submit" name="submit">Login</button>
+                <button class="btn btn-success" [disabled]="f.invalid">Login</button>
             </div>
-        </div>
-    </form>
+
+</form>
 </section>
