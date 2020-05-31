@@ -342,4 +342,3 @@ healthchecksdb
 node_modules
 
 ./GraduationProject/appsettings.json
-/GraduationProject/wwwroot/clientapp/dist/out-tsc
