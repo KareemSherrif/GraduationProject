@@ -4,8 +4,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using GraduationProject.Areas.Api.VIewModels;
+using GraduationProject.ExtenstionMethods;
 using GraduationProject.Models;
 using GraduationProject.Repositry;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -29,6 +32,13 @@ namespace GraduationProject.Areas.Api.Controllers
         {
 
             return Ok(Mapper.Map<IEnumerable<City>,IEnumerable<CitiesViewModel>>(CitiesRepositry.GetAll()));
+        }
+        [Authorize(AuthenticationSchemes =JwtBearerDefaults.AuthenticationScheme)]
+        [HttpGet("testing")]
+        public ActionResult TestingGetID()
+        {
+           string id = User.GetUserIdToken();
+            return Ok(id);
         }
 
     }
