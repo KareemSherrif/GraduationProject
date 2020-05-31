@@ -1,12 +1,12 @@
-/** @format */
 import { __decorate } from "tslib";
 import { Component } from "@angular/core";
 let RegistrationComponent = class RegistrationComponent {
-    constructor(areaService, citiesServices, register, toastr) {
+    constructor(areaService, citiesServices, register, toastr, router) {
         this.areaService = areaService;
         this.citiesServices = citiesServices;
         this.register = register;
         this.toastr = toastr;
+        this.router = router;
         this.passwordConfirmation = false;
     }
     ngOnInit() {
@@ -19,6 +19,7 @@ let RegistrationComponent = class RegistrationComponent {
             console.log(data.value);
             this.register.RegisterUser(data.value).subscribe((a) => {
                 this.toastr.success("The Registration has been success");
+                this.router.navigate(['/Login']);
             }, (err) => {
                 console.log(err);
                 this.toastr.error(err.error);
