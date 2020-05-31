@@ -20,6 +20,8 @@ using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using GraduationProject.Services;
+
 
 namespace GraduationProject
 {
@@ -44,6 +46,8 @@ namespace GraduationProject
             services.AddTransient<IAttributeRepositry, AttributeRepositry>();
             services.AddTransient<ICategoryRepositry, CategoryRepositry>();
             services.AddTransient<IModelRepositry, ModelsRepositry>();
+            services.AddTransient<IEmailSender, EmailSender>();
+            services.Configure<AuthMessageSenderOptions>(Configuration);
             #endregion
 
 
