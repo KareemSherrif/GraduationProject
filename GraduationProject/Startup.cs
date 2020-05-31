@@ -44,6 +44,7 @@ namespace GraduationProject
             services.AddTransient<IAttributeRepositry, AttributeRepositry>();
             services.AddTransient<ICategoryRepositry, CategoryRepositry>();
             services.AddTransient<IModelRepositry, ModelsRepositry>();
+            services.AddTransient<IUsersRepository, UsersRepository>();
             #endregion
 
 
