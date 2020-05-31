@@ -103,7 +103,6 @@ namespace GraduationProject.Areas.Admin.Controllers
 
         // POST: Brand/Delete/5
         [HttpDelete]
-        [ValidateAntiForgeryToken]
         public ActionResult Delete(int id)
         {
             try
