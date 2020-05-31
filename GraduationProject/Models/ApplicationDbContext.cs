@@ -156,7 +156,7 @@ namespace GraduationProject.Models
 
             modelBuilder.Entity<Product>(entity =>
             {
-                entity.Property(e => e.Id).ValueGeneratedNever();
+             
 
                 entity.HasOne(d => d.Brand)
                     .WithMany(p => p.Product)
