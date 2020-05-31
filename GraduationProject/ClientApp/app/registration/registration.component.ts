@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 /** @format */
 
 import { Registration } from "./../model/registration";
@@ -23,7 +24,8 @@ export class RegistrationComponent implements OnInit {
 		private areaService: AreasService,
 		private citiesServices: CitiesService,
     private register: RegistrationService,
-    private toastr: ToastrService
+		private toastr: ToastrService,
+	private router:Router
 	) {}
 	passwordConfirmation: boolean = false;
 	ngOnInit(): void {
@@ -35,7 +37,9 @@ export class RegistrationComponent implements OnInit {
 		if (data.valid) {
 			console.log(data.value);
 			this.register.RegisterUser(data.value).subscribe((a) => {
-        this.toastr.success("The Registration has been success");
+				this.toastr.success("The Registration has been success");
+				this.router.navigate(['/Login']);
+			    
       }, (err: HttpErrorResponse) => {
           console.log(err);
           this.toastr.error(err.error);    

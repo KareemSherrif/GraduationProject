@@ -15,9 +15,10 @@ namespace GraduationProject.Services
         {
             Options = optionsAccessor.Value;
         }
+        // you can find sendGrid key and user withen the secret manager in secret.json file
+        public AuthMessageSenderOptions Options { get; } 
 
-        public AuthMessageSenderOptions Options { get; } //set only via Secret Manager
-
+        // Generic function to send mail to any user
         public Task SendEmailAsync(string email, string subject, string message)
         {
             return Execute(Options.SendGridKey, subject, message, email);
@@ -25,7 +26,9 @@ namespace GraduationProject.Services
 
         private Task Execute(string apiKey, string subject, string message, string receiverEmail)
         {
+            // Through sendGrid Key the SMTP of SendGrid will be able to determine the client  
             var client = new SendGridClient(apiKey);
+            // Message creation
             var msg = new SendGridMessage()
             {
                 From = new EmailAddress("nardeen.karam@gmail.com", Options.SendGridUser),

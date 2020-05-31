@@ -8,12 +8,13 @@
   <ItemGroup>
     <None Remove="ClientApp\app\app-routing.module.ts" />
     <None Remove="ClientApp\app\guards\auth-interceptor.ts" />
+    <None Remove="ClientApp\app\model\login.ts" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Admin\Models\" />
-    <Folder Include="ClientApp\app\models\" />
+    <Folder Include="Areas\Admin\Views\Products\" />
     <Folder Include="ClientApp\app\services\" />
   </ItemGroup>
 
@@ -41,6 +42,7 @@
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\app\app-routing.module.ts" />
     <TypeScriptCompile Include="ClientApp\app\guards\auth-interceptor.ts" />
+    <TypeScriptCompile Include="ClientApp\app\model\login.ts" />
   </ItemGroup>
 
 </Project>

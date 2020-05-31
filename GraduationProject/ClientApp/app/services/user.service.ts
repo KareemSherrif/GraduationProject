@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient} from '@angular/common/http';
 import { Router } from '@angular/router';
+import { Login } from '../model/login';
 
 @Injectable({
   providedIn: 'root'
@@ -9,9 +10,9 @@ export class UserService {
 
     constructor(private http: HttpClient, private router: Router) { }
 
-    //user Authentication(
-    userAuthentication(formData) {
-        return this.http.post('api/account/login', formData);
+    //user Authentication Login 
+    userAuthentication(loginData: Login) {
+        return this.http.post<Login>('api/account/login', loginData);
     }
 
     //check if the user login or not 
