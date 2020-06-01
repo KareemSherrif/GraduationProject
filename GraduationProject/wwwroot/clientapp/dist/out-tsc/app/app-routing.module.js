@@ -1,16 +1,20 @@
 import { __decorate } from "tslib";
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { LoginComponent } from './user/login/login.component';
+import { LoginComponent } from './components/user/login/login.component';
+import { HomeComponent } from "./components/home/home.component";
+import { RegistrationComponent } from './components/registration/registration.component';
 const routes = [
-    { path: 'login', component: LoginComponent }
+    { path: '', component: HomeComponent },
+    { path: 'Registration', component: RegistrationComponent },
+    { path: 'Login', component: LoginComponent }
 ];
 let AppRoutingModule = /** @class */ (() => {
     let AppRoutingModule = class AppRoutingModule {
     };
     AppRoutingModule = __decorate([
         NgModule({
-            imports: [RouterModule.forRoot(routes)],
+            imports: [RouterModule.forRoot(routes, { useHash: true })],
             exports: [RouterModule]
         })
     ], AppRoutingModule);

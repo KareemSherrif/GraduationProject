@@ -23,7 +23,7 @@ namespace GraduationProject.Areas.Api.Controllers
         private readonly UserManager<ApplicationUser> _userManager;
 
         //private readonly UsersRepository _repo;
-        public ProfileController(UserManager<ApplicationUser> userManager
+        public ProfileController(UserManager<ApplicationUser> userManager)
         {
             _userManager = userManager;
         }
