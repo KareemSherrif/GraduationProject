@@ -58,7 +58,9 @@ namespace GraduationProject.Areas.Api.Controllers
                         {
                             new Claim(JwtRegisteredClaimNames.Sub, user.Email),
                             new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-                            new Claim(JwtRegisteredClaimNames.UniqueName, user.UserName)
+                            new Claim(JwtRegisteredClaimNames.UniqueName, user.Id),
+                            new Claim(JwtRegisteredClaimNames.Acr, user.Id),
+                             new Claim(JwtRegisteredClaimNames.Actort, user.Id)
                         };
                         var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configration["Tokens:Key"]));
                         var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);

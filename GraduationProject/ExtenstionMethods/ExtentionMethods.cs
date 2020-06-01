@@ -18,6 +18,11 @@ namespace GraduationProject.ExtenstionMethods
             return principal.FindFirstValue(ClaimTypes.NameIdentifier);
         }
 
+        public static string GetUserIdToken(this ClaimsPrincipal principal)
+        {
+            return principal.FindFirstValue(ClaimTypes.Actor);
+        }
+
         public static string GetUserName(this ClaimsPrincipal principal)
         {
             return principal.FindFirstValue(ClaimTypes.Name);
