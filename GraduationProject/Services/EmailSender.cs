@@ -15,7 +15,7 @@ namespace GraduationProject.Services
         {
             Options = optionsAccessor.Value;
         }
-        // you can find sendGrid key and user withen the secret manager in secret.json file
+        // you can find sendGrid key and user withen the secret manager in secrets.json file
         public AuthMessageSenderOptions Options { get; } 
 
         // Generic function to send mail to any user
