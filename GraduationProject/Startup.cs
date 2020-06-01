@@ -48,6 +48,7 @@ namespace GraduationProject
             services.AddTransient<IModelRepositry, ModelsRepositry>();
             services.AddTransient<IEmailSender, EmailSender>();
             services.Configure<AuthMessageSenderOptions>(Configuration);
+            services.AddTransient<IUsersRepository, UsersRepository>();
             #endregion
 
 

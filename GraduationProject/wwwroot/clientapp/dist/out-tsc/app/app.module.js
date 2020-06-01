@@ -26,42 +26,45 @@ const router = [
     { path: 'Registration', component: RegistrationComponent },
     { path: 'Login', component: LoginComponent }
 ];
-let AppModule = class AppModule {
-};
-AppModule = __decorate([
-    NgModule({
-        declarations: [
-            AppComponent,
-            NavbarComponent,
-            RegistrationComponent,
-            HomeComponent,
-            LoginComponent
-        ],
-        imports: [
-            BrowserModule,
-            FormsModule,
-            HttpClientModule,
-            MatInputModule,
-            RouterModule.forRoot(router, { useHash: true }),
-            BrowserAnimationsModule,
-            MatCheckboxModule,
-            MatDatepickerModule,
-            MatNativeDateModule,
-            ToastrModule.forRoot()
-        ],
-        providers: [
-            [AreasService, CitiesService],
-            UserService,
-            AuthGuard,
-            {
-                provide: HTTP_INTERCEPTORS,
-                useClass: AuthInterceptor,
-                multi: true
-            },
-            { provide: APP_BASE_HREF, useValue: '/' }
-        ],
-        bootstrap: [AppComponent]
-    })
-], AppModule);
+let AppModule = /** @class */ (() => {
+    let AppModule = class AppModule {
+    };
+    AppModule = __decorate([
+        NgModule({
+            declarations: [
+                AppComponent,
+                NavbarComponent,
+                RegistrationComponent,
+                HomeComponent,
+                LoginComponent
+            ],
+            imports: [
+                BrowserModule,
+                FormsModule,
+                HttpClientModule,
+                MatInputModule,
+                RouterModule.forRoot(router, { useHash: true }),
+                BrowserAnimationsModule,
+                MatCheckboxModule,
+                MatDatepickerModule,
+                MatNativeDateModule,
+                ToastrModule.forRoot()
+            ],
+            providers: [
+                [AreasService, CitiesService],
+                UserService,
+                AuthGuard,
+                {
+                    provide: HTTP_INTERCEPTORS,
+                    useClass: AuthInterceptor,
+                    multi: true
+                },
+                { provide: APP_BASE_HREF, useValue: '/' }
+            ],
+            bootstrap: [AppComponent]
+        })
+    ], AppModule);
+    return AppModule;
+})();
 export { AppModule };
 //# sourceMappingURL=app.module.js.map

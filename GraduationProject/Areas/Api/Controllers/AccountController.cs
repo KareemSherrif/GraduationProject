@@ -1,5 +1,6 @@
 ﻿using GraduationProject.Areas.Api.VIewModels;
 using GraduationProject.Models;
+using GraduationProject.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -11,6 +12,9 @@ using System.Security.Claims;
 using System.Text;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
+using System.Threading;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 
 namespace GraduationProject.Areas.Api.Controllers
 {
@@ -99,12 +103,12 @@ namespace GraduationProject.Areas.Api.Controllers
 
                     };
 
-                var result = await _userManager.CreateAsync(user, model.Password);
-            //If the user is successfully created, asign them to the role of "User"
+                    var result = await _userManager.CreateAsync(user, model.Password);
+                    //If the user is successfully created, asign them to the role of "User"
                     if (result.Succeeded)
                     {
-                    await _userManager.AddToRoleAsync(user, "User");
-                    return Ok(result);
+                        await _userManager.AddToRoleAsync(user, "User");
+                        return Ok(result);
                     }
                 }
                 catch (Exception ex)
@@ -115,6 +119,64 @@ namespace GraduationProject.Areas.Api.Controllers
             }
 
             return BadRequest("Unable to register with the entered credentials.");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ForgotPassword(ForgotPasswordViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = await _userManager.FindByEmailAsync(model.Email);
+                if (user != null && await _userManager.IsEmailConfirmedAsync(user))
+                {
+                    var token = await _userManager.GeneratePasswordResetTokenAsync(user);
+                    var passwordResetLink = Url.Action("ResetPassword", "Account", new { email = model.Email, token = token }, Request.Scheme);
+                    // email is sent
+                    string subject = "Welcome to App-Name! Confirm Your Email";
+                    string message = "You're on your way! Let's confirm your email address. By clicking on the following link, you are confirming your email address" + passwordResetLink;
+                    AuthMessageSenderOptions options = new AuthMessageSenderOptions();
+                    EmailSender emailSender = new EmailSender((IOptions<AuthMessageSenderOptions>)options);
+                    await emailSender.SendEmailAsync(model.Email, subject, message);
+                    //Logger.Log(LogLevel.Warning, passwordResetLink);
+                    return Ok();
+                }
+                return BadRequest("Please ReEnter your Email");
+            }
+            return BadRequest("Invalid Email");
+        }
+
+        [HttpGet]
+        public IActionResult ResetPassword(string email, string token)
+        {
+            if (token == null && email == null)
+            {
+                ModelState.AddModelError("", "Invalid Password reset token");
+            }
+            return Ok();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> RresetPassword(ResetPasswordViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = await _userManager.FindByEmailAsync(model.Email);
+                if (user != null)
+                {
+                    var result = await _userManager.ResetPasswordAsync(user, model.Token, model.Password);
+                    if (result.Succeeded)
+                    {
+                        return Ok();
+                    }
+                    foreach (var error in result.Errors)
+                    {
+                        ModelState.AddModelError("", error.Description);
+                    }
+                    return BadRequest("check the data you entered");
+                }
+                return BadRequest();
+            }
+            return BadRequest();
         }
     }
 }
