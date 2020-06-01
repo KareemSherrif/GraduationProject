@@ -74,7 +74,7 @@
 </header>
 
 <ng-template #login>
-  <li><a routerLink="/">Hello {{this.userService.CurrentUserName()}}</a></li>
+  <li><a routerLink="/profile">Hello {{this.userService.CurrentUserName()}}</a></li>
   <li> <a (click)="LogOut()" class="logout"> Logout</a> </li>
 </ng-template>
 
