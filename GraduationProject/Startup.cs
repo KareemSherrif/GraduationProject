@@ -20,6 +20,8 @@ using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using GraduationProject.Services;
+
 
 namespace GraduationProject
 {
@@ -44,7 +46,8 @@ namespace GraduationProject
             services.AddTransient<IAttributeRepositry, AttributeRepositry>();
             services.AddTransient<ICategoryRepositry, CategoryRepositry>();
             services.AddTransient<IModelRepositry, ModelsRepositry>();
-            services.AddTransient<IUsersRepository, UsersRepository>();
+            services.AddTransient<IEmailSender, EmailSender>();
+            services.Configure<AuthMessageSenderOptions>(Configuration);
             #endregion
 
 
@@ -59,14 +62,27 @@ namespace GraduationProject
                 a.Password.RequireUppercase = false;
             }).AddEntityFrameworkStores<ApplicationDbContext>();
 
-            services.AddAuthentication(options =>
+            //services.AddAuthentication(options =>
+            //{
+            //    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+            //    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            //    options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+            //}).AddCookie().AddJwtBearer(options =>
+            //{
+            //    options.SaveToken = true;
+            //    options.TokenValidationParameters = new TokenValidationParameters()
+            //    {
+            //        ValidateIssuerSigningKey = true,
+            //        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Tokens:Key"].ToString())),
+            //        ValidateIssuer = false,
+            //        ValidateAudience = false,
+            //    };
+            //});
+
+
+            services.AddAuthentication().AddCookie().AddJwtBearer(options =>
             {
-                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-                options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
-            }).AddJwtBearer(options =>
-            {
-                options.SaveToken = true;
+              
                 options.TokenValidationParameters = new TokenValidationParameters()
                 {
                     ValidateIssuerSigningKey = true,
@@ -75,6 +91,7 @@ namespace GraduationProject
                     ValidateAudience = false,
                 };
             });
+
 
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
 

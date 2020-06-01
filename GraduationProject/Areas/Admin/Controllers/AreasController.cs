@@ -37,6 +37,7 @@ namespace GraduationProject.Areas.Admin.Controllers
 
 
         // GET: Areas/Details/5
+
         public ActionResult Details(int id)
         {
             return View();

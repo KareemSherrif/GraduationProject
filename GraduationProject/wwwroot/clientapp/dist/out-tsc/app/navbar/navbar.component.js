@@ -6,6 +6,9 @@ let NavbarComponent = class NavbarComponent {
     }
     ngOnInit() {
     }
+    LogOut() {
+        this.userService.Logout();
+    }
 };
 NavbarComponent = __decorate([
     Component({

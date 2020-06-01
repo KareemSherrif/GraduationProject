@@ -65,11 +65,11 @@
         }
 
         function deleteModel(Id) {
-            console.log("plaaaaaa")
             $.ajax({
                 url: "/Admin/Brands/Delete/" + Id,
                 method: "DELETE",
                 success(data) {
+                    tbl.ajax.reload();
                     Swal.fire({
                         icon: 'success',
                         title: data,
@@ -78,7 +78,6 @@
                     });
                 },
             });
-            console.log("plaaaaaa2")
         }
 
         Complated = function (xhr) {
