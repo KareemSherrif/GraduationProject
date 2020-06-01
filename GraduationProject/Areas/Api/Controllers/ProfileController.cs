@@ -21,15 +21,11 @@ namespace GraduationProject.Areas.Api.Controllers
     public class ProfileController : ControllerBase
     {
         private readonly UserManager<ApplicationUser> _userManager;
-        private readonly IUsersRepository _usersRepository;
-        private readonly SignInManager<ApplicationUser> _signInManager;
 
         //private readonly UsersRepository _repo;
-        public ProfileController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, IUsersRepository usersRepository)
+        public ProfileController(UserManager<ApplicationUser> userManager
         {
             _userManager = userManager;
-            _signInManager = signInManager;
-            _usersRepository = usersRepository;
         }
 
 
@@ -42,8 +38,8 @@ namespace GraduationProject.Areas.Api.Controllers
                 if (ModelState.IsValid && model.Email != null)
                 {
                     //ID returns Email, This is a placeholder.
-                    string userId = User.GetUserName();
-                    var user = await _userManager.FindByNameAsync(userId);
+                    string userId = User.GetUserIdToken();
+                    var user = await _userManager.FindByIdAsync(userId);
                     var result = await _userManager.SetEmailAsync(user, model.Email);
                 
                     if (result.Succeeded)
@@ -70,8 +66,8 @@ namespace GraduationProject.Areas.Api.Controllers
                 if (ModelState.IsValid && model.Password != null && model.CurrentPassword != null)
                 {
                     //ID returns Email, This is a placeholder.
-                    string userId = User.GetUserName();
-                    var user = await _userManager.FindByNameAsync(userId);
+                    string userId = User.GetUserIdToken();
+                    var user = await _userManager.FindByIdAsync(userId);
                     var result = await _userManager.ChangePasswordAsync(user, model.CurrentPassword, model.Password);
 
                     if (result.Succeeded)
@@ -98,8 +94,8 @@ namespace GraduationProject.Areas.Api.Controllers
                 if (ModelState.IsValid && model.PhoneNumber != null)
                 {
                     //ID returns Email, This is a placeholder.
-                    string userId = User.GetUserName();
-                    var user = await _userManager.FindByNameAsync(userId);
+                    string userId = User.GetUserIdToken();
+                    var user = await _userManager.FindByIdAsync(userId);
                     var result = await _userManager.SetPhoneNumberAsync(user, model.PhoneNumber);
 
                     if (result.Succeeded)
@@ -126,8 +122,8 @@ namespace GraduationProject.Areas.Api.Controllers
                 if (ModelState.IsValid && model.Username != null)
                 {
                     //ID returns Email, This is a placeholder.
-                    string userId = User.GetUserName();
-                    var user = await _userManager.FindByNameAsync(userId);
+                    string userId = User.GetUserIdToken();
+                    var user = await _userManager.FindByIdAsync(userId);
                     var result = await _userManager.SetUserNameAsync(user, model.Username);
 
                     if (result.Succeeded)
