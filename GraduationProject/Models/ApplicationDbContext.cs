@@ -257,41 +257,9 @@ namespace GraduationProject.Models
 
             });
 
-            modelBuilder.Entity<UsersRatings>(entity =>
-            {
-                entity.HasKey(e => e.UserId)
-                    .HasName("PK__Users_Ra__1788CC4CB9E09BD8");
+         
 
-                entity.ToTable("Users_Ratings");
-
-                entity.Property(e => e.UserId).ValueGeneratedNever();
-
-                entity.HasOne(d => d.User)
-                    .WithOne(p => p.UsersRatings)
-                    .HasForeignKey<UsersRatings>(d => d.UserId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Users_Rat__UserI__21B6055D");
-            });
-
-            modelBuilder.Entity<UsersReviews>(entity =>
-            {
-                entity.HasKey(e => e.UserId)
-                    .HasName("PK__Users_Re__1788CC4C22AE4AEE");
-
-                entity.ToTable("Users_Reviews");
-
-                entity.Property(e => e.UserId).ValueGeneratedNever();
-
-                entity.Property(e => e.Review)
-                    .IsRequired()
-                    .HasMaxLength(500);
-
-                entity.HasOne(d => d.User)
-                    .WithOne(p => p.UsersReviews)
-                    .HasForeignKey<UsersReviews>(d => d.UserId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Users_Rev__UserI__24927208");
-            });
+          
 
             base.OnModelCreating(modelBuilder);
         }

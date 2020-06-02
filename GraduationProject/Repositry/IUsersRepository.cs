@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace GraduationProject.Repositry
 {
-    public interface IUsersRepository : IRepositry<ApplicationUser,int>
+    public interface IUsersRepository : IRepositry<ApplicationUser,string>
     {
+        ApplicationUser GetUserInformation(string UserId);
+        
     }
 }

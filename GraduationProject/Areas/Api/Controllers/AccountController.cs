@@ -15,6 +15,12 @@ using Microsoft.IdentityModel.Tokens;
 using System.Threading;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using GraduationProject.Areas.Api.ViewModels;
+using GraduationProject.ExtenstionMethods;
+using GraduationProject.Repositry;
+using AutoMapper;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 
 namespace GraduationProject.Areas.Api.Controllers
 {
@@ -25,13 +31,17 @@ namespace GraduationProject.Areas.Api.Controllers
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly IConfiguration _configration;
+        private readonly IUsersRepository usersRepository;
+        private readonly IMapper mapper;
 
         public AccountController(SignInManager<ApplicationUser> signInManager,
-            UserManager<ApplicationUser> userManager, IConfiguration configration)
+            UserManager<ApplicationUser> userManager, IConfiguration configration, IUsersRepository usersRepository, IMapper mapper)
         {
             _signInManager = signInManager;
             _userManager = userManager;
             _configration = configration;
+            this.usersRepository = usersRepository;
+            this.mapper = mapper;
         }
         [HttpGet]
         public IActionResult Get()
@@ -178,5 +188,24 @@ namespace GraduationProject.Areas.Api.Controllers
             }
             return BadRequest();
         }
+
+        [HttpGet]
+        [Route("UserInfo")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        public ActionResult<UserInformationViewModel> GetUserInformation()
+        {
+            string userId = User.GetUserIdToken();
+            ApplicationUser applicationUser = usersRepository.GetUserInformation(userId);
+
+            if (applicationUser == null)
+            {
+                return NotFound("This user is not found");
+            }
+            UserInformationViewModel model = mapper.Map<ApplicationUser, UserInformationViewModel>(applicationUser);
+            return Ok(model);
+
+        }
+
+        
     }
 }

@@ -1,4 +1,8 @@
+import { UserInfoService } from './../../../services/userInfo.service';
+import { userInfo } from './../../../models/userInfo';
+import { UserService } from './../../../services/user.service';
 import { Component, OnInit } from '@angular/core';
+
 
 @Component({
   selector: 'app-userdetails',
@@ -7,9 +11,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserdetailsComponent implements OnInit {
 
-  constructor() { }
+  userInfo:userInfo = null;
+  constructor(private UserInfoService:UserInfoService) { }
 
   ngOnInit(): void {
+    this.UserInfoService.GetUserInformation().subscribe(a => {
+      this.userInfo = a;
+      console.log(this.userInfo);
+      
+    });
+   
   }
 
 }

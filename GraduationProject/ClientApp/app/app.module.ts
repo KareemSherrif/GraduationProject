@@ -8,6 +8,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { APP_BASE_HREF } from '@angular/common';
 import {MatCardModule} from '@angular/material/card';
 import {MatDividerModule} from '@angular/material/divider'
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -30,6 +31,7 @@ import { UserdetailsComponent } from './components/profile/userdetails/userdetai
 import { ReviewsComponent } from './components/profile/reviews/reviews.component';
 import { UserproductComponent } from './components/profile/userproduct/userproduct.component';
 import { ProductCardComponent } from './components/resuable/product-card/product-card.component';
+import { UserInfoService } from './services/userInfo.service';
 
 
 
@@ -60,12 +62,13 @@ import { ProductCardComponent } from './components/resuable/product-card/product
     RouterModule,
     AppRoutingModule,
     MatCardModule,
-    MatDividerModule
+    MatDividerModule,
+    MatProgressSpinnerModule
    
   ],
   providers: [
      
-        [AreasService, CitiesService],
+        [AreasService, CitiesService, UserInfoService],
         UserService,
         AuthGuard,
         {
