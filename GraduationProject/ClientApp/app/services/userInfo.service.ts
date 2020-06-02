@@ -1,22 +1,21 @@
-import { UserService } from './user.service';
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders} from '@angular/common/http';
-import { Router } from '@angular/router';
-import { Login } from '../models/login';
-import { userInfo } from '../models/userInfo';
-
+import { Reviews } from "./../models/reviews";
+import { UserService } from "./user.service";
+import { Injectable } from "@angular/core";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { Router } from "@angular/router";
+import { Login } from "../models/login";
+import { userInfo } from "../models/userInfo";
 
 @Injectable({
-  providedIn: 'root'
+	providedIn: "root",
 })
 export class UserInfoService {
-    
-    constructor(private http: HttpClient, private UserService: UserService) { }
-   
-    GetUserInformation() {
-        return this.http.get<userInfo>("/api/Account/UserInfo");
-    }
-    
-   
-  
+	constructor(private http: HttpClient, private UserService: UserService) {}
+
+	GetUserInformation() {
+		return this.http.get<userInfo>("/api/Account/UserInfo");
+	}
+	GetUserReviews() {
+		return this.http.get<Reviews[]>("/api/Account/UserReviews");
+	}
 }

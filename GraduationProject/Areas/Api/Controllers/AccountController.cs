@@ -33,15 +33,20 @@ namespace GraduationProject.Areas.Api.Controllers
         private readonly IConfiguration _configration;
         private readonly IUsersRepository usersRepository;
         private readonly IMapper mapper;
+        private readonly IReviewRepository _reviewRepository;
 
         public AccountController(SignInManager<ApplicationUser> signInManager,
-            UserManager<ApplicationUser> userManager, IConfiguration configration, IUsersRepository usersRepository, IMapper mapper)
+            UserManager<ApplicationUser> userManager, IConfiguration configration,
+            IUsersRepository usersRepository, 
+            IMapper mapper,
+            IReviewRepository reviewRepository)
         {
             _signInManager = signInManager;
             _userManager = userManager;
             _configration = configration;
             this.usersRepository = usersRepository;
             this.mapper = mapper;
+            this._reviewRepository = reviewRepository;
         }
         [HttpGet]
         public IActionResult Get()
@@ -205,7 +210,22 @@ namespace GraduationProject.Areas.Api.Controllers
             return Ok(model);
 
         }
+        [HttpGet]
+        [Route("UserReviews")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        public ActionResult<UsersReviews> GetReviews()
+        {
+            string userId = User.GetUserIdToken();
+            List<UsersReviews> usersReviews = this._reviewRepository.GetReviewsByUser(userId).ToList();
+            if (usersReviews == null)
+            {
+                return NotFound("The Reviews is not found");
 
-        
+            }
+            return Ok(usersReviews);
+
+        }
+
+
     }
 }

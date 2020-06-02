@@ -1,28 +1,14 @@
+
+<mat-progress-bar mode="indeterminate" *ngIf="this.review == null"></mat-progress-bar>
+
 <mat-card>
     <mat-card-title>Reviews</mat-card-title>
-  <mat-card class="mt-2">
+  <mat-card class="mt-2" *ngFor="let item of this.review">
     <mat-card-content>
         <p>
-          The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
-          A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
-          bred for hunting.
+        {{item.review}}
         </p>
       </mat-card-content>
     </mat-card>
-   
-    <mat-card class="mt-2">
-        <mat-card-content>
-            <p>
-              The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
-              A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
-              bred for hunting.
-            </p>
-          </mat-card-content>
-        </mat-card>
-
-
-
-
-    
-   
+  
 </mat-card>

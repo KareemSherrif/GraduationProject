@@ -9,6 +9,7 @@ import { APP_BASE_HREF } from '@angular/common';
 import {MatCardModule} from '@angular/material/card';
 import {MatDividerModule} from '@angular/material/divider'
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -63,7 +64,8 @@ import { UserInfoService } from './services/userInfo.service';
     AppRoutingModule,
     MatCardModule,
     MatDividerModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatProgressBarModule
    
   ],
   providers: [
