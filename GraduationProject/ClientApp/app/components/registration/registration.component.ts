@@ -62,4 +62,7 @@ export class RegistrationComponent implements OnInit {
 			this.areas = [];
 		}
 	}
+	onChange(data) {
+		console.log(data);
+	}
 }

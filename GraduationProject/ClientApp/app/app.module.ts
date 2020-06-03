@@ -1,4 +1,5 @@
 
+
 import { CitiesService } from './services/cities.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -8,6 +9,9 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { APP_BASE_HREF } from '@angular/common';
 import {MatCardModule} from '@angular/material/card';
 import {MatDividerModule} from '@angular/material/divider'
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -30,6 +34,8 @@ import { UserdetailsComponent } from './components/profile/userdetails/userdetai
 import { ReviewsComponent } from './components/profile/reviews/reviews.component';
 import { UserproductComponent } from './components/profile/userproduct/userproduct.component';
 import { ProductCardComponent } from './components/resuable/product-card/product-card.component';
+import { UserInfoService } from './services/userInfo.service';
+import { RatingComponent } from './components/resuable/rating/rating.component';
 
 
 
@@ -46,6 +52,7 @@ import { ProductCardComponent } from './components/resuable/product-card/product
     ReviewsComponent,
     UserproductComponent,
     ProductCardComponent,
+    RatingComponent,
   ],
   imports: [
     BrowserModule,
@@ -60,12 +67,16 @@ import { ProductCardComponent } from './components/resuable/product-card/product
     RouterModule,
     AppRoutingModule,
     MatCardModule,
-    MatDividerModule
+    MatDividerModule,
+    MatProgressSpinnerModule,
+    MatProgressBarModule,
+    
+    
    
   ],
   providers: [
      
-        [AreasService, CitiesService],
+        [AreasService, CitiesService, UserInfoService],
         UserService,
         AuthGuard,
         {

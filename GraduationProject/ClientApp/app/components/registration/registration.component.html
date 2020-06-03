@@ -164,9 +164,9 @@
 			</select>
 		</mat-form-field>
 
-		<mat-form-field class="example-full-width" class="control-item-50">
+		<mat-form-field  class="example-full-width" class="control-item-50">
 			<mat-label>Area</mat-label>
-			<select required matNativeControl ngModel name="areaID" #areaID="ngModel" >
+			<select (change)="onChange($event.target.value)" required matNativeControl ngModel name="areaID" #areaID="ngModel" >
 				<option *ngFor="let item of areas" [value]="item.id">{{
 					item.areaName
 				}}</option>

@@ -412,32 +412,42 @@ namespace GraduationProject.Migrations
 
             modelBuilder.Entity("GraduationProject.Models.UsersRatings", b =>
                 {
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("Rating")
                         .HasColumnType("int");
 
-                    b.HasKey("UserId")
-                        .HasName("PK__Users_Ra__1788CC4CB9E09BD8");
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
 
-                    b.ToTable("Users_Ratings");
+                    b.HasKey("ID");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("UsersRatings");
                 });
 
             modelBuilder.Entity("GraduationProject.Models.UsersReviews", b =>
                 {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Review")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("Review")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(500)")
-                        .HasMaxLength(500);
+                    b.HasKey("ID");
 
-                    b.HasKey("UserId")
-                        .HasName("PK__Users_Re__1788CC4C22AE4AEE");
+                    b.HasIndex("UserId");
 
-                    b.ToTable("Users_Reviews");
+                    b.ToTable("UsersReviews");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -703,19 +713,15 @@ namespace GraduationProject.Migrations
             modelBuilder.Entity("GraduationProject.Models.UsersRatings", b =>
                 {
                     b.HasOne("GraduationProject.Models.ApplicationUser", "User")
-                        .WithOne("UsersRatings")
-                        .HasForeignKey("GraduationProject.Models.UsersRatings", "UserId")
-                        .HasConstraintName("FK__Users_Rat__UserI__21B6055D")
-                        .IsRequired();
+                        .WithMany("UsersRatings")
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("GraduationProject.Models.UsersReviews", b =>
                 {
                     b.HasOne("GraduationProject.Models.ApplicationUser", "User")
-                        .WithOne("UsersReviews")
-                        .HasForeignKey("GraduationProject.Models.UsersReviews", "UserId")
-                        .HasConstraintName("FK__Users_Rev__UserI__24927208")
-                        .IsRequired();
+                        .WithMany("UsersReviews")
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

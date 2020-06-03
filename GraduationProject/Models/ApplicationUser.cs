@@ -28,8 +28,8 @@ namespace GraduationProject.Models
 
         public string Address { get; set; }
 
-        public virtual UsersRatings UsersRatings { get; set; }
-        public virtual UsersReviews UsersReviews { get; set; }
+        public virtual ICollection<UsersRatings> UsersRatings { get; set; }
+        public virtual ICollection<UsersReviews> UsersReviews { get; set; }
         public virtual ICollection<Buys> Buys { get; set; }
         public virtual ICollection<Chats> Chats { get; set; }
         public virtual ICollection<Suggestions> Suggestions { get; set; }
