@@ -18,4 +18,11 @@ export class UserInfoService {
 	GetUserReviews() {
 		return this.http.get<Reviews[]>("/api/Account/UserReviews");
 	}
+	GetUserInformationByID(UserId: string) {
+		return this.http.get<userInfo>(`/api/UserInformation/GetUserInfo/${UserId}`);
+	}
+	GetUserReviewById(UserId: string) {
+		return this.http.get<Reviews[]>(`/api/UserInformation/UserReviews/${UserId}`);
+	}
+
 }

@@ -8,6 +8,7 @@ using GraduationProject.Repositry;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 
 namespace GraduationProject.Areas.Admin.Controllers
 {
@@ -34,6 +35,7 @@ namespace GraduationProject.Areas.Admin.Controllers
        
         public ActionResult Details(int id)
         {
+            
             return View();
         }
 

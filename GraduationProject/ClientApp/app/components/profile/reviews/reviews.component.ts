@@ -1,3 +1,4 @@
+import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { UserInfoService } from 'ClientApp/app/services/userInfo.service';
 import { Reviews } from 'ClientApp/app/models/reviews';
@@ -9,12 +10,23 @@ import { Reviews } from 'ClientApp/app/models/reviews';
 })
 export class ReviewsComponent implements OnInit {
   review: Reviews[] = null;
-  constructor(private userInfo:UserInfoService) { }
+  constructor(private userInfo:UserInfoService, private activateRouter:ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.userInfo.GetUserReviews().subscribe(a => {
-      this.review = a;
+    this.activateRouter.params.subscribe(a => {
+      if (a.id == null) {
+        this.userInfo.GetUserReviews().subscribe(a => {
+          this.review = a;
+        });
+      }
+      else
+      {
+        this.userInfo.GetUserReviewById(a.id).subscribe(a => {
+          this.review = a;
+        });  
+      }
     });
+  
   }
 
 }
