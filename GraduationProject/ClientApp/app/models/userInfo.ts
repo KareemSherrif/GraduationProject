@@ -3,4 +3,5 @@ export class userInfo {
     city: string;
     area: string;
     address: string;
+    rating: number;
 }

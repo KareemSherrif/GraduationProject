@@ -11,6 +11,7 @@ namespace GraduationProject.Areas.Api.ViewModels
         public string City { get; set; }
         public string Area { get; set; }
         public string Address { get; set; }
-       
+        public double Rating { get; set; }
+
     }
 }

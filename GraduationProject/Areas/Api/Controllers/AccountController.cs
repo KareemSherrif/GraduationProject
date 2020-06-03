@@ -207,6 +207,7 @@ namespace GraduationProject.Areas.Api.Controllers
                 return NotFound("This user is not found");
             }
             UserInformationViewModel model = mapper.Map<ApplicationUser, UserInformationViewModel>(applicationUser);
+            model.Rating = usersRepository.GetAverageRating(userId);
             return Ok(model);
 
         }
@@ -226,6 +227,7 @@ namespace GraduationProject.Areas.Api.Controllers
 
         }
 
+    
 
     }
 }
