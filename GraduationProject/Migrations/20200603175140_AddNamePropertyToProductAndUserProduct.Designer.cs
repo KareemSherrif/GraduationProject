@@ -4,14 +4,16 @@ using GraduationProject.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace GraduationProject.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200603175140_AddNamePropertyToProductAndUserProduct")]
+    partial class AddNamePropertyToProductAndUserProduct
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -412,42 +414,32 @@ namespace GraduationProject.Migrations
 
             modelBuilder.Entity("GraduationProject.Models.UsersRatings", b =>
                 {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("Rating")
                         .HasColumnType("int");
 
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
+                    b.HasKey("UserId")
+                        .HasName("PK__Users_Ra__1788CC4CB9E09BD8");
 
-                    b.HasKey("ID");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("UsersRatings");
+                    b.ToTable("Users_Ratings");
                 });
 
             modelBuilder.Entity("GraduationProject.Models.UsersReviews", b =>
                 {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Review")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.HasKey("ID");
+                    b.Property<string>("Review")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(500)")
+                        .HasMaxLength(500);
 
-                    b.HasIndex("UserId");
+                    b.HasKey("UserId")
+                        .HasName("PK__Users_Re__1788CC4C22AE4AEE");
 
-                    b.ToTable("UsersReviews");
+                    b.ToTable("Users_Reviews");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -713,15 +705,19 @@ namespace GraduationProject.Migrations
             modelBuilder.Entity("GraduationProject.Models.UsersRatings", b =>
                 {
                     b.HasOne("GraduationProject.Models.ApplicationUser", "User")
-                        .WithMany("UsersRatings")
-                        .HasForeignKey("UserId");
+                        .WithOne("UsersRatings")
+                        .HasForeignKey("GraduationProject.Models.UsersRatings", "UserId")
+                        .HasConstraintName("FK__Users_Rat__UserI__21B6055D")
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("GraduationProject.Models.UsersReviews", b =>
                 {
                     b.HasOne("GraduationProject.Models.ApplicationUser", "User")
-                        .WithMany("UsersReviews")
-                        .HasForeignKey("UserId");
+                        .WithOne("UsersReviews")
+                        .HasForeignKey("GraduationProject.Models.UsersReviews", "UserId")
+                        .HasConstraintName("FK__Users_Rev__UserI__24927208")
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
