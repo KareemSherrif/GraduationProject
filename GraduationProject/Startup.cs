@@ -61,7 +61,7 @@ namespace GraduationProject
                 a.Password.RequireLowercase = false;
                 a.Password.RequireNonAlphanumeric = false;
                 a.Password.RequireUppercase = false;
-            }).AddEntityFrameworkStores<ApplicationDbContext>();
+            }).AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
 
             //services.AddAuthentication(options =>
             //{
