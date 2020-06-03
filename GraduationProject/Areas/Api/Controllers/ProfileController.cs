@@ -22,7 +22,6 @@ namespace GraduationProject.Areas.Api.Controllers
     {
         private readonly UserManager<ApplicationUser> _userManager;
 
-        //private readonly UsersRepository _repo;
         public ProfileController(UserManager<ApplicationUser> userManager)
         {
             _userManager = userManager;
@@ -37,7 +36,6 @@ namespace GraduationProject.Areas.Api.Controllers
             {
                 if (ModelState.IsValid && model.Email != null)
                 {
-                    //ID returns Email, This is a placeholder.
                     string userId = User.GetUserIdToken();
                     var user = await _userManager.FindByIdAsync(userId);
                     var result = await _userManager.SetEmailAsync(user, model.Email);
@@ -93,7 +91,6 @@ namespace GraduationProject.Areas.Api.Controllers
             {
                 if (ModelState.IsValid && model.PhoneNumber != null)
                 {
-                    //ID returns Email, This is a placeholder.
                     string userId = User.GetUserIdToken();
                     var user = await _userManager.FindByIdAsync(userId);
                     var result = await _userManager.SetPhoneNumberAsync(user, model.PhoneNumber);
@@ -121,7 +118,6 @@ namespace GraduationProject.Areas.Api.Controllers
             {
                 if (ModelState.IsValid && model.Username != null)
                 {
-                    //ID returns Email, This is a placeholder.
                     string userId = User.GetUserIdToken();
                     var user = await _userManager.FindByIdAsync(userId);
                     var result = await _userManager.SetUserNameAsync(user, model.Username);

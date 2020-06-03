@@ -113,7 +113,7 @@ namespace GraduationProject.Models
 
             modelBuilder.Entity<Chats>(entity =>
             {
-                entity.Property(e => e.Id).ValueGeneratedNever();
+                 
 
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.Chats)
@@ -124,7 +124,7 @@ namespace GraduationProject.Models
 
             modelBuilder.Entity<Messages>(entity =>
             {
-                entity.Property(e => e.Id).ValueGeneratedNever();
+                 
 
                 entity.Property(e => e.Date).HasColumnType("datetime");
 
@@ -192,7 +192,7 @@ namespace GraduationProject.Models
 
             modelBuilder.Entity<Suggestions>(entity =>
             {
-                entity.Property(e => e.Id).ValueGeneratedNever();
+                 
 
                 entity.Property(e => e.Description)
                     .IsRequired()
@@ -211,7 +211,7 @@ namespace GraduationProject.Models
 
             modelBuilder.Entity<UserProduct>(entity =>
             {
-                entity.Property(e => e.Id).ValueGeneratedNever();
+                 
 
                 entity.Property(e => e.Description)
                     .IsRequired()
@@ -250,7 +250,7 @@ namespace GraduationProject.Models
 
             modelBuilder.Entity<ApplicationUser>(entity =>
             {
-                entity.Property(e => e.Id).ValueGeneratedNever();
+                 
 
              
 
@@ -263,8 +263,6 @@ namespace GraduationProject.Models
                     .HasName("PK__Users_Ra__1788CC4CB9E09BD8");
 
                 entity.ToTable("Users_Ratings");
-
-                entity.Property(e => e.UserId).ValueGeneratedNever();
 
                 entity.HasOne(d => d.User)
                     .WithOne(p => p.UsersRatings)
@@ -279,8 +277,6 @@ namespace GraduationProject.Models
                     .HasName("PK__Users_Re__1788CC4C22AE4AEE");
 
                 entity.ToTable("Users_Reviews");
-
-                entity.Property(e => e.UserId).ValueGeneratedNever();
 
                 entity.Property(e => e.Review)
                     .IsRequired()
