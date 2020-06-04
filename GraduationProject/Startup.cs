@@ -52,6 +52,8 @@ namespace GraduationProject
             services.AddTransient<IUserProductRepository, UserProductRepository>();
             services.AddTransient<IUserProductImagesRepository, UserProductImagesRepository>();
             services.AddTransient<IReviewRepository, ReviewRepository>();
+            services.AddTransient<IProductRepository, ProductRepository>();
+            services.AddTransient<IProductAttributesRepository, ProductAttributesRepository>();
             #endregion
 
 

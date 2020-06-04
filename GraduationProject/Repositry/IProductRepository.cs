@@ -8,5 +8,7 @@ namespace GraduationProject.Repositry
 {
     public interface IProductRepository: IRepositry<Product, int>
     {
+        public IEnumerable<Model> GetModelWithCategories(int CategoryId);
+        public IEnumerable<Attributes> GetCategoryAttributes(int CategoryId);
     }
 }
