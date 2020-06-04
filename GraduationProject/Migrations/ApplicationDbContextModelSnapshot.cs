@@ -210,7 +210,9 @@ namespace GraduationProject.Migrations
             modelBuilder.Entity("GraduationProject.Models.Chats", b =>
                 {
                     b.Property<int>("Id")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("RecipientId")
                         .HasColumnType("int");
@@ -244,7 +246,9 @@ namespace GraduationProject.Migrations
             modelBuilder.Entity("GraduationProject.Models.Messages", b =>
                 {
                     b.Property<int>("Id")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("ChatId")
                         .HasColumnType("int");
@@ -337,7 +341,9 @@ namespace GraduationProject.Migrations
             modelBuilder.Entity("GraduationProject.Models.Suggestions", b =>
                 {
                     b.Property<int>("Id")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -362,7 +368,9 @@ namespace GraduationProject.Migrations
             modelBuilder.Entity("GraduationProject.Models.UserProduct", b =>
                 {
                     b.Property<int>("Id")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("Condition")
                         .HasColumnType("int");
@@ -412,42 +420,50 @@ namespace GraduationProject.Migrations
 
             modelBuilder.Entity("GraduationProject.Models.UsersRatings", b =>
                 {
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
 
                     b.Property<int>("Rating")
                         .HasColumnType("int");
 
-                    b.Property<string>("UserId")
+                    b.Property<string>("UserId1")
+                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
-                    b.HasKey("ID");
+                    b.HasKey("UserId")
+                        .HasName("PK__Users_Ra__1788CC4CB9E09BD8");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("UserId1");
 
-                    b.ToTable("UsersRatings");
+                    b.ToTable("Users_Ratings");
                 });
 
             modelBuilder.Entity("GraduationProject.Models.UsersReviews", b =>
                 {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Review")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.HasKey("ID");
+                    b.Property<int>("ID")
+                        .HasColumnType("int");
 
-                    b.HasIndex("UserId");
+                    b.Property<string>("Review")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(500)")
+                        .HasMaxLength(500);
 
-                    b.ToTable("UsersReviews");
+                    b.Property<string>("UserId1")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("UserId")
+                        .HasName("PK__Users_Re__1788CC4C22AE4AEE");
+
+                    b.HasIndex("UserId1");
+
+                    b.ToTable("Users_Reviews");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -714,14 +730,18 @@ namespace GraduationProject.Migrations
                 {
                     b.HasOne("GraduationProject.Models.ApplicationUser", "User")
                         .WithMany("UsersRatings")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserId1")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("GraduationProject.Models.UsersReviews", b =>
                 {
                     b.HasOne("GraduationProject.Models.ApplicationUser", "User")
                         .WithMany("UsersReviews")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserId1")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

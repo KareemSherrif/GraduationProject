@@ -36,9 +36,10 @@ import { UserproductComponent } from './components/profile/userproduct/userprodu
 import { ProductCardComponent } from './components/resuable/product-card/product-card.component';
 import { UserInfoService } from './services/userInfo.service';
 import { RatingComponent } from './components/resuable/rating/rating.component';
-
-
-
+import {MatButtonModule} from '@angular/material/button';
+import {MatButtonToggleModule} from '@angular/material/button-toggle'
+import { MatDialogModule } from '@angular/material/dialog';
+import {MatIconModule } from '@angular/material/icon'
 
 @NgModule({
   declarations: [
@@ -52,7 +53,7 @@ import { RatingComponent } from './components/resuable/rating/rating.component';
     ReviewsComponent,
     UserproductComponent,
     ProductCardComponent,
-    RatingComponent,
+    RatingComponent
   ],
   imports: [
     BrowserModule,
@@ -70,6 +71,10 @@ import { RatingComponent } from './components/resuable/rating/rating.component';
     MatDividerModule,
     MatProgressSpinnerModule,
     MatProgressBarModule,
+    MatButtonModule,
+    MatButtonToggleModule,
+    MatDialogModule,
+    MatIconModule
     
     
    

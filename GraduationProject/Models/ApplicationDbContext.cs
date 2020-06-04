@@ -264,11 +264,6 @@ namespace GraduationProject.Models
 
                 entity.ToTable("Users_Ratings");
 
-                entity.HasOne(d => d.User)
-                    .WithOne(p => p.UsersRatings)
-                    .HasForeignKey<UsersRatings>(d => d.UserId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Users_Rat__UserI__21B6055D");
             });
 
             modelBuilder.Entity<UsersReviews>(entity =>
@@ -282,11 +277,7 @@ namespace GraduationProject.Models
                     .IsRequired()
                     .HasMaxLength(500);
 
-                entity.HasOne(d => d.User)
-                    .WithOne(p => p.UsersReviews)
-                    .HasForeignKey<UsersReviews>(d => d.UserId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Users_Rev__UserI__24927208");
+            
             });
 
             base.OnModelCreating(modelBuilder);

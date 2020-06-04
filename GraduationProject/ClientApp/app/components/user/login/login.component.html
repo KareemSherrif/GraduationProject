@@ -1,6 +1,14 @@
 
-<section class="container">
-    <h2>Login</h2>
+<section class="container mt-5">
+  <div class="row">
+   
+    <div class="col-md-4 col-md-offset-4">
+        <mat-card class="example-card">
+            <div class="flex-container">
+            <img src="/img/Circle-icons-unlocked.svg" class="imageCenter"/>
+        </div>
+            <h2 class="text-center header-font">Login</h2>
+        
     <form #f="ngForm" (ngSubmit)="Save(f)">
         <mat-form-field class="control-item-100">
             <mat-label for="userName">username</mat-label>
@@ -25,8 +33,17 @@
             </mat-error>
         <br />
             <div class="form-group">
-                <button class="btn btn-success" [disabled]="f.invalid">Login</button>
+                <button mat-button class="button-full-width" mat-flat-button color="primary" [disabled]="f.invalid">
+                    <i class="fa fa-sign-in" aria-hidden="true"></i> Login</button>
             </div>
+        <div class="form-group">
+        <a class="link-pointer"> Forgot my Password</a>
+        <a class="link-pointer">Register a new account </a>
+        
+        </div>
 
-</form>
+   </form>
+</mat-card>
+</div>
+</div>
 </section>
