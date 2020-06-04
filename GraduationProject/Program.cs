@@ -21,7 +21,17 @@ namespace GraduationProject
             //CreateHostBuilder(args)
             //   .Build().Run();
 
-            var host = CreateHostBuilder(args).Build();
+            var host = CreateHostBuilder(args)
+                 .ConfigureAppConfiguration((hostContext, builder) =>
+                 {
+                     // Add other providers for JSON, etc.
+
+                     if (hostContext.HostingEnvironment.IsDevelopment())
+                     {
+                         builder.AddUserSecrets<Program>();
+                     }
+                 })
+                .Build();
 
             using (var scope = host.Services.CreateScope())
             {

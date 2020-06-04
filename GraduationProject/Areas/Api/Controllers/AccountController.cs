@@ -31,6 +31,11 @@ namespace GraduationProject.Areas.Api.Controllers
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly IConfiguration _configration;
+        private readonly IEmailSender _emailSender;
+        private readonly IOptions<AuthMessageSenderOptions> _AuthMessageSenderOptions;
+
+        //public AccountController(SignInManager<ApplicationUser> signInManager,
+        //    UserManager<ApplicationUser> userManager, IConfiguration configration, IEmailSender emailSender, IOptions<AuthMessageSenderOptions> AuthMessageSenderOptions);
         private readonly IUsersRepository usersRepository;
         private readonly IMapper mapper;
         private readonly IReviewRepository _reviewRepository;
@@ -39,11 +44,13 @@ namespace GraduationProject.Areas.Api.Controllers
             UserManager<ApplicationUser> userManager, IConfiguration configration,
             IUsersRepository usersRepository, 
             IMapper mapper,
-            IReviewRepository reviewRepository)
+            IReviewRepository reviewRepository, IEmailSender emailSender, IOptions<AuthMessageSenderOptions> AuthMessageSenderOptions)
         {
             _signInManager = signInManager;
             _userManager = userManager;
             _configration = configration;
+            _emailSender = emailSender;
+            _AuthMessageSenderOptions = AuthMessageSenderOptions;
             this.usersRepository = usersRepository;
             this.mapper = mapper;
             this._reviewRepository = reviewRepository;
@@ -137,21 +144,21 @@ namespace GraduationProject.Areas.Api.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> ForgotPassword(ForgotPasswordViewModel model)
+        [Route("ForgotPassword")]
+        public async Task<IActionResult> ForgotPassword([FromBody]ForgotPasswordViewModel model)
         {
             if (ModelState.IsValid)
             {
                 var user = await _userManager.FindByEmailAsync(model.Email);
-                if (user != null && await _userManager.IsEmailConfirmedAsync(user))
+                if (user != null)
                 {
                     var token = await _userManager.GeneratePasswordResetTokenAsync(user);
                     var passwordResetLink = Url.Action("ResetPassword", "Account", new { email = model.Email, token = token }, Request.Scheme);
                     // email is sent
                     string subject = "Welcome to App-Name! Confirm Your Email";
                     string message = "You're on your way! Let's confirm your email address. By clicking on the following link, you are confirming your email address" + passwordResetLink;
-                    AuthMessageSenderOptions options = new AuthMessageSenderOptions();
-                    EmailSender emailSender = new EmailSender((IOptions<AuthMessageSenderOptions>)options);
-                    await emailSender.SendEmailAsync(model.Email, subject, message);
+                    
+                    await _emailSender.SendEmailAsync(model.Email, subject, message);
                     //Logger.Log(LogLevel.Warning, passwordResetLink);
                     return Ok();
                 }

@@ -16,7 +16,7 @@ namespace GraduationProject.Services
             Options = optionsAccessor.Value;
         }
         // you can find sendGrid key and user withen the secret manager in secrets.json file
-        public AuthMessageSenderOptions Options { get; } 
+        public AuthMessageSenderOptions Options { get; }
 
         // Generic function to send mail to any user
         public Task SendEmailAsync(string email, string subject, string message)
@@ -24,25 +24,24 @@ namespace GraduationProject.Services
             return Execute(Options.SendGridKey, subject, message, email);
         }
 
-        private Task Execute(string apiKey, string subject, string message, string receiverEmail)
+        private async Task Execute(string apiKey, string subject, string message, string receiverEmail)
         {
             // Through sendGrid Key the SMTP of SendGrid will be able to determine the client  
             var client = new SendGridClient(apiKey);
             // Message creation
-            var msg = new SendGridMessage()
-            {
-                From = new EmailAddress("nardeen.karam@gmail.com", Options.SendGridUser),
-                Subject = subject,
-                PlainTextContent = message,
-                HtmlContent = message
-            };
-            msg.AddTo(new EmailAddress(receiverEmail));
+            var to = new EmailAddress(receiverEmail);
+            var From = new EmailAddress("sendgrid.net", "Nardeen Karam");
+            //var Subject = subject;
+            //var PlainTextContent = message;
+            //var HtmlContent = message;
+
+            var msg = MailHelper.CreateSingleEmail(to, From, subject, message, message);
+            //msg.AddTo(new EmailAddress(receiverEmail));
 
             // Disable click tracking.
             // See https://sendgrid.com/docs/User_Guide/Settings/tracking.html
             msg.SetClickTracking(false, false);
-
-            return client.SendEmailAsync(msg);
+            var response = await client.SendEmailAsync(msg);
         }
     }
 }
