@@ -41,6 +41,7 @@ namespace GraduationProject.Repositry
         {
             return Context.Set<T>().ToList();
         }
+       
 
         public DataTableViewModel<T> GetDataTable(int start, int lenght, Func<T, bool> search, Func<T, ID> OrderBy)
         {

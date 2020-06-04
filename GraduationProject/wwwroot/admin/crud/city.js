@@ -7,6 +7,7 @@
     }];
 
     tbl = tablePlugin("#citytbl", "/admin/Cities/GetCities", dataColumns);
+
     $("#btn").click(function () {
         $.ajax({
             url: "/admin/Cities/Create",

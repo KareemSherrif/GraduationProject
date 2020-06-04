@@ -20,7 +20,6 @@ namespace GraduationProject.Repositry
 
         public DataTableViewModel<T> GetDataTable(int start, int lenght, Func<T, bool> search, Func<T, ID> OrderBy);
 
-
         public int SaveAll();
         
     }

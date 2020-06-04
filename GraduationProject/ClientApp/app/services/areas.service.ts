@@ -1,4 +1,4 @@
-import { Areas } from './../model/areas';
+import { Areas } from './../models/areas';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 @Injectable({

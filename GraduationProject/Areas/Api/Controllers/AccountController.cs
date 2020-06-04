@@ -15,7 +15,12 @@ using Microsoft.IdentityModel.Tokens;
 using System.Threading;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using Microsoft.CodeAnalysis.Options;
+using GraduationProject.Areas.Api.ViewModels;
+using GraduationProject.ExtenstionMethods;
+using GraduationProject.Repositry;
+using AutoMapper;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 
 namespace GraduationProject.Areas.Api.Controllers
 {
@@ -29,14 +34,26 @@ namespace GraduationProject.Areas.Api.Controllers
         private readonly IEmailSender _emailSender;
         private readonly IOptions<AuthMessageSenderOptions> _AuthMessageSenderOptions;
 
+        //public AccountController(SignInManager<ApplicationUser> signInManager,
+        //    UserManager<ApplicationUser> userManager, IConfiguration configration, IEmailSender emailSender, IOptions<AuthMessageSenderOptions> AuthMessageSenderOptions);
+        private readonly IUsersRepository usersRepository;
+        private readonly IMapper mapper;
+        private readonly IReviewRepository _reviewRepository;
+
         public AccountController(SignInManager<ApplicationUser> signInManager,
-            UserManager<ApplicationUser> userManager, IConfiguration configration, IEmailSender emailSender,IOptions<AuthMessageSenderOptions> AuthMessageSenderOptions)
+            UserManager<ApplicationUser> userManager, IConfiguration configration,
+            IUsersRepository usersRepository, 
+            IMapper mapper,
+            IReviewRepository reviewRepository, IEmailSender emailSender, IOptions<AuthMessageSenderOptions> AuthMessageSenderOptions)
         {
             _signInManager = signInManager;
             _userManager = userManager;
             _configration = configration;
             _emailSender = emailSender;
             _AuthMessageSenderOptions = AuthMessageSenderOptions;
+            this.usersRepository = usersRepository;
+            this.mapper = mapper;
+            this._reviewRepository = reviewRepository;
         }
         [HttpGet]
         public IActionResult Get()
@@ -183,5 +200,41 @@ namespace GraduationProject.Areas.Api.Controllers
             }
             return BadRequest();
         }
+
+        [HttpGet]
+        [Route("UserInfo")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        public ActionResult<UserInformationViewModel> GetUserInformation()
+        {
+            string userId = User.GetUserIdToken();
+            ApplicationUser applicationUser = usersRepository.GetUserInformation(userId);
+
+            if (applicationUser == null)
+            {
+                return NotFound("This user is not found");
+            }
+            UserInformationViewModel model = mapper.Map<ApplicationUser, UserInformationViewModel>(applicationUser);
+            model.Rating = usersRepository.GetAverageRating(userId);
+            return Ok(model);
+
+        }
+        [HttpGet]
+        [Route("UserReviews")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        public ActionResult<UsersReviews> GetReviews()
+        {
+            string userId = User.GetUserIdToken();
+            List<UsersReviews> usersReviews = this._reviewRepository.GetReviewsByUser(userId).ToList();
+            if (usersReviews == null)
+            {
+                return NotFound("The Reviews is not found");
+
+            }
+            return Ok(usersReviews);
+
+        }
+
+    
+
     }
 }

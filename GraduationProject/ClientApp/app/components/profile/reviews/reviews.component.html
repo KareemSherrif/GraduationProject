@@ -1,0 +1,17 @@
+
+<mat-progress-bar mode="indeterminate" *ngIf="this.review == null"></mat-progress-bar>
+
+<mat-card>
+    <mat-card-title>Reviews</mat-card-title>
+  <mat-card class="mt-2" *ngFor="let item of this.review">
+    <mat-card-content>
+        <p>
+        {{item.review}}
+        </p>
+      </mat-card-content>
+    </mat-card>
+    <div class="mt-2" *ngIf="this.review.length == 0">
+        <p class="text-center">There is no Reviews ! </p>
+    </div>
+  
+</mat-card>

@@ -210,7 +210,9 @@ namespace GraduationProject.Migrations
             modelBuilder.Entity("GraduationProject.Models.Chats", b =>
                 {
                     b.Property<int>("Id")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("RecipientId")
                         .HasColumnType("int");
@@ -244,7 +246,9 @@ namespace GraduationProject.Migrations
             modelBuilder.Entity("GraduationProject.Models.Messages", b =>
                 {
                     b.Property<int>("Id")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("ChatId")
                         .HasColumnType("int");
@@ -302,6 +306,9 @@ namespace GraduationProject.Migrations
                     b.Property<int>("ModelId")
                         .HasColumnType("int");
 
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
                     b.HasIndex("BrandId");
@@ -334,7 +341,9 @@ namespace GraduationProject.Migrations
             modelBuilder.Entity("GraduationProject.Models.Suggestions", b =>
                 {
                     b.Property<int>("Id")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -359,7 +368,9 @@ namespace GraduationProject.Migrations
             modelBuilder.Entity("GraduationProject.Models.UserProduct", b =>
                 {
                     b.Property<int>("Id")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("Condition")
                         .HasColumnType("int");
@@ -368,6 +379,9 @@ namespace GraduationProject.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(500)")
                         .HasMaxLength(500);
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(9, 2)");
@@ -409,11 +423,20 @@ namespace GraduationProject.Migrations
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<int>("ID")
+                        .HasColumnType("int");
+
                     b.Property<int>("Rating")
                         .HasColumnType("int");
 
+                    b.Property<string>("UserId1")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
                     b.HasKey("UserId")
                         .HasName("PK__Users_Ra__1788CC4CB9E09BD8");
+
+                    b.HasIndex("UserId1");
 
                     b.ToTable("Users_Ratings");
                 });
@@ -423,13 +446,22 @@ namespace GraduationProject.Migrations
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<int>("ID")
+                        .HasColumnType("int");
+
                     b.Property<string>("Review")
                         .IsRequired()
                         .HasColumnType("nvarchar(500)")
                         .HasMaxLength(500);
 
+                    b.Property<string>("UserId1")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
                     b.HasKey("UserId")
                         .HasName("PK__Users_Re__1788CC4C22AE4AEE");
+
+                    b.HasIndex("UserId1");
 
                     b.ToTable("Users_Reviews");
                 });
@@ -697,18 +729,18 @@ namespace GraduationProject.Migrations
             modelBuilder.Entity("GraduationProject.Models.UsersRatings", b =>
                 {
                     b.HasOne("GraduationProject.Models.ApplicationUser", "User")
-                        .WithOne("UsersRatings")
-                        .HasForeignKey("GraduationProject.Models.UsersRatings", "UserId")
-                        .HasConstraintName("FK__Users_Rat__UserI__21B6055D")
+                        .WithMany("UsersRatings")
+                        .HasForeignKey("UserId1")
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
             modelBuilder.Entity("GraduationProject.Models.UsersReviews", b =>
                 {
                     b.HasOne("GraduationProject.Models.ApplicationUser", "User")
-                        .WithOne("UsersReviews")
-                        .HasForeignKey("GraduationProject.Models.UsersReviews", "UserId")
-                        .HasConstraintName("FK__Users_Rev__UserI__24927208")
+                        .WithMany("UsersReviews")
+                        .HasForeignKey("UserId1")
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
