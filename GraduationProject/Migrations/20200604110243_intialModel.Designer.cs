@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GraduationProject.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200603232457_IntialModel")]
-    partial class IntialModel
+    [Migration("20200604110243_intialModel")]
+    partial class intialModel
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -322,6 +322,11 @@ namespace GraduationProject.Migrations
 
             modelBuilder.Entity("GraduationProject.Models.ProductAttributes", b =>
                 {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
                     b.Property<string>("AttributeName")
                         .IsRequired()
                         .HasColumnType("nvarchar(255)")
@@ -334,6 +339,8 @@ namespace GraduationProject.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(255)")
                         .HasMaxLength(255);
+
+                    b.HasKey("ID");
 
                     b.HasIndex("ProductId");
 
@@ -422,48 +429,42 @@ namespace GraduationProject.Migrations
 
             modelBuilder.Entity("GraduationProject.Models.UsersRatings", b =>
                 {
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<int>("ID")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("Rating")
                         .HasColumnType("int");
 
-                    b.Property<string>("UserId1")
-                        .IsRequired()
+                    b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.HasKey("UserId")
-                        .HasName("PK__Users_Ra__1788CC4CB9E09BD8");
+                    b.HasKey("ID");
 
-                    b.HasIndex("UserId1");
+                    b.HasIndex("UserId");
 
                     b.ToTable("Users_Ratings");
                 });
 
             modelBuilder.Entity("GraduationProject.Models.UsersReviews", b =>
                 {
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<int>("ID")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Review")
                         .IsRequired()
                         .HasColumnType("nvarchar(500)")
                         .HasMaxLength(500);
 
-                    b.Property<string>("UserId1")
-                        .IsRequired()
+                    b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.HasKey("UserId")
-                        .HasName("PK__Users_Re__1788CC4C22AE4AEE");
+                    b.HasKey("ID");
 
-                    b.HasIndex("UserId1");
+                    b.HasIndex("UserId");
 
                     b.ToTable("Users_Reviews");
                 });
@@ -732,18 +733,14 @@ namespace GraduationProject.Migrations
                 {
                     b.HasOne("GraduationProject.Models.ApplicationUser", "User")
                         .WithMany("UsersRatings")
-                        .HasForeignKey("UserId1")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("GraduationProject.Models.UsersReviews", b =>
                 {
                     b.HasOne("GraduationProject.Models.ApplicationUser", "User")
                         .WithMany("UsersReviews")
-                        .HasForeignKey("UserId1")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

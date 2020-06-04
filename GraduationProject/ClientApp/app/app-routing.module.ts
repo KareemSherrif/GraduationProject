@@ -1,4 +1,6 @@
-﻿import { AuthGuard } from './guards/auth.guard';
+﻿import { AddProductComponent } from './components/home/add-product/add-product.component';
+import { animate } from '@angular/animations';
+import { AuthGuard } from './guards/auth.guard';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './components/user/login/login.component';
@@ -9,9 +11,10 @@ import { ProfileComponent } from './components/profile/profile.component';
 const routes: Routes = [
     { path: '', component: HomeComponent },
     { path: 'Registration', component: RegistrationComponent },
-    { path: 'Login', component: LoginComponent, },
+    { path: 'Login', component: LoginComponent},
     { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
-     {path:'profile/:id',component:ProfileComponent}
+    { path: 'profile/:id', component: ProfileComponent },
+     {path:'AddProduct',component:AddProductComponent,canActivate:[AuthGuard]}
 ];
 
 @NgModule({

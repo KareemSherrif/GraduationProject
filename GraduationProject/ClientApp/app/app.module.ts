@@ -39,7 +39,9 @@ import { RatingComponent } from './components/resuable/rating/rating.component';
 import {MatButtonModule} from '@angular/material/button';
 import {MatButtonToggleModule} from '@angular/material/button-toggle'
 import { MatDialogModule } from '@angular/material/dialog';
-import {MatIconModule } from '@angular/material/icon'
+import {MatIconModule } from '@angular/material/icon';
+
+import { AddProductComponent } from './components/home/add-product/add-product.component'
 
 @NgModule({
   declarations: [
@@ -53,7 +55,8 @@ import {MatIconModule } from '@angular/material/icon'
     ReviewsComponent,
     UserproductComponent,
     ProductCardComponent,
-    RatingComponent
+    RatingComponent,
+    AddProductComponent
   ],
   imports: [
     BrowserModule,
