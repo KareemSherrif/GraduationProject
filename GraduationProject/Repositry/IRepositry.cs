@@ -10,6 +10,10 @@ namespace GraduationProject.Repositry
     {
         public IEnumerable<T> GetAll();
 
+        public IQueryable<T> GetIQueryable();
+
+        public IEnumerable<T> GetByCondition(Func<T, bool> search);
+
         public T Get(ID Key);
 
         public void Add(T entity);

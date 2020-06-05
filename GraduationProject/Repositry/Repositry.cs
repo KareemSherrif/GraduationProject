@@ -31,6 +31,10 @@ namespace GraduationProject.Repositry
             Context.Entry<T>(entity).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
 
         }
+        public IEnumerable<T> GetByCondition(Func<T,bool> search)
+        {
+            return Context.Set<T>().Where(search).ToList();
+        }
 
         public T Get(ID Key)
         {
@@ -59,6 +63,11 @@ namespace GraduationProject.Repositry
                 recordsFiltered = count,
                 recordsTotal = count
             };
+        }
+
+        public IQueryable<T> GetIQueryable()
+        {
+            return Context.Set<T>();
         }
 
         public int SaveAll()

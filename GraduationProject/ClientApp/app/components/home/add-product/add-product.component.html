@@ -1,4 +1,59 @@
-<div class="container">
-    Add-Product
-
+<div class="container mt-product">
+    <mat-card>
+        <mat-card-title>Add Product</mat-card-title>
+   <div class="form-group">
+       <form [formGroup]="form">
+        <mat-form-field class="example-full-width">
+            <input type="text"
+                   placeholder="ProductName"
+                   aria-label="Number"
+                   matInput
+                   [formControl]="name"
+                   [matAutocomplete]="auto">
+            <mat-autocomplete #auto="matAutocomplete">
+              <mat-option *ngFor="let option of options" [value]="option.name">
+                {{option.name}}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+  <div>
+    <input id="image-button" class="custom-file-input" type="file" (change)="OnAddPicture($event)"/>
+   
 </div>
+    <div class="mt-image row">
+        <div class="col-md-12">
+        <ul class="list-group">
+            <li class="list-group-item overflow-el" *ngFor="let item of images.value">
+                <img [src]="item.value" width="50" /> 
+                | {{item.name}} <span class="badge badge-danger">X</span></li>
+        </ul>
+    </div>
+      
+    </div>
+        
+    
+
+     </form>
+   </div>
+</mat-card>
+</div>
+<div id="tansformation" class="abs-form">
+
+        <div class="d-flex">
+        <button class="btn btn-danger" (click)="DeleteCropper()">Cancel</button>
+        <button class="btn  btn-success" (click)="AddImage()">Add</button>
+       </div>
+
+     <image-cropper 
+     [imageChangedEvent]="imageChangedEvent"
+     [maintainAspectRatio]="true"
+     [aspectRatio]="4 / 3"
+     format="png"
+     [resizeToWidth]="500"
+     (imageCropped)="imageCropped($event)"
+     (imageLoaded)="imageLoaded()"
+     (cropperReady)="cropperReady()"
+     (loadImageFailed)="loadImageFailed()"
+ ></image-cropper>
+</div>
+

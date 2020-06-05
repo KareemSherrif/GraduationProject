@@ -171,24 +171,7 @@ namespace GraduationProject.Models
                     .HasConstraintName("FK__Product__ModelId__2B3F6F97");
             });
 
-            modelBuilder.Entity<ProductAttributes>(entity =>
-            {
-               
-
-                entity.Property(e => e.AttributeName)
-                    .IsRequired()
-                    .HasMaxLength(255);
-
-                entity.Property(e => e.Value)
-                    .IsRequired()
-                    .HasMaxLength(255);
-
-                entity.HasOne(d => d.Product)
-                    .WithMany()
-                    .HasForeignKey(d => d.ProductId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__ProductAt__Produ__2D27B809");
-            });
+          
 
             modelBuilder.Entity<Suggestions>(entity =>
             {

@@ -15,20 +15,24 @@ namespace GraduationProject.Areas.Api.Controllers
 {
     [Route("api/[controller]/")]
     [ApiController]
-    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class AddProductController : ControllerBase
     {
         private readonly IUserProductRepository _userProductRepository;
         private readonly IUserProductImagesRepository _userProductImages;
+        private readonly IProductRepository _productRepository;
 
-        public AddProductController(IUserProductRepository userProductRepository, IUserProductImagesRepository userProductImages)
+        public AddProductController(IUserProductRepository userProductRepository
+            , IUserProductImagesRepository userProductImages,
+            IProductRepository productRepository)
         {
             _userProductRepository = userProductRepository;
             _userProductImages = userProductImages;
+          _productRepository = productRepository;
         }
 
         [HttpPost]
         [Route("Add")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public IActionResult AddProduct([FromBody]AddProductViewModel model)
         {
             try
@@ -69,6 +73,14 @@ namespace GraduationProject.Areas.Api.Controllers
             {
                 throw ex;
             }
+        }
+
+        [HttpGet]
+        [Route("GetProduct")]
+        public IActionResult GetProducts([FromQuery]string name="")
+        {
+        ;
+            return Ok(_productRepository.GetByCondition(a => a.Name.Contains(name)));
         }
     }
 }

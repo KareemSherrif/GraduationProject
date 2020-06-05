@@ -326,17 +326,13 @@ namespace GraduationProject.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("AttributeName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(255)")
-                        .HasMaxLength(255);
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
 
                     b.Property<string>("Value")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(255)")
-                        .HasMaxLength(255);
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ID");
 
@@ -690,9 +686,9 @@ namespace GraduationProject.Migrations
             modelBuilder.Entity("GraduationProject.Models.ProductAttributes", b =>
                 {
                     b.HasOne("GraduationProject.Models.Product", "Product")
-                        .WithMany()
+                        .WithMany("ProductAttributes")
                         .HasForeignKey("ProductId")
-                        .HasConstraintName("FK__ProductAt__Produ__2D27B809")
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 

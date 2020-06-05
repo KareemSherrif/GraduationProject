@@ -40,9 +40,12 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatButtonToggleModule} from '@angular/material/button-toggle'
 import { MatDialogModule } from '@angular/material/dialog';
 import {MatIconModule } from '@angular/material/icon';
+import {ReactiveFormsModule } from '@angular/forms';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 
 import { AddProductComponent } from './components/home/add-product/add-product.component'
-
+import { ProductService } from './services/product.service';
+import { ImageCropperModule } from 'ngx-image-cropper';
 @NgModule({
   declarations: [
     AppComponent,
@@ -77,14 +80,17 @@ import { AddProductComponent } from './components/home/add-product/add-product.c
     MatButtonModule,
     MatButtonToggleModule,
     MatDialogModule,
-    MatIconModule
+    MatIconModule,
+    ReactiveFormsModule,
+    ImageCropperModule,
+    MatAutocompleteModule
     
     
    
   ],
   providers: [
      
-        [AreasService, CitiesService, UserInfoService],
+        [AreasService, CitiesService, UserInfoService,ProductService],
         UserService,
         AuthGuard,
         {
