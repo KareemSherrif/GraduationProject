@@ -19,7 +19,6 @@ namespace GraduationProject.Areas.Admin.Controllers
         public IModelRepositry model { get; }
         public IProductAttributesRepository productAttributes { get; }
 
-        public List<string> GetAttributes = new List<string>();
         public ProductsController(IProductRepository product, ICategoryRepositry category,
             IBrandRepository brand, IModelRepositry model,
             IProductAttributesRepository productAttributes)
@@ -142,6 +141,7 @@ namespace GraduationProject.Areas.Admin.Controllers
             Model GetModel = model.Get(EditProduct.ModelId);
             ViewBag.GetModels = product.GetModelWithCategories(GetModel.CategoryId);
             var attributes = productAttributes.GetProductAttributes(id);
+            List<string> GetAttributes = new List<string>();
             foreach(var item in attributes)
             {
                 GetAttributes.Add(item.Value);
@@ -187,7 +187,7 @@ namespace GraduationProject.Areas.Admin.Controllers
                     return Ok("Product has been changed");
                 }
 
-                return Ok("Product data is not valid");
+                return Ok("Product Data is not valid");
             }
 
             catch
