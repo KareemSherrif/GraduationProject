@@ -16,14 +16,14 @@ namespace GraduationProject.Areas.Api.Controllers
 {
     [Route("api/[controller]/")]
     [ApiController]
-    public class AddProductController : ControllerBase
+    public class ProductController : ControllerBase
     {
         private readonly IUserProductRepository _userProductRepository;
         private readonly IUserProductImagesRepository _userProductImages;
         private readonly IProductRepository _productRepository;
         private readonly IMapper _mapper;
 
-        public AddProductController(IUserProductRepository userProductRepository
+        public ProductController(IUserProductRepository userProductRepository
             , IUserProductImagesRepository userProductImages,
             IProductRepository productRepository,
             IMapper mapper)

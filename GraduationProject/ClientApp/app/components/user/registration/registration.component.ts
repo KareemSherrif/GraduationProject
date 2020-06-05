@@ -1,16 +1,17 @@
 import { Router } from '@angular/router';
 /** @format */
 
-import { Registration } from "../../models/registration";
-import { RegistrationService } from "../../services/registration.service";
-import { City } from "../../models/city";
-import { CitiesService } from "../../services/cities.service";
-import { AreasService } from "../../services/areas.service";
-import { Areas } from "../../models/areas";
+import { Registration } from "../../../models/registration";
+import { RegistrationService } from '../../../services/registration.service';
+import { City } from "../../../models/city";
+import { CitiesService } from "../../../services/cities.service";
+import { AreasService } from "../../../services/areas.service";
+import { Areas } from "../../../models/areas";
 import { Component, OnInit } from "@angular/core";
 import { NgForm } from "@angular/forms";
 import { ToastrService } from 'ngx-toastr';
 import { HttpErrorResponse } from '@angular/common/http';
+
 
 @Component({
 	selector: "app-registration",

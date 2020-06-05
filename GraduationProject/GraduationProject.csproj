@@ -6,9 +6,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="ClientApp\app\model\**" />
+    <Content Remove="ClientApp\app\model\**" />
+    <EmbeddedResource Remove="ClientApp\app\model\**" />
+    <None Remove="ClientApp\app\model\**" />
+    <TypeScriptCompile Remove="ClientApp\app\model\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="ClientApp\app\app-routing.module.ts" />
     <None Remove="ClientApp\app\guards\auth-interceptor.ts" />
-    <None Remove="ClientApp\app\model\login.ts" />
   </ItemGroup>
 
   <ItemGroup>
@@ -41,7 +48,6 @@
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\app\app-routing.module.ts" />
     <TypeScriptCompile Include="ClientApp\app\guards\auth-interceptor.ts" />
-    <TypeScriptCompile Include="ClientApp\app\model\login.ts" />
   </ItemGroup>
 
 </Project>

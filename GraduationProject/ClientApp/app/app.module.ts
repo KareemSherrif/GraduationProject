@@ -1,5 +1,3 @@
-
-
 import { CitiesService } from './services/cities.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -14,8 +12,8 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 
 import { AppComponent } from './app.component';
-import { NavbarComponent } from './components/navbar/navbar.component';
-import { RegistrationComponent } from './components/registration/registration.component';
+import { NavbarComponent } from './components/home/navbar/navbar.component';
+import { RegistrationComponent } from './components/user/registration/registration.component';
 import { HomeComponent } from './components/home/home.component';
 import { AreasService } from './services/areas.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -43,7 +41,7 @@ import {MatIconModule } from '@angular/material/icon';
 import {ReactiveFormsModule } from '@angular/forms';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 
-import { AddProductComponent } from './components/home/add-product/add-product.component'
+import { AddProductComponent } from './components/products/add-product/add-product.component'
 import { ProductService } from './services/product.service';
 import { ImageCropperModule } from 'ngx-image-cropper';
 @NgModule({
