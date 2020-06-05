@@ -9,6 +9,6 @@ export class ProductService {
 
   constructor(private http:HttpClient) { }
   GetNames(name:string) {
-    return this.http.get<SearchElements[]>("/api/AddProduct/GetProduct?name" + name);
+    return this.http.get<SearchElements[]>("/api/Product/GetProduct?name" + name);
   }
 }
