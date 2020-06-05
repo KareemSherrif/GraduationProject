@@ -86,5 +86,12 @@ namespace GraduationProject.Areas.Api.Controllers
             var model = _mapper.Map<IEnumerable<Product>, IEnumerable<SearchProductViewModel>>(_productRepository.GetProductSearch(name));
             return Ok(model);
         }
+        [HttpGet]
+        [Route("GetAllProducts")]
+        public IActionResult GetAllProducts()
+        {
+            var AllProducts = _userProductRepository.GetUserProductsWithImages();
+            return Ok(AllProducts);
+        }
     }
 }

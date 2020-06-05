@@ -44,6 +44,7 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { AddProductComponent } from './components/products/add-product/add-product.component'
 import { ProductService } from './services/product.service';
 import { ImageCropperModule } from 'ngx-image-cropper';
+import { ListProductsComponent } from './components/products/list-products/list-products.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -57,7 +58,8 @@ import { ImageCropperModule } from 'ngx-image-cropper';
     UserproductComponent,
     ProductCardComponent,
     RatingComponent,
-    AddProductComponent
+    AddProductComponent,
+    ListProductsComponent
   ],
   imports: [
     BrowserModule,
