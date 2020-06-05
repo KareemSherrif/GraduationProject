@@ -27,5 +27,13 @@ namespace GraduationProject.Repositry
             return context.Model.Where(a => a.CategoryId == CategoryId).ToList();
         }
 
+        public IEnumerable<Product> GetProductSearch(string name)
+        {
+            return context.Product
+                 .Include(a => a.Model)
+                 .Include(a => a.Brand)
+                 .Include(a => a.ProductAttributes)
+                 .Where(a => a.Name.Contains(name)).ToList();
+        }
     }
 }

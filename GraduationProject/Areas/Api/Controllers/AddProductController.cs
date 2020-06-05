@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 using GraduationProject.ExtenstionMethods;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
+using AutoMapper;
 
 namespace GraduationProject.Areas.Api.Controllers
 {
@@ -20,14 +21,17 @@ namespace GraduationProject.Areas.Api.Controllers
         private readonly IUserProductRepository _userProductRepository;
         private readonly IUserProductImagesRepository _userProductImages;
         private readonly IProductRepository _productRepository;
+        private readonly IMapper _mapper;
 
         public AddProductController(IUserProductRepository userProductRepository
             , IUserProductImagesRepository userProductImages,
-            IProductRepository productRepository)
+            IProductRepository productRepository,
+            IMapper mapper)
         {
             _userProductRepository = userProductRepository;
             _userProductImages = userProductImages;
           _productRepository = productRepository;
+            _mapper = mapper;
         }
 
         [HttpPost]
@@ -79,8 +83,8 @@ namespace GraduationProject.Areas.Api.Controllers
         [Route("GetProduct")]
         public IActionResult GetProducts([FromQuery]string name="")
         {
-        ;
-            return Ok(_productRepository.GetByCondition(a => a.Name.Contains(name)));
+            var model = _mapper.Map<IEnumerable<Product>, IEnumerable<SearchProductViewModel>>(_productRepository.GetProductSearch(name));
+            return Ok(model);
         }
     }
 }

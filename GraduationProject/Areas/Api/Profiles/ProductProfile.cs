@@ -13,6 +13,10 @@ namespace GraduationProject.Areas.Api.Profiles
 
         public ProductProfile()
         {
+            CreateMap<ProductAttributes, ProductAttributesViewModel>()
+                .ForMember(a => a.AttributeName, a => a.MapFrom(a => a.AttributeName))
+                .ForMember(a => a.Value, a => a.MapFrom(a => a.Value));
+
             CreateMap<Product, SearchProductViewModel>()
                 .ForMember(a => a.ProductId, a => a.MapFrom(a => a.Id))
                 .ForMember(a => a.Name, a => a.MapFrom(a => a.Name))

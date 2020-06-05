@@ -7,10 +7,7 @@ export class SearchElements {
     modelName: number;
     attributes: ProductAttributes[];
 }
-export class ProductAttributes {
-    iD: number;
+export interface ProductAttributes {
     attributeName: string;
     value: string;
-    productId: number;
-  
 }
