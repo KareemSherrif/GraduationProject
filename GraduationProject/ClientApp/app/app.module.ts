@@ -40,10 +40,12 @@ import { MatDialogModule } from '@angular/material/dialog';
 import {MatIconModule } from '@angular/material/icon';
 import {ReactiveFormsModule } from '@angular/forms';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
-
+import {MatStepperModule} from '@angular/material/stepper';
 import { AddProductComponent } from './components/products/add-product/add-product.component'
 import { ProductService } from './services/product.service';
 import { ImageCropperModule } from 'ngx-image-cropper';
+import { NgxEditorModule } from 'ngx-editor';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -81,7 +83,9 @@ import { ImageCropperModule } from 'ngx-image-cropper';
     MatIconModule,
     ReactiveFormsModule,
     ImageCropperModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatStepperModule,
+    NgxEditorModule
     
     
    

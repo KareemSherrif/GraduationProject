@@ -34,7 +34,7 @@ if (content.locals) {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = [[module.i, "/* You can add global styles to this file, and also import other style files */\r\n\r\nhtml, body { height: 100%; }\r\n\r\nbody { margin: 0; font-family: Roboto, \"Helvetica Neue\", sans-serif; }\r\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIkNsaWVudEFwcC9zdHlsZXMuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBLDhFQUE4RTs7QUFFOUUsYUFBYSxZQUFZLEVBQUU7O0FBQzNCLE9BQU8sU0FBUyxFQUFFLGlEQUFpRCxFQUFFIiwiZmlsZSI6IkNsaWVudEFwcC9zdHlsZXMuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLyogWW91IGNhbiBhZGQgZ2xvYmFsIHN0eWxlcyB0byB0aGlzIGZpbGUsIGFuZCBhbHNvIGltcG9ydCBvdGhlciBzdHlsZSBmaWxlcyAqL1xyXG5cclxuaHRtbCwgYm9keSB7IGhlaWdodDogMTAwJTsgfVxyXG5ib2R5IHsgbWFyZ2luOiAwOyBmb250LWZhbWlseTogUm9ib3RvLCBcIkhlbHZldGljYSBOZXVlXCIsIHNhbnMtc2VyaWY7IH1cclxuIl19 */", '', '']]
+module.exports = [[module.i, "/* You can add global styles to this file, and also import other style files */\r\n\r\nhtml, body { height: 100%; }\r\n\r\nbody { margin: 0; font-family: Roboto, \"Helvetica Neue\", sans-serif; }\r\n\r\n.NgxEditor{\r\n height: 250px;\r\n}\r\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIkNsaWVudEFwcC9zdHlsZXMuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBLDhFQUE4RTs7QUFFOUUsYUFBYSxZQUFZLEVBQUU7O0FBQzNCLE9BQU8sU0FBUyxFQUFFLGlEQUFpRCxFQUFFOztBQUNyRTtDQUNDLGFBQWE7QUFDZCIsImZpbGUiOiJDbGllbnRBcHAvc3R5bGVzLmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi8qIFlvdSBjYW4gYWRkIGdsb2JhbCBzdHlsZXMgdG8gdGhpcyBmaWxlLCBhbmQgYWxzbyBpbXBvcnQgb3RoZXIgc3R5bGUgZmlsZXMgKi9cclxuXHJcbmh0bWwsIGJvZHkgeyBoZWlnaHQ6IDEwMCU7IH1cclxuYm9keSB7IG1hcmdpbjogMDsgZm9udC1mYW1pbHk6IFJvYm90bywgXCJIZWx2ZXRpY2EgTmV1ZVwiLCBzYW5zLXNlcmlmOyB9XHJcbi5OZ3hFZGl0b3J7XHJcbiBoZWlnaHQ6IDI1MHB4O1xyXG59XHJcbiJdfQ== */", '', '']]
 
 /***/ }),
 
@@ -452,10 +452,10 @@ module.exports = function (list, options) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\shahe\Desktop\ITI\Grad. Project\Project\GraduationProject\node_modules\@angular\material\prebuilt-themes\indigo-pink.css */"./node_modules/@angular/material/prebuilt-themes/indigo-pink.css");
-__webpack_require__(/*! C:\Users\shahe\Desktop\ITI\Grad. Project\Project\GraduationProject\node_modules\ngx-toastr\toastr.css */"./node_modules/ngx-toastr/toastr.css");
-__webpack_require__(/*! C:\Users\shahe\Desktop\ITI\Grad. Project\Project\GraduationProject\node_modules\font-awesome\css\font-awesome.css */"./node_modules/font-awesome/css/font-awesome.css");
-module.exports = __webpack_require__(/*! C:\Users\shahe\Desktop\ITI\Grad. Project\Project\GraduationProject\ClientApp\styles.css */"./ClientApp/styles.css");
+__webpack_require__(/*! F:\MyApplication\GraduationProject\GraduationProject\GraduationProject\node_modules\@angular\material\prebuilt-themes\indigo-pink.css */"./node_modules/@angular/material/prebuilt-themes/indigo-pink.css");
+__webpack_require__(/*! F:\MyApplication\GraduationProject\GraduationProject\GraduationProject\node_modules\ngx-toastr\toastr.css */"./node_modules/ngx-toastr/toastr.css");
+__webpack_require__(/*! F:\MyApplication\GraduationProject\GraduationProject\GraduationProject\node_modules\font-awesome\css\font-awesome.css */"./node_modules/font-awesome/css/font-awesome.css");
+module.exports = __webpack_require__(/*! F:\MyApplication\GraduationProject\GraduationProject\GraduationProject\ClientApp\styles.css */"./ClientApp/styles.css");
 
 
 /***/ })
