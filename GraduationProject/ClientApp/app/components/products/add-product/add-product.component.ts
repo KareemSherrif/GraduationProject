@@ -1,3 +1,6 @@
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+
 /** @format */
 
 import { SearchElements } from "./../../../models/product";
@@ -6,6 +9,7 @@ import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormControl, Validators, FormArray } from "@angular/forms";
 import { ImageCroppedEvent } from "ngx-image-cropper";
 import { HttpErrorResponse } from '@angular/common/http';
+import { ProductValidators} from './add-product.validator';
 
 @Component({
 	selector: "app-add-product",
@@ -18,14 +22,16 @@ export class AddProductComponent implements OnInit {
 	selctedElement: SearchElements = null;
 	
 	
-	constructor(private service: ProductService) {}
+	constructor(private service: ProductService,
+		private ToastrService: ToastrService,
+	 private router:Router) { }
 
 	form = new FormGroup({
 		name: new FormControl("", Validators.required),
 		description: new FormControl("", Validators.required),
 		price: new FormControl("", Validators.required),
 		condition: new FormControl("0", Validators.required),
-		productId: new FormControl("", Validators.required),
+		productId: new FormControl("", [Validators.required,ProductValidators.ValidationOnSelect]),
 		images: new FormArray([], Validators.required),
 	});
 
@@ -36,6 +42,9 @@ export class AddProductComponent implements OnInit {
 	}
 	get images() {
 		return this.form.get("images")! as FormArray;
+	}
+	get Product() {
+		return this.form.get("productId");
 	}
 
 	ngOnInit(): void {}
@@ -59,6 +68,8 @@ export class AddProductComponent implements OnInit {
 		console.log(this.images);
 	};
 	OnTextWrite() {
+		this.filterdProduct = [];
+		this.options = [];
 		this.service.GetNames(this.Name.value).subscribe((a) => {
 			this.options = a;
 		});
@@ -81,9 +92,10 @@ export class AddProductComponent implements OnInit {
 
 	OnFormSubmit() {
 		this.service.AddProduct(this.form.value).subscribe(a => {
-			console.log(a);
+			this.ToastrService.success("Add Product success", "Successful");
+			this.router.navigate(['']);
 		}, (error: HttpErrorResponse)=>{
-				console.log(error);
+				this.ToastrService.error(error.message);
 	  })
     console.log(this.form.value);
   }

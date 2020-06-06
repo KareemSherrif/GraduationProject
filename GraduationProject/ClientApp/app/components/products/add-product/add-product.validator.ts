@@ -12,4 +12,16 @@ export class ProductValidators{
             
         })
     }
+
+    static ValidationOnSelect(control: AbstractControl): ValidationErrors | null{
+        console.log(control.value);
+        if (control.value == 0) {
+          
+            return { ValidationOnSelect: "please Select Product" }
+        }
+        else {
+            return null
+        }
+       
+    }
 }
