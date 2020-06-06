@@ -44,7 +44,9 @@ import {MatStepperModule} from '@angular/material/stepper';
 import { AddProductComponent } from './components/products/add-product/add-product.component'
 import { ProductService } from './services/product.service';
 import { ImageCropperModule } from 'ngx-image-cropper';
-import { NgxEditorModule } from 'ngx-editor';
+import { NgxEditorModule, NgxEditorConfig } from 'ngx-editor';
+
+
 
 @NgModule({
   declarations: [
@@ -85,7 +87,7 @@ import { NgxEditorModule } from 'ngx-editor';
     ImageCropperModule,
     MatAutocompleteModule,
     MatStepperModule,
-    NgxEditorModule
+   
     
     
    

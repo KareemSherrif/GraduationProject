@@ -5,6 +5,7 @@ import { ProductService } from "./../../../services/product.service";
 import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormControl, Validators, FormArray } from "@angular/forms";
 import { ImageCroppedEvent } from "ngx-image-cropper";
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
 	selector: "app-add-product",
@@ -15,14 +16,15 @@ export class AddProductComponent implements OnInit {
 	options: SearchElements[] = [];
 	filterdProduct: SearchElements[] = [];
 	selctedElement: SearchElements = null;
-
+	
+	
 	constructor(private service: ProductService) {}
 
 	form = new FormGroup({
 		name: new FormControl("", Validators.required),
 		description: new FormControl("", Validators.required),
 		price: new FormControl("", Validators.required),
-		condition: new FormControl("", Validators.required),
+		condition: new FormControl("0", Validators.required),
 		productId: new FormControl("", Validators.required),
 		images: new FormArray([], Validators.required),
 	});
@@ -66,14 +68,23 @@ export class AddProductComponent implements OnInit {
 		this.filterdProduct = this.options.filter(
 			(a) => a.name == event.option.value
 		);
-  }
+	}
+	DeleteImage(event) {
+	  (<FormArray>this.images.value) =this.images.value.filter(a => a != event);
+
+	}
   OnSelectChange(event) {
     this.selctedElement = this.filterdProduct.find(a => a.productId == event.target.value);
     console.log(this.selctedElement);
     
   }
 
-  OnFormSubmit() {
+	OnFormSubmit() {
+		this.service.AddProduct(this.form.value).subscribe(a => {
+			console.log(a);
+		}, (error: HttpErrorResponse)=>{
+				console.log(error);
+	  })
     console.log(this.form.value);
   }
 

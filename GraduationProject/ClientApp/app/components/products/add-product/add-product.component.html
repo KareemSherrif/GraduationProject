@@ -89,7 +89,11 @@
 											>
 												<img [src]="item.value" width="50" />
 												| {{ item.name }}
-												<span class="badge badge-danger">X</span>
+												<span
+													class="badge badge-danger"
+													(click)="DeleteImage(item)"
+													>X</span
+												>
 											</li>
 										</ul>
 									</div>
@@ -102,19 +106,42 @@
 								<div class="form-group">
 									<mat-form-field class="margin-form">
 										<mat-label>Price</mat-label>
-										<input type="number" matInput placeholder="Price" />
+										<input
+											type="number"
+											matInput
+											formControlName="price"
+											placeholder="Price"
+										/>
 									</mat-form-field>
 								</div>
 								<div class="form-group">
 									<mat-form-field class="margin-form">
-										<mat-label>Condtion</mat-label>
-										<input type="number" matInput placeholder="Price" />
+										<mat-label>Condition</mat-label>
+										<select
+											matNativeControl
+											formControlName="condition"
+											required
+										>
+											<option value="0" [selected]="true">New</option>
+											<option value="1">Used </option>
+											<option value="2">Used with box</option>
+										</select>
 									</mat-form-field>
 								</div>
 							</mat-step>
 							<mat-step>
 								<ng-template matStepLabel>Write Description</ng-template>
-								<ngx-editor class="height-editor"></ngx-editor>
+								<mat-form-field class="margin-form">
+									<mat-label>Description</mat-label>
+									<textarea
+										matInput
+										#message
+										maxlength="256"
+										formControlName="description"
+										placeholder="Description.."
+									>
+									</textarea>
+								</mat-form-field>
 							</mat-step>
 						</mat-vertical-stepper>
 
@@ -146,5 +173,3 @@
 		(loadImageFailed)="loadImageFailed()"
 	></image-cropper>
 </div>
-
-<form></form>

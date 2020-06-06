@@ -11,6 +11,9 @@ using GraduationProject.ExtenstionMethods;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using AutoMapper;
+using System.Drawing;
+using Microsoft.AspNetCore.Hosting;
+using System.IO;
 
 namespace GraduationProject.Areas.Api.Controllers
 {
@@ -22,16 +25,19 @@ namespace GraduationProject.Areas.Api.Controllers
         private readonly IUserProductImagesRepository _userProductImages;
         private readonly IProductRepository _productRepository;
         private readonly IMapper _mapper;
+        private readonly IWebHostEnvironment _webHostEnvironment;
 
         public ProductController(IUserProductRepository userProductRepository
             , IUserProductImagesRepository userProductImages,
             IProductRepository productRepository,
-            IMapper mapper)
+            IMapper mapper,
+            IWebHostEnvironment webHostEnvironment)
         {
             _userProductRepository = userProductRepository;
             _userProductImages = userProductImages;
           _productRepository = productRepository;
             _mapper = mapper;
+            _webHostEnvironment = webHostEnvironment;
         }
 
         [HttpPost]
@@ -41,50 +47,60 @@ namespace GraduationProject.Areas.Api.Controllers
         {
             try
             {
-                model.UserId = User.GetUserIdToken();
+                string userId = User.GetUserIdToken();
                 if (ModelState.IsValid)
                 {
-                    UserProduct userProduct =  new UserProduct()
+                    UserProduct userProduct = new UserProduct()
                     {
                         Name = model.Name,
-                        UserId = model.UserId,
+                        UserId = userId,
                         ProductId = model.ProductId,
                         Condition = model.Condition,
                         Description = model.Description,
                         Price = model.Price
                     };
-
-                    _userProductRepository.Add(userProduct);
-
-                    foreach (var imageBase64 in model.Images)
+                    foreach (var item in model.Images)
                     {
-                        UserProductImages Image = new UserProductImages()
+                        userProduct.UserProductImages.Add(new UserProductImages()
                         {
-                            Images = imageBase64,
-                            UserProductId = model.ProductId
-                        };
+                            Images = SaveAnImages(item)
+                        });
 
-                        _userProductImages.Add(Image);
                     }
-
+                    _userProductRepository.Add(userProduct);
                     _userProductRepository.SaveAll();
-
                     return Ok("User Product Added Successfully.");
                 }
-                return BadRequest("Unable to add product.");
+                return BadRequest("The Product Information is not valid");
+
             }
-            catch(Exception ex)
+            catch
             {
-                throw ex;
+                return BadRequest("Error has been happend");
             }
         }
+           
 
-        [HttpGet]
-        [Route("GetProduct")]
-        public IActionResult GetProducts([FromQuery]string name="")
+        [HttpGet("GetProduct")]
+        [Route("GetProduct/{name}")]
+        public IActionResult GetProducts(string name)
         {
+           
             var model = _mapper.Map<IEnumerable<Product>, IEnumerable<SearchProductViewModel>>(_productRepository.GetProductSearch(name));
             return Ok(model);
+        }
+
+        private string SaveAnImages(ImageProductViewModel imageProductViewModels)
+        {
+           string imageString = imageProductViewModels.Value.Split(";base64,")[1];
+            byte[] array = Convert.FromBase64String(imageString);
+            ImageConverter converter = new ImageConverter();
+           Image image =(Image)converter.ConvertFrom(array);
+            string NewName = Guid.NewGuid().ToString()+".png";
+            string fullPath = Path.Combine(_webHostEnvironment.WebRootPath, "images", NewName);
+            image.Save(fullPath);
+            return NewName;
+
         }
     }
 }
