@@ -44,9 +44,8 @@ import {MatStepperModule} from '@angular/material/stepper';
 import { AddProductComponent } from './components/products/add-product/add-product.component'
 import { ProductService } from './services/product.service';
 import { ImageCropperModule } from 'ngx-image-cropper';
-import { NgxEditorModule, NgxEditorConfig } from 'ngx-editor';
-
-
+import { ListProductsComponent } from './components/products/list-products/list-products.component';
+import { NgxEditorModule } from 'ngx-editor';
 
 @NgModule({
   declarations: [
@@ -61,7 +60,8 @@ import { NgxEditorModule, NgxEditorConfig } from 'ngx-editor';
     UserproductComponent,
     ProductCardComponent,
     RatingComponent,
-    AddProductComponent
+    AddProductComponent,
+    ListProductsComponent
   ],
   imports: [
     BrowserModule,

@@ -1,4 +1,5 @@
 ﻿using GraduationProject.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,12 @@ namespace GraduationProject.Repositry
         public UserProductRepository(ApplicationDbContext context) : base(context)
         {
             this.context = context;
+        }
+        public IEnumerable<UserProduct> GetUserProductsWithImages()
+        {
+            return context.UserProduct
+                .Include(a => a.UserProductImages)
+                .ToList();
         }
     }
 }

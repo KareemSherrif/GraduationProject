@@ -57,7 +57,8 @@ namespace GraduationProject
             #endregion
 
 
-            services.AddControllers().AddNewtonsoftJson();
+            services.AddControllers().AddNewtonsoftJson(x => 
+            x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
             
             services.AddControllersWithViews();
             services.AddIdentity<ApplicationUser, IdentityRole>(a =>
