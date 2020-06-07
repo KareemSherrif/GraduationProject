@@ -1,3 +1,4 @@
+import { ProductInfo } from './../models/productCard';
 import { SearchElements } from './../models/product';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -15,5 +16,8 @@ export class ProductService {
   AddProduct(product: AddProduct) {
     return this.http.post<AddProduct>("/api/Product/Add", product);
 
+  }
+  GetUserProduct() {
+    return this.http.get<ProductInfo[]>("/api/Product/GetUserProduct");
   }
 }

@@ -47,6 +47,7 @@ import { ImageCropperModule } from 'ngx-image-cropper';
 import { ListProductsComponent } from './components/products/list-products/list-products.component';
 import { NgxEditorModule } from 'ngx-editor';
 import { ChatComponent } from './components/chat/chat.component';
+import { AvatarModule } from 'ngx-avatar';
 
 @NgModule({
   declarations: [
@@ -89,6 +90,7 @@ import { ChatComponent } from './components/chat/chat.component';
     ImageCropperModule,
     MatAutocompleteModule,
     MatStepperModule,
+    AvatarModule
    
     
     

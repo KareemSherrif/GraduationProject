@@ -14,6 +14,14 @@ namespace GraduationProject.Repositry
         {
             this.context = context;
         }
+
+        public IEnumerable<UserProduct> GetUserProductByID(string UserID)
+        {
+            return context.UserProduct
+                .Include(a=>a.UserProductImages)
+                .Where(a => a.UserId == UserID);
+        }
+
         public IEnumerable<UserProduct> GetUserProductsWithImages()
         {
             return context.UserProduct

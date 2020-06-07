@@ -109,5 +109,17 @@ namespace GraduationProject.Areas.Api.Controllers
             var AllProducts = _userProductRepository.GetUserProductsWithImages();
             return Ok(AllProducts);
         }
+
+       [HttpGet]
+       [Route("GetUserProduct")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        public IActionResult GetUserProducts()
+        {
+            string userId = User.GetUserIdToken();
+          var model=  _mapper.Map<IEnumerable<UserProduct>,IEnumerable< UserProductViewModel>>
+                (_userProductRepository.GetUserProductByID(userId));
+           
+            return Ok(model);
+        }
     }
 }
