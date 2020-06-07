@@ -126,3 +126,9 @@ img {
    width: 5px;
    margin: 0 5px
 }
+.btn-rad:hover{
+    cursor: pointer;
+}
+.display-none{
+    display: none;
+}

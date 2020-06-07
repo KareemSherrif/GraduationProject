@@ -11,5 +11,9 @@ export class ChatComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  closeChat() {
+    document.getElementById("chat").classList.add("display-none");
+    
+  }
 
 }
