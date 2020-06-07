@@ -121,5 +121,18 @@ namespace GraduationProject.Areas.Api.Controllers
            
             return Ok(model);
         }
+
+        [HttpGet]
+        [Route("GetUserProduct/{id}")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        public IActionResult GetUserProducts(string id)
+        {
+           
+            var model = _mapper.Map<IEnumerable<UserProduct>, IEnumerable<UserProductViewModel>>
+                  (_userProductRepository.GetUserProductByID(id));
+
+            return Ok(model);
+        }
+
     }
 }

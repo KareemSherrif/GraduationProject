@@ -20,4 +20,7 @@ export class ProductService {
   GetUserProduct() {
     return this.http.get<ProductInfo[]>("/api/Product/GetUserProduct");
   }
+  GetUserProductById(UserId: string) {
+    return this.http.get<ProductInfo[]>("/api/Product/GetUserProduct/" + UserId);
+  }
 }

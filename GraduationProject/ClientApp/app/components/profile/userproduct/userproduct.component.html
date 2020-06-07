@@ -1,15 +1,32 @@
+<ng-template #loaded>
+    
+
+    <div class="row" *ngIf="ProductsInfo.length>0">
+        <div class="col-md-4" *ngFor="let item of ProductsInfo">
+            <app-product-card [productInfo]="item"></app-product-card>
+        </div>
+    </div>
+    <div class="row" *ngIf="ProductsInfo.length<=0">
+        <p class="text-center">There is no a product !</p>
+    </div>
+</ng-template>
+
+<ng-template #notloaded>
+    <div class="d-flex-spinner">
+    <mat-spinner></mat-spinner>
+</div>
+</ng-template>
 <mat-card> 
     <mat-card-title>
         <h2 class="title text-center">Product</h2>
     </mat-card-title>
     <mat-card-content>
-        <div class="row">
-            <div class="col-md-4" *ngFor="let item of ProductsInfo">
-                <app-product-card [productInfo]="item"></app-product-card>
-            </div>
-        </div>
+        <ng-template *ngIf="ProductsInfo != null then loaded else notloaded">
 
+        </ng-template>
+        
     </mat-card-content>
-
 </mat-card> 
+
+
 
