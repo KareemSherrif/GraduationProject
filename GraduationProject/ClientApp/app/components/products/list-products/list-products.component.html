@@ -1,1 +1,47 @@
-<p>list-products works!</p>
+<div class="container mt-product">
+    <div class="row">
+        <div class="col-sm-3">
+
+        </div>
+        <div class="col-sm-9 padding-right">
+            <div class="features_items">
+                <ng-container *ngFor="let p of products">
+                    <div class="col-sm-4">
+                        <div class="product-image-wrapper">
+                            <div class="single-products">
+                                <div class="productinfo text-center">
+                                    <div class="box">
+                                        <img [src]="p.userProductImages[0].images" alt="product image" />
+                                    </div>
+                                    <h4><strong>{{p.name}}</strong></h4>
+                                    <h3><i class="fa fa-money"></i> EGP {{p.price}}</h3>
+                                    <p>{{checkCondition(p.condition)}}</p>
+                                    <a [routerLink]="['/product/Details', p.productId]" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>VIEW DETAILS</a>
+                                </div>
+                                <div class="product-overlay">
+                                    <div class="overlay-content">
+                                        <h2>EGP {{p.price}}</h2>
+                                        <p>{{checkCondition(p.condition)}}</p>
+                                        <a [routerLink]="['/product/Details', p.productId]" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>VIEW DETAILS</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="choose">
+                                <ul class="nav nav-pills nav-justified">
+                                    <li><a href="#"><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
+                                    <!--<li><a href="#"><i class="fa fa-plus-square"></i>Add to compare</a></li>-->
+                                </ul>
+                            </div>
+                        </div>
+            </div>
+
+            </ng-container>
+            
+            </div>
+
+            </div>
+        </div>
+</div>
+
+
+

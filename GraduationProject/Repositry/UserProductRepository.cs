@@ -20,5 +20,14 @@ namespace GraduationProject.Repositry
                 .Include(a => a.UserProductImages)
                 .ToList();
         }
+        public UserProduct GetUserProductDetails(int productId)
+        {
+            return context.UserProduct
+                .Include(a => a.UserProductImages)
+                .Include(a => a.Product)
+                .ThenInclude(a => a.ProductAttributes)
+                .Include(a => a.User)
+                .FirstOrDefault(a => a.ProductId == productId);
+        }
     }
 }

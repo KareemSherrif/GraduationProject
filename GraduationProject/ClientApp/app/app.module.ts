@@ -46,6 +46,7 @@ import { ProductService } from './services/product.service';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { ListProductsComponent } from './components/products/list-products/list-products.component';
 import { NgxEditorModule } from 'ngx-editor';
+import { ProductDetailsComponent } from './components/products/product-details/product-details.component';
 
 @NgModule({
   declarations: [
@@ -61,7 +62,8 @@ import { NgxEditorModule } from 'ngx-editor';
     ProductCardComponent,
     RatingComponent,
     AddProductComponent,
-    ListProductsComponent
+    ListProductsComponent,
+    ProductDetailsComponent
   ],
   imports: [
     BrowserModule,
