@@ -17,18 +17,13 @@ export class ProductService {
   }
   AddProduct(product: AddProduct) {
     return this.http.post<AddProduct>("/api/Product/Add", product);
-
   }
   GetUserProduct() {
     return this.http.get<ProductInfo[]>("/api/Product/GetUserProduct");
-  }
+    }
+
   GetUserProductById(UserId: string) {
     return this.http.get<ProductInfo[]>("/api/Product/GetUserProduct/" + UserId);
-  }
-    constructor(private http: HttpClient) { }
-
-    GetNames(name: string) {
-        return this.http.get<SearchElements[]>("/api/Product/GetProduct?name" + name);
     }
 
     GetAllProducts() {
@@ -38,7 +33,5 @@ export class ProductService {
     GetProductDetails(id: number) {
         return this.http.get("api/product/GetProductDetails/" + id);
     }
-
-
 
 }
