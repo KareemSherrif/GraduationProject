@@ -14,13 +14,16 @@ namespace GraduationProject.Areas.Api.ViewModels
         public string Name { get; set; }
         [Required,Range(0,1000000)]
         public decimal Price { get; set; }
-        [Required, Range(0, 2)]
-        public int Condition { get; set; }
         [Required]
-        public string UserId { get; set; }
+        public int Condition { get; set; }
         [Required]
         public int ProductId { get; set; }
         [Required]
-        public ICollection<string> Images { get; set; }
+        public ICollection<ImageProductViewModel> Images { get; set; }
+    }
+    public class ImageProductViewModel
+    {
+        public string Value { get; set; }
+        public string Name { get; set; }
     }
 }

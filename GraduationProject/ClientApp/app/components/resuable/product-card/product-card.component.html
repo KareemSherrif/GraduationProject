@@ -1,9 +1,9 @@
 <div class="product-image-wrapper">
     <div class="single-products">
         <div class="productinfo text-center">
-            <img src="https://via.placeholder.com/300/09f/fff.png" alt="">
-            <h2>$56</h2>
-            <p>Easy Polo Black Edition</p>
+            <img [src]="'/images/'+this.productInfo.images[0].image" alt="">
+            <h2>{{this.productInfo.price}}</h2>
+            <p>{{this.productInfo.name}}</p>
         </div>
         
     </div>

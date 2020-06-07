@@ -1,7 +1,7 @@
+import { UserInfoService } from './../../../services/userInfo.service';
+import { Reviews } from '../../../models/reviews';
 import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { UserInfoService } from 'ClientApp/app/services/userInfo.service';
-import { Reviews } from 'ClientApp/app/models/reviews';
 
 @Component({
   selector: 'app-reviews',
@@ -17,12 +17,14 @@ export class ReviewsComponent implements OnInit {
       if (a.id == null) {
         this.userInfo.GetUserReviews().subscribe(a => {
           this.review = a;
+       
         });
       }
       else
       {
         this.userInfo.GetUserReviewById(a.id).subscribe(a => {
           this.review = a;
+         
         });  
       }
     });

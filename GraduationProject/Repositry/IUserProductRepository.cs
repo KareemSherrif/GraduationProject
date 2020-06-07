@@ -10,5 +10,7 @@ namespace GraduationProject.Repositry
     {
         public IEnumerable<UserProduct> GetUserProductsWithImages();
         public UserProduct GetUserProductDetails(int productId);
+        public IEnumerable<UserProduct> GetUserProductByID(string UserID);
+
     }
 }

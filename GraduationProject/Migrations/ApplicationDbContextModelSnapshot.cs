@@ -456,6 +456,12 @@ namespace GraduationProject.Migrations
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<string>("UserReviewID")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserReviewName")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("ID");
 
                     b.HasIndex("UserId");

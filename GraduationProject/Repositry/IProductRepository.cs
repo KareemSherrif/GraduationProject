@@ -11,5 +11,7 @@ namespace GraduationProject.Repositry
         public IEnumerable<Model> GetModelWithCategories(int CategoryId);
         public IEnumerable<Attributes> GetCategoryAttributes(int CategoryId);
         public IEnumerable<Product> GetProductSearch(string name);
+       
+
     }
 }

@@ -47,6 +47,8 @@ import { ImageCropperModule } from 'ngx-image-cropper';
 import { ListProductsComponent } from './components/products/list-products/list-products.component';
 import { NgxEditorModule } from 'ngx-editor';
 import { ProductDetailsComponent } from './components/products/product-details/product-details.component';
+import { ChatComponent } from './components/chat/chat.component';
+import { AvatarModule } from 'ngx-avatar';
 
 @NgModule({
   declarations: [
@@ -63,7 +65,8 @@ import { ProductDetailsComponent } from './components/products/product-details/p
     RatingComponent,
     AddProductComponent,
     ListProductsComponent,
-    ProductDetailsComponent
+    ProductDetailsComponent,
+    ChatComponent
   ],
   imports: [
     BrowserModule,
@@ -89,7 +92,8 @@ import { ProductDetailsComponent } from './components/products/product-details/p
     ImageCropperModule,
     MatAutocompleteModule,
     MatStepperModule,
-    NgxEditorModule
+    AvatarModule
+   
     
     
    
