@@ -46,6 +46,7 @@ import { ProductService } from './services/product.service';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { ListProductsComponent } from './components/products/list-products/list-products.component';
 import { NgxEditorModule } from 'ngx-editor';
+import { ProductDetailsComponent } from './components/products/product-details/product-details.component';
 import { ChatComponent } from './components/chat/chat.component';
 import { AvatarModule } from 'ngx-avatar';
 
@@ -64,6 +65,7 @@ import { AvatarModule } from 'ngx-avatar';
     RatingComponent,
     AddProductComponent,
     ListProductsComponent,
+    ProductDetailsComponent,
     ChatComponent
   ],
   imports: [
