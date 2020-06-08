@@ -35,7 +35,7 @@ namespace GraduationProject.Repositry
                 .Include(a => a.Product)
                 .ThenInclude(a => a.ProductAttributes)
                 .Include(a => a.User)
-                .FirstOrDefault(a => a.ProductId == productId);
+                .FirstOrDefault(a => a.Id == productId);
         }
     }
 }

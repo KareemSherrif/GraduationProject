@@ -48,7 +48,8 @@
                             <i class="fa fa-heart"></i>
                             Add to Wishlist
                         </button>
-                        <button type="button" class="btn btn-fefault cart">
+
+                        <button type="button" class="btn btn-fefault cart" *ngIf="userservice.IsLogin() && userservice.CurrentUserId() != product.userId" (click)="ShowChat(product.user)">
                             <i class="fa fa-user"></i>
                             Connect Seller
                         </button>
