@@ -91,16 +91,16 @@ namespace GraduationProject.Areas.Api.Controllers
 
         private string SaveAnImages(ImageProductViewModel imageProductViewModels)
         {
-           string imageString = imageProductViewModels.Value.Split(";base64,")[1];
+            string imageString = imageProductViewModels.Value.Split(";base64,")[1];
             byte[] array = Convert.FromBase64String(imageString);
             ImageConverter converter = new ImageConverter();
-           Image image =(Image)converter.ConvertFrom(array);
-            string NewName = Guid.NewGuid().ToString()+".png";
+            Image image = (Image)converter.ConvertFrom(array);
+            string NewName = Guid.NewGuid().ToString() + ".png";
             string fullPath = Path.Combine(_webHostEnvironment.WebRootPath, "images", NewName);
             image.Save(fullPath);
             return NewName;
-
         }
+
         [HttpGet]
         [Route("GetAllProducts")]
         public IActionResult GetAllProducts()
