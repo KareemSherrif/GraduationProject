@@ -1,0 +1,17 @@
+.mt-product {
+    margin-top: 20px;
+}
+
+.box{
+    height: 90px;
+    width: 90px;
+}
+
+.productImg {
+    width: 90px;
+    height: 90px;
+}
+
+.product-information p {
+    font-size: 17px;
+}

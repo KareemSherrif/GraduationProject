@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace GraduationProject.Migrations
 {
-    public partial class IntialModel : Migration
+    public partial class InitalModel : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -224,18 +224,21 @@ namespace GraduationProject.Migrations
                 name: "ProductAttributes",
                 columns: table => new
                 {
-                    AttributeName = table.Column<string>(maxLength: 255, nullable: false),
-                    Value = table.Column<string>(maxLength: 255, nullable: false),
+                    ID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    AttributeName = table.Column<string>(nullable: true),
+                    Value = table.Column<string>(nullable: true),
                     ProductId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
+                    table.PrimaryKey("PK_ProductAttributes", x => x.ID);
                     table.ForeignKey(
-                        name: "FK__ProductAt__Produ__2D27B809",
+                        name: "FK_ProductAttributes_Product_ProductId",
                         column: x => x.ProductId,
                         principalTable: "Product",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -398,40 +401,40 @@ namespace GraduationProject.Migrations
                 name: "Users_Ratings",
                 columns: table => new
                 {
-                    UserId = table.Column<string>(nullable: false),
-                    ID = table.Column<int>(nullable: false),
+                    ID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Rating = table.Column<int>(nullable: false),
-                    UserId1 = table.Column<string>(nullable: false)
+                    UserId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK__Users_Ra__1788CC4CB9E09BD8", x => x.UserId);
+                    table.PrimaryKey("PK_Users_Ratings", x => x.ID);
                     table.ForeignKey(
-                        name: "FK_Users_Ratings_AspNetUsers_UserId1",
-                        column: x => x.UserId1,
+                        name: "FK_Users_Ratings_AspNetUsers_UserId",
+                        column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Users_Reviews",
                 columns: table => new
                 {
-                    UserId = table.Column<string>(nullable: false),
-                    ID = table.Column<int>(nullable: false),
+                    ID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Review = table.Column<string>(maxLength: 500, nullable: false),
-                    UserId1 = table.Column<string>(nullable: false)
+                    UserId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK__Users_Re__1788CC4C22AE4AEE", x => x.UserId);
+                    table.PrimaryKey("PK_Users_Reviews", x => x.ID);
                     table.ForeignKey(
-                        name: "FK_Users_Reviews_AspNetUsers_UserId1",
-                        column: x => x.UserId1,
+                        name: "FK_Users_Reviews_AspNetUsers_UserId",
+                        column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -609,14 +612,14 @@ namespace GraduationProject.Migrations
                 column: "UserProductId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Users_Ratings_UserId1",
+                name: "IX_Users_Ratings_UserId",
                 table: "Users_Ratings",
-                column: "UserId1");
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Users_Reviews_UserId1",
+                name: "IX_Users_Reviews_UserId",
                 table: "Users_Reviews",
-                column: "UserId1");
+                column: "UserId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

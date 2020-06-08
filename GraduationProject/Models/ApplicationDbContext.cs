@@ -171,24 +171,7 @@ namespace GraduationProject.Models
                     .HasConstraintName("FK__Product__ModelId__2B3F6F97");
             });
 
-            modelBuilder.Entity<ProductAttributes>(entity =>
-            {
-                entity.HasNoKey();
-
-                entity.Property(e => e.AttributeName)
-                    .IsRequired()
-                    .HasMaxLength(255);
-
-                entity.Property(e => e.Value)
-                    .IsRequired()
-                    .HasMaxLength(255);
-
-                entity.HasOne(d => d.Product)
-                    .WithMany()
-                    .HasForeignKey(d => d.ProductId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__ProductAt__Produ__2D27B809");
-            });
+          
 
             modelBuilder.Entity<Suggestions>(entity =>
             {
@@ -248,19 +231,11 @@ namespace GraduationProject.Models
                     .HasConstraintName("FK__UserProdu__UserP__3A81B327");
             });
 
-            modelBuilder.Entity<ApplicationUser>(entity =>
-            {
-                 
-
-             
-
-
-            });
+          
 
             modelBuilder.Entity<UsersRatings>(entity =>
             {
-                entity.HasKey(e => e.UserId)
-                    .HasName("PK__Users_Ra__1788CC4CB9E09BD8");
+            
 
                 entity.ToTable("Users_Ratings");
 
@@ -268,8 +243,7 @@ namespace GraduationProject.Models
 
             modelBuilder.Entity<UsersReviews>(entity =>
             {
-                entity.HasKey(e => e.UserId)
-                    .HasName("PK__Users_Re__1788CC4C22AE4AEE");
+            
 
                 entity.ToTable("Users_Reviews");
 

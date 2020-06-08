@@ -17,5 +17,6 @@ namespace GraduationProject.Models
         public virtual Brand Brand { get; set; }
         public virtual Model Model { get; set; }
         public virtual ICollection<UserProduct> UserProduct { get; set; }
+        public ICollection<ProductAttributes> ProductAttributes { get; set; }
     }
 }

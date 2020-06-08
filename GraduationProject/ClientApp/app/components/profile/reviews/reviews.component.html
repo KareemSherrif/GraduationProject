@@ -2,15 +2,18 @@
 <mat-progress-bar mode="indeterminate" *ngIf="this.review == null"></mat-progress-bar>
 
 <mat-card>
-    <mat-card-title>Reviews</mat-card-title>
+    <mat-card-title>  <h2 class="title text-center">Reviews</h2></mat-card-title>
   <mat-card class="mt-2" *ngFor="let item of this.review">
+    <mat-card-title class="d-flex">
+      <ngx-avatar [name]="item.userReviewName" [size]="50"></ngx-avatar>    <a [routerLink]="['/profile',item.userReviewID]">{{item.userReviewName}}</a>
+    </mat-card-title>
     <mat-card-content>
         <p>
         {{item.review}}
         </p>
       </mat-card-content>
     </mat-card>
-    <div class="mt-2" *ngIf="this.review.length == 0">
+    <div class="mt-2" *ngIf="this.review?.length ==0">
         <p class="text-center">There is no Reviews ! </p>
     </div>
   

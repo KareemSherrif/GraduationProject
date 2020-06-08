@@ -207,6 +207,8 @@ namespace GraduationProject.Areas.Api.Controllers
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public ActionResult<UserInformationViewModel> GetUserInformation()
         {
+
+            
             string userId = User.GetUserIdToken();
             ApplicationUser applicationUser = usersRepository.GetUserInformation(userId);
 

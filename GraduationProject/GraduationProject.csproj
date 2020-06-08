@@ -6,16 +6,23 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="ClientApp\app\model\**" />
+    <Content Remove="ClientApp\app\model\**" />
+    <EmbeddedResource Remove="ClientApp\app\model\**" />
+    <None Remove="ClientApp\app\model\**" />
+    <TypeScriptCompile Remove="ClientApp\app\model\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="ClientApp\app\app-routing.module.ts" />
     <None Remove="ClientApp\app\guards\auth-interceptor.ts" />
-    <None Remove="ClientApp\app\model\login.ts" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Admin\Models\" />
-    <Folder Include="Areas\Admin\Views\Products\" />
     <Folder Include="ClientApp\app\services\" />
+    <Folder Include="wwwroot\images\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -37,12 +44,12 @@
     <PackageReference Include="OdeToCode.UseNodeModules" Version="3.0.0" />
     <PackageReference Include="SendGrid" Version="9.15.1" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.4.1" />
+    <PackageReference Include="System.Drawing.Common" Version="4.7.0" />
   </ItemGroup>
 
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\app\app-routing.module.ts" />
     <TypeScriptCompile Include="ClientApp\app\guards\auth-interceptor.ts" />
-    <TypeScriptCompile Include="ClientApp\app\model\login.ts" />
   </ItemGroup>
 
 </Project>

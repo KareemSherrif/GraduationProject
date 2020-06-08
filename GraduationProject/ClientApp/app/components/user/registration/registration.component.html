@@ -1,9 +1,13 @@
 <!-- @format -->
 
 <div class="container mt-3">
-	<h2>Registration</h2>
+	
+<div class="row row-cotnainer">
 
-	<form #form="ngForm" (ngSubmit)="OnRegistration(form)">
+	<div class="col-md-7 delete-padding">
+		<mat-card class="mat-card-registration" width="100%">
+		<h2>Registration</h2>
+	<form #form="ngForm" (ngSubmit)="OnRegistration(form)" autocomplete="off">
 		<mat-form-field class="control-item-50">
 			<mat-label>FirstName</mat-label>
 			<input
@@ -177,4 +181,15 @@
 			<button class="btn btn-success" [disabled]="form.invalid">Submit</button>
 		</div>
 	</form>
+</mat-card>
+
+</div>
+<div class="col-md-5  image-container">
+
+</div>
+
+
+
+</div>
+
 </div>

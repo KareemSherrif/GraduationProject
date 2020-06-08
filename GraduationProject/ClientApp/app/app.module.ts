@@ -1,5 +1,3 @@
-
-
 import { CitiesService } from './services/cities.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -14,8 +12,8 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 
 import { AppComponent } from './app.component';
-import { NavbarComponent } from './components/navbar/navbar.component';
-import { RegistrationComponent } from './components/registration/registration.component';
+import { NavbarComponent } from './components/home/navbar/navbar.component';
+import { RegistrationComponent } from './components/user/registration/registration.component';
 import { HomeComponent } from './components/home/home.component';
 import { AreasService } from './services/areas.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -39,7 +37,18 @@ import { RatingComponent } from './components/resuable/rating/rating.component';
 import {MatButtonModule} from '@angular/material/button';
 import {MatButtonToggleModule} from '@angular/material/button-toggle'
 import { MatDialogModule } from '@angular/material/dialog';
-import {MatIconModule } from '@angular/material/icon'
+import {MatIconModule } from '@angular/material/icon';
+import {ReactiveFormsModule } from '@angular/forms';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {MatStepperModule} from '@angular/material/stepper';
+import { AddProductComponent } from './components/products/add-product/add-product.component'
+import { ProductService } from './services/product.service';
+import { ImageCropperModule } from 'ngx-image-cropper';
+import { ListProductsComponent } from './components/products/list-products/list-products.component';
+import { NgxEditorModule } from 'ngx-editor';
+import { ProductDetailsComponent } from './components/products/product-details/product-details.component';
+import { ChatComponent } from './components/chat/chat.component';
+import { AvatarModule } from 'ngx-avatar';
 
 @NgModule({
   declarations: [
@@ -53,7 +62,11 @@ import {MatIconModule } from '@angular/material/icon'
     ReviewsComponent,
     UserproductComponent,
     ProductCardComponent,
-    RatingComponent
+    RatingComponent,
+    AddProductComponent,
+    ListProductsComponent,
+    ProductDetailsComponent,
+    ChatComponent
   ],
   imports: [
     BrowserModule,
@@ -74,14 +87,20 @@ import {MatIconModule } from '@angular/material/icon'
     MatButtonModule,
     MatButtonToggleModule,
     MatDialogModule,
-    MatIconModule
+    MatIconModule,
+    ReactiveFormsModule,
+    ImageCropperModule,
+    MatAutocompleteModule,
+    MatStepperModule,
+    AvatarModule
+   
     
     
    
   ],
   providers: [
      
-        [AreasService, CitiesService, UserInfoService],
+        [AreasService, CitiesService, UserInfoService,ProductService],
         UserService,
         AuthGuard,
         {
