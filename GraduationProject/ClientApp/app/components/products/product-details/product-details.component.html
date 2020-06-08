@@ -3,9 +3,9 @@
         <div class="col-sm-9 padding-right">
             <div class="product-details">
                 <!--product-details-->
-                <div class="col-sm-5">
+                <div class="col-sm-6">
                     <div class="view-product">
-                        <img [src]="product.userProductImages[0].images" alt="" />
+                        <img [src]="'/images/'+product.userProductImages[0].images" alt="" />
                     </div>
                     <div id="similar-product" class="carousel slide" data-ride="carousel">
 
@@ -13,7 +13,7 @@
                         <div class="carousel-inner">
                             <div class="item active">
                                 <ng-container *ngFor="let p of product.userProductImages">
-                                    <a href=""><img [src]="p.images" alt="product image" class="productImg"></a>
+                                    <a href=""><img [src]="'/images/'+p.images" alt="product image" class="productImg"></a>
                                 </ng-container>
                             </div>
                                 <!--<div class="item box">
@@ -31,7 +31,7 @@
                     </div>
 
                 </div>
-                <div class="col-sm-7">
+                <div class="col-sm-6">
                     <div class="product-information">
                         <!--/product-information-->
                         <h2>{{product.name}}</h2>
