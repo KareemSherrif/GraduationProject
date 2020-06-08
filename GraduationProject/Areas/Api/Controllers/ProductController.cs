@@ -85,7 +85,6 @@ namespace GraduationProject.Areas.Api.Controllers
         [Route("GetProduct/{name}")]
         public IActionResult GetProducts(string name)
         {
-           
             var model = _mapper.Map<IEnumerable<Product>, IEnumerable<SearchProductViewModel>>(_productRepository.GetProductSearch(name));
             return Ok(model);
         }
