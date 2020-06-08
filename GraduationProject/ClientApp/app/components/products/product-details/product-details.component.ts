@@ -1,3 +1,4 @@
+import { UserService } from './../../../services/user.service';
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../../../services/product.service';
 import { ActivatedRoute } from '@angular/router';
@@ -12,7 +13,7 @@ export class ProductDetailsComponent implements OnInit {
     product;
     conditionValue: string;
 
-    constructor(private productService: ProductService, private route: ActivatedRoute) {
+    constructor(private productService: ProductService, private route: ActivatedRoute, public userservice:UserService) {
         this.id = route.snapshot.paramMap.get('id');
         if (this.id) {
             this.productService.GetProductDetails(this.id)
@@ -21,6 +22,12 @@ export class ProductDetailsComponent implements OnInit {
                     console.log(data);
                 })
         }
+    }
+    ShowChat(data) {
+
+        
+        document.getElementById("UserName").innerHTML = data.firstName + " " + data.lastName;
+        document.getElementById("chat").classList.remove("display-none");
     }
 
     checkCondition(value: number) {

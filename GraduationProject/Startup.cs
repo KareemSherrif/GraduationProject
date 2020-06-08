@@ -21,7 +21,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using GraduationProject.Services;
-
+using GraduationProject.Hubs;
 
 namespace GraduationProject
 {
@@ -69,6 +69,7 @@ namespace GraduationProject
                 a.Password.RequireUppercase = false;
             }).AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
 
+            services.AddSignalR();
             //services.AddAuthentication(options =>
             //{
             //    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -120,6 +121,7 @@ namespace GraduationProject
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        [Obsolete]
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
 
@@ -140,7 +142,13 @@ namespace GraduationProject
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
+            app.UseSignalR(a =>
+            {
+                a.MapHub<ChatHub>("/chathub");
+            });
+
             app.UseSwagger();
+
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");

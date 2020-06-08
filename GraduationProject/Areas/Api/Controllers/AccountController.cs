@@ -42,7 +42,7 @@ namespace GraduationProject.Areas.Api.Controllers
 
         public AccountController(SignInManager<ApplicationUser> signInManager,
             UserManager<ApplicationUser> userManager, IConfiguration configration,
-            IUsersRepository usersRepository, 
+            IUsersRepository usersRepository,
             IMapper mapper,
             IReviewRepository reviewRepository, IEmailSender emailSender, IOptions<AuthMessageSenderOptions> AuthMessageSenderOptions)
         {
@@ -156,8 +156,9 @@ namespace GraduationProject.Areas.Api.Controllers
                     var passwordResetLink = Url.Action("ResetPassword", "Account", new { email = model.Email, token = token }, Request.Scheme);
                     // email is sent
                     string subject = "Welcome to App-Name! Confirm Your Email";
-                    string message = "You're on your way! Let's confirm your email address. By clicking on the following link, you are confirming your email address" + passwordResetLink;
-                    
+                    string message = "Hi " + user.FirstName + "<br>" +"<br>"+ "You recently requested to reset your password for your <app-name> account. Use the button below to reset it. <strong>Thid password is valid for the next 24 hours. </strong>" +
+                        "<br>"+"<br>"+"<a href=" + passwordResetLink + " class='btn btn-primary'><span style='text-align:center'>Reset Password</span></a>" + "<br>"+ "<br>"+"Thanks,"+"<br>"+"The app-name Team";
+
                     await _emailSender.SendEmailAsync(model.Email, subject, message);
                     //Logger.Log(LogLevel.Warning, passwordResetLink);
                     return Ok();
@@ -236,7 +237,7 @@ namespace GraduationProject.Areas.Api.Controllers
 
         }
 
-    
+
 
     }
 }

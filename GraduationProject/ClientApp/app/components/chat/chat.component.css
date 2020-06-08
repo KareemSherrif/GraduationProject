@@ -132,3 +132,6 @@ img {
 .display-none{
     display: none;
 }
+.ml-2{
+    margin-right: 10px;
+}

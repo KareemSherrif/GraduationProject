@@ -11,7 +11,7 @@
                             <div class="single-products">
                                 <div class="productinfo text-center">
                                     <div class="box">
-                                        <img [src]="p.userProductImages[0].images" alt="product image" />
+                                        <img [src]="'/images/'+p.userProductImages[0].images" alt="product image" />
                                     </div>
                                     <h4><strong>{{p.name}}</strong></h4>
                                     <h3><i class="fa fa-money"></i> EGP {{p.price}}</h3>
@@ -22,7 +22,7 @@
                                     <div class="overlay-content">
                                         <h2>EGP {{p.price}}</h2>
                                         <p>{{checkCondition(p.condition)}}</p>
-                                        <a [routerLink]="['/product/Details', p.productId]" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>VIEW DETAILS</a>
+                                        <a [routerLink]="['/product/Details', p.id]" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>VIEW DETAILS</a>
                                     </div>
                                 </div>
                             </div>
