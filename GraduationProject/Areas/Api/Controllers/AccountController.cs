@@ -33,9 +33,6 @@ namespace GraduationProject.Areas.Api.Controllers
         private readonly IConfiguration _configration;
         private readonly IEmailSender _emailSender;
         private readonly IOptions<AuthMessageSenderOptions> _AuthMessageSenderOptions;
-
-        //public AccountController(SignInManager<ApplicationUser> signInManager,
-        //    UserManager<ApplicationUser> userManager, IConfiguration configration, IEmailSender emailSender, IOptions<AuthMessageSenderOptions> AuthMessageSenderOptions);
         private readonly IUsersRepository usersRepository;
         private readonly IMapper mapper;
         private readonly IReviewRepository _reviewRepository;
@@ -122,7 +119,6 @@ namespace GraduationProject.Areas.Api.Controllers
                         UserName = model.UserName,
                         PhoneNumber = model.Phonenumber,
                         AreaID = model.AreaID
-
                     };
 
                     var result = await _userManager.CreateAsync(user, model.Password);
@@ -207,8 +203,6 @@ namespace GraduationProject.Areas.Api.Controllers
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public ActionResult<UserInformationViewModel> GetUserInformation()
         {
-
-            
             string userId = User.GetUserIdToken();
             ApplicationUser applicationUser = usersRepository.GetUserInformation(userId);
 
@@ -219,7 +213,6 @@ namespace GraduationProject.Areas.Api.Controllers
             UserInformationViewModel model = mapper.Map<ApplicationUser, UserInformationViewModel>(applicationUser);
             model.Rating = usersRepository.GetAverageRating(userId);
             return Ok(model);
-
         }
         [HttpGet]
         [Route("UserReviews")]
@@ -236,8 +229,5 @@ namespace GraduationProject.Areas.Api.Controllers
             return Ok(usersReviews);
 
         }
-
-
-
     }
 }

@@ -132,7 +132,7 @@ namespace GraduationProject.Areas.Admin.Controllers
             }
             catch
             {
-                return BadRequest("Error has been occurred");
+                return BadRequest("An Error Has Occurred.");
             }
         }
         public ActionResult Edit(int id)
