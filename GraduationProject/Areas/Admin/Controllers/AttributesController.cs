@@ -58,11 +58,11 @@ namespace GraduationProject.Areas.Admin.Controllers
                     AttributeRepositry.SaveAll();
                     return Ok("The Attribute has been Added");
                 }
-                return BadRequest(" The Attribute Data is not Valid ");
+                return BadRequest("The Attribute Data is not Valid");
             }
             catch
             {
-                return BadRequest("There is an Error in Attribute");
+                return BadRequest("An Error Has Occurred.");
             }
         }
 
@@ -77,7 +77,7 @@ namespace GraduationProject.Areas.Admin.Controllers
             Attributes attributes = this.AttributeRepositry.Get(id.Value);
             if(attributes == null)
             {
-                return NotFound("The Attribute is not found");
+                return NotFound("Attribute Not Found.");
             }
 
 
@@ -97,11 +97,11 @@ namespace GraduationProject.Areas.Admin.Controllers
                     this.AttributeRepositry.SaveAll();
                     return Ok("The Attribute has been edited");
                 }
-                return BadRequest("The Attribute is not valid");
+                return BadRequest("An Error Has Occurred.");
             }
             catch
             {
-                return BadRequest("Error has been occured");
+                return BadRequest("An Error Has Occurred.");
             }
         }
 
@@ -120,7 +120,7 @@ namespace GraduationProject.Areas.Admin.Controllers
             }
             catch
             {
-              return Ok("The Attribute didn't  Deleted may been is has Relational Data");
+              return Ok("An Error Has Occurred.");
             }
         }
     }

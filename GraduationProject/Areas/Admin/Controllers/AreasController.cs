@@ -69,7 +69,7 @@ namespace GraduationProject.Areas.Admin.Controllers
             }
             catch
             {
-                return BadRequest("Error has been occured");
+                return BadRequest("An Error Has Occurred.");
             }
         }
 
@@ -99,12 +99,12 @@ namespace GraduationProject.Areas.Admin.Controllers
                     return Ok("The Area is Edited");
                 }
 
-                return BadRequest("The Area Data is not Completed");
+                return BadRequest("An Error Has Occurred.");
 
             }
             catch
             {
-                return BadRequest("Error has been occured");
+                return BadRequest("An Error Has Occurred.");
             }
         }
 
@@ -118,7 +118,7 @@ namespace GraduationProject.Areas.Admin.Controllers
                 Area area = this.AreaRepositry.Get(id);
                 if(area == null)
                 {
-                    return NotFound("This Area is not Exist");
+                    return NotFound("This Area does not Exist");
                 }
                 this.AreaRepositry.Delete(area);
                 this.AreaRepositry.SaveAll();
@@ -127,7 +127,7 @@ namespace GraduationProject.Areas.Admin.Controllers
             }
             catch
             {
-                return BadRequest("error has been occurred");
+                return BadRequest("An Error Has Occurred.");
             }
         }
     }

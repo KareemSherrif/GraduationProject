@@ -99,7 +99,7 @@ namespace GraduationProject.Areas.Admin.Controllers
             }
             catch
             {
-                return BadRequest("The City Data is Locked now Try again later");
+                return BadRequest("An Error Has Occurred.");
             }
         }
  
@@ -116,7 +116,7 @@ namespace GraduationProject.Areas.Admin.Controllers
             }
             catch
             {
-                return BadRequest("The City has Areas Please Delete the Included Areas");
+                return BadRequest("An Error Has Occurred, The City has Areas Please Delete the Included Areas First.");
             }
         }
     }
