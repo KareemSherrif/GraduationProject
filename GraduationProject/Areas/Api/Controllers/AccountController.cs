@@ -156,8 +156,75 @@ namespace GraduationProject.Areas.Api.Controllers
                     var passwordResetLink = Url.Action("ResetPassword", "Account", new { email = model.Email, token = token }, Request.Scheme);
                     // email is sent
                     string subject = "Welcome to App-Name! Confirm Your Email";
-                    string message = "Hi " + user.FirstName + "<br>" +"<br>"+ "You recently requested to reset your password for your <app-name> account. Use the button below to reset it. <strong>Thid password is valid for the next 24 hours. </strong>" +
-                        "<br>"+"<br>"+"<a href=" + passwordResetLink + " class='btn btn-primary'><span style='text-align:center'>Reset Password</span></a>" + "<br>"+ "<br>"+"Thanks,"+"<br>"+"The app-name Team";
+                    string message = "<table border = '0' cellpadding = '0' cellspacing = '0' style = 'margin: 0' width = '100%' >" +
+                                     "<tr>" +
+                                     "<td height = '30' ></td>" +
+                                     "</tr>" +
+                                     "<tr>" +
+                                     "<td align = 'center' valign = 'top' >" +
+                                     "<table width = '640' cellspacing = '0' cellpadding = '0' bgcolor = '#ffffff' class='100p' style='border-radius: 8px; border: 1px solid #E2E5E7; overflow:hidden;'>" +
+                                     "<tr>" +
+                                     "<td height = '20' ></td>" +
+                                     "</tr>" +
+                                     "<tr>" +
+                                     "<td width='640' valign='top' class='100p'>" +
+                                     "<!-- Header -->" +
+                                     "<table border = '0' cellspacing='0' cellpadding='0' width='640' class='100p'>" +
+                                     "<tr>" +
+                                     "<!-- Logo -->" +
+                                     "<td align = 'left' width='50%' class='100padtopbottom' style='padding-left: 20px'>" +
+                                     "<img alt = 'Logo' src='https://s3-us-west-2.amazonaws.com/descript-public/email/logo%402x.jpg' width='112' style='width: 100%; max-width: 112px; font-family: Arial, sans-serif; color: #ffffff; font-size: 20px; display: block; border: 0px;' border='0'>" +
+                                     "</td>" +
+                                     "</tr>" +
+                                     "<tr>" +
+                                     "<td colspan = '2' width='640' height='160' class='100p'>" +
+                                     "<img alt = 'Logo' src='https://s3-us-west-2.amazonaws.com/descript-public/email/bg-pwd%402x.jpg' width='640' style='width: 100%; max-width: 640px; font-family: Arial, sans-serif; color: #ffffff; font-size: 20px; display: block; border: 0px; margin-top:0px;' border='0'>" +
+                                     "</td>" +
+                                     "</tr>" +
+                                     "<tr>" +
+                                     "<td colspan = '2' align='left' valign='center' width='640' height='40' class='100p center' style='font-family: Arial, sans-serif; font-weight: bold; font-size:14px;padding: 0px 20px;'>" +
+                                     "<font face = 'Arial, sans-serif' ></b> Hi " + user.FirstName! + "</b></font>" +
+                                     "</td>" +
+                                     "</tr>" +
+                                     "<tr>" +
+                                     "<td colspan = '2' align='left' valign='center' width='640' class='100p' style='font-family: Arial, sans-serif; font-size:14px; padding: 0px 20px; line-height: 18px;'>" +
+                                     "<font face = 'Arial, sans-serif' >" +
+                                     "Seems like you forgot your Descript password.To reset it, just click the button below.<br>" +
+                                     "</br>" +
+                                     "</br>" +
+                                     "Thanks,<br>" +
+                                     "Hardware Shed Team" +
+                                     "</font>" +
+                                     "</td>" +
+                                     "</tr>" +
+                                     "<tr>" +
+                                     "<td colspan = '2' align= 'center' valign= 'center' width= '640' height= '20' class='100p center' style='font-family: Arial, sans-serif; font-weight: bold; font-size:1px;padding: 0px 20px;'>" +
+                                     "</td>" +
+                                     "</tr>" +
+                                     "</table>" +
+                                     "</td>" +
+                                     "</tr>" +
+                                     "<!-- Footer -->" +
+                                     "<tr>" +
+                                     "<td width = '640' class='100p center' height='80' align='center' valign='top'>" +
+                                     "<table border = '0' cellspacing='0' cellpadding='0'>" +
+                                     "<tr>" +
+                                     "<td align = 'center' style='border-radius: 18px;' bgcolor='#0062FF'>" +
+                                     "<a href = '" + passwordResetLink + "' style='font-size: 14px; font-family: sans-serif; color: #ffffff; text-decoration: none; border-radius: 18px; padding: 5px 16px; border: 1px solid #0062FF; display: inline-block; box-shadow: 0 2px 3px 0 rgba(0,0,0,0.10);'>" +
+                                     "<!--[if mso]> <![endif]-->" +
+                                     "Reset Password" +
+                                     "<!--[if mso]> <![endif]-->" +
+                                     "</a>" +
+                                     "</td>" +
+                                     "</tr>" +
+                                     "</table>" +
+                                     "</td>" +
+                                     "</tr>" +
+                                     "</table>" +
+                                     "</td>" +
+                                     "</tr>" +
+                                     "</table>";
+
 
                     await _emailSender.SendEmailAsync(model.Email, subject, message);
                     //Logger.Log(LogLevel.Warning, passwordResetLink);
@@ -208,7 +275,7 @@ namespace GraduationProject.Areas.Api.Controllers
         public ActionResult<UserInformationViewModel> GetUserInformation()
         {
 
-            
+
             string userId = User.GetUserIdToken();
             ApplicationUser applicationUser = usersRepository.GetUserInformation(userId);
 
