@@ -262,7 +262,7 @@ namespace GraduationProject.Areas.Api.Controllers
                     {
                         ModelState.AddModelError("", error.Description);
                     }
-                    return BadRequest("check the data you entered");
+                    return BadRequest("Please check the entered data.");
                 }
                 return BadRequest();
             }
@@ -281,7 +281,7 @@ namespace GraduationProject.Areas.Api.Controllers
 
             if (applicationUser == null)
             {
-                return NotFound("This user is not found");
+                return NotFound("Specified user does not exist.");
             }
             UserInformationViewModel model = mapper.Map<ApplicationUser, UserInformationViewModel>(applicationUser);
             model.Rating = usersRepository.GetAverageRating(userId);
@@ -297,7 +297,7 @@ namespace GraduationProject.Areas.Api.Controllers
             List<UsersReviews> usersReviews = this._reviewRepository.GetReviewsByUser(userId).ToList();
             if (usersReviews == null)
             {
-                return NotFound("The Reviews is not found");
+                return NotFound("No Reviews Found.");
 
             }
             return Ok(usersReviews);
