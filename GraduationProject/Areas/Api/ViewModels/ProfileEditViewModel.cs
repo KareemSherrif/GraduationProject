@@ -18,5 +18,6 @@ namespace GraduationProject.Areas.Api.ViewModels
         public string CurrentPassword { get; set; }
         [StringLength(11, MinimumLength = 11)]
         public string PhoneNumber { get; set; }
+        public string Address { get; set; }
     }
 }

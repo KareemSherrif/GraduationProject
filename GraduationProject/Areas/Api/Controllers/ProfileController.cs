@@ -21,10 +21,12 @@ namespace GraduationProject.Areas.Api.Controllers
     public class ProfileController : ControllerBase
     {
         private readonly UserManager<ApplicationUser> _userManager;
+        private readonly IUsersRepository _usersRepository;
 
-        public ProfileController(UserManager<ApplicationUser> userManager)
+        public ProfileController(UserManager<ApplicationUser> userManager, IUsersRepository usersRepository)
         {
             _userManager = userManager;
+            _usersRepository = usersRepository;
         }
 
 
@@ -129,6 +131,32 @@ namespace GraduationProject.Areas.Api.Controllers
                 }
 
                 return BadRequest("Username change was unsuccessful.");
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+        
+        [HttpPost]
+        [Route("Address")]
+        public async Task<IActionResult> ChangeAddress([FromBody] ProfileEditViewModel model)
+        {
+            try
+            {
+                if (ModelState.IsValid && model.Address != null)
+                {
+                    string userId = User.GetUserIdToken();
+                    var user = await _userManager.FindByIdAsync(userId);
+                    user.Address = model.Address;
+                    _usersRepository.Edit(user);
+                    _usersRepository.SaveAll();
+
+                        return Ok("Address Updated Successfully.");
+                }
+
+                return BadRequest("Address change was unsuccessful.");
             }
             catch (Exception ex)
             {

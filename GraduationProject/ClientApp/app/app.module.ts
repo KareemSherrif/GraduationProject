@@ -51,6 +51,7 @@ import { ChatComponent } from './components/chat/chat.component';
 import { AvatarModule } from 'ngx-avatar';
 import { ResetPasswordComponent } from './components/user/reset-password/reset-password.component';
 import { EmailSentComponent } from './components/user/email-sent/email-sent.component';
+import { UserSettingsComponent } from './components/profile/usersettings/usersettings.component';
 
 @NgModule({
   declarations: [
@@ -70,7 +71,8 @@ import { EmailSentComponent } from './components/user/email-sent/email-sent.comp
     ProductDetailsComponent,
     ChatComponent,
     ResetPasswordComponent,
-    EmailSentComponent
+    EmailSentComponent,
+    UserSettingsComponent
   ],
   imports: [
     BrowserModule,
