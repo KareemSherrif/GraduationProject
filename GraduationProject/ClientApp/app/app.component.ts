@@ -1,3 +1,5 @@
+import { ChatService } from './services/chat.service';
+import { UserService } from './services/user.service';
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { animation } from '@angular/animations';
@@ -11,5 +13,14 @@ import { animation } from '@angular/animations';
 })
 export class AppComponent {
   title = 'myapp';
+  
+  constructor(public UserService:UserService,public ChatService:ChatService) {
+    this.ChatService.hubConnection.on("ReciveMessage",  (data)=> {
+      alert("Sending Message");
+      console.log(data);
+      
+    });
+    
+  }
 
 }
