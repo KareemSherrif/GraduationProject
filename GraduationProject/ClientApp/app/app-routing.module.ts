@@ -9,11 +9,15 @@ import { RegistrationComponent } from './components/user/registration/registrati
 import { ProfileComponent } from './components/profile/profile.component';
 import { ListProductsComponent } from './components/products/list-products/list-products.component';
 import { ProductDetailsComponent } from './components/products/product-details/product-details.component';
+import { ResetPasswordComponent } from './components/user/reset-password/reset-password.component';
+import { EmailSentComponent } from './components/user/email-sent/email-sent.component';
 
 const routes: Routes = [
     { path: '', component: HomeComponent },
     { path: 'Registration', component: RegistrationComponent },
-    { path: 'Login', component: LoginComponent},
+    { path: 'Login', component: LoginComponent },
+    { path: 'ResetPassword', component: ResetPasswordComponent },
+    { path: 'EmailSent', component: EmailSentComponent },
     { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
     { path: 'profile/:id', component: ProfileComponent },
     { path: 'AddProduct', component: AddProductComponent, canActivate: [AuthGuard] },
@@ -22,7 +26,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-    imports: [RouterModule.forRoot(routes,{useHash:true})],
+    imports: [RouterModule.forRoot(routes, { useHash: true })],
     exports: [RouterModule]
 })
 export class AppRoutingModule { }

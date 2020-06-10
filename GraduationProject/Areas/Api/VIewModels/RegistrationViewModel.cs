@@ -29,6 +29,7 @@ namespace GraduationProject.Areas.Api.VIewModels
         public string Address { get; set; }
 
         [Required]
+        [StringLength(16, MinimumLength = 7)]
         public string Phonenumber { get; set; }
 
         [Required]
