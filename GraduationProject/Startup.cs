@@ -21,7 +21,8 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using GraduationProject.Services;
-using GraduationProject.Hubs;
+
+using GraduationProject.Areas.Api.Hubs;
 
 namespace GraduationProject
 {
@@ -38,6 +39,7 @@ namespace GraduationProject
         public void ConfigureServices(IServiceCollection services)
         {
 
+            services.AddMvc();
             #region Business Classes
 
             services.AddTransient<IAreaRepositry, AreaRepositry>();
@@ -54,6 +56,9 @@ namespace GraduationProject
             services.AddTransient<IReviewRepository, ReviewRepository>();
             services.AddTransient<IProductRepository, ProductRepository>();
             services.AddTransient<IProductAttributesRepository, ProductAttributesRepository>();
+            services.AddTransient<IChatRepository, ChatRepositry>();
+            services.AddSingleton<List<ConnectionUserID>>();
+           
             #endregion
 
 
@@ -70,14 +75,36 @@ namespace GraduationProject
             }).AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
 
             services.AddSignalR();
-            //services.AddAuthentication(options =>
+                
+            services.AddAuthentication().AddCookie()
+                .AddJwtBearer(options =>
+            {
+                options.SaveToken = true;
+                options.TokenValidationParameters = new TokenValidationParameters()
+                {
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Tokens:key"].ToString())),
+                    ValidateIssuer = false,
+                    ValidateAudience = false,
+                };
+                options.Events = new JwtBearerEvents()
+                {
+
+                    OnMessageReceived = a =>
+                    {
+                        string signalR = a.HttpContext.Request.Query["access_token"];
+                        a.Token = a.HttpContext.Request.Query["access_token"];
+                        return Task.CompletedTask;
+                    }
+                };
+            
+                
+            });
+
+        
+            //services.AddAuthentication().AddCookie().AddJwtBearer(options =>
             //{
-            //    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-            //    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            //    options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
-            //}).AddCookie().AddJwtBearer(options =>
-            //{
-            //    options.SaveToken = true;
+              
             //    options.TokenValidationParameters = new TokenValidationParameters()
             //    {
             //        ValidateIssuerSigningKey = true,
@@ -86,19 +113,6 @@ namespace GraduationProject
             //        ValidateAudience = false,
             //    };
             //});
-
-
-            services.AddAuthentication().AddCookie().AddJwtBearer(options =>
-            {
-              
-                options.TokenValidationParameters = new TokenValidationParameters()
-                {
-                    ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Tokens:Key"].ToString())),
-                    ValidateIssuer = false,
-                    ValidateAudience = false,
-                };
-            });
 
 
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
@@ -116,7 +130,7 @@ namespace GraduationProject
 
             });
 
-
+         
 
         }
 
@@ -136,16 +150,13 @@ namespace GraduationProject
                 app.UseHsts();
             }
            
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseNodeModules();
             app.UseRouting();
-            app.UseAuthentication();
-            app.UseAuthorization();
-            app.UseSignalR(a =>
-            {
-                a.MapHub<ChatHub>("/chathub");
-            });
+            //app.UseAuthentication();
+            //app.UseAuthorization();
+          
 
             app.UseSwagger();
 
@@ -153,12 +164,21 @@ namespace GraduationProject
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
             });
-
+           
             app.UseAuthentication();
             app.UseAuthorization();
+            app.UseSignalR(a =>
+            {
+               
+                a.MapHub<ChatHub>("/chathub");
+            });
+         
+
+
 
             app.UseEndpoints(endpoints =>
             {
+                
                 endpoints.MapControllerRoute(
                name: "MyArea",
                 pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");

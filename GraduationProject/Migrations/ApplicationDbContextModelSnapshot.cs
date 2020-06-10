@@ -207,24 +207,35 @@ namespace GraduationProject.Migrations
                     b.ToTable("CategoryAttributes");
                 });
 
-            modelBuilder.Entity("GraduationProject.Models.Chats", b =>
+            modelBuilder.Entity("GraduationProject.Models.ChatMessages", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("RecipientId")
-                        .HasColumnType("int");
+                    b.Property<DateTime>("DateTimeOfMessage")
+                        .HasColumnType("datetime2");
 
-                    b.Property<string>("UserId")
+                    b.Property<string>("DestinationUserID")
                         .HasColumnType("nvarchar(450)");
 
-                    b.HasKey("Id");
+                    b.Property<bool>("IsSeen")
+                        .HasColumnType("bit");
 
-                    b.HasIndex("UserId");
+                    b.Property<string>("Message")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.ToTable("Chats");
+                    b.Property<string>("SourceUserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("DestinationUserID");
+
+                    b.HasIndex("SourceUserId");
+
+                    b.ToTable("ChatMessages");
                 });
 
             modelBuilder.Entity("GraduationProject.Models.City", b =>
@@ -241,34 +252,6 @@ namespace GraduationProject.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("Cities");
-                });
-
-            modelBuilder.Entity("GraduationProject.Models.Messages", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("ChatId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime");
-
-                    b.Property<string>("Text")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(255)")
-                        .HasMaxLength(255);
-
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ChatId");
-
-                    b.ToTable("Messages");
                 });
 
             modelBuilder.Entity("GraduationProject.Models.Model", b =>
@@ -648,21 +631,15 @@ namespace GraduationProject.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("GraduationProject.Models.Chats", b =>
+            modelBuilder.Entity("GraduationProject.Models.ChatMessages", b =>
                 {
-                    b.HasOne("GraduationProject.Models.ApplicationUser", "User")
-                        .WithMany("Chats")
-                        .HasForeignKey("UserId")
-                        .HasConstraintName("FK__Chats__UserId__1B0907CE");
-                });
+                    b.HasOne("GraduationProject.Models.ApplicationUser", "DestinationUser")
+                        .WithMany("DestinationUser")
+                        .HasForeignKey("DestinationUserID");
 
-            modelBuilder.Entity("GraduationProject.Models.Messages", b =>
-                {
-                    b.HasOne("GraduationProject.Models.Chats", "Chat")
-                        .WithMany("Messages")
-                        .HasForeignKey("ChatId")
-                        .HasConstraintName("FK__Messages__ChatId__300424B4")
-                        .IsRequired();
+                    b.HasOne("GraduationProject.Models.ApplicationUser", "SourceUser")
+                        .WithMany("SourceUser")
+                        .HasForeignKey("SourceUserId");
                 });
 
             modelBuilder.Entity("GraduationProject.Models.Model", b =>

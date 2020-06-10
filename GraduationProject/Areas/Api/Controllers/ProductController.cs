@@ -91,6 +91,7 @@ namespace GraduationProject.Areas.Api.Controllers
 
         private string SaveAnImages(ImageProductViewModel imageProductViewModels)
         {
+            
             string imageString = imageProductViewModels.Value.Split(";base64,")[1];
             byte[] array = Convert.FromBase64String(imageString);
             ImageConverter converter = new ImageConverter();
