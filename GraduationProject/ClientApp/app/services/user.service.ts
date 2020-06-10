@@ -33,7 +33,7 @@ export class UserService {
         this.router.navigate(['/']);
     }
 
-    SendPasswordResetLink(data: ResetPassword){
+    SendPasswordResetLink(data: any){
         return this.http.post<ResetPassword>('api/account/ForgotPassword', data)
     }
 

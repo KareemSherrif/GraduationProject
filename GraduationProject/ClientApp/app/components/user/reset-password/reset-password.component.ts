@@ -20,7 +20,7 @@ export class ResetPasswordComponent implements OnInit {
       console.log("checked..")
     }
 
-  OnSubmit(FormData) {
+  OnSubmit(FormData){
     console.log("in function");
     this.userService.SendPasswordResetLink(FormData.value).subscribe((data: any) => {
       console.log('User Data ', data);

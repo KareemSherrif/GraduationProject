@@ -48,7 +48,7 @@ export class ChatComponent implements OnInit {
 
   }
   resizeEvent() {
-    alert("Hello");
+   
   }
 
 }
