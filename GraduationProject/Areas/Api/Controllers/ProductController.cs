@@ -69,14 +69,14 @@ namespace GraduationProject.Areas.Api.Controllers
                     }
                     _userProductRepository.Add(userProduct);
                     _userProductRepository.SaveAll();
-                    return Ok(new { message="successfull adding product"});
+                    return Ok(new { message="Product Successfully Added."});
                 }
-                return BadRequest("The Product Information is not valid");
+                return BadRequest("The Product Information is not valid.");
 
             }
             catch
             {
-                return BadRequest("Error has been happend");
+                return BadRequest("An Error Has Occured.");
             }
         }
            

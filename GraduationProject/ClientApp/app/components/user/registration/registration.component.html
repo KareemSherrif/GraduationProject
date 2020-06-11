@@ -22,10 +22,10 @@
 			/>
 			<mat-error *ngIf="firstName.invalid && firstName.touched">
 				<mat-error *ngIf="firstName.errors.required">
-					FirstName is Required
+					First Name is Required.
 				</mat-error>
 				<mat-error *ngIf="firstName.errors.minlength">
-					FirstName should be minimum 3 characters
+					FirstName should contain a minimum of 3 characters.
 				</mat-error>
 			</mat-error>
 		</mat-form-field>
@@ -41,7 +41,7 @@
 				required
 			/>
 			<mat-error *ngIf="lastname.invalid && lastname.touched">
-				The LastName is Required
+				Last Name is Required.
 			</mat-error>
 		</mat-form-field>
 
@@ -59,14 +59,14 @@
 			/>
 			<mat-error *ngIf="email.touched && email.invalid">
 				<mat-error *ngIf="email.errors.required">
-					Please Write your Email
+					Email is required.
 				</mat-error>
 			
 			</mat-error>
 		</mat-form-field>
 
 		<mat-form-field class="example-full-width" class="control-item-100">
-			<mat-label>UserName</mat-label>
+			<mat-label>Username</mat-label>
 			<input
 				matInput
 				required
@@ -76,7 +76,7 @@
 				#userName="ngModel"
 			/>
 			<mat-error *ngIf="userName.invalid && userName.touched">
-				The UserName is Required
+				Username is required.
 			</mat-error>
 		</mat-form-field>
 
@@ -94,12 +94,12 @@
 			/>
 
 			<mat-error *ngIf="password.invalid && password.touched">
-				The password is Required
+				password is required.
 			</mat-error>
 		</mat-form-field>
 
 		<mat-form-field class="control-item-50">
-			<mat-label>Password Confirm</mat-label>
+			<mat-label>Confirm Password</mat-label>
 			<input
 				matInput
 				type="password"
@@ -112,7 +112,7 @@
 			/>
 		</mat-form-field>
 		<mat-error *ngIf="passwordConfirmation">
-			The password doesn't much parent or Empty
+			Password Mismatch Detected.
 		</mat-error>
 
 		<mat-form-field class="example-full-width" class="control-item-50">
@@ -128,9 +128,9 @@
 				pattern="^[0-9]{9,15}$"
 			/>
 			<mat-error *ngIf="phone.invalid">
-				<mat-error *ngIf="phone.errors.pattern"> it's not phone </mat-error>
+				<mat-error *ngIf="phone.errors.pattern"> Invalid Phone Number. </mat-error>
 				<mat-error *ngIf="phone.errors.required">
-					the phone is required
+					Phone Number is required.
 				</mat-error>
 			</mat-error>
 		</mat-form-field>
@@ -144,16 +144,12 @@
 				name="address"
 				class="control-item-50"
 				required
-				minlength="11"
 				
 			/>
 			<mat-error *ngIf="address.invalid">
 			
 				<mat-error *ngIf="address.errors.required">
-					the Address is required
-				</mat-error>
-				<mat-error *ngIf="address.errors.minlength">
-					The Address should be more than 11 charachter
+					Address is required.
 				</mat-error>
 
 			</mat-error>

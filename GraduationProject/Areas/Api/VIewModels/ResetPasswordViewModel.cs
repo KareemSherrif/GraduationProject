@@ -18,7 +18,7 @@ namespace GraduationProject.Areas.Api.VIewModels
 
         [DataType(DataType.Password)]
         [Display(Name ="Confirm password")]
-        [Compare("Password",ErrorMessage ="Password and confirm Password must match")]
+        [Compare("Password",ErrorMessage ="Password Mismatch Detected.")]
         public string ConfirmPassword { get; set; }
 
         public string Token { get; set; }
