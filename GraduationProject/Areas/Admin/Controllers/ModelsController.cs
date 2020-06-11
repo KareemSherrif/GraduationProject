@@ -66,7 +66,7 @@ namespace GraduationProject.Areas.Admin.Controllers
             }
             catch
             {
-                return BadRequest("Error has been occured");
+                return BadRequest("An Error Has Occurred.");
             }
         }
 
@@ -91,13 +91,13 @@ namespace GraduationProject.Areas.Admin.Controllers
                     this.Repositry.SaveAll();
                     return Ok("The Model has been Changed");
                 }
-                return BadRequest("The Model is not Valid");
+                return BadRequest("An Error Has Occurred.");
 
                 
             }
             catch
             {
-                return BadRequest("An Error has been occured");
+                return BadRequest("An Error Has Occurred.");
             }
         }
 
@@ -122,7 +122,7 @@ namespace GraduationProject.Areas.Admin.Controllers
             }
             catch
             {
-                return BadRequest("Error has been occured");
+                return BadRequest("An Error Has Occurred.");
             }
         }
     }

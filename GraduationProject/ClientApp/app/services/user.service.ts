@@ -3,6 +3,8 @@ import { HttpClient, HttpHeaders} from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Login } from '../models/login';
 import { userInfo } from '../models/userInfo';
+import { ResetPasswordComponent } from '../components/user/reset-password/reset-password.component';
+import { ResetPassword } from '../models/resetPassword';
 
 @Injectable({
   providedIn: 'root'
@@ -29,6 +31,10 @@ export class UserService {
     Logout() {
         localStorage.removeItem('token');
         this.router.navigate(['/']);
+    }
+
+    SendPasswordResetLink(data: any){
+        return this.http.post<ResetPassword>('api/account/ForgotPassword', data)
     }
 
     CurrentUserToken() {

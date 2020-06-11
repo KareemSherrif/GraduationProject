@@ -1,3 +1,5 @@
+import { ChatService } from './../../../services/chat.service';
+import { chatMessage } from './../../../models/chat';
 import { UserService } from './../../../services/user.service';
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../../../services/product.service';
@@ -19,8 +21,11 @@ export class ProductDetailsComponent implements OnInit {
     soldItem: number;
     userId: string;
 
-    constructor(private productService: ProductService, private route: ActivatedRoute,
-        public userservice: UserService, private userInfoService: UserInfoService) {
+    constructor(private productService: ProductService,
+        private route: ActivatedRoute,
+        public userservice: UserService,
+        private chatMessage: ChatService,
+        private userInfoService: UserInfoService) {
         this.id = route.snapshot.paramMap.get('id');
         if (this.id) {
             this.productService.GetProductDetails(this.id)
@@ -33,10 +38,12 @@ export class ProductDetailsComponent implements OnInit {
         }
     }
     ShowChat(data) {
-
-
+        this.chatMessage.GetData(data.id);
+       
         document.getElementById("UserName").innerHTML = data.firstName + " " + data.lastName;
+        (<HTMLInputElement>document.getElementById("userId")).value = data.id;
         document.getElementById("chat").classList.remove("display-none");
+        
     }
 
     checkCondition(value: number) {

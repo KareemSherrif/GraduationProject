@@ -11,7 +11,7 @@
         
     <form #f="ngForm" (ngSubmit)="Save(f)">
         <mat-form-field class="control-item-100">
-            <mat-label for="userName">username</mat-label>
+            <mat-label for="userName">Username</mat-label>
             <input matInput type="text" id="userName" ngModel name="userName"
                    placeholder="Enter your Username" required #userName="ngModel" />
             <mat-error *ngIf="userName.touched && userName.invalid">
@@ -29,7 +29,7 @@
         </mat-form-field>
             <br>
             <mat-error *ngIf="notLogin">
-                Incorrect username or password Try again.
+                Incorrect username or password,Please Try again.
             </mat-error>
         <br />
             <div class="form-group">
@@ -37,8 +37,8 @@
                     <i class="fa fa-sign-in" aria-hidden="true"></i> Login</button>
             </div>
         <div class="form-group">
-        <a class="link-pointer"> Forgot my Password</a>
-        <a class="link-pointer">Register a new account </a>
+        <a class="link-pointer" routerLink="/ResetPassword"> Forgot Password?</a>
+        <a class="link-pointer" >Register a new account </a>
         
         </div>
 

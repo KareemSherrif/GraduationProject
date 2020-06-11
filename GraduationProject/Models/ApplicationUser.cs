@@ -12,7 +12,7 @@ namespace GraduationProject.Models
         public ApplicationUser()
         {
             Buys = new HashSet<Buys>();
-            Chats = new HashSet<Chats>();
+        
             Suggestions = new HashSet<Suggestions>();
             UserProduct = new HashSet<UserProduct>();
         }
@@ -31,7 +31,12 @@ namespace GraduationProject.Models
         public virtual ICollection<UsersRatings> UsersRatings { get; set; }
         public virtual ICollection<UsersReviews> UsersReviews { get; set; }
         public virtual ICollection<Buys> Buys { get; set; }
-        public virtual ICollection<Chats> Chats { get; set; }
+        [InverseProperty("DestinationUser")]
+        public ICollection<ChatMessages> DestinationUser { get; set; }
+        [InverseProperty("SourceUser")]
+        public ICollection<ChatMessages> SourceUser { get; set; }
+
+
         public virtual ICollection<Suggestions> Suggestions { get; set; }
         public virtual ICollection<UserProduct> UserProduct { get; set; }
     }

@@ -49,6 +49,9 @@ import { NgxEditorModule } from 'ngx-editor';
 import { ProductDetailsComponent } from './components/products/product-details/product-details.component';
 import { ChatComponent } from './components/chat/chat.component';
 import { AvatarModule } from 'ngx-avatar';
+import { ResetPasswordComponent } from './components/user/reset-password/reset-password.component';
+import { EmailSentComponent } from './components/user/email-sent/email-sent.component';
+import { UserSettingsComponent } from './components/profile/usersettings/usersettings.component';
 
 @NgModule({
   declarations: [
@@ -66,7 +69,10 @@ import { AvatarModule } from 'ngx-avatar';
     AddProductComponent,
     ListProductsComponent,
     ProductDetailsComponent,
-    ChatComponent
+    ChatComponent,
+    ResetPasswordComponent,
+    EmailSentComponent,
+    UserSettingsComponent
   ],
   imports: [
     BrowserModule,

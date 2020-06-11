@@ -58,7 +58,7 @@ namespace GraduationProject.Areas.Admin.Controllers
             }
             else
             {
-                return BadRequest("The Model isn't Valid");
+                return BadRequest("An Error Has Occurred.");
             }
         }
 
@@ -68,12 +68,12 @@ namespace GraduationProject.Areas.Admin.Controllers
 
             if (id == null)
             {
-                return BadRequest("The ID is not Found");
+                return BadRequest("The ID has not been Found");
             }
             Brand brand = this.BrandRepository.Get(id.Value);
             if (brand == null)
             {
-                return NotFound("The Brand is not found");
+                return NotFound("The Brand was not found");
             }
 
             return PartialView("Edit", brand);
@@ -97,7 +97,7 @@ namespace GraduationProject.Areas.Admin.Controllers
             }
             catch
             {
-                return BadRequest("The Brand Data is Locked now Try again later");
+                return BadRequest("An Error Has Occurred.");
             }
         }
 
@@ -114,7 +114,7 @@ namespace GraduationProject.Areas.Admin.Controllers
             }
             catch
             {
-                return BadRequest("The Brand is in use, couldn't be Deleted");
+                return BadRequest("An Error Has Occurred.");
             }
         }
     }

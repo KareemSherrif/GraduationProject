@@ -81,7 +81,7 @@ namespace GraduationProject.Areas.Admin.Controllers
                     category.Add(newCategory);
                     category.SaveAll();
                     
-                    return Ok("Category has been Add");
+                    return Ok("Category has been Added");
                 }
 
                 return BadRequest("Categoty Data is not valid");
@@ -153,7 +153,7 @@ namespace GraduationProject.Areas.Admin.Controllers
             }
             catch
             {
-                return BadRequest("Error has been occurred");
+                return BadRequest("An Error Has Occurred.");
             }
         }
         
