@@ -140,5 +140,12 @@ namespace GraduationProject.Areas.Api.Controllers
             var productDetails = _userProductRepository.GetUserProductDetails(Id);
             return Ok(productDetails);
         }
+        [HttpGet]
+        [Route("GetNumberOfSoldItems/{id}")]
+        public IActionResult GetNumberOfSoldItems(string Id)
+        {
+            var soldItem = _userProductRepository.GetNumberOfSoldItems(Id);
+            return Ok(soldItem);
+        }
     }
 }

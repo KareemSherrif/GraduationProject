@@ -18,6 +18,9 @@ namespace GraduationProject.Models
         public int Condition { get; set; }
         public string UserId { get; set; }
         public int ProductId { get; set; }
+        public DateTime DateAdded { get; set; }
+        public bool IsNegotiable { get; set; }
+        public bool IsReplacable { get; set; }
 
         public virtual Product Product { get; set; }
         public virtual ApplicationUser User { get; set; }
