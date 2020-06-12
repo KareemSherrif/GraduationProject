@@ -23,6 +23,7 @@ export class NavbarComponent implements OnInit {
   }
   LogOut() {
     this.userService.Logout();
+    this.chatService.hubConnection.stop();
   
   }
   ShowDailog(userId: string, UserName: string) {

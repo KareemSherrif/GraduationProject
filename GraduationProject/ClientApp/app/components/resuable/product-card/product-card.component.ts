@@ -8,10 +8,11 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class ProductCardComponent implements OnInit {
   @Input() productInfo: ProductInfo = new ProductInfo();
+  @Input() clickable: boolean = false;
   constructor() { }
 
   ngOnInit(): void {
-    console.log(this.productInfo);
+   
   }
 
 }

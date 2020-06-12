@@ -38,7 +38,7 @@
                             Add to Wishlist
                         </button>
 
-                        <button type="button" class="btn btn-fefault cart" *ngIf="userservice.IsLogin() && userservice.CurrentUserId() != product.userId" (click)="ShowChat(product.user)">
+                        <button type="button" class="btn btn-fefault cart" *ngIf="userservice.IsLogin() && userservice.CurrentUserId() != product.userId" (click)="ShowChat(product.user,product.id)">
                             <i class="fa fa-user"></i>
                             Contact Seller
                         </button>

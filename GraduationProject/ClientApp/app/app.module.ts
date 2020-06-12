@@ -52,6 +52,10 @@ import { AvatarModule } from 'ngx-avatar';
 import { ResetPasswordComponent } from './components/user/reset-password/reset-password.component';
 import { EmailSentComponent } from './components/user/email-sent/email-sent.component';
 import { UserSettingsComponent } from './components/profile/usersettings/usersettings.component';
+import { BuyerService } from './services/buyer.service';
+import { BuyersComponent } from './components/profile/buyers/buyers.component';
+import { ProductOwnerGuard } from './guards/product-owner.guard';
+import { RatingDailogComponent } from './components/resuable/rating-dailog/rating-dailog.component';
 import { SuggestionsComponent } from './components/suggestions/suggestions.component';
 import { SuggestionsService } from './services/suggestions.service';
 
@@ -75,7 +79,9 @@ import { SuggestionsService } from './services/suggestions.service';
     ResetPasswordComponent,
     EmailSentComponent,
     UserSettingsComponent,
-    SuggestionsComponent
+    BuyersComponent,
+        RatingDailogComponent,
+        SuggestionsComponent
   ],
   imports: [
     BrowserModule,
@@ -109,10 +115,11 @@ import { SuggestionsService } from './services/suggestions.service';
   ],
   providers: [
      
-        [AreasService, CitiesService, UserInfoService,ProductService],
+        [AreasService, CitiesService, UserInfoService,ProductService,BuyerService],
         UserService,
         SuggestionsService,
-        AuthGuard,
+      AuthGuard,
+      ProductOwnerGuard,
         {
             provide: HTTP_INTERCEPTORS,
             useClass: AuthInterceptor,

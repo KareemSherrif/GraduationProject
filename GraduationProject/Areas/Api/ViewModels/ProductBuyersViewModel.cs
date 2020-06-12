@@ -7,6 +7,7 @@ namespace GraduationProject.Areas.Api.ViewModels
 {
     public class ProductBuyersViewModel
     {
+        public string ProductOwnerID { get; set; }
         public int ProductId { get; set; }
         public string ProductName { get; set; }
         public string UserId { get; set; }
@@ -15,4 +16,5 @@ namespace GraduationProject.Areas.Api.ViewModels
         public string Description { get; set; }
         public decimal Price { get; set; }
     }
+   
 }

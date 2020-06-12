@@ -9,3 +9,8 @@
     justify-content: center;
     display: flex;
 }
+
+#editSettingsButton{
+    background-color: #222222;
+    color: #ffffff;
+}

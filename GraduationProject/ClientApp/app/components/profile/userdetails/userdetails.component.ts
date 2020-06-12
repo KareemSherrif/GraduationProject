@@ -12,9 +12,9 @@ import { HttpErrorResponse } from '@angular/common/http';
   styleUrls: ['./userdetails.component.css']
 })
 export class UserdetailsComponent implements OnInit {
-
+  userID:string = null;
   userInfo:userInfo = null;
-  constructor(private UserInfoService:UserInfoService, private activeRouter:ActivatedRoute) { }
+  constructor(private UserInfoService:UserInfoService, private activeRouter:ActivatedRoute, public userservice:UserService) { }
 
   ngOnInit(): void {
     this.activeRouter.params.subscribe(a => {
@@ -29,6 +29,7 @@ export class UserdetailsComponent implements OnInit {
       }
       else
       {
+        this.userID = a.id;
         this.UserInfoService.GetUserInformationByID(a.id).subscribe(a => {
           this.userInfo = a;
         }, (error: HttpErrorResponse)=>{

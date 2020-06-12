@@ -34,7 +34,7 @@ if (content.locals) {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = [[module.i, "/* You can add global styles to this file, and also import other style files */\r\n\r\nhtml, body { height: auto; }\r\n\r\nbody { margin: 0; font-family: Roboto, \"Helvetica Neue\", sans-serif; }\r\n\r\n.NgxEditor{\r\n height: 250px;\r\n}\r\n\r\nmain{\r\n    position: relative;\r\n    \r\n \r\n}\r\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIkNsaWVudEFwcC9zdHlsZXMuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBLDhFQUE4RTs7QUFFOUUsYUFBYSxZQUFZLEVBQUU7O0FBQzNCLE9BQU8sU0FBUyxFQUFFLGlEQUFpRCxFQUFFOztBQUNyRTtDQUNDLGFBQWE7QUFDZDs7QUFDQTtJQUNJLGtCQUFrQjs7O0FBR3RCIiwiZmlsZSI6IkNsaWVudEFwcC9zdHlsZXMuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLyogWW91IGNhbiBhZGQgZ2xvYmFsIHN0eWxlcyB0byB0aGlzIGZpbGUsIGFuZCBhbHNvIGltcG9ydCBvdGhlciBzdHlsZSBmaWxlcyAqL1xyXG5cclxuaHRtbCwgYm9keSB7IGhlaWdodDogYXV0bzsgfVxyXG5ib2R5IHsgbWFyZ2luOiAwOyBmb250LWZhbWlseTogUm9ib3RvLCBcIkhlbHZldGljYSBOZXVlXCIsIHNhbnMtc2VyaWY7IH1cclxuLk5neEVkaXRvcntcclxuIGhlaWdodDogMjUwcHg7XHJcbn1cclxubWFpbntcclxuICAgIHBvc2l0aW9uOiByZWxhdGl2ZTtcclxuICAgIFxyXG4gXHJcbn1cclxuIl19 */", '', '']]
+module.exports = [[module.i, "/* You can add global styles to this file, and also import other style files */\r\n\r\nhtml, body { \r\n    height: auto;\r\n     min-height: 100vh;\r\n     background: #fff; /* fallback for old browsers */ /* Chrome 10-25, Safari 5.1-6 */\r\n     background: linear-gradient(to right, #fff, #ccc, #ddd)\r\n }\r\n\r\nbody { margin: 0; font-family: Roboto, \"Helvetica Neue\", sans-serif; }\r\n\r\n.NgxEditor{\r\n height: 250px;\r\n}\r\n\r\nmain{\r\n    position: relative;\r\n    \r\n \r\n}\r\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIkNsaWVudEFwcC9zdHlsZXMuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBLDhFQUE4RTs7QUFFOUU7SUFDSSxZQUFZO0tBQ1gsaUJBQWlCO0tBQ2pCLGdCQUFnQixFQUFFLDhCQUE4QixFQUNpQiwrQkFBK0I7S0FDaEc7Q0FDSjs7QUFDRCxPQUFPLFNBQVMsRUFBRSxpREFBaUQsRUFBRTs7QUFDckU7Q0FDQyxhQUFhO0FBQ2Q7O0FBQ0E7SUFDSSxrQkFBa0I7OztBQUd0QiIsImZpbGUiOiJDbGllbnRBcHAvc3R5bGVzLmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi8qIFlvdSBjYW4gYWRkIGdsb2JhbCBzdHlsZXMgdG8gdGhpcyBmaWxlLCBhbmQgYWxzbyBpbXBvcnQgb3RoZXIgc3R5bGUgZmlsZXMgKi9cclxuXHJcbmh0bWwsIGJvZHkgeyBcclxuICAgIGhlaWdodDogYXV0bztcclxuICAgICBtaW4taGVpZ2h0OiAxMDB2aDtcclxuICAgICBiYWNrZ3JvdW5kOiAjZmZmOyAvKiBmYWxsYmFjayBmb3Igb2xkIGJyb3dzZXJzICovXHJcbiAgICAgYmFja2dyb3VuZDogLXdlYmtpdC1saW5lYXItZ3JhZGllbnQodG8gcmlnaHQsICNmZmYsICNjY2MsICNkZGQpOyAvKiBDaHJvbWUgMTAtMjUsIFNhZmFyaSA1LjEtNiAqL1xyXG4gICAgIGJhY2tncm91bmQ6IGxpbmVhci1ncmFkaWVudCh0byByaWdodCwgI2ZmZiwgI2NjYywgI2RkZClcclxuIH1cclxuYm9keSB7IG1hcmdpbjogMDsgZm9udC1mYW1pbHk6IFJvYm90bywgXCJIZWx2ZXRpY2EgTmV1ZVwiLCBzYW5zLXNlcmlmOyB9XHJcbi5OZ3hFZGl0b3J7XHJcbiBoZWlnaHQ6IDI1MHB4O1xyXG59XHJcbm1haW57XHJcbiAgICBwb3NpdGlvbjogcmVsYXRpdmU7XHJcbiAgICBcclxuIFxyXG59XHJcbiJdfQ== */", '', '']]
 
 /***/ }),
 
@@ -452,10 +452,10 @@ module.exports = function (list, options) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\shahe\Desktop\ITI\Grad. Project\Project\GraduationProject\node_modules\@angular\material\prebuilt-themes\indigo-pink.css */"./node_modules/@angular/material/prebuilt-themes/indigo-pink.css");
-__webpack_require__(/*! C:\Users\shahe\Desktop\ITI\Grad. Project\Project\GraduationProject\node_modules\ngx-toastr\toastr.css */"./node_modules/ngx-toastr/toastr.css");
-__webpack_require__(/*! C:\Users\shahe\Desktop\ITI\Grad. Project\Project\GraduationProject\node_modules\font-awesome\css\font-awesome.css */"./node_modules/font-awesome/css/font-awesome.css");
-module.exports = __webpack_require__(/*! C:\Users\shahe\Desktop\ITI\Grad. Project\Project\GraduationProject\ClientApp\styles.css */"./ClientApp/styles.css");
+__webpack_require__(/*! F:\MyApplication\GraduationProject\GraduationProject\GraduationProject\node_modules\@angular\material\prebuilt-themes\indigo-pink.css */"./node_modules/@angular/material/prebuilt-themes/indigo-pink.css");
+__webpack_require__(/*! F:\MyApplication\GraduationProject\GraduationProject\GraduationProject\node_modules\ngx-toastr\toastr.css */"./node_modules/ngx-toastr/toastr.css");
+__webpack_require__(/*! F:\MyApplication\GraduationProject\GraduationProject\GraduationProject\node_modules\font-awesome\css\font-awesome.css */"./node_modules/font-awesome/css/font-awesome.css");
+module.exports = __webpack_require__(/*! F:\MyApplication\GraduationProject\GraduationProject\GraduationProject\ClientApp\styles.css */"./ClientApp/styles.css");
 
 
 /***/ })

@@ -12,6 +12,7 @@ namespace GraduationProject.Repositry
         public UserProduct GetUserProductDetails(int userProductId);
         public IEnumerable<UserProduct> GetUserProductByID(string UserID);
         public int GetNumberOfSoldItems(string userId);
+        public UserProduct GetProductByID(int ProductId);
 
     }
 }

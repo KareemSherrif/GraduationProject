@@ -35,7 +35,9 @@ namespace GraduationProject.Areas.Api.Profiles
                 .ForMember(a => a.Price, a => a.MapFrom(a => a.Price))
                 .ForMember(a => a.Name, a => a.MapFrom(a => a.Name))
                 .ForMember(a => a.Condition, a => a.MapFrom(a => a.Condition))
-                .ForMember(a => a.Images, a => a.MapFrom(a => a.UserProductImages));
+                .ForMember(a => a.Images, a => a.MapFrom(a => a.UserProductImages))
+                .ForMember(a => a.UserId, a => a.MapFrom(a => a.UserId));
+          
 
                
 

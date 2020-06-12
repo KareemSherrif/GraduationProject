@@ -32,6 +32,9 @@ export class ProductService {
 
     GetProductDetails(id: number) {
         return this.http.get("api/product/GetProductDetails/" + id);
-    }
+  }
+  GetProductById(id: number) {
+    return this.http.get<ProductInfo>("api/product/" + id);
+  }
 
 }

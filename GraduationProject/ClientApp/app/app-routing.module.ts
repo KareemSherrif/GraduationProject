@@ -1,4 +1,5 @@
-﻿import { AddProductComponent } from './components/products/add-product/add-product.component';
+﻿import { ProductOwnerGuard } from './guards/product-owner.guard';
+import { AddProductComponent } from './components/products/add-product/add-product.component';
 import { animate } from '@angular/animations';
 import { AuthGuard } from './guards/auth.guard';
 import { NgModule } from '@angular/core';
@@ -11,6 +12,8 @@ import { ListProductsComponent } from './components/products/list-products/list-
 import { ProductDetailsComponent } from './components/products/product-details/product-details.component';
 import { ResetPasswordComponent } from './components/user/reset-password/reset-password.component';
 import { EmailSentComponent } from './components/user/email-sent/email-sent.component';
+import { UserSettingsComponent } from './components/profile/usersettings/usersettings.component';
+import { BuyersComponent } from './components/profile/buyers/buyers.component';
 import { SuggestionsComponent } from './components/suggestions/suggestions.component';
 
 const routes: Routes = [
@@ -24,6 +27,8 @@ const routes: Routes = [
     { path: 'AddProduct', component: AddProductComponent, canActivate: [AuthGuard] },
     { path: 'ListProduct', component: ListProductsComponent, canActivate: [AuthGuard] },
     { path: 'product/Details/:id', component: ProductDetailsComponent, canActivate: [AuthGuard] },
+    { path: 'profile/Edit/Account', component: UserSettingsComponent, canActivate: [AuthGuard] },
+    { path: 'buyer/:id', component: BuyersComponent, canActivate: [ProductOwnerGuard] },
     { path: 'product/suggestion', component: SuggestionsComponent, canActivate: [AuthGuard] },
 ];
 
