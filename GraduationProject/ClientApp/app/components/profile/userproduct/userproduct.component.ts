@@ -17,7 +17,7 @@ export class UserproductComponent implements OnInit {
       if (a.id == null) {
         this.ProductService.GetUserProduct().subscribe(a => {
           this.ProductsInfo = a;
-          console.log(this.ProductsInfo);
+         
         });
       }
       else

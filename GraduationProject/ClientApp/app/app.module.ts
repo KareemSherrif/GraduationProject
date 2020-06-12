@@ -52,6 +52,7 @@ import { AvatarModule } from 'ngx-avatar';
 import { ResetPasswordComponent } from './components/user/reset-password/reset-password.component';
 import { EmailSentComponent } from './components/user/email-sent/email-sent.component';
 import { UserSettingsComponent } from './components/profile/usersettings/usersettings.component';
+import { BuyerService } from './services/buyer.service';
 
 @NgModule({
   declarations: [
@@ -106,7 +107,7 @@ import { UserSettingsComponent } from './components/profile/usersettings/userset
   ],
   providers: [
      
-        [AreasService, CitiesService, UserInfoService,ProductService],
+        [AreasService, CitiesService, UserInfoService,ProductService,BuyerService],
         UserService,
         AuthGuard,
         {

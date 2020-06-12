@@ -1,3 +1,5 @@
+import { ToastrService } from 'ngx-toastr';
+import { BuyerService } from './../../../services/buyer.service';
 import { ChatService } from './../../../services/chat.service';
 import { chatMessage } from './../../../models/chat';
 import { UserService } from './../../../services/user.service';
@@ -5,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../../../services/product.service';
 import { ActivatedRoute } from '@angular/router';
 import { UserInfoService } from '../../../services/userInfo.service';
+import { HttpErrorResponse } from '@angular/common/http';
 declare var $: any;
 
 @Component({
@@ -25,7 +28,9 @@ export class ProductDetailsComponent implements OnInit {
         private route: ActivatedRoute,
         public userservice: UserService,
         private chatMessage: ChatService,
-        private userInfoService: UserInfoService) {
+        private userInfoService: UserInfoService,
+        private BuyerService: BuyerService,
+        private ToastrService:ToastrService) {
         this.id = route.snapshot.paramMap.get('id');
         if (this.id) {
             this.productService.GetProductDetails(this.id)
@@ -37,12 +42,17 @@ export class ProductDetailsComponent implements OnInit {
                 });
         }
     }
-    ShowChat(data) {
+    ShowChat(data,productId) {
         this.chatMessage.GetData(data.id);
-       
         document.getElementById("UserName").innerHTML = data.firstName + " " + data.lastName;
         (<HTMLInputElement>document.getElementById("userId")).value = data.id;
         document.getElementById("chat").classList.remove("display-none");
+        this.BuyerService.AddBuyer(productId).subscribe(a => {
+            
+
+        }, (er: HttpErrorResponse)=>{
+                console.log(er.message);
+        });
         
     }
 
