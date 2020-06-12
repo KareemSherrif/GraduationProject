@@ -13,7 +13,7 @@ export class UserproductComponent implements OnInit {
   ProductsInfo: ProductInfo[] = null;
   constructor(public ProductService: ProductService
     , private activeRouter: ActivatedRoute,
-    private UserService:UserService ) { }
+    public UserService:UserService ) { }
 
   ngOnInit(): void {
     this.activeRouter.params.subscribe(a => {
