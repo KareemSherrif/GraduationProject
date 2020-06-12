@@ -52,6 +52,8 @@ import { AvatarModule } from 'ngx-avatar';
 import { ResetPasswordComponent } from './components/user/reset-password/reset-password.component';
 import { EmailSentComponent } from './components/user/email-sent/email-sent.component';
 import { UserSettingsComponent } from './components/profile/usersettings/usersettings.component';
+import { SuggestionsComponent } from './components/suggestions/suggestions.component';
+import { SuggestionsService } from './services/suggestions.service';
 
 @NgModule({
   declarations: [
@@ -72,7 +74,8 @@ import { UserSettingsComponent } from './components/profile/usersettings/userset
     ChatComponent,
     ResetPasswordComponent,
     EmailSentComponent,
-    UserSettingsComponent
+    UserSettingsComponent,
+    SuggestionsComponent
   ],
   imports: [
     BrowserModule,
@@ -108,6 +111,7 @@ import { UserSettingsComponent } from './components/profile/usersettings/userset
      
         [AreasService, CitiesService, UserInfoService,ProductService],
         UserService,
+        SuggestionsService,
         AuthGuard,
         {
             provide: HTTP_INTERCEPTORS,
