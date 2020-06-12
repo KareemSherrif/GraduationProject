@@ -1,3 +1,4 @@
+import { UserService } from './../../../services/user.service';
 import { ActivatedRoute } from '@angular/router';
 import { ProductService } from './../../../services/product.service';
 import { ProductInfo } from './../../../models/productCard';
@@ -10,7 +11,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserproductComponent implements OnInit {
   ProductsInfo: ProductInfo[] = null;
-  constructor(public ProductService:ProductService, private activeRouter:ActivatedRoute) { }
+  constructor(public ProductService: ProductService
+    , private activeRouter: ActivatedRoute,
+    private UserService:UserService ) { }
 
   ngOnInit(): void {
     this.activeRouter.params.subscribe(a => {

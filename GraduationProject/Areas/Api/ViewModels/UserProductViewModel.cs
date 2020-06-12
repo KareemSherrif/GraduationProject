@@ -17,6 +17,7 @@ namespace GraduationProject.Areas.Api.ViewModels
         public string Name { get; set; }
         public decimal Price { get; set; }
         public int Condition { get; set; }
+        public string UserId { get; set; }
         public ICollection<ViewModelUserProductImages> Images { get; set; }
 
     }

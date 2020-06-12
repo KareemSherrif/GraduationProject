@@ -4,8 +4,8 @@ html, body {
     height: auto;
      min-height: 100vh;
      background: #fff; /* fallback for old browsers */
-     background: -webkit-linear-gradient(to right, #eee, #ccc, #ddd); /* Chrome 10-25, Safari 5.1-6 */
-     background: linear-gradient(to right, #eee, #ccc, #ddd)
+     background: -webkit-linear-gradient(to right, #fff, #ccc, #ddd); /* Chrome 10-25, Safari 5.1-6 */
+     background: linear-gradient(to right, #fff, #ccc, #ddd)
  }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .NgxEditor{
