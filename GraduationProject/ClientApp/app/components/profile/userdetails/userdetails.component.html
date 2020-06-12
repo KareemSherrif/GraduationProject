@@ -30,10 +30,11 @@
         </dd>
       </dl>
   </mat-card-content>
-
+  
+  <a class="btn" id="editSettingsButton" *ngIf="userservice.IsLogin() && (userservice.CurrentUserId() == userID || userID == null)" [routerLink]="['/profile/Edit/Account']" >Edit Account Settings</a>
 </ng-template>
 <ng-template #didNotLoaded>
- <div class="spinner-container">
-  <mat-spinner></mat-spinner>
-</div>
+  <div class="spinner-container">
+    <mat-spinner></mat-spinner>
+  </div>
 </ng-template>

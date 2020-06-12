@@ -11,6 +11,7 @@ import { ListProductsComponent } from './components/products/list-products/list-
 import { ProductDetailsComponent } from './components/products/product-details/product-details.component';
 import { ResetPasswordComponent } from './components/user/reset-password/reset-password.component';
 import { EmailSentComponent } from './components/user/email-sent/email-sent.component';
+import { UserSettingsComponent } from './components/profile/usersettings/usersettings.component';
 
 const routes: Routes = [
     { path: '', component: HomeComponent },
@@ -22,7 +23,8 @@ const routes: Routes = [
     { path: 'profile/:id', component: ProfileComponent },
     { path: 'AddProduct', component: AddProductComponent, canActivate: [AuthGuard] },
     { path: 'ListProduct', component: ListProductsComponent, canActivate: [AuthGuard] },
-    { path: 'product/Details/:id', component: ProductDetailsComponent, canActivate: [AuthGuard] }
+    { path: 'product/Details/:id', component: ProductDetailsComponent, canActivate: [AuthGuard] },
+    { path: 'profile/Edit/Account', component: UserSettingsComponent, canActivate: [AuthGuard] }
 ];
 
 @NgModule({

@@ -1,0 +1,14 @@
+.title{
+    margin-top: 0.5em;
+    font-family: 'Arial';
+}
+
+#btnBack{
+    background-color: #222222;
+    color:white;
+    margin-top: 0.5em;
+}
+
+.btn-success{
+    margin-top: 0.5em;
+}
