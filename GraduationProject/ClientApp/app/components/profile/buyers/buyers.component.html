@@ -1,0 +1,27 @@
+<!-- @format -->
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-4">
+			<app-product-card [productInfo]="this.ProductInfo"></app-product-card>
+        </div>
+        <div class="col-md-6">
+            <mat-card>
+              
+               
+      
+                <mat-card-content>
+                    <h2 class="title text-center">Buyers</h2>
+                  <table class="table ">
+                    
+                      <tr *ngFor="let item of buyers">
+                            <td>{{item.userName}}</td>
+                            <td><button class="btn  btn-dark" (click)="Sold(item.userId,item.userName)">Sold</button></td>
+                      </tr>
+                  </table>
+
+                </mat-card-content>
+            </mat-card>
+        </div>
+	</div>
+</div>

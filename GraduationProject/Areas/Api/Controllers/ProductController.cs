@@ -35,7 +35,7 @@ namespace GraduationProject.Areas.Api.Controllers
         {
             _userProductRepository = userProductRepository;
             _userProductImages = userProductImages;
-          _productRepository = productRepository;
+            _productRepository = productRepository;
             _mapper = mapper;
             _webHostEnvironment = webHostEnvironment;
         }
@@ -69,7 +69,7 @@ namespace GraduationProject.Areas.Api.Controllers
                     }
                     _userProductRepository.Add(userProduct);
                     _userProductRepository.SaveAll();
-                    return Ok(new { message="Product Successfully Added."});
+                    return Ok(new { message = "Product Successfully Added." });
                 }
                 return BadRequest("The Product Information is not valid.");
 
@@ -79,7 +79,7 @@ namespace GraduationProject.Areas.Api.Controllers
                 return BadRequest("An Error Has Occured.");
             }
         }
-           
+
 
         [HttpGet("GetProduct")]
         [Route("GetProduct/{name}")]
@@ -91,7 +91,7 @@ namespace GraduationProject.Areas.Api.Controllers
 
         private string SaveAnImages(ImageProductViewModel imageProductViewModels)
         {
-            
+
             string imageString = imageProductViewModels.Value.Split(";base64,")[1];
             byte[] array = Convert.FromBase64String(imageString);
             ImageConverter converter = new ImageConverter();
@@ -110,15 +110,15 @@ namespace GraduationProject.Areas.Api.Controllers
             return Ok(AllProducts);
         }
 
-       [HttpGet]
-       [Route("GetUserProduct")]
+        [HttpGet]
+        [Route("GetUserProduct")]
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public IActionResult GetUserProducts()
         {
             string userId = User.GetUserIdToken();
-          var model=  _mapper.Map<IEnumerable<UserProduct>,IEnumerable< UserProductViewModel>>
-                (_userProductRepository.GetUserProductByID(userId));
-           
+            var model = _mapper.Map<IEnumerable<UserProduct>, IEnumerable<UserProductViewModel>>
+                  (_userProductRepository.GetUserProductByID(userId));
+
             return Ok(model);
         }
 
@@ -127,10 +127,17 @@ namespace GraduationProject.Areas.Api.Controllers
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public IActionResult GetUserProducts(string id)
         {
-           
+
             var model = _mapper.Map<IEnumerable<UserProduct>, IEnumerable<UserProductViewModel>>
                   (_userProductRepository.GetUserProductByID(id));
 
+            return Ok(model);
+        }
+        [HttpGet(template: "{productId}")]
+        public IActionResult GetProduct(int productId)
+        {
+            var model = _mapper.Map<UserProduct, UserProductViewModel>
+                (_userProductRepository.GetProductByID(productId));
             return Ok(model);
         }
 

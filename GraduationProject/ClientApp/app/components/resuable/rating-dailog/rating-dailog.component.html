@@ -1,0 +1,20 @@
+<div class="container-middle">
+<mat-card>
+    <mat-card-content>
+    <h2 class="title text-center">Review</h2>
+        <div class="d-flex form-group">
+            <mat-form-field class="full-width">
+                <mat-label>Leave a comment</mat-label>
+                <textarea matInput class="full-width" placeholder="Ex. It makes me feel..."></textarea>
+              </mat-form-field>
+        </div>
+
+        <h2 class="title text-center">Rating</h2>
+        <div class="d-flex">
+           <app-rating></app-rating>
+        </div>
+        
+   </mat-card-content>
+</mat-card>
+<button (click)="Close()">close</button>
+</div>

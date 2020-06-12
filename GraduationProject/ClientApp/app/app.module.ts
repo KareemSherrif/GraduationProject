@@ -53,6 +53,11 @@ import { ResetPasswordComponent } from './components/user/reset-password/reset-p
 import { EmailSentComponent } from './components/user/email-sent/email-sent.component';
 import { UserSettingsComponent } from './components/profile/usersettings/usersettings.component';
 import { BuyerService } from './services/buyer.service';
+import { BuyersComponent } from './components/profile/buyers/buyers.component';
+import { ProductOwnerGuard } from './guards/product-owner.guard';
+import { RatingDailogComponent } from './components/resuable/rating-dailog/rating-dailog.component';
+import { SuggestionsComponent } from './components/suggestions/suggestions.component';
+import { SuggestionsService } from './services/suggestions.service';
 
 @NgModule({
   declarations: [
@@ -73,7 +78,10 @@ import { BuyerService } from './services/buyer.service';
     ChatComponent,
     ResetPasswordComponent,
     EmailSentComponent,
-    UserSettingsComponent
+    UserSettingsComponent,
+    BuyersComponent,
+        RatingDailogComponent,
+        SuggestionsComponent
   ],
   imports: [
     BrowserModule,
@@ -109,7 +117,9 @@ import { BuyerService } from './services/buyer.service';
      
         [AreasService, CitiesService, UserInfoService,ProductService,BuyerService],
         UserService,
-        AuthGuard,
+        SuggestionsService,
+      AuthGuard,
+      ProductOwnerGuard,
         {
             provide: HTTP_INTERCEPTORS,
             useClass: AuthInterceptor,

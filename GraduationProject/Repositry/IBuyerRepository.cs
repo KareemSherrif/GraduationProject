@@ -11,7 +11,9 @@ namespace GraduationProject.Repositry
         public UserProduct GetProductBuyers(int ProductId);
 
         public void UserSold(int productId, string userID);
-       
+        public bool IsProductOwner(int productId, string UserID);
+
+
 
     }
 }
