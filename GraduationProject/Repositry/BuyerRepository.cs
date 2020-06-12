@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 namespace GraduationProject.Repositry
-{
+{  
     public class BuyerRepository : Repositry<Buys, int>, IBuyerRepository
     {
         private readonly ApplicationDbContext context;
