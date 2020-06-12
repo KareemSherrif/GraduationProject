@@ -21,6 +21,13 @@ namespace GraduationProject.Repositry
                 .Include(a=>a.UserProductImages)
                 .Where(a => a.UserId == UserID);
         }
+        public UserProduct GetProductByID(int ProductId)
+        {
+            return context.UserProduct
+                .Include(a => a.UserProductImages)
+                .FirstOrDefault(a => a.Id == ProductId);
+                
+        }
 
         public IEnumerable<UserProduct> GetUserProductsWithImages()
         {

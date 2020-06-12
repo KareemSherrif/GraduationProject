@@ -20,11 +20,13 @@ namespace GraduationProject.Areas.Api.Controllers
     public class BuyerController : ControllerBase
     {
         private readonly IBuyerRepository _buyerRepository;
+   
         private readonly IMapper _mapper;
 
-        public BuyerController(IBuyerRepository buyerRepository,IMapper mapper)
+        public BuyerController(IBuyerRepository buyerRepository ,IMapper mapper)
         {
             this._buyerRepository = buyerRepository;
+          
             this._mapper = mapper;
         }
         [HttpPost(template: "{productId}")]
@@ -63,7 +65,8 @@ namespace GraduationProject.Areas.Api.Controllers
              model.Buys.ToList() : null;
             if (result != null)
             {
-            
+
+                model.Buys = result;
                 return Ok(_mapper.Map<IEnumerable<Buys>, IEnumerable<ProductBuyersViewModel>>(result));
             }
             return BadRequest("The product is sold out .");
@@ -82,6 +85,16 @@ namespace GraduationProject.Areas.Api.Controllers
             return BadRequest("Model is not Valid");
 
         }
+        [HttpGet]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        [Route("IsOwner/{productId}")]
+        public IActionResult IsProductOwned(int productId)
+        {
+
+        
+            return Ok(_buyerRepository.IsProductOwner(productId, User.GetUserIdToken()));
+        }
+
 
       
     }
