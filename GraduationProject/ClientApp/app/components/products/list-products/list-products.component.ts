@@ -17,9 +17,9 @@ export class ListProductsComponent implements OnInit {
         if (value == 0)
             this.conditionValue = 'New'
         if (value == 1)
-            this.conditionValue = 'used With Box'
+            this.conditionValue = 'Used With Box'
         if (value == 2)
-            this.conditionValue = 'used Without Box'
+            this.conditionValue = 'Used Without Box'
         return this.conditionValue;
     }
 

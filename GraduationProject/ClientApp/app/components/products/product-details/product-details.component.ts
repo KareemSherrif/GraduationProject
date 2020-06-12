@@ -4,6 +4,8 @@ import { UserService } from './../../../services/user.service';
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../../../services/product.service';
 import { ActivatedRoute } from '@angular/router';
+import { UserInfoService } from '../../../services/userInfo.service';
+declare var $: any;
 
 @Component({
   selector: 'app-product-details',
@@ -14,18 +16,25 @@ export class ProductDetailsComponent implements OnInit {
     id;
     product;
     conditionValue: string;
+    rating;
+    Acceptance: string;
+    soldItem: number;
+    userId: string;
 
     constructor(private productService: ProductService,
         private route: ActivatedRoute,
         public userservice: UserService,
-        private chatMessage:ChatService) {
+        private chatMessage: ChatService,
+        private userInfoService: UserInfoService) {
         this.id = route.snapshot.paramMap.get('id');
         if (this.id) {
             this.productService.GetProductDetails(this.id)
                 .subscribe(data => {
                     this.product = data;
+                    this.userId = data['userId'];
                     console.log(data);
-                })
+                    this.GetSellerInfo(this.userId);
+                });
         }
     }
     ShowChat(data) {
@@ -41,13 +50,43 @@ export class ProductDetailsComponent implements OnInit {
         if (value == 0)
             this.conditionValue = 'New'
         if (value == 1)
-            this.conditionValue = 'used With Box'
+            this.conditionValue = 'Used With Box'
         if (value == 2)
-            this.conditionValue = 'used Without Box'
+            this.conditionValue = 'Used Without Box'
         return this.conditionValue;
     }
 
-  ngOnInit(): void {
-  }
+    checkAcceptance(value) {
+        if (value == 'true' ||  value == 1)
+            this.Acceptance = 'Yes';
+        if (value == 'false' || value == 0)
+            this.Acceptance = 'No';
+        return this.Acceptance;
+    }
+
+    GetSellerInfo(userId) {
+        this.userInfoService.GetNumberOfSoldItems(userId)
+            .subscribe(data => {
+                this.soldItem = data;
+            });
+
+        this.userInfoService.GetUserRatingById(userId)
+            .subscribe(data => {
+                this.rating = data;
+            });
+    }
+
+    ngOnInit(): void {
+
+    }
+
+    ngAfterViewInit() {
+        $(document).ready(function () {
+            $('.thumb a').mouseover(function(e) {
+                e.preventDefault();
+                $('.imgBox img').attr("src", $(this).attr("href"));
+            });
+        });
+    }
 
 }

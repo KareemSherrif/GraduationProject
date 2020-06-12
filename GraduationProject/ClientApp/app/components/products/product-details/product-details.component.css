@@ -2,7 +2,7 @@
     margin-top: 20px;
 }
 
-.box{
+.box {
     height: 90px;
     width: 90px;
 }
@@ -12,6 +12,30 @@
     height: 90px;
 }
 
+.product-information {
+    border: 1px solid #F7F7F0;
+    overflow: hidden;
+    padding-bottom: 60px;
+    padding-left: 60px;
+    padding-top: 60px;
+    position: relative;
+}
+
+.product-information h2 {
+    color: #363432;
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+    margin-top: 0;
+}
+
 .product-information p {
-    font-size: 17px;
+    color: #696763;
+    font-family: 'Roboto', sans-serif;
+    margin-bottom: 5px;
+    font-size: 16px;
+}
+
+.user-information {
+    border: 1px solid #F7F7F0;
+    padding-top: 30px;
 }

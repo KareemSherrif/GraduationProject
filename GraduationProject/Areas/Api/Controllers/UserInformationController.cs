@@ -62,6 +62,13 @@ namespace GraduationProject.Areas.Api.Controllers
             return Ok(usersReviews);
 
         }
+        [HttpGet]
+        [Route("UserRating/{id}")]
+        public ActionResult GetRating(string Id)
+        {
+            var average = _usersRepository.GetAverageRating(Id);
+            return Ok(average);
+        }
 
     }
 }

@@ -58,6 +58,7 @@ namespace GraduationProject
             services.AddTransient<IProductAttributesRepository, ProductAttributesRepository>();
             services.AddTransient<IChatRepository, ChatRepositry>();
             services.AddSingleton<List<ConnectionUserID>>();
+            services.AddTransient<IBuyerRepository, BuyerRepository>();
            
             #endregion
 

@@ -87,7 +87,7 @@ namespace GraduationProject.Areas.Api.Controllers
                         var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configration["Tokens:Key"]));
                         var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
                         var token = new JwtSecurityToken(null, null,
-                            claims, expires: DateTime.Now.AddMinutes(60),
+                            claims, expires: DateTime.Now.AddDays(60),
                             signingCredentials: credentials);
 
                         return Ok(new
