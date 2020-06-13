@@ -2,127 +2,127 @@
     <div class="row">
         <div class="col-sm-1">
         </div>
-        <div class="col-sm-10 padding-right">
-            <div class="product-details">
-                <!--product-details-->
-                <div class="col-sm-6">
-                    <div class="view-product imgBox">
-                        <img [src]="'/images/'+product.userProductImages[0].images" alt="product Image" />
-                    </div>
-                    <div id="similar-product" class="carousel slide" data-ride="carousel">
-                        <div class="carousel-inner">
-                            <div class="item active thumb">
-                                <ng-container *ngFor="let p of product.userProductImages">
-                                    <a [href]="'/images/'+p.images"><img [src]="'/images/'+p.images" alt="product image" class="productImg"></a>
-                                </ng-container>
-                            </div>
+        <ng-template *ngIf="product; then productShow;"></ng-template>
+    </div>
+    </div>
+
+<ng-template #productShow>
+    <div class="col-sm-10 padding-right">
+        <div class="product-details">
+            <!--product-details-->
+            <div class="col-sm-6">
+                <div class="view-product imgBox">
+                    <img [src]="'/images/'+product.userProductImages[0].images" alt="product Image" />
+                </div>
+                <div id="similar-product" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="item active thumb">
+                            <ng-container *ngFor="let p of product.userProductImages">
+                                <a [href]="'/images/'+p.images"><img [src]="'/images/'+p.images" alt="product image" class="productImg"></a>
+                            </ng-container>
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-6">
-                    <div class="product-information">
-                        <!--/product-information-->
-                        <h2>{{product.name}}</h2>
-                        <p><b>Date Added:</b> {{product.dateAdded}}</p>
-                        <p><b>Seller:</b> {{product.user.firstName}} {{product.user.lastName}}</p>
-                        <br />
-                        <p>{{product.description}}</p>
-                        <br />
-                        <p><b>Condition:</b> {{checkCondition(product.condition)}}</p>
-                        <p><b>Price:</b> EGP {{product.price}}</p>
-                        <p><b>Open For Negotiable:</b> {{checkAcceptance(product.isNegotiable)}}</p>
-                        <p><b>Open For Replaceable:</b> {{checkAcceptance(product.isReplacable)}}</p>
-                        <br />
-                        <button type="button" class="btn btn-fefault cart">
-                            <i class="fa fa-heart"></i>
-                            Add to Wishlist
-                        </button>
-
-                        <button type="button" class="btn btn-fefault cart" *ngIf="userservice.IsLogin() && userservice.CurrentUserId() != product.userId" (click)="ShowChat(product.user,product.id)">
-                            <i class="fa fa-user"></i>
-                            Contact Seller
-                        </button>
-                    </div><!--/product-information-->
-                </div>
-            </div><!--/product-details-->
-
-            <div>
-                <div class="user-information col-sm-6">
-                    <ul class="nav nav-pills nav-justified mb-3" id="pills-tab" role="tablist">
-                        <li class="nav-item active" role="presentation">
-                            <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Product Details</a>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Seller Details</a>
-                        </li>
-                    </ul>
-                    <div class="tab-content justify-content-sm-center" id="pills-tabContent">
-                        <div class="tab-pane active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-                            <table class="table table-bordered">
-                                <thead>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td colspan="2"><b>Brand</b></td>
-                                        <td>{{product.product.brand.name}}</td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="2"><b>Model</b></td>
-                                        <td>{{product.product.model.name}}</td>
-                                    </tr>
-                                    <ng-container *ngFor="let p of product.product.productAttributes">
-                                        <tr>
-                                            <td colspan="2"><b>{{p.attributeName}}</b></td>
-                                            <td>{{p.value}}</td>
-                                        </tr>
-                                    </ng-container>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-                            <table class="table table-bordered">
-                                <thead>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td colspan="2"><b>Seller Name</b></td>
-                                        <td>{{product.user.firstName}} {{product.user.lastName}}</td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="2"><b>Email</b></td>
-                                        <td>{{product.user.email}}</td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="2"><b>Address</b></td>
-                                        <td>{{product.user.address}}</td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="2"><b>Area</b></td>
-                                        <td>{{product.user.area.areaName}}</td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="2"><b>City</b></td>
-                                        <td>{{product.user.area.city.cityName}}</td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="2"><b>Rating</b></td>
-                                        <td><app-rating [ratingNumber]="rating"></app-rating></td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="2"><b>Sold Items</b></td>
-                                        <td>{{soldItem}}</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-
             </div>
-        </div>
+            <div class="col-sm-6">
+                <div class="product-information">
+                    <!--/product-information-->
+                    <h2>{{product.name}}</h2>
+                    <p><b>Date Added:</b> {{product.dateAdded}}</p>
+                    <p><b>Seller:</b> {{product.user.firstName}} {{product.user.lastName}}</p>
+                    <br />
+                    <p>{{product.description}}</p>
+                    <br />
+                    <p><b>Condition:</b> {{checkCondition(product.condition)}}</p>
+                    <p><b>Price:</b> EGP {{product.price}}</p>
+                    <p><b>Open For Negotiable:</b> {{checkAcceptance(product.isNegotiable)}}</p>
+                    <p><b>Open For Replaceable:</b> {{checkAcceptance(product.isReplacable)}}</p>
+                    <br />
+                    <button type="button" class="btn btn-fefault cart">
+                        <i class="fa fa-heart"></i>
+                        Add to Wishlist
+                    </button>
 
-        <div class="col-sm-1">
+                    <button type="button" class="btn btn-fefault cart" *ngIf="userservice.IsLogin() && userservice.CurrentUserId() != product.userId" (click)="ShowChat(product.user,product.id)">
+                        <i class="fa fa-user"></i>
+                        Contact Seller
+                    </button>
+                </div><!--/product-information-->
+            </div>
+        </div><!--/product-details-->
+
+        <div>
+            <div class="user-information col-sm-6">
+                <ul class="nav nav-pills nav-justified mb-3" id="pills-tab" role="tablist">
+                    <li class="nav-item active" role="presentation">
+                        <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Product Details</a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Seller Details</a>
+                    </li>
+                </ul>
+                <div class="tab-content justify-content-sm-center" id="pills-tabContent">
+                    <div class="tab-pane active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                        <table class="table table-bordered">
+                            <thead>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td colspan="2"><b>Brand</b></td>
+                                    <td>{{product.product.brand.name}}</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2"><b>Model</b></td>
+                                    <td>{{product.product.model.name}}</td>
+                                </tr>
+                                <ng-container *ngFor="let p of product.product.productAttributes">
+                                    <tr>
+                                        <td colspan="2"><b>{{p.attributeName}}</b></td>
+                                        <td>{{p.value}}</td>
+                                    </tr>
+                                </ng-container>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+                        <table class="table table-bordered">
+                            <thead>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td colspan="2"><b>Seller Name</b></td>
+                                    <td>{{product.user.firstName}} {{product.user.lastName}}</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2"><b>Email</b></td>
+                                    <td>{{product.user.email}}</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2"><b>Address</b></td>
+                                    <td>{{product.user.address}}</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2"><b>Area</b></td>
+                                    <td>{{product.user.area.areaName}}</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2"><b>City</b></td>
+                                    <td>{{product.user.area.city.cityName}}</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2"><b>Rating</b></td>
+                                    <td><app-rating [ratingNumber]="rating"></app-rating></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2"><b>Sold Items</b></td>
+                                    <td>{{soldItem}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
 
         </div>
     </div>
-</div>
+</ng-template>
