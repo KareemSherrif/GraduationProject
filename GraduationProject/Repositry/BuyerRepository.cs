@@ -60,8 +60,8 @@ namespace GraduationProject.Repositry
             {
                 Review = Review,
                 UserReviewName = Sourceuser.FirstName + " " + Sourceuser.LastName,
-                UserId = DestaintionUser.Id,
-                UserReviewID = Sourceuser.Id
+                UserId = Sourceuser.Id,
+                UserReviewID = DestaintionUser.Id
             });
         }
     }

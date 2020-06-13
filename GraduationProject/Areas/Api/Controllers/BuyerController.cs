@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Server.HttpSys;
+using Microsoft.EntityFrameworkCore;
 
 namespace GraduationProject.Areas.Api.Controllers
 {
@@ -97,6 +98,19 @@ namespace GraduationProject.Areas.Api.Controllers
         
             return Ok(_buyerRepository.IsProductOwner(productId, User.GetUserIdToken()));
         }
+        [HttpGet]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        [Route("GetMyReviews")]
+        public IActionResult GetProdcutReviews()
+        {
+            string UserID = User.GetUserIdToken();
+         var model =  _buyerRepository.GetIQueryable().Include(a => a.UserProduct).ThenInclude(a => a.User)
+                .Where(a => (a.IsSold == true) && (a.IsReview == false) && (a.UserId == UserID));
+         var modingMapper =   _mapper.Map<IEnumerable<Buys>, IEnumerable<ProductBuyersViewModel>>(model);
+            return Ok(modingMapper);
+        }
+
+        
 
 
       

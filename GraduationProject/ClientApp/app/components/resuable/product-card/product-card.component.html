@@ -31,6 +31,11 @@
         <a [routerLink]="[Link,productInfo.userProductId]">
           <i class="ti-eye"></i>
         </a>
+   
+          <a *ngIf="ShowLike">
+          <i (click)="FlagLike()" [ngClass]="{'ti-heart-broken':this.IsLike ,'ti-heart':!this.IsLike , 'clickable':true}"></i>
+        </a>
+      
       </div>
     </div>
     <div class="product-btm">

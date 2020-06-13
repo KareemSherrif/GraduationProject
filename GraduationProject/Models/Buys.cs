@@ -9,7 +9,8 @@ namespace GraduationProject.Models
         public bool IsSold { get; set; }
         public string UserId { get; set; }
         public int UserProductId { get; set; }
-    
+        public bool IsReview { get; set; }
+
         public virtual ApplicationUser User { get; set; }
         public virtual UserProduct UserProduct { get; set; }
     }
