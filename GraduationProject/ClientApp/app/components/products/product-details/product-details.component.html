@@ -2,49 +2,54 @@
     <div class="row">
         <div class="col-sm-1">
         </div>
-        <div class="col-sm-10 padding-right">
-            <div class="product-details">
-                <!--product-details-->
-                <div class="col-sm-6">
-                    <div class="view-product imgBox">
-                        <img [src]="'/images/'+product.userProductImages[0].images" alt="product Image" />
-                    </div>
-                    <div id="similar-product" class="carousel slide" data-ride="carousel">
-                        <div class="carousel-inner">
-                            <div class="item active thumb">
-                                <ng-container *ngFor="let p of product.userProductImages">
-                                    <a [href]="'/images/'+p.images"><img [src]="'/images/'+p.images" alt="product image" class="productImg"></a>
-                                </ng-container>
-                            </div>
+        <ng-template *ngIf="product; then productShow;"></ng-template>
+    </div>
+    </div>
+
+<ng-template #productShow>
+    <div class="col-sm-10 padding-right">
+        <div class="product-details">
+            <!--product-details-->
+            <div class="col-sm-6">
+                <div class="view-product imgBox">
+                    <img [src]="'/images/'+product.userProductImages[0].images" alt="product Image" />
+                </div>
+                <div id="similar-product" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="item active thumb">
+                            <ng-container *ngFor="let p of product.userProductImages">
+                                <a [href]="'/images/'+p.images"><img [src]="'/images/'+p.images" alt="product image" class="productImg"></a>
+                            </ng-container>
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-6">
-                    <div class="product-information">
-                        <!--/product-information-->
-                        <h2>{{product.name}}</h2>
-                        <p><b>Date Added:</b> {{product.dateAdded}}</p>
-                        <p><b>Seller:</b> {{product.user.firstName}} {{product.user.lastName}}</p>
-                        <br />
-                        <p>{{product.description}}</p>
-                        <br />
-                        <p><b>Condition:</b> {{checkCondition(product.condition)}}</p>
-                        <p><b>Price:</b> EGP {{product.price}}</p>
-                        <p><b>Open For Negotiable:</b> {{checkAcceptance(product.isNegotiable)}}</p>
-                        <p><b>Open For Replaceable:</b> {{checkAcceptance(product.isReplacable)}}</p>
-                        <br />
-                        <button type="button" class="btn btn-fefault cart">
-                            <i class="fa fa-heart"></i>
-                            Add to Wishlist
-                        </button>
+            </div>
+            <div class="col-sm-6">
+                <div class="product-information">
+                    <!--/product-information-->
+                    <h2>{{product.name}}</h2>
+                    <p><b>Date Added:</b> {{product.dateAdded}}</p>
+                    <p><b>Seller:</b> {{product.user.firstName}} {{product.user.lastName}}</p>
+                    <br />
+                    <p>{{product.description}}</p>
+                    <br />
+                    <p><b>Condition:</b> {{checkCondition(product.condition)}}</p>
+                    <p><b>Price:</b> EGP {{product.price}}</p>
+                    <p><b>Open For Negotiable:</b> {{checkAcceptance(product.isNegotiable)}}</p>
+                    <p><b>Open For Replaceable:</b> {{checkAcceptance(product.isReplacable)}}</p>
+                    <br />
+                    <button type="button" class="btn btn-fefault cart">
+                        <i class="fa fa-heart"></i>
+                        Add to Wishlist
+                    </button>
 
-                        <button type="button" class="btn btn-fefault cart" *ngIf="userservice.IsLogin() && userservice.CurrentUserId() != product.userId" (click)="ShowChat(product.user,product.id)">
-                            <i class="fa fa-user"></i>
-                            Contact Seller
-                        </button>
-                    </div><!--/product-information-->
-                </div>
-            </div><!--/product-details-->
+                    <button type="button" class="btn btn-fefault cart" *ngIf="userservice.IsLogin() && userservice.CurrentUserId() != product.userId" (click)="ShowChat(product.user,product.id)">
+                        <i class="fa fa-user"></i>
+                        Contact Seller
+                    </button>
+                </div><!--/product-information-->
+            </div>
+        </div><!--/product-details-->
 
         <div>
             <div class="user-information col-sm-6">
