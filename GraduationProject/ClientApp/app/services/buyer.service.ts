@@ -23,6 +23,10 @@ export class BuyerService {
   ProductSold(product:ProductIsSoldViewModel) {
     return this.http.put("/api/Buyer/", product);
   }
+  GetUserProductToReview() {
+    return this.http.get("/api/Buyer/GetMyReviews");
+    
+  }
 
   
 

@@ -58,6 +58,7 @@ import { ProductOwnerGuard } from './guards/product-owner.guard';
 import { RatingDailogComponent } from './components/resuable/rating-dailog/rating-dailog.component';
 import { SuggestionsComponent } from './components/suggestions/suggestions.component';
 import { SuggestionsService } from './services/suggestions.service';
+import { UserReviewsComponent } from './components/user/user-reviews/user-reviews.component';
 import { FooterComponent } from './components/home/footer/footer.component';
 
 @NgModule({
@@ -83,6 +84,7 @@ import { FooterComponent } from './components/home/footer/footer.component';
     BuyersComponent,
         RatingDailogComponent,
         SuggestionsComponent,
+        UserReviewsComponent,
         FooterComponent
   ],
   imports: [
