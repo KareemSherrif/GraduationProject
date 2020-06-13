@@ -1,86 +1,96 @@
-<!-- @format -->
+<!--================Header Menu Area =================-->
+<header class="header_area navbar_fixed ">
+    <div class="main_menu row navstyle ml-0">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light w-100 margin-bottom-md ">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <a class="navbar-brand logo_h" href="index.html">
+                    <img class="logo" src="/client/img/logo.png" alt="logo"/>
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse offset w-100" id="navbarSupportedContent">
+                    <div class="row w-100 mr-0">
+                        <div class="col-lg-7 pr-0">
+                            <ul class="nav navbar-nav" style="padding-left: 20%;">
+                                <li class="nav-item submenu dropdown">
+                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
+                                        aria-haspopup="true" aria-expanded="false">Shop</a>
+                                    <ul class="dropdown-menu">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="category.html">Shop Category</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="single-product.html">Product Details</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="checkout.html">Product Checkout</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="cart.html">Shopping Cart</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item submenu dropdown">
+                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
+                                        aria-haspopup="true" aria-expanded="false">Blog</a>
+                                    <ul class="dropdown-menu">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="blog.html">Blog</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="single-blog.html">Blog Details</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item submenu dropdown">
+                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
+                                        aria-haspopup="true" aria-expanded="false">Pages</a>
+                                    <ul class="dropdown-menu">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="tracking.html">Tracking</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="elements.html">Elements</a>
+                                        </li>
+                                    </ul>
+                                </li>
 
-<header id="header">
-	<div class="header-middle">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-4 clearfix">
-					<div class="logo pull-left">
-						<a href="index.html"
-							><img src="/img/microsoft.png" width="100"
-						/></a>
-					</div>
-				</div>
-				<div class="col-md-8 clearfix">
-					<div class="shop-menu clearfix pull-right">
-						<ul class="nav navbar-nav">
-							<li>
-								<a href=""><i class="fa fa-user"></i> Account</a>
-							</li>
-							<li>
-								<a href=""><i class="fa fa-star"></i> Wishlist</a>
-							</li>
-							<li class="dropdown">
-								<a
-									href="#"
-									class="dropdown-toggle"
-									data-toggle="dropdown"
-									role="button"
-									aria-haspopup="true"
-									aria-expanded="false"
-								>
-									<i class="fa fa-comments-o" aria-hidden="true"></i> Chat
-									<span
-										class="badge badge-pill badge-primary"
-										style="
-											float: right;
-											margin-left: 6px;
-											padding-bottom: -20px;
-										"
-										>{{ chatService.newMessage.length }}</span
-									>
-								</a>
-								<ul class="dropdown-menu chat-navbar">
-									<li
-										class="newMessage"
-										*ngFor="let item of chatService.newMessage"
-										(click)="ShowDailog(item.userId, item.name)"
-									>
-										<span class="flex">
-											<ngx-avatar [name]="item.name" [size]="30"></ngx-avatar>
-											<span>
-												<span>{{ item.name }} </span> <br />
-												<span>message</span>
-											</span>
-										</span>
-									</li>
-								</ul>
-							</li>
-							<ng-template
-								*ngIf="this.userService.IsLogin(); then login; else notlogin"
-							>
-							</ng-template>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!--/header-middle-->
+                            </ul>
+						</div>
+						
+						<div class="col-lg-5 pr-0">
+							<ul class="nav navbar-nav navbar-right right_nav pull-right">
+								<ng-template *ngIf="this.userService.IsLogin(); then login; else notlogin"></ng-template>
+							</ul>
+						  </div>
+
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
 </header>
-
 <ng-template #login>
-	<li>
-		<a routerLink="/profile">Hello {{ this.userService.CurrentUserName() }}</a>
+	<li class="nav-item padding-right-sm">
+		<a class="nav-link" routerLink="/profile">{{ this.userService.CurrentUserName() }}</a>
 	</li>
-	<li><a (click)="LogOut()" class="logout"> Logout</a></li>
+	<li class="nav-item ">
+		<a class="nav-link logout" (click)="LogOut()"> Logout</a>
+	</li>
 </ng-template>
 
 <ng-template #notlogin>
-	<li>
-		<a routerLink="/Registration"><i class="fa fa-lock"></i> Registration</a>
+	<li class="nav-item padding-right-sm">
+		<a class="nav-link" routerLink="/Registration"> Registration</a>
 	</li>
-	<li>
-		<a routerLink="/Login"><i class="fa fa-lock"></i> Login</a>
+	<li class="nav-item">
+		<a class="nav-link" routerLink="/Login"> Login</a>
 	</li>
 </ng-template>
