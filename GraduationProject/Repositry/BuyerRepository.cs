@@ -26,10 +26,21 @@ namespace GraduationProject.Repositry
 
         public void UserSold(int productId, string userID)
         {
+           
           var buyer =  context
                 .Buys
                 .FirstOrDefault(a => a.UserProductId == productId && a.UserId == userID);
-            buyer.IsSold = true;
+            if (buyer != null)
+            {
+
+                buyer.IsSold = true;
+            }
+            else
+            {
+                buyer = context.Buys.FirstOrDefault(a => a.UserProductId == productId && a.IsSold == true);
+                buyer.IsReview = true;
+            }
+            
 
         }
 

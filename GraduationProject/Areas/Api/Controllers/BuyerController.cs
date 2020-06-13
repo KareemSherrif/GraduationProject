@@ -109,10 +109,14 @@ namespace GraduationProject.Areas.Api.Controllers
          var modingMapper =   _mapper.Map<IEnumerable<Buys>, IEnumerable<ProductSellersViewModel>>(model);
             return Ok(modingMapper);
         }
+       
 
-        
 
 
-      
+
+
+
+
+
     }
 }
