@@ -51,6 +51,15 @@ import { ChatComponent } from './components/chat/chat.component';
 import { AvatarModule } from 'ngx-avatar';
 import { ResetPasswordComponent } from './components/user/reset-password/reset-password.component';
 import { EmailSentComponent } from './components/user/email-sent/email-sent.component';
+import { UserSettingsComponent } from './components/profile/usersettings/usersettings.component';
+import { BuyerService } from './services/buyer.service';
+import { BuyersComponent } from './components/profile/buyers/buyers.component';
+import { ProductOwnerGuard } from './guards/product-owner.guard';
+import { RatingDailogComponent } from './components/resuable/rating-dailog/rating-dailog.component';
+import { SuggestionsComponent } from './components/suggestions/suggestions.component';
+import { SuggestionsService } from './services/suggestions.service';
+import { UserReviewsComponent } from './components/user/user-reviews/user-reviews.component';
+import { FooterComponent } from './components/home/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -70,7 +79,13 @@ import { EmailSentComponent } from './components/user/email-sent/email-sent.comp
     ProductDetailsComponent,
     ChatComponent,
     ResetPasswordComponent,
-    EmailSentComponent
+    EmailSentComponent,
+    UserSettingsComponent,
+    BuyersComponent,
+        RatingDailogComponent,
+        SuggestionsComponent,
+        UserReviewsComponent,
+        FooterComponent
   ],
   imports: [
     BrowserModule,
@@ -104,9 +119,11 @@ import { EmailSentComponent } from './components/user/email-sent/email-sent.comp
   ],
   providers: [
      
-        [AreasService, CitiesService, UserInfoService,ProductService],
+        [AreasService, CitiesService, UserInfoService,ProductService,BuyerService],
         UserService,
-        AuthGuard,
+        SuggestionsService,
+      AuthGuard,
+      ProductOwnerGuard,
         {
             provide: HTTP_INTERCEPTORS,
             useClass: AuthInterceptor,

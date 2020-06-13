@@ -3,7 +3,8 @@
 </mat-card>
 
 <ng-template #loaded>
-  <h2 class="title text-center margin-bottom-10" >User Information</h2> 
+  <h2 class="margin-bottom-10 font-title font-b text-center font-animation" >User Information</h2> 
+  
   <mat-card-header class="center">
     <div style="text-align: center;"  >  <ngx-avatar [name]="userInfo.name" [size]="60" ></ngx-avatar>  </div>
   </mat-card-header>
@@ -30,10 +31,11 @@
         </dd>
       </dl>
   </mat-card-content>
-
+  
+  <a class="btn" id="editSettingsButton" *ngIf="userservice.IsLogin() && (userservice.CurrentUserId() == userID || userID == null)" [routerLink]="['/profile/Edit/Account']" >Edit Account Settings</a>
 </ng-template>
 <ng-template #didNotLoaded>
- <div class="spinner-container">
-  <mat-spinner></mat-spinner>
-</div>
+  <div class="spinner-container">
+    <mat-spinner></mat-spinner>
+  </div>
 </ng-template>

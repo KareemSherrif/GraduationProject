@@ -2,6 +2,7 @@
     <div class="panel-heading top-bar">
         <div class="col-md-8 col-xs-8">
             <h3 class="panel-title"><span class="glyphicon glyphicon-comment ml-2"></span> <span id="UserName"> </span></h3>
+            <input type="hidden" id="userId" #userID />
         </div>
         <div class="col-md-4 col-xs-4" style="text-align: right;">
       
@@ -10,18 +11,21 @@
         
         </div>
     </div>
-    <div class="panel-body msg_container_base">
-        <div class="row msg_container base_sent">
+    <div>
+       
+    </div>
+
+    <div  class="panel-body msg_container_base" id="scrollContainer">
+        <div  *ngFor="let item of ChatService.chatMessage" class="{{this.RenderSenderandReciverClass(item.sourceID != UserService.CurrentUserId())}}" >
             <div class="col-md-10 col-xs-10">
                 <div class="messages msg_sent">
-                    <p>that mongodb thing looks good, huh?
-                    tiny master db, and huge document store</p>
+                    <p>{{item.message}}</p>
                     <time datetime="2009-11-13T20:00">Timothy • 51 min</time>
                 </div>
             </div>
-            
         </div>
-        <div class="row msg_container base_receive">
+
+        <!-- <div class="row msg_container base_receive">
            
             <div class="col-md-10 col-xs-10">
                 <div class="messages msg_receive">
@@ -70,13 +74,13 @@
                 </div>
             </div>
          
-        </div>
+        </div> -->
     </div>
     <div class="panel-footer">
         <div class="input-group">
-            <input id="btn-input" type="text" class="form-control input-sm chat_input" placeholder="Write your message here...">
-            <span class="input-group-btn">
-            <button class="btn btn-primary btn-sm btn-margin-0" id="btn-chat">Send</button>
+            <input id="btn-input" required ngModel name="message" #message="ngModel" type="text" class="form-control input-sm chat_input" placeholder="Write your message here...">
+            <span class="input-group-btn"> 
+            <button class="btn btn-primary btn-sm btn-margin-0" id="btn-chat" (click)="SendData(userID, message)" [disabled]="message.invalid" >Send</button>
             </span>
         </div>
     </div>

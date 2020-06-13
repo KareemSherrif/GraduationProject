@@ -1,3 +1,4 @@
+import { UserService } from './../../../services/user.service';
 import { ActivatedRoute } from '@angular/router';
 import { ProductService } from './../../../services/product.service';
 import { ProductInfo } from './../../../models/productCard';
@@ -10,14 +11,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserproductComponent implements OnInit {
   ProductsInfo: ProductInfo[] = null;
-  constructor(public ProductService:ProductService, private activeRouter:ActivatedRoute) { }
+  constructor(public ProductService: ProductService
+    , private activeRouter: ActivatedRoute,
+    public UserService:UserService ) { }
 
   ngOnInit(): void {
     this.activeRouter.params.subscribe(a => {
       if (a.id == null) {
         this.ProductService.GetUserProduct().subscribe(a => {
           this.ProductsInfo = a;
-          console.log(this.ProductsInfo);
+         
         });
       }
       else
@@ -29,6 +32,10 @@ export class UserproductComponent implements OnInit {
 
     });
    
+  }
+
+  Example(data) {
+    alert(data);
   }
 
 

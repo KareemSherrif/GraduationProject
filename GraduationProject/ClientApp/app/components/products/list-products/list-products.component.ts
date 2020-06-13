@@ -9,19 +9,8 @@ import { UserProduct } from '../../../models/user-product';
 })
 export class ListProductsComponent implements OnInit {
     products: UserProduct[] = [];
-    conditionValue: string;
 
     constructor(private productService: ProductService) { }
-
-    checkCondition(value: number) {
-        if (value == 0)
-            this.conditionValue = 'New'
-        if (value == 1)
-            this.conditionValue = 'used With Box'
-        if (value == 2)
-            this.conditionValue = 'used Without Box'
-        return this.conditionValue;
-    }
 
     ngOnInit(): void {
         this.productService.GetAllProducts()

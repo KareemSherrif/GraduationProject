@@ -35,12 +35,12 @@ namespace GraduationProject.Areas.Api.Controllers
         {
             if(Id == null)
             {
-                return BadRequest("Unvalid paratmer");
+                return BadRequest("The User Was Not Found");
             }
             ApplicationUser user = _usersRepository.GetUserInformation(Id);
             if(user == null)
             {
-                return NotFound("The User Is not found");
+                return NotFound("The User Was Not Found");
             }
             UserInformationViewModel model = _mapper.Map<ApplicationUser, UserInformationViewModel>(user);
             model.Rating = _usersRepository.GetAverageRating(Id);
@@ -56,11 +56,18 @@ namespace GraduationProject.Areas.Api.Controllers
             List<UsersReviews> usersReviews = this._reviewRepository.GetReviewsByUser(Id).ToList();
             if (usersReviews == null)
             {
-                return NotFound("The Reviews is not found");
+                return NotFound("Reviews Not Found.");
 
             }
             return Ok(usersReviews);
 
+        }
+        [HttpGet]
+        [Route("UserRating/{id}")]
+        public ActionResult GetRating(string Id)
+        {
+            var average = _usersRepository.GetAverageRating(Id);
+            return Ok(average);
         }
 
     }

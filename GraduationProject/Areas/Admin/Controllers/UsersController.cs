@@ -71,7 +71,7 @@ namespace GraduationProject.Areas.Admin.Controllers
                     if (result.Succeeded)
                     {
                         await _userManager.AddToRoleAsync(user, "User");
-                        return Ok("User Added Successfully.");
+                        return Ok("User Successfully Added.");
                     }
                 }
 

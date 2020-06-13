@@ -21,10 +21,12 @@ namespace GraduationProject.Areas.Api.Controllers
     public class ProfileController : ControllerBase
     {
         private readonly UserManager<ApplicationUser> _userManager;
+        private readonly IUsersRepository _usersRepository;
 
-        public ProfileController(UserManager<ApplicationUser> userManager)
+        public ProfileController(UserManager<ApplicationUser> userManager, IUsersRepository usersRepository)
         {
             _userManager = userManager;
+            _usersRepository = usersRepository;
         }
 
 
@@ -41,9 +43,9 @@ namespace GraduationProject.Areas.Api.Controllers
                     var result = await _userManager.SetEmailAsync(user, model.Email);
                 
                     if (result.Succeeded)
-                        return Ok("Email Updated Successfully.");
+                        return Ok(new { message = "Email Successfully Updated."});
                     else
-                        return BadRequest("Email Update was Unsuccessful.");
+                        return BadRequest( "Email Update was Unsuccessful." );
                 }
 
                 return BadRequest("Email change was unsuccessful.");
@@ -69,7 +71,7 @@ namespace GraduationProject.Areas.Api.Controllers
                     var result = await _userManager.ChangePasswordAsync(user, model.CurrentPassword, model.Password);
 
                     if (result.Succeeded)
-                        return Ok("Password Updated Successfully.");
+                        return Ok(new { message = "Password Successfully Updated."});
                     else
                         return BadRequest(result.Errors.ToList()[0].Description);
                 }
@@ -96,7 +98,7 @@ namespace GraduationProject.Areas.Api.Controllers
                     var result = await _userManager.SetPhoneNumberAsync(user, model.PhoneNumber);
 
                     if (result.Succeeded)
-                        return Ok("Phone Number Updated Successfully.");
+                        return Ok(new {message = "Phone Number Successfully Updated." });
                     else
                         return BadRequest("Phone Number Update was Unsuccessful.");
                 }
@@ -123,12 +125,96 @@ namespace GraduationProject.Areas.Api.Controllers
                     var result = await _userManager.SetUserNameAsync(user, model.Username);
 
                     if (result.Succeeded)
-                        return Ok("Username Updated Successfully.");
+                        return Ok(new { message = "Username Successfully Updated." });
                     else
                         return BadRequest("Username Update was Unsuccessful.");
                 }
 
                 return BadRequest("Username change was unsuccessful.");
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+        
+        [HttpPost]
+        [Route("Address")]
+        public async Task<IActionResult> ChangeAddress([FromBody] ProfileEditViewModel model)
+        {
+            try
+            {
+                if (ModelState.IsValid && model.Address != null)
+                {
+                    string userId = User.GetUserIdToken();
+                    var user = await _userManager.FindByIdAsync(userId);
+                    user.Address = model.Address;
+                    _usersRepository.Edit(user);
+                    _usersRepository.SaveAll();
+
+                        return Ok(new { message = "Address Successfully Updated."});
+                }
+
+                return BadRequest("Address change was unsuccessful.");
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+        
+        [HttpPost]
+        [Route("Area")]
+        public async Task<IActionResult> ChangeArea([FromBody] ProfileEditViewModel model)
+        {
+            try
+            {
+                if (ModelState.IsValid && model.AreaID != 0)
+                {
+                    string userId = User.GetUserIdToken();
+                    var user = await _userManager.FindByIdAsync(userId);
+                    user.AreaID = model.AreaID;
+                    _usersRepository.Edit(user);
+                    _usersRepository.SaveAll();
+
+                        return Ok(new { message = "Area Successfully Updated."});
+                }
+
+                return BadRequest("Area change was unsuccessful.");
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+        [HttpGet]
+        [Route("UserDetails")]
+        public async Task<IActionResult> GetUserDetails()
+        {
+            try
+            {
+                string userId = User.GetUserIdToken();
+                var user = await _userManager.FindByIdAsync(userId);
+                string cityName = _usersRepository.GetUserInformation(userId).Area.City.CityName;
+                string areaName = _usersRepository.GetUserInformation(userId).Area.AreaName;
+                var userModel = new UserDetailsViewModel()
+                {
+                    ID = user.Id,
+                    FirstName = user.FirstName,
+                    LastName = user.LastName,
+                    Address = user.Address,
+                    Email = user.Email,
+                    UserName = user.UserName,
+                    Phonenumber = user.PhoneNumber,
+                    CityName = cityName,
+                    AreaName = areaName
+                    
+                };
+                
+                return Ok(userModel);
             }
             catch (Exception ex)
             {

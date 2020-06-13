@@ -5,6 +5,7 @@ export class ProductInfo {
     price: number;
     condition: number;
     images: ProductImageInfo[];
+    userId: string;
 }
 
 export class ProductImageInfo {

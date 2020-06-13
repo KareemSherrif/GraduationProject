@@ -24,8 +24,6 @@ namespace GraduationProject.Models
         public virtual DbSet<Buys> Buys { get; set; }
         public virtual DbSet<Category> Category { get; set; }
         public virtual DbSet<CategoryAttributes> CategoryAttributes { get; set; }
-        public virtual DbSet<Chats> Chats { get; set; }
-        public virtual DbSet<Messages> Messages { get; set; }
         public virtual DbSet<Model> Model { get; set; }
         public virtual DbSet<Product> Product { get; set; }
         public virtual DbSet<ProductAttributes> ProductAttributes { get; set; }
@@ -41,6 +39,7 @@ namespace GraduationProject.Models
         public DbSet<FilterChoice> FilterChoices { get; set; }
         public DbSet<Filter_FilterChoice> filter_FilterChoices { get; set; }
         public DbSet<DynamicChoice> dynamicChoices { get; set; }
+        public DbSet<ChatMessages> ChatMessages { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -115,33 +114,8 @@ namespace GraduationProject.Models
                     .HasConstraintName("FK__CategoryA__Categ__1DE57479");
             });
 
-            modelBuilder.Entity<Chats>(entity =>
-            {
-                 
+         
 
-                entity.HasOne(d => d.User)
-                    .WithMany(p => p.Chats)
-                    .HasForeignKey(d => d.UserId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Chats__UserId__1B0907CE");
-            });
-
-            modelBuilder.Entity<Messages>(entity =>
-            {
-                 
-
-                entity.Property(e => e.Date).HasColumnType("datetime");
-
-                entity.Property(e => e.Text)
-                    .IsRequired()
-                    .HasMaxLength(255);
-
-                entity.HasOne(d => d.Chat)
-                    .WithMany(p => p.Messages)
-                    .HasForeignKey(d => d.ChatId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Messages__ChatId__300424B4");
-            });
 
             modelBuilder.Entity<Model>(entity =>
             {

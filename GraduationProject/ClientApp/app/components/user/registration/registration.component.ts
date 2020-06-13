@@ -38,7 +38,7 @@ export class RegistrationComponent implements OnInit {
 		if (data.valid) {
 			console.log(data.value);
 			this.register.RegisterUser(data.value).subscribe((a) => {
-				this.toastr.success("The Registration has been success");
+				this.toastr.success("Account Successfully Created.");
 				this.router.navigate(['/Login']);
 			    
       }, (err: HttpErrorResponse) => {

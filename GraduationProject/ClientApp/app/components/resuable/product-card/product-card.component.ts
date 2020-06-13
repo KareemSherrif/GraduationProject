@@ -1,5 +1,6 @@
 import { ProductInfo } from './../../../models/productCard';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+
 
 @Component({
   selector: 'app-product-card',
@@ -8,10 +9,20 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class ProductCardComponent implements OnInit {
   @Input() productInfo: ProductInfo = new ProductInfo();
+  @Input() clickable: boolean = false;
+  @Input() Link = "";
+  @Input() IsLike = false;
+  @Input() ShowLike = false;
+  @Output() Onlike = new EventEmitter();
   constructor() { }
 
   ngOnInit(): void {
-    console.log(this.productInfo);
+   
+  }
+  FlagLike() {
+ 
+    this.Onlike.emit(this.IsLike);
+    this.IsLike = !this.IsLike;
   }
 
 }

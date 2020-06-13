@@ -24,5 +24,11 @@ export class UserInfoService {
 	GetUserReviewById(UserId: string) {
 		return this.http.get<Reviews[]>(`/api/UserInformation/UserReviews/${UserId}`);
 	}
+	GetUserRatingById(UserId: string) {
+		return this.http.get(`/api/UserInformation/UserRating/${UserId}`);
+	}
+	GetNumberOfSoldItems(id: string) {
+		return this.http.get<number>('api/Product/GetNumberOfSoldItems/' + id);
+    }
 
 }

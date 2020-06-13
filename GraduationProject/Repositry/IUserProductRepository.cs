@@ -9,8 +9,10 @@ namespace GraduationProject.Repositry
     public interface IUserProductRepository : IRepositry<UserProduct, int>
     {
         public IEnumerable<UserProduct> GetUserProductsWithImages();
-        public UserProduct GetUserProductDetails(int productId);
+        public UserProduct GetUserProductDetails(int userProductId);
         public IEnumerable<UserProduct> GetUserProductByID(string UserID);
+        public int GetNumberOfSoldItems(string userId);
+        public UserProduct GetProductByID(int ProductId);
 
     }
 }
