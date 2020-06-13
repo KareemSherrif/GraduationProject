@@ -30,8 +30,8 @@ export class ProductDetailsComponent implements OnInit {
         private chatMessage: ChatService,
         private userInfoService: UserInfoService,
         private BuyerService: BuyerService,
-        private ToastrService:ToastrService) {
-        this.id = route.snapshot.paramMap.get('id');
+        private ToastrService: ToastrService) {
+        this.id = this.route.snapshot.paramMap.get('id');
         if (this.id) {
             this.productService.GetProductDetails(this.id)
                 .subscribe(data => {
