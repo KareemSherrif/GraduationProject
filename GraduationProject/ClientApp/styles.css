@@ -142,3 +142,8 @@ html, body {
         color: #1EE1DB;
       }
   }
+  .container-height{
+      min-height: 100vh;
+      height: auto;
+  }
+  

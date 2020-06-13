@@ -106,13 +106,17 @@ namespace GraduationProject.Areas.Api.Controllers
             string UserID = User.GetUserIdToken();
          var model =  _buyerRepository.GetIQueryable().Include(a => a.UserProduct).ThenInclude(a => a.User)
                 .Where(a => (a.IsSold == true) && (a.IsReview == false) && (a.UserId == UserID));
-         var modingMapper =   _mapper.Map<IEnumerable<Buys>, IEnumerable<ProductBuyersViewModel>>(model);
+         var modingMapper =   _mapper.Map<IEnumerable<Buys>, IEnumerable<ProductSellersViewModel>>(model);
             return Ok(modingMapper);
         }
+       
 
-        
 
 
-      
+
+
+
+
+
     }
 }

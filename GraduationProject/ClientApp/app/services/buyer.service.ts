@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Buyer } from '../models/buyer';
 import { ProductIsSoldViewModel } from '../models/productSold';
+import { BuyersReview } from '../models/BuyersReview';
 
 @Injectable({
   providedIn: 'root'
@@ -22,6 +23,10 @@ export class BuyerService {
   }
   ProductSold(product:ProductIsSoldViewModel) {
     return this.http.put("/api/Buyer/", product);
+  }
+  GetUserProductToReview() {
+    return this.http.get<BuyersReview[]>("/api/Buyer/GetMyReviews");
+
   }
 
   

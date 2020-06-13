@@ -1,0 +1,23 @@
+<div class="container mt-2 container-height">
+
+ <ng-template *ngIf="this.buyersReview.length ==0 then title  else table">  
+   
+</ng-template>
+
+<ng-template #table>
+    <table class="table">
+        <tr *ngFor="let item of this.buyersReview">
+            <td>{{item.productName}}</td>
+            <td>{{item.userName}}</td>
+            <td>{{item.price}} LE</td>
+            <td> <button class="btn btn-success" (click)="ReviewNow(item.userId,item.userName,item.productId)">Review</button> </td>
+        </tr>
+    </table>
+</ng-template>
+
+
+</div>
+
+<ng-template #title>
+     <h1 class="text-center">There is no Product to Review</h1>
+</ng-template>
