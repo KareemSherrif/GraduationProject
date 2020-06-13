@@ -78,7 +78,10 @@ namespace GraduationProject.Areas.Api.Controllers
         {
             if (ModelState.IsValid)
             {
+                string SourceUser = User.GetUserIdToken();
+
                 _buyerRepository.UserSold(viewModel.ProductID, viewModel.UserID);
+                _buyerRepository.ReviewAndRating(viewModel.UserID, SourceUser, viewModel.Review, viewModel.Rating);
                 _buyerRepository.SaveAll();
                 return Ok();
             }

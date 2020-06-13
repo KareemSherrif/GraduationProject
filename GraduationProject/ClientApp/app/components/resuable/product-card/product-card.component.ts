@@ -9,6 +9,8 @@ import { Component, OnInit, Input } from '@angular/core';
 export class ProductCardComponent implements OnInit {
   @Input() productInfo: ProductInfo = new ProductInfo();
   @Input() clickable: boolean = false;
+  @Input() Link = "";
+  
   constructor() { }
 
   ngOnInit(): void {

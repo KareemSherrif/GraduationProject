@@ -3,7 +3,7 @@
 
     <div class="row" *ngIf="ProductsInfo.length>0">
         <div class="col-md-4" *ngFor="let item of ProductsInfo">
-            <app-product-card [productInfo]="item" [clickable]="item.userId == UserService.CurrentUserId()"></app-product-card>
+            <app-product-card  [Link]="'/buyer'" [productInfo]="item" [clickable]="item.userId == UserService.CurrentUserId()"></app-product-card>
         </div>
     </div>
     <div class="row" *ngIf="ProductsInfo.length<=0">

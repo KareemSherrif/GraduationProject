@@ -35,7 +35,7 @@ export class BuyersComponent implements OnInit {
 
   }
   Sold(userId, UserName) {
-    let dialogRef = this.dialog.open(RatingDailogComponent, { data: { userId, UserName } });    
+    let dialogRef = this.dialog.open(RatingDailogComponent, { data: { userId, UserName, productId:this.ProductInfo.userProductId } });    
   }
 
 }
