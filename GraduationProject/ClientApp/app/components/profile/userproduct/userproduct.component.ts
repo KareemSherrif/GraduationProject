@@ -34,5 +34,9 @@ export class UserproductComponent implements OnInit {
    
   }
 
+  Example(data) {
+    alert(data);
+  }
+
 
 }

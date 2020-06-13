@@ -163,6 +163,9 @@ namespace GraduationProject.Migrations
                     b.Property<int>("UserProductId")
                         .HasColumnType("int");
 
+                    b.Property<bool>("IsReview")
+                        .HasColumnType("bit");
+
                     b.Property<bool>("IsSold")
                         .HasColumnType("bit");
 

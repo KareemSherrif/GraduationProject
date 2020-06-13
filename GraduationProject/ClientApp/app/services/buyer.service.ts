@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Buyer } from '../models/buyer';
+import { ProductIsSoldViewModel } from '../models/productSold';
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +19,9 @@ export class BuyerService {
   }
   IsOwnerOfProduct(productId: number) {
     return this.http.get<boolean>("/api/Buyer/IsOwner/" + productId);
+  }
+  ProductSold(product:ProductIsSoldViewModel) {
+    return this.http.put("/api/Buyer/", product);
   }
 
   

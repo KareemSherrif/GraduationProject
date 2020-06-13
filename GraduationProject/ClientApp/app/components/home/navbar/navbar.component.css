@@ -39,15 +39,8 @@ margin: 2px;
 }
 
 .logo{
-    width: 180px;
+    width: 140px;
 }
-
-@media screen and (max-width: 40rem){
-    .logo{
-        width: 140px;
-    }
-}
-
 .navstyle{
     background:#333333
 }
@@ -55,6 +48,25 @@ margin: 2px;
 .header_area{
     min-height: 100px;
 }
+.margin-20{
+    margin-left: 20px;
+}
+
+@media screen and (max-width: 40rem){
+    .logo{
+        width: 140px;
+    }
+    .margin-20{
+        margin: 0;
+    }
+    .menu-item{
+        width: 100%;
+    }
+}
+@media screen and (max-width:60rem){
+
+}
+
 
 
 
