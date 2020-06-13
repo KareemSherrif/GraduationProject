@@ -37,6 +37,10 @@ namespace GraduationProject.Models
         public virtual DbSet<UsersReviews> UsersReviews { get; set; }
         public DbSet<City> Cities { get; set; }
         public DbSet<Area> Areas { get; set; }
+        public DbSet<Filter> Filters { get; set; }
+        public DbSet<FilterChoice> FilterChoices { get; set; }
+        public DbSet<Filter_FilterChoice> filter_FilterChoices { get; set; }
+        public DbSet<DynamicChoice> dynamicChoices { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

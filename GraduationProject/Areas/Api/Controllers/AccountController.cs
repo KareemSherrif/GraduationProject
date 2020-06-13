@@ -33,9 +33,6 @@ namespace GraduationProject.Areas.Api.Controllers
         private readonly IConfiguration _configration;
         private readonly IEmailSender _emailSender;
         private readonly IOptions<AuthMessageSenderOptions> _AuthMessageSenderOptions;
-
-        //public AccountController(SignInManager<ApplicationUser> signInManager,
-        //    UserManager<ApplicationUser> userManager, IConfiguration configration, IEmailSender emailSender, IOptions<AuthMessageSenderOptions> AuthMessageSenderOptions);
         private readonly IUsersRepository usersRepository;
         private readonly IMapper mapper;
         private readonly IReviewRepository _reviewRepository;
