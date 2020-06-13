@@ -69,7 +69,8 @@ namespace GraduationProject.Areas.Api.Hubs
                 ApplicationUser user1 = context.Users.FirstOrDefault(a => a.Id == ID);
                 model.SourceName =  $"{user1.FirstName} {user1.LastName}";
                 await Clients.Client(connectionUserID.ConnectionID).SendAsync("ReciveMessage", model);
-            }
+              
+            }  
          
         }
         public override Task OnConnectedAsync()

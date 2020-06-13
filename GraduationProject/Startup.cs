@@ -95,6 +95,7 @@ namespace GraduationProject
                     {
                         string signalR = a.HttpContext.Request.Query["access_token"];
                         a.Token = a.HttpContext.Request.Query["access_token"];
+                       
                         return Task.CompletedTask;
                     }
                 };

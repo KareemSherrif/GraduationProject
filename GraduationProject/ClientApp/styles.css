@@ -16,7 +16,7 @@ main{
     
  
 } */
-
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@700&display=swap');
 html, body {
     background: linear-gradient(to left, #cccccc,white)
 }
@@ -103,3 +103,42 @@ html, body {
 .header_area{
     min-height: 100px;
 }
+.font-title{
+    font-family:"Raleway";
+    
+}
+.font-b{
+    font-size: 25px;
+}
+.font-m{
+    font-size: 20px;
+}
+.font-s{
+    font-size: 16px;
+}
+.font-animation{
+    -webkit-animation:colorchange 20s infinite;
+    animation:colorchange 20s infinite;
+}
+@keyframes colorchange {
+    0% {
+      
+      color: #538AE7;
+    }
+
+    100% {
+      
+      color: #1EE1DB;
+    }
+  }
+@-webkit-keyframes colorchange {
+    0% {
+      
+        color: #538AE7;
+      }
+  
+      100% {
+        
+        color: #1EE1DB;
+      }
+  }

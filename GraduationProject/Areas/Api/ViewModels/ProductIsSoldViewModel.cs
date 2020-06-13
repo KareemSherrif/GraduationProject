@@ -12,5 +12,9 @@ namespace GraduationProject.Areas.Api.ViewModels
         public string UserID { get; set; }
         [Required]
         public int ProductID { get; set; }
+
+        public string Review { get; set; }
+
+        public int Rating { get; set; }
     }
 }

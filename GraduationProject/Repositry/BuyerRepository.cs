@@ -43,5 +43,26 @@ namespace GraduationProject.Repositry
             return IsOwner;
            
         }
+
+        public void ReviewAndRating(string DestaitionUser, string UserID, string Review, int Ratring)
+        {
+
+           ApplicationUser Sourceuser =  context.Users.FirstOrDefault(a => a.Id == UserID);
+            ApplicationUser DestaintionUser = context.Users.FirstOrDefault(a => a.Id == DestaitionUser);
+            DestaintionUser.UsersRatings = new List<UsersRatings>();
+             DestaintionUser.UsersRatings.Add(new UsersRatings()
+            {
+                Rating = Ratring,
+                UserId = Sourceuser.Id
+            });
+            DestaintionUser.UsersReviews = new List<UsersReviews>();
+            DestaintionUser.UsersReviews.Add(new UsersReviews()
+            {
+                Review = Review,
+                UserReviewName = Sourceuser.FirstName + " " + Sourceuser.LastName,
+                UserId = Sourceuser.Id,
+                UserReviewID = DestaintionUser.Id
+            });
+        }
     }
 }
