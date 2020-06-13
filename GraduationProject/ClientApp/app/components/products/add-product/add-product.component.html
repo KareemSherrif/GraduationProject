@@ -1,8 +1,8 @@
 <!-- @format -->
 
-<div class="container mt-product">
-	<div class="row">
-		<div class="col-md-8 col-md-offset-2">
+<div class="container mt-product container-height">
+	<div class="row justify-content-center">
+		<div class="col-md-8 ">
 			<mat-card>
 				<mat-card-title class="align-center">Add Product</mat-card-title>
 				<div class="form-group">
@@ -74,7 +74,7 @@
 								<div class="form-group">
 									<input
 										id="image-button"
-										class="custom-file-input"
+									
 										type="file"
 										(change)="OnAddPicture($event)"
 									/>
@@ -101,7 +101,7 @@
 							</mat-step>
 							<mat-step>
 								<ng-template matStepLabel
-									>Write Condition and Price</ng-template
+									>Write Condition and Price </ng-template
 								>
 								<div class="form-group">
 									<mat-form-field class="margin-form">
@@ -128,9 +128,15 @@
 										</select>
 									</mat-form-field>
 								</div>
+								<div class="form-group">
+
+									<mat-checkbox formControlName="isNegotiable">Negotiable </mat-checkbox>
+									<br/>
+									<mat-checkbox formControlName="isReplacable">Replacable </mat-checkbox>
+								</div>
 							</mat-step>
 							<mat-step>
-								<ng-template matStepLabel>Write Description</ng-template>
+								<ng-template matStepLabel>Write Description </ng-template>
 								<mat-form-field class="margin-form">
 									<mat-label>Description</mat-label>
 									<textarea

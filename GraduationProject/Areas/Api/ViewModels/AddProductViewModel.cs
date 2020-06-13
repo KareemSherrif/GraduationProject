@@ -17,9 +17,17 @@ namespace GraduationProject.Areas.Api.ViewModels
         [Required]
         public int Condition { get; set; }
         [Required]
-        public int ProductId { get; set; }
+        public int ProductId { get; set; }   
+        [Required]
+        public DateTime DateAdded { get; set; } 
+        [Required]
+        public bool IsNegotiable { get; set; }     
+        [Required]
+        public bool IsReplacable{ get; set; }
         [Required]
         public ICollection<ImageProductViewModel> Images { get; set; }
+        public bool IsNegotiable { get; set; }
+        public bool IsReplacable { get; set; }
     }
     public class ImageProductViewModel
     {

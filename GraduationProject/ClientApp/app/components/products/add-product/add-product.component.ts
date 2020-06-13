@@ -33,6 +33,8 @@ export class AddProductComponent implements OnInit {
 		condition: new FormControl("0", Validators.required),
 		productId: new FormControl("", [Validators.required,ProductValidators.ValidationOnSelect]),
 		images: new FormArray([], Validators.required),
+		isNegotiable: new FormControl(false),
+		isReplacable:new FormControl(false)
 	});
 
 	imageChangedEvent: any = "";
@@ -45,6 +47,13 @@ export class AddProductComponent implements OnInit {
 	}
 	get Product() {
 		return this.form.get("productId");
+	}
+	get IsNegotiable() {
+		return this.form.get("isNegotiable");
+	}
+
+	get IsReplacable() {
+		return this.form.get("isReplacable");
 	}
 
 	ngOnInit(): void {}
@@ -91,6 +100,7 @@ export class AddProductComponent implements OnInit {
   }
 
 	OnFormSubmit() {
+		console.log(this.form.value);
 		this.service.AddProduct(this.form.value).subscribe(a => {
 			this.ToastrService.success("Add Product success", "Successful");
 			this.router.navigate(['']);
