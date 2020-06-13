@@ -20,6 +20,8 @@ namespace GraduationProject.Areas.Api.ViewModels
         public int ProductId { get; set; }
         [Required]
         public ICollection<ImageProductViewModel> Images { get; set; }
+        public bool IsNegotiable { get; set; }
+        public bool IsReplacable { get; set; }
     }
     public class ImageProductViewModel
     {

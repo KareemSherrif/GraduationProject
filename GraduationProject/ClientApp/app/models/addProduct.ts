@@ -5,8 +5,12 @@ export class AddProduct {
     condition: number;
     productId: number;
     images: ImageProductViewModel[];
+    isNegotiable: boolean;
+    isReplacable: boolean;
 }
 export class ImageProductViewModel {
     value: string;
     name: string;
 }
+
+
