@@ -24,7 +24,7 @@ namespace GraduationProject.Areas.Api.Profiles
 
 
             CreateMap<Buys, ProductSellersViewModel>()
-              .ForMember(a => a.UserId, a => a.MapFrom(a => a.UserProduct.Id))
+              .ForMember(a => a.UserId, a => a.MapFrom(a => a.UserProduct.User.Id))
               .ForMember(a => a.UserName, a => a.MapFrom(a => $"{a.UserProduct.User.FirstName} {a.UserProduct.User.LastName}"))
               .ForMember(a => a.ProductId, a => a.MapFrom(a => a.UserProductId))
               .ForMember(a => a.ProductName, a => a.MapFrom(a => a.UserProduct.Name))

@@ -1,4 +1,5 @@
-﻿import { ProductOwnerGuard } from './guards/product-owner.guard';
+﻿import { UserReviewsComponent } from './components/user/user-reviews/user-reviews.component';
+import { ProductOwnerGuard } from './guards/product-owner.guard';
 import { AddProductComponent } from './components/products/add-product/add-product.component';
 import { animate } from '@angular/animations';
 import { AuthGuard } from './guards/auth.guard';
@@ -30,6 +31,7 @@ const routes: Routes = [
     { path: 'profile/Edit/Account', component: UserSettingsComponent, canActivate: [AuthGuard] },
     { path: 'buyer/:id', component: BuyersComponent, canActivate: [ProductOwnerGuard] },
     { path: 'product/suggestion', component: SuggestionsComponent, canActivate: [AuthGuard] },
+    {path:'UserReviews',component:UserReviewsComponent,canActivate:[AuthGuard]}
 ];
 
 @NgModule({
