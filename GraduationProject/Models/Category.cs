@@ -16,5 +16,6 @@ namespace GraduationProject.Models
 
         public virtual ICollection<CategoryAttributes> CategoryAttributes { get; set; }
         public virtual ICollection<Model> Model { get; set; }
+        public ICollection<Filter> Filters { get; set; }
     }
 }

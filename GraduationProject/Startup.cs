@@ -59,7 +59,8 @@ namespace GraduationProject
             services.AddTransient<IChatRepository, ChatRepositry>();
             services.AddSingleton<List<ConnectionUserID>>();
             services.AddTransient<IBuyerRepository, BuyerRepository>();
-           
+
+            services.AddTransient<IFIlterRepository, FilterRepository>();
             #endregion
 
 
