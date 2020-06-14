@@ -78,7 +78,7 @@ namespace GraduationProject.Areas.Admin.Controllers
                     {
                         BrandId = productModel.BrandId,
                         ModelId = productModel.ModelId,
-                        Name = ModelName + " " + BrandName
+                        Name = productModel.Name
                     };
                     product.Add(newProduct);
                     product.SaveAll();
@@ -171,7 +171,7 @@ namespace GraduationProject.Areas.Admin.Controllers
                     var ModelName = model.Get(productModel.ModelId).Name;
                     EditProduct.ModelId = productModel.ModelId;
                     EditProduct.BrandId = productModel.BrandId;
-                    EditProduct.Name = ModelName + " " + BrandName;
+                    EditProduct.Name = productModel.Name;
                     product.Edit(EditProduct);
                     product.SaveAll();
                     var EditAttributes = productAttributes.GetProductAttributes(productModel.ProductId).ToList();

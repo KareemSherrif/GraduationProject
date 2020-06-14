@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { SuggestionsService } from '../../services/suggestions.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-suggestions',
@@ -7,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SuggestionsComponent implements OnInit {
 
-    constructor() { }
+    constructor(private suggestionService: SuggestionsService,
+        private router: Router) { }
     Save(f) {
-
+        this.suggestionService.AddSuggestion(f.value)
+            .subscribe(a => {
+                this.router.navigate(['/']);
+            });
     }
   ngOnInit(): void {
   }

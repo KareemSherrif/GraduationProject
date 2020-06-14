@@ -1,13 +1,13 @@
-<section class="container mt-5">
-    <div class="row">
-        <div class="col-md-4 col-md-offset-4">
+<section class="container p-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-md-offset-6">
             <mat-card class="example-card">
-                <h2 class="text-center header-font">Suggestions</h2>
+                <h2 class="text-center fontSize p-3">Suggestions</h2>
                 <form #f="ngForm" (ngSubmit)="Save(f)">
                     <mat-form-field class="control-item-100">
-                        <mat-label for="suggestedModel">Username</mat-label>
+                        <mat-label for="suggestedModel">Model Name</mat-label>
                         <input matInput type="text" id="suggestedModel" ngModel name="suggestedModel"
-                               placeholder="Write your Product Suggestion Name" required #suggestedModel="ngModel" />
+                               placeholder="Write your Product Name" required #suggestedModel="ngModel" />
                         <mat-error *ngIf="suggestedModel.touched && suggestedModel.invalid">
                             Suggested Model is required
                         </mat-error>
@@ -15,14 +15,17 @@
                     <br />
                     <mat-form-field class="control-item-100">
                         <mat-label for="description">Description</mat-label>
-                        <input type="text" matInput ngModel id="description" name="description"
-                               placeholder="Enter your Description" required #description="ngModel" />
+                        <textarea matInput
+                              name="description"
+                              ngModel
+                              #description ="ngModel"
+                              placeholder="Write your Description..">
+									</textarea>
                     </mat-form-field>
-                    <br>
                     <br />
                     <div class="form-group">
                         <button mat-button class="button-full-width" mat-flat-button color="primary" [disabled]="f.invalid">
-                            <i class="fa fa-user" aria-hidden="true"></i> Submit
+                             Submit
                         </button>
                     </div>
                 </form>
