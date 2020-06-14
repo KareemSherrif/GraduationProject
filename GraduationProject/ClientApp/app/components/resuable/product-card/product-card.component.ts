@@ -1,3 +1,4 @@
+import { WishlistService } from './../../../services/wishlist.service';
 import { ProductInfo } from './../../../models/productCard';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
@@ -23,6 +24,7 @@ export class ProductCardComponent implements OnInit {
  
     this.Onlike.emit(this.IsLike);
     this.IsLike = !this.IsLike;
+   
   }
 
 }

@@ -21,7 +21,7 @@ namespace GraduationProject.Controllers
         {
             _logger = logger;
         }
-      
+     
         public IActionResult Index()
         {
            /*Hello World*/
@@ -29,6 +29,10 @@ namespace GraduationProject.Controllers
         }
 
         public IActionResult Privacy()
+        {
+            return View();
+        }
+        public IActionResult Hello()
         {
             return View();
         }

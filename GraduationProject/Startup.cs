@@ -109,7 +109,7 @@ namespace GraduationProject
         
             //services.AddAuthentication().AddCookie().AddJwtBearer(options =>
             //{
-              
+
             //    options.TokenValidationParameters = new TokenValidationParameters()
             //    {
             //        ValidateIssuerSigningKey = true,

@@ -56,7 +56,7 @@ namespace GraduationProject.Repositry
         }
 
         public void ReviewAndRating(string DestaitionUser, string UserID, string Review, int Ratring)
-        {
+         {
 
            ApplicationUser Sourceuser =  context.Users.FirstOrDefault(a => a.Id == UserID);
             ApplicationUser DestaintionUser = context.Users.FirstOrDefault(a => a.Id == DestaitionUser);
@@ -71,8 +71,8 @@ namespace GraduationProject.Repositry
             {
                 Review = Review,
                 UserReviewName = Sourceuser.FirstName + " " + Sourceuser.LastName,
-                UserId = Sourceuser.Id,
-                UserReviewID = DestaintionUser.Id
+                UserId = DestaintionUser.Id,
+                UserReviewID = Sourceuser.Id
             });
         }
     }

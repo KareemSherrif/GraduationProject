@@ -32,9 +32,9 @@
           <i class="ti-eye"></i>
         </a>
    
-          <a *ngIf="ShowLike">
+          <span *ngIf="ShowLike">
           <i (click)="FlagLike()" [ngClass]="{'ti-heart-broken':this.IsLike ,'ti-heart':!this.IsLike , 'clickable':true}"></i>
-        </a>
+        </span>
       
       </div>
     </div>

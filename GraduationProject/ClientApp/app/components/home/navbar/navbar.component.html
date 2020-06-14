@@ -91,7 +91,21 @@
             <div class="dropdown-divider"></div>
             <a class="dropdown-item logout" (click)="LogOut()"> Logout</a>
           </div>
-	</li>
+    </li>
+    <li class="nav-item dropdown padding-right-sm" *ngIf="this.chatService.newMessage.length != 0">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarchat" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Messages <span class="badge badge-pill badge-primary notify-number">{{this.chatService.newMessage.length}}</span></a>
+        <div class="dropdown-menu" aria-labelledby="navbarchat">
+            <span class="dropdown-item logout" *ngFor="let item of this.chatService.newMessage" (click)="ShowDailog(item.userId,item.name)">{{item.name}}</span> 
+          </div>
+
+          <div class="dropdown-menu" aria-labelledby="navbarchat" *ngIf="this.chatService.newMessage.length ==0">
+            <span class="dropdown-item logout" >There is no Messages Yet </span> 
+          </div>
+    </li>
+
+    <li class="nav-item dropdown padding-right-sm" *ngIf="this.chatService.newMessage.length == 0">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarchat" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Messages <span class="badge badge-pill badge-primary notify-number">0</span></a>
+    </li>
 
 </ng-template>
 
