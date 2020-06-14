@@ -21,7 +21,7 @@ namespace GraduationProject.Controllers
         {
             _logger = logger;
         }
-      
+     
         public IActionResult Index()
         {
            /*Hello World*/
