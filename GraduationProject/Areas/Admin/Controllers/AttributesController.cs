@@ -4,11 +4,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using GraduationProject.Models;
 using GraduationProject.Repositry;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GraduationProject.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin")]
     [Area("Admin")]
     public class AttributesController : Controller
     {

@@ -7,12 +7,14 @@ using GraduationProject.Areas.Admin.ViewModels;
 
 using GraduationProject.Models;
 using GraduationProject.Repositry;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace GraduationProject.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin")]
     [Area("Admin")]
     public class CategoriesController : Controller
     {

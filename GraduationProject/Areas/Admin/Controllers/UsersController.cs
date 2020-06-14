@@ -10,9 +10,11 @@ using Microsoft.AspNetCore.Mvc;
 using GraduationProject.ExtenstionMethods;
 using GraduationProject.Areas.Admin.ViewModels;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Authorization;
 
 namespace GraduationProject.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin")]
     [Area("Admin")]
     public class UsersController : Controller
     {

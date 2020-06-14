@@ -69,6 +69,7 @@ namespace GraduationProject
             x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
             
             services.AddControllersWithViews();
+            services.AddRazorPages();
             services.AddIdentity<ApplicationUser, IdentityRole>(a =>
             {
                 a.Password.RequireDigit = false;
@@ -134,8 +135,6 @@ namespace GraduationProject
 
             });
 
-         
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -191,7 +190,7 @@ namespace GraduationProject
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
 
-
+                endpoints.MapRazorPages();
             });
         }
     }

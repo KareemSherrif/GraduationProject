@@ -1,5 +1,6 @@
-﻿<!DOCTYPE html>
-
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ApplicationUser> SignInManager
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
@@ -41,33 +42,36 @@
             </div>
 
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-cog"></i>
-                    <span>Components</span>
-                </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Custom Components:</h6>
-                        <a class="collapse-item" asp-action="Index" asp-controller="Cities" asp-area="Admin">Cities </a>
-                        <a class="collapse-item" asp-action="Index" asp-controller="Areas" asp-area="Admin">Areas </a>
-                        <a class="collapse-item" asp-action="Index" asp-controller="Brands" asp-area="Admin">Brands </a>
-                        <a class="collapse-item" asp-action="Index" asp-controller="Attributes" asp-area="Admin">Attributes </a>
-                        <a class="collapse-item" asp-action="Index" asp-controller="Categories" asp-area="Admin">Categories </a>
-                        <a class="collapse-item" asp-action="Index" asp-controller="Models" asp-area="Admin">Models </a>
-                        <a class="collapse-item" asp-action="Index" asp-controller="Products" asp-area="Admin">Products </a>
-                        <a class="collapse-item" asp-action="Index" asp-controller="Users" asp-area="Admin">Users</a>
+            @if (SignInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+            {
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                        <i class="fas fa-fw fa-cog"></i>
+                        <span>Components</span>
+                    </a>
+                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <h6 class="collapse-header">Custom Components:</h6>
+                            <a class="collapse-item" asp-action="Index" asp-controller="Cities" asp-area="Admin">Cities </a>
+                            <a class="collapse-item" asp-action="Index" asp-controller="Areas" asp-area="Admin">Areas </a>
+                            <a class="collapse-item" asp-action="Index" asp-controller="Brands" asp-area="Admin">Brands </a>
+                            <a class="collapse-item" asp-action="Index" asp-controller="Attributes" asp-area="Admin">Attributes </a>
+                            <a class="collapse-item" asp-action="Index" asp-controller="Categories" asp-area="Admin">Categories </a>
+                            <a class="collapse-item" asp-action="Index" asp-controller="Models" asp-area="Admin">Models </a>
+                            <a class="collapse-item" asp-action="Index" asp-controller="Products" asp-area="Admin">Products </a>
+                            <a class="collapse-item" asp-action="Index" asp-controller="Users" asp-area="Admin">Users</a>
+                            <a class="collapse-item" asp-action="suggest" asp-controller="Users" asp-area="Admin">User Suggestions</a>
 
-
-
+                        </div>
                     </div>
-                </div>
-            </li>
+                </li>
+            }
+
         </ul>
-            <!-- Sidebar Toggler (Sidebar) -->
-            <div class="text-center d-none d-md-inline">
-                <button class="rounded-circle border-0" id="sidebarToggle"></button>
-            </div>
+        <!-- Sidebar Toggler (Sidebar) -->
+        <div class="text-center d-none d-md-inline">
+            <button class="rounded-circle border-0" id="sidebarToggle"></button>
+        </div>
 
         <!-- End of Sidebar -->
         <!-- Content Wrapper -->
@@ -85,8 +89,6 @@
                     </button>
 
                     <!-- Topbar Search -->
-                
-
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
 
@@ -109,29 +111,26 @@
                                 </form>
                             </div>
                         </li>
-
-
-
-
-
                         <!-- Nav Item - User Information -->
-                        <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"> Hello <b>Valerie Luna</b></span>
+                        @*<li class="nav-item dropdown no-arrow">
+                                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <span class="mr-2 d-none d-lg-inline text-gray-600 small"> Hello <b>Valerie Luna</b></span>
 
-                            </a>
+                                </a>
 
-                        </li>
+                            </li>*@
 
-                        <div class="topbar-divider d-none d-sm-block"></div>
-                        <li class="nav-item dropdown no-arrow">
+                        @*<div class="topbar-divider d-none d-sm-block"></div>
+                            <li class="nav-item dropdown no-arrow">
 
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <button class="btn btn-danger">Logout</button>
+                                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <button class="btn btn-danger">Logout</button>
 
-                            </a>
+                                </a>
 
-                        </li>
+                            </li>*@
+
+                        <partial name="_LoginPartial" />
 
                     </ul>
 
@@ -139,12 +138,12 @@
 
                 <div class="container-fluid">
                     @RenderBody()
-                  
+
                 </div>
-          
+
 
             </div>
-     
+
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
@@ -152,10 +151,10 @@
                     </div>
                 </div>
             </footer>
-         
+
 
         </div>
-    
+
 
     </div>
 
@@ -164,31 +163,31 @@
     </a>
 
 
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
+    @*<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                        <a class="btn btn-primary" href="login.html">Logout</a>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
+        </div>*@
 
     <script src="~/admin/vendor/jquery/jquery.js"></script>
     <script src="~/admin/vendor/bootstrap/js/bootstrap.bundle.js"></script>
     <script src="~/admin/vendor/jquery-easing/jquery.easing.js"></script>
     <script src="~/admin/js/sb-admin-2.js"></script>
     @*<script src="~/admin/vendor/datatables/jquery.dataTables.js"></script>
-    <script src="~/admin/vendor/datatables/dataTables.bootstrap4.js"></script>*@
-    @RenderSection("scripts",false)
+        <script src="~/admin/vendor/datatables/dataTables.bootstrap4.js"></script>*@
+    @RenderSection("scripts", false)
 
 </body>
 </html>
