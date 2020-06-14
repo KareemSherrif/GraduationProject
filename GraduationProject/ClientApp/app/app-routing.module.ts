@@ -16,6 +16,7 @@ import { EmailSentComponent } from './components/user/email-sent/email-sent.comp
 import { UserSettingsComponent } from './components/profile/usersettings/usersettings.component';
 import { BuyersComponent } from './components/profile/buyers/buyers.component';
 import { SuggestionsComponent } from './components/suggestions/suggestions.component';
+import { CategoryFilterComponent } from './components/products/category-filter/category-filter.component';
 
 const routes: Routes = [
     { path: '', component: HomeComponent },
@@ -26,12 +27,13 @@ const routes: Routes = [
     { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
     { path: 'profile/:id', component: ProfileComponent },
     { path: 'AddProduct', component: AddProductComponent, canActivate: [AuthGuard] },
-    { path: 'product/ListProduct', component: ListProductsComponent, canActivate: [AuthGuard] },
+    { path: 'product/ListProduct/:id', component: ListProductsComponent },
+    { path: 'Store', component: CategoryFilterComponent },
     { path: 'product/Details/:id', component: ProductDetailsComponent, canActivate: [AuthGuard] },
     { path: 'profile/Edit/Account', component: UserSettingsComponent, canActivate: [AuthGuard] },
     { path: 'buyer/:id', component: BuyersComponent, canActivate: [ProductOwnerGuard] },
     { path: 'product/suggestion', component: SuggestionsComponent, canActivate: [AuthGuard] },
-    {path:'UserReviews',component:UserReviewsComponent,canActivate:[AuthGuard]}
+    { path: 'UserReviews', component: UserReviewsComponent, canActivate: [AuthGuard] }
 ];
 
 @NgModule({

@@ -60,6 +60,8 @@ import { SuggestionsComponent } from './components/suggestions/suggestions.compo
 import { SuggestionsService } from './services/suggestions.service';
 import { UserReviewsComponent } from './components/user/user-reviews/user-reviews.component';
 import { FooterComponent } from './components/home/footer/footer.component';
+import { CategoryFilterComponent } from './components/products/category-filter/category-filter.component';
+import { FilterComponent } from './components/products/filter/filter.component';
 
 @NgModule({
   declarations: [
@@ -85,7 +87,9 @@ import { FooterComponent } from './components/home/footer/footer.component';
         RatingDailogComponent,
         SuggestionsComponent,
         UserReviewsComponent,
-        FooterComponent
+        FooterComponent,
+        CategoryFilterComponent,
+        FilterComponent
   ],
   imports: [
     BrowserModule,

@@ -20,17 +20,20 @@ namespace GraduationProject.Repositry
             this.context = context;
         }
 
-        public List<Dictionary<string, Object>> GetFilterByCategory(int ID)
+        public List<string> GetFilterByCategory(int ID)
         {
             string query = "select * from Filters where CategoryId = " + ID;
             List<Filter> filters = context.Filters.FromSqlRaw(query).ToList();
             List<Dictionary<string, Object>> JObect = new List<Dictionary<string, Object>>();
+            List<string> titleNames = new List<string>();
             foreach (Filter f in filters)
             {
+                titleNames.Add(f.Name);
+
                 Dictionary<string, Object> dic = new Dictionary<string, Object>()
                 {
                 {
-                    "TilteName",
+                    "TitleName",
                     f.Name
                 },
                 {
@@ -42,15 +45,12 @@ namespace GraduationProject.Repositry
                     f.QueryKey
                 }
                 };
+               
 
                 if (f.FilterType == "StaticChoice")
                 {
-                    List<FilterChoice> filterChoices = GetStaticChoicesByCategory(ID);
-                    List<string> choices = new List<string>();
-                    foreach (FilterChoice fc in filterChoices) {
-                        choices.Add(fc.Choice);
-                    }
-                    dic.Add("Choices", choices);
+                   // GetStaticChoices(ID);
+
                 }
                 if (f.FilterType== "DynamicChoice")
                 {
@@ -70,7 +70,44 @@ namespace GraduationProject.Repositry
                 }
                 JObect.Add(dic);
             }
-            return JObect;
+            return (titleNames);
+        }
+
+        public List<string> GetStaticChoices(int id)
+        {
+            List<FilterChoice> filterChoices = GetStaticChoicesByCategory(id);
+            List<string> choices = new List<string>();
+            foreach (FilterChoice fc in filterChoices)
+            {
+                choices.Add(fc.Choice);
+            }
+            return choices;
+           // dic.Add("Choices", choices);
+        }
+
+        public List<string> GetDynamicChoices(int ID)
+        {
+            string query = "select * from Filters where CategoryId = " + ID;
+            List<Filter> filters = context.Filters.FromSqlRaw(query).ToList();
+            List<string> choices = new List<string>();
+            foreach (Filter f in filters)
+            {
+                if (f.FilterType == "DynamicChoice")
+                {
+                    string method = " select * from DynamicChoice where FilterId = " + f.FilterId;
+                    List<DynamicChoice> dynamicChoice = context.dynamicChoices.FromSqlRaw(method).ToList();
+                    if (dynamicChoice[0].Procedure == "GetBrandsByCategory")
+                    {
+                        List<Brand> brands = GetBrandsByCategory(ID);
+                        //List<string> choices = new List<string>();
+                        foreach (Brand b in brands)
+                        {
+                            choices.Add(b.Name);
+                        }
+                        // dic.Add("Choices", choices);
+                    }
+                }
+            }return choices;
         }
 
         public List<Brand> GetBrandsByCategory(int categoryId)
