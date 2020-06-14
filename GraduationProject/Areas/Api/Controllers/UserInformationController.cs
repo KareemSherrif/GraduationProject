@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using GraduationProject.Areas.Api.ViewModels;
+using GraduationProject.Areas.Api.VIewModels;
 using GraduationProject.ExtenstionMethods;
 using GraduationProject.Models;
 using GraduationProject.Repositry;
@@ -20,14 +21,17 @@ namespace GraduationProject.Areas.Api.Controllers
         private readonly IUsersRepository _usersRepository;
         private readonly IMapper _mapper;
         private readonly IReviewRepository _reviewRepository;
+        private readonly ISuggestionRepository _suggestionRepository;
 
         public UserInformation(IUsersRepository repository,
             IMapper mapper,
-            IReviewRepository reviewRepository)
+            IReviewRepository reviewRepository,
+            ISuggestionRepository suggestionRepository)
         {
             this._usersRepository = repository;
             this._mapper = mapper;
             this._reviewRepository = reviewRepository;
+            this._suggestionRepository = suggestionRepository;
         }
         [HttpGet]
         [Route("GetUserInfo/{id}")]
@@ -68,6 +72,35 @@ namespace GraduationProject.Areas.Api.Controllers
         {
             var average = _usersRepository.GetAverageRating(Id);
             return Ok(average);
+        }
+        [HttpPost]
+        [Route("AddSuggestion")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        public ActionResult AddUserSuggestion([FromBody] AddSuggestionViewModel model)
+        {
+            try
+            {
+                string userId = User.GetUserIdToken();
+                if (ModelState.IsValid)
+                {
+                    Suggestions newSuggestion = new Suggestions()
+                    {
+                        UserId = userId,
+                        SuggestedModel = model.SuggestedModel,
+                        Description = model.Description   
+                    };
+                    _suggestionRepository.Add(newSuggestion);
+                    _suggestionRepository.SaveAll();
+                    return Ok(new { message = "Suggestion Successfully Added." });
+                }
+
+                return BadRequest("Suggestion Model is not valid.");
+
+            }
+            catch
+            {
+                return BadRequest("An Error Has Occured.");
+            }
         }
 
     }

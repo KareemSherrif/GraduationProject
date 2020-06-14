@@ -1,6 +1,6 @@
 export class Suggestion {
-    id: number;
-    suggestedModel: string;
-    description: string;
-    userId: string;
+    constructor(
+        public suggestedModel?: string,
+        public description?: string) {
+    }
 }

@@ -61,6 +61,7 @@ namespace GraduationProject
             services.AddTransient<IBuyerRepository, BuyerRepository>();
 
             services.AddTransient<IFIlterRepository, FilterRepository>();
+            services.AddTransient<ISuggestionRepository, SuggestionRepository>();
             #endregion
 
 
