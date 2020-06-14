@@ -14,6 +14,7 @@ namespace GraduationProject.Areas.Admin.ViewModels
         {
             this.ProductAttributes = new List<Attributes>();
         }
+        public string Name { get; set; }
         public int CategoryId { get; set; }
         public SelectList Categories { get; set; }
         public int BrandId { get; set; }
