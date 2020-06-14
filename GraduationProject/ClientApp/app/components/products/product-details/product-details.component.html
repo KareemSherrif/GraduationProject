@@ -1,128 +1,237 @@
-<div class="container mt-product">
-    <div class="row">
-        <div class="col-sm-1">
-        </div>
-        <ng-template *ngIf="product; then productShow;"></ng-template>
-    </div>
-    </div>
-
+<ng-template *ngIf="product; then productShow;"></ng-template>
 <ng-template #productShow>
-    <div class="col-sm-10 padding-right">
-        <div class="product-details">
-            <!--product-details-->
-            <div class="col-sm-6">
-                <div class="view-product imgBox">
-                    <img [src]="'/images/'+product.userProductImages[0].images" alt="product Image" />
+    <!--================Single Product Area =================-->
+    <div class="product_image_area p-5">
+        <div class="container">
+            <div class="row s_product_inner">
+                <div class="col-lg-6">
+                    <div class="s_product_img">
+                        <div id="carouselExampleIndicators"
+                             class="carousel slide"
+                             data-ride="carousel">
+                            <div class="imgBox">
+                                <img class="d-block w-100" [src]="'/images/'+product.userProductImages[0].images" alt="product Image" />
+                            </div>
+                            <div id="similar-product" class="carousel slide" data-ride="carousel">
+                                <div class="carousel-inner">
+                                    <div class="item active thumb">
+                                        <ng-container *ngFor="let p of product.userProductImages">
+                                            <a [href]="'/images/'+p.images"><img [src]="'/images/'+p.images" alt="product image" class="productImg"></a>
+                                        </ng-container>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div id="similar-product" class="carousel slide" data-ride="carousel">
-                    <div class="carousel-inner">
-                        <div class="item active thumb">
-                            <ng-container *ngFor="let p of product.userProductImages">
-                                <a [href]="'/images/'+p.images"><img [src]="'/images/'+p.images" alt="product image" class="productImg"></a>
-                            </ng-container>
+                <div class="col-lg-5 offset-lg-1">
+                    <div class="s_product_text">
+                        <h3>{{product.name}}</h3>
+                        <h2>{{product.price}} EGP</h2>
+                        <ul class="list">
+                            <li class="fontColor">
+                                <span>Seller</span> : {{product.user.firstName}} {{product.user.lastName}}
+                            </li>
+                            <li class="fontColor">
+                                <span>Date Added</span> : {{product.dateAdded}}
+                            </li>
+                            <li class="fontColor">
+                                <span>Condition</span> : {{checkCondition(product.condition)}}
+                            </li>
+                        </ul>
+                        <p>{{product.description}}</p>
+                        <div class="card_area">
+                            <a class="main_btn" href="#"> Add to Wishlist</a>
+                            <button type="button" class="main_btn" *ngIf="userservice.IsLogin() && userservice.CurrentUserId() != product.userId" (click)="ShowChat(product.user,product.id)">
+                                Contact Seller
+                            </button>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-sm-6">
-                <div class="product-information">
-                    <!--/product-information-->
-                    <h2>{{product.name}}</h2>
-                    <p><b>Date Added:</b> {{product.dateAdded}}</p>
-                    <p><b>Seller:</b> {{product.user.firstName}} {{product.user.lastName}}</p>
-                    <br />
+        </div>
+    </div>
+    <!--================End Single Product Area =================-->
+    <!--================Product Description Area =================-->
+    <section class="product_description_area">
+        <div class="container">
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active"
+                       id="home-tab"
+                       data-toggle="tab"
+                       href="#home"
+                       role="tab"
+                       aria-controls="home"
+                       aria-selected="true">Description</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link"
+                       id="profile-tab"
+                       data-toggle="tab"
+                       href="#profile"
+                       role="tab"
+                       aria-controls="profile"
+                       aria-selected="false">Specification</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link"
+                       id="chart-tab"
+                       data-toggle="tab"
+                       href="#chart"
+                       role="tab"
+                       aria-controls="chart"
+                       aria-selected="false">Chart</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link"
+                       id="contact-tab"
+                       data-toggle="tab"
+                       href="#contact"
+                       role="tab"
+                       aria-controls="contact"
+                       aria-selected="false">Seller Information</a>
+                </li>
+            </ul>
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active"
+                     id="home"
+                     role="tabpanel"
+                     aria-labelledby="home-tab">
                     <p>{{product.description}}</p>
-                    <br />
-                    <p><b>Condition:</b> {{checkCondition(product.condition)}}</p>
-                    <p><b>Price:</b> EGP {{product.price}}</p>
-                    <p><b>Open For Negotiable:</b> {{checkAcceptance(product.isNegotiable)}}</p>
-                    <p><b>Open For Replaceable:</b> {{checkAcceptance(product.isReplacable)}}</p>
-                    <br />
-                    <button type="button" class="btn btn-fefault cart">
-                        <i class="fa fa-heart"></i>
-                        Add to Wishlist
-                    </button>
-
-                    <button type="button" class="btn btn-fefault cart" *ngIf="userservice.IsLogin() && userservice.CurrentUserId() != product.userId" (click)="ShowChat(product.user,product.id)">
-                        <i class="fa fa-user"></i>
-                        Contact Seller
-                    </button>
-                </div><!--/product-information-->
-            </div>
-        </div><!--/product-details-->
-
-        <div>
-            <div class="user-information col-sm-6">
-                <ul class="nav nav-pills nav-justified mb-3" id="pills-tab" role="tablist">
-                    <li class="nav-item active" role="presentation">
-                        <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Product Details</a>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Seller Details</a>
-                    </li>
-                </ul>
-                <div class="tab-content justify-content-sm-center" id="pills-tabContent">
-                    <div class="tab-pane active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-                        <table class="table table-bordered">
-                            <thead>
-                            </thead>
+                    <div>
+                        <p><strong>Condition:</strong> {{checkCondition(product.condition)}}</p>
+                        <p><strong>Open For Negotiation:</strong> {{checkAcceptance(product.isNegotiable)}}</p>
+                        <p><strong>Willing To Exchange:</strong> {{checkAcceptance(product.isReplacable)}}</p>
+                    </div>
+                </div>
+                <div class="tab-pane fade"
+                     id="profile"
+                     role="tabpanel"
+                     aria-labelledby="profile-tab">
+                    <div class="table-responsive">
+                        <table class="table">
                             <tbody>
                                 <tr>
-                                    <td colspan="2"><b>Brand</b></td>
-                                    <td>{{product.product.brand.name}}</td>
+                                    <td>
+                                        <h5>Brand</h5>
+                                    </td>
+                                    <td>
+                                        <h5>{{product.product.brand.name}}</h5>
+                                    </td>
                                 </tr>
                                 <tr>
-                                    <td colspan="2"><b>Model</b></td>
-                                    <td>{{product.product.model.name}}</td>
+                                    <td>
+                                        <h5>Model</h5>
+                                    </td>
+                                    <td>
+                                        <h5>{{product.product.model.name}}</h5>
+                                    </td>
                                 </tr>
                                 <ng-container *ngFor="let p of product.product.productAttributes">
                                     <tr>
-                                        <td colspan="2"><b>{{p.attributeName}}</b></td>
-                                        <td>{{p.value}}</td>
+                                        <td>
+                                            <h5>{{p.attributeName}}</h5>
+                                        </td>
+                                        <td>
+                                            <h5>{{p.value}}</h5>
+                                        </td>
                                     </tr>
                                 </ng-container>
                             </tbody>
                         </table>
                     </div>
-                    <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-                        <table class="table table-bordered">
-                            <thead>
-                            </thead>
+                </div>
+                <div class="tab-pane fade"
+                     id="contact"
+                     role="tabpanel"
+                     aria-labelledby="contact-tab">
+                    <div class="table-responsive">
+                        <table class="table">
                             <tbody>
                                 <tr>
-                                    <td colspan="2"><b>Seller Name</b></td>
-                                    <td>{{product.user.firstName}} {{product.user.lastName}}</td>
+                                    <td>
+                                        <h5>Seller Name</h5>
+                                    </td>
+                                    <td>
+                                        <h5>{{product.user.firstName}} {{product.user.lastName}}</h5>
+                                    </td>
                                 </tr>
                                 <tr>
-                                    <td colspan="2"><b>Email</b></td>
-                                    <td>{{product.user.email}}</td>
+                                    <td>
+                                        <h5>Email</h5>
+                                    </td>
+                                    <td>
+                                        <h5>{{product.user.email}}</h5>
+                                    </td>
                                 </tr>
                                 <tr>
-                                    <td colspan="2"><b>Address</b></td>
-                                    <td>{{product.user.address}}</td>
+                                    <td>
+                                        <h5>Address</h5>
+                                    </td>
+                                    <td>
+                                        <h5>{{product.user.address}}</h5>
+                                    </td>
                                 </tr>
                                 <tr>
-                                    <td colspan="2"><b>Area</b></td>
-                                    <td>{{product.user.area.areaName}}</td>
+                                    <td>
+                                        <h5>Area</h5>
+                                    </td>
+                                    <td>
+                                        <h5>{{product.user.area.areaName}}</h5>
+                                    </td>
                                 </tr>
                                 <tr>
-                                    <td colspan="2"><b>City</b></td>
-                                    <td>{{product.user.area.city.cityName}}</td>
+                                    <td>
+                                        <h5>City</h5>
+                                    </td>
+                                    <td>
+                                        <h5>{{product.user.area.city.cityName}}</h5>
+                                    </td>
                                 </tr>
                                 <tr>
-                                    <td colspan="2"><b>Rating</b></td>
-                                    <td><app-rating [ratingNumber]="rating"></app-rating></td>
+                                    <td>
+                                        <h5>Rating</h5>
+                                    </td>
+                                    <td>
+                                        <h5><app-rating [ratingNumber]="rating"></app-rating></h5>
+                                    </td>
                                 </tr>
                                 <tr>
-                                    <td colspan="2"><b>Sold Items</b></td>
-                                    <td>{{soldItem}}</td>
+                                    <td>
+                                        <h5>Sold Items</h5>
+                                    </td>
+                                    <td>
+                                        <h5>{{soldItem}}</h5>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
-            </div>
 
+                <div class="tab-pane fade"
+                id="chart"
+                role="tabpanel"
+                aria-labelledby="contact-tab">
+               <div class="chart-responsive">
+                <div style="display: block;">
+                    <canvas baseChart
+                    [datasets]="barChartData"
+                    [labels]="barChartLabels"
+                    [options]="barChartOptions"
+                    [legend]="barChartLegend"
+                    [chartType]="barChartType">
+                    </canvas>
+                    </div>
+               </div>
+           </div>
+
+                
+            </div>
         </div>
-    </div>
+    </section>
+    <!--================End Product Description Area =================-->
 </ng-template>
+

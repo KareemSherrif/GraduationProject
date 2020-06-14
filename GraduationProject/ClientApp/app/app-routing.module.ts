@@ -16,6 +16,7 @@ import { EmailSentComponent } from './components/user/email-sent/email-sent.comp
 import { UserSettingsComponent } from './components/profile/usersettings/usersettings.component';
 import { BuyersComponent } from './components/profile/buyers/buyers.component';
 import { SuggestionsComponent } from './components/suggestions/suggestions.component';
+import { WishlistComponent } from './components/user/wishlist/wishlist.component';
 import { CategoryFilterComponent } from './components/products/category-filter/category-filter.component';
 
 const routes: Routes = [
@@ -33,7 +34,8 @@ const routes: Routes = [
     { path: 'profile/Edit/Account', component: UserSettingsComponent, canActivate: [AuthGuard] },
     { path: 'buyer/:id', component: BuyersComponent, canActivate: [ProductOwnerGuard] },
     { path: 'product/suggestion', component: SuggestionsComponent, canActivate: [AuthGuard] },
-    { path: 'UserReviews', component: UserReviewsComponent, canActivate: [AuthGuard] }
+    { path: 'UserReviews', component: UserReviewsComponent, canActivate: [AuthGuard] },
+    {path:'wishlist',component:WishlistComponent,canActivate:[AuthGuard]}
 ];
 
 @NgModule({

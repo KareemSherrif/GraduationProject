@@ -42,7 +42,8 @@ margin: 2px;
     width: 120px;
 }
 .navstyle{
-    background:#333333
+    background:#333333;
+    margin:0;
 }
 
 .header_area{
@@ -65,6 +66,11 @@ margin: 2px;
 }
 @media screen and (max-width:60rem){
 
+}
+.notify-number{
+    position: relative;
+    left: -5px;
+    top:-10px;
 }
 
 

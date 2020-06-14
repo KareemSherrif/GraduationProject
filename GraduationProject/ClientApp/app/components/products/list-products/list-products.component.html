@@ -1,4 +1,4 @@
-<section class="cat_product_area">
+<section class="cat_product_area p-5">
     <div class="container">
         <div class="row flex-row-reverse">
             <div class="col-lg-9">
@@ -13,7 +13,7 @@
                                             <a [routerLink]="['/product/Details', p.id]">
                                                 <i class="ti-eye"></i>
                                             </a>
-                                            <a href="#">
+                                            <a  [ngClass]="{'clickable':true,'link-color':this.WishlistService.IsExist(p)}" (click)="AddToWishList(p)"  >
                                                 <i class="ti-heart"></i>
                                             </a>
                                         </div>

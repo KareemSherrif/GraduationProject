@@ -61,6 +61,7 @@ namespace GraduationProject
             services.AddTransient<IBuyerRepository, BuyerRepository>();
 
             services.AddTransient<IFIlterRepository, FilterRepository>();
+            services.AddTransient<ISuggestionRepository, SuggestionRepository>();
             #endregion
 
 
@@ -68,6 +69,7 @@ namespace GraduationProject
             x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
             
             services.AddControllersWithViews();
+            services.AddRazorPages();
             services.AddIdentity<ApplicationUser, IdentityRole>(a =>
             {
                 a.Password.RequireDigit = false;
@@ -107,7 +109,7 @@ namespace GraduationProject
         
             //services.AddAuthentication().AddCookie().AddJwtBearer(options =>
             //{
-              
+
             //    options.TokenValidationParameters = new TokenValidationParameters()
             //    {
             //        ValidateIssuerSigningKey = true,
@@ -132,8 +134,6 @@ namespace GraduationProject
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Nareeden Api", Version = "v1" });
 
             });
-
-         
 
         }
 
@@ -190,7 +190,7 @@ namespace GraduationProject
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
 
-
+                endpoints.MapRazorPages();
             });
         }
     }

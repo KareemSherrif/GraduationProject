@@ -146,4 +146,8 @@ html, body {
       min-height: 100vh;
       height: auto;
   }
+  .link-color{
+      background-color: #1EE1DB !important;
+      color:#fff !important;
+  }
   

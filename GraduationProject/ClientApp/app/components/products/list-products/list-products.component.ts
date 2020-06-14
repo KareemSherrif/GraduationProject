@@ -1,3 +1,4 @@
+import { WishlistService } from './../../../services/wishlist.service';
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../../../services/product.service';
 import { UserProduct } from '../../../models/user-product';
@@ -24,4 +25,9 @@ export class ListProductsComponent implements OnInit {
       })
 
   }
+   
+  AddToWishList(userProduct:UserProduct) {
+    this.WishlistService.SetItem(userProduct);
+  }
+
 }

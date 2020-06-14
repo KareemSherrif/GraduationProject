@@ -60,6 +60,9 @@ import { SuggestionsComponent } from './components/suggestions/suggestions.compo
 import { SuggestionsService } from './services/suggestions.service';
 import { UserReviewsComponent } from './components/user/user-reviews/user-reviews.component';
 import { FooterComponent } from './components/home/footer/footer.component';
+import { WishlistComponent } from './components/user/wishlist/wishlist.component';
+import { WishlistService } from './services/wishlist.service';
+import { ChartsModule } from 'ng2-charts';
 import { CategoryFilterComponent } from './components/products/category-filter/category-filter.component';
 import { FilterComponent } from './components/products/filter/filter.component';
 
@@ -88,6 +91,8 @@ import { FilterComponent } from './components/products/filter/filter.component';
         SuggestionsComponent,
         UserReviewsComponent,
         FooterComponent,
+        WishlistComponent
+        FooterComponent,
         CategoryFilterComponent,
         FilterComponent
   ],
@@ -115,7 +120,8 @@ import { FilterComponent } from './components/products/filter/filter.component';
     ImageCropperModule,
     MatAutocompleteModule,
     MatStepperModule,
-    AvatarModule
+    AvatarModule,
+    ChartsModule
    
     
     
@@ -123,7 +129,7 @@ import { FilterComponent } from './components/products/filter/filter.component';
   ],
   providers: [
      
-        [AreasService, CitiesService, UserInfoService,ProductService,BuyerService],
+        [AreasService, CitiesService, UserInfoService,ProductService,BuyerService,WishlistService],
         UserService,
         SuggestionsService,
       AuthGuard,
