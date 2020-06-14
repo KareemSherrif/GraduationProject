@@ -42,6 +42,17 @@ export class ProductDetailsComponent implements OnInit {
                 });
         }
     }
+    public barChartOptions = {
+        scaleShowVerticalLines: false,
+        responsive: true
+      };
+      public barChartLabels = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
+      public barChartType = 'bar';
+      public barChartLegend = true;
+      public barChartData = [
+        {data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A'},
+    ];
+    
     ShowChat(data,productId) {
         this.chatMessage.GetData(data.id);
         document.getElementById("UserName").innerHTML = data.firstName + " " + data.lastName;

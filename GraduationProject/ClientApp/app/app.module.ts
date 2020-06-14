@@ -62,6 +62,7 @@ import { UserReviewsComponent } from './components/user/user-reviews/user-review
 import { FooterComponent } from './components/home/footer/footer.component';
 import { WishlistComponent } from './components/user/wishlist/wishlist.component';
 import { WishlistService } from './services/wishlist.service';
+import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -114,7 +115,8 @@ import { WishlistService } from './services/wishlist.service';
     ImageCropperModule,
     MatAutocompleteModule,
     MatStepperModule,
-    AvatarModule
+    AvatarModule,
+    ChartsModule
    
     
     
