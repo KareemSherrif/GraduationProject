@@ -42,7 +42,8 @@ margin: 2px;
     width: 120px;
 }
 .navstyle{
-    background:#333333
+    background:#333333;
+    margin:0;
 }
 
 .header_area{
