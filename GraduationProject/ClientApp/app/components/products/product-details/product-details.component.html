@@ -76,6 +76,16 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link"
+                       id="chart-tab"
+                       data-toggle="tab"
+                       href="#chart"
+                       role="tab"
+                       aria-controls="chart"
+                       aria-selected="false">Chart</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link"
                        id="contact-tab"
                        data-toggle="tab"
                        href="#contact"
@@ -200,6 +210,25 @@
                         </table>
                     </div>
                 </div>
+
+                <div class="tab-pane fade"
+                id="chart"
+                role="tabpanel"
+                aria-labelledby="contact-tab">
+               <div class="chart-responsive">
+                <div style="display: block;">
+                    <canvas baseChart
+                    [datasets]="barChartData"
+                    [labels]="barChartLabels"
+                    [options]="barChartOptions"
+                    [legend]="barChartLegend"
+                    [chartType]="barChartType">
+                    </canvas>
+                    </div>
+               </div>
+           </div>
+
+                
             </div>
         </div>
     </section>

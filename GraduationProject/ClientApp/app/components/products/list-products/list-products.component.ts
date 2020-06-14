@@ -1,3 +1,4 @@
+import { WishlistService } from './../../../services/wishlist.service';
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../../../services/product.service';
 import { UserProduct } from '../../../models/user-product';
@@ -10,7 +11,7 @@ import { UserProduct } from '../../../models/user-product';
 export class ListProductsComponent implements OnInit {
     products: UserProduct[] = [];
 
-    constructor(private productService: ProductService) { }
+    constructor(private productService: ProductService,public WishlistService:WishlistService) { }
 
     ngOnInit(): void {
         this.productService.GetAllProducts()
@@ -18,6 +19,10 @@ export class ListProductsComponent implements OnInit {
                 this.products = data;
                 console.log(data);
             })
+  }
+   
+  AddToWishList(userProduct:UserProduct) {
+    this.WishlistService.SetItem(userProduct);
   }
 
 }
