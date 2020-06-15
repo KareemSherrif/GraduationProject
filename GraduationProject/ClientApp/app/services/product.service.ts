@@ -4,6 +4,9 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { UserProduct } from '../models/user-product';
 import { AddProduct } from '../models/addProduct';
+import { category } from '../models/Category';
+import { filterDetails } from '../models/FilterDetails';
+import { filterAttribute } from '../models/filterAttribute';
 
 @Injectable({
   providedIn: 'root'
@@ -36,5 +39,10 @@ export class ProductService {
   GetProductById(id: number) {
     return this.http.get<ProductInfo>("api/product/" + id);
   }
-
+  GetAllCategories(){
+    return this.http.get<category>("api/Categories");
+  }
+  GetFilters(id: any){
+    return this.http.get<filterAttribute>("api/Categories/GetCategory/"+id);
+  }
 }

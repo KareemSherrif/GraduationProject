@@ -30,17 +30,17 @@ namespace GraduationProject.Areas.Api.Controllers
             return Ok(AllCategories);
         }
 
-        [HttpPost]
+        [HttpGet]
+        [Route("GetCategory/{id}")]
         public IActionResult GetCategory(int id)
         {
+            //int i = int.Parse(id);
             Category category = _CategoryRepository.Get(id);
-            List<Dictionary<string, Object>> filters = _FIlterRepository.GetFilterByCategory(id);
-            return Ok(new
-            {
-                CategoryId = category.Id,
-                CategoryName = category.Name,
-                AvailableFilters = filters
-            });
+           // List<Dictionary<string, Object>> filters = _FIlterRepository.GetFilterByCategory(id);
+            List<string> titleNames= _FIlterRepository.GetFilterByCategory(id);
+            List<string> StaticChoices= _FIlterRepository.GetStaticChoices(id);
+            List<string> dynamicChoices= _FIlterRepository.GetDynamicChoices(id);
+            return Ok(new { titleNames , StaticChoices, dynamicChoices});
         }
 
         [HttpGet]

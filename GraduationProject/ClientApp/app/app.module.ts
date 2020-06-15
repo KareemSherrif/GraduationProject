@@ -63,6 +63,8 @@ import { FooterComponent } from './components/home/footer/footer.component';
 import { WishlistComponent } from './components/user/wishlist/wishlist.component';
 import { WishlistService } from './services/wishlist.service';
 import { ChartsModule } from 'ng2-charts';
+import { CategoryFilterComponent } from './components/products/category-filter/category-filter.component';
+import { FilterComponent } from './components/products/filter/filter.component';
 
 @NgModule({
   declarations: [
@@ -89,7 +91,10 @@ import { ChartsModule } from 'ng2-charts';
         SuggestionsComponent,
         UserReviewsComponent,
         FooterComponent,
-        WishlistComponent
+        WishlistComponent,
+        FooterComponent,
+        CategoryFilterComponent,
+        FilterComponent
   ],
   imports: [
     BrowserModule,
