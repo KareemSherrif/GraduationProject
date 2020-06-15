@@ -14,12 +14,6 @@ export class ResetPasswordComponent implements OnInit {
   constructor(private userService: UserService, private router: Router,
     private route: ActivatedRoute) { }
 
-
-
-    check(){
-      console.log("checked..")
-    }
-
   OnSubmit(FormData){
     console.log("in function");
     this.userService.SendPasswordResetLink(FormData.value).subscribe((data: any) => {
