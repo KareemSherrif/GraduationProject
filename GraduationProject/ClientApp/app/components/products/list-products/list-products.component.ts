@@ -2,6 +2,8 @@ import { WishlistService } from './../../../services/wishlist.service';
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../../../services/product.service';
 import { UserProduct } from '../../../models/user-product';
+import { ActivatedRoute } from '@angular/router';
+import { filterAttribute } from 'ClientApp/app/models/filterAttribute';
 
 @Component({
   selector: 'app-list-products',
@@ -9,16 +11,19 @@ import { UserProduct } from '../../../models/user-product';
   styleUrls: ['./list-products.component.css']
 })
 export class ListProductsComponent implements OnInit {
-    products: UserProduct[] = [];
+  products: UserProduct[] = [];
+  id;
+  filterAttribute;
+  test_title;
+  constructor(private productService: ProductService, private route: ActivatedRoute, public WishlistService: WishlistService) { }
 
-    constructor(private productService: ProductService,public WishlistService:WishlistService) { }
+  ngOnInit(): void {
+    this.productService.GetAllProducts()
+      .subscribe(data => {
+        this.products = data;
+        //console.log(data);
+      })
 
-    ngOnInit(): void {
-        this.productService.GetAllProducts()
-            .subscribe(data => {
-                this.products = data;
-                console.log(data);
-            })
   }
    
   AddToWishList(userProduct:UserProduct) {

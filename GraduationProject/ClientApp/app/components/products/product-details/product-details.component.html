@@ -81,7 +81,8 @@
                        href="#chart"
                        role="tab"
                        aria-controls="chart"
-                       aria-selected="false">Chart</a>
+                       aria-selected="false"  (click)="RenderChart(this.product.productId)">Chart</a>
+                      
                 </li>
 
                 <li class="nav-item">
@@ -217,14 +218,28 @@
                 aria-labelledby="contact-tab">
                <div class="chart-responsive">
                 <div style="display: block;">
-                    <canvas baseChart
-                    [datasets]="barChartData"
-                    [labels]="barChartLabels"
-                    [options]="barChartOptions"
-                    [legend]="barChartLegend"
-                    [chartType]="barChartType">
+                    <ng-container *ngIf="this.productChart != null">
+                        <ng-container *ngIf="this.productChart.dateTime.length >0 && this.productChart.prices.length>0">
+                            <canvas baseChart
+                            [datasets]="barChartData"
+                            [labels]="barChartLabels"
+                            [options]="barChartOptions"
+                            [legend]="barChartLegend"
+                            [chartType]="barChartType"
+                            [colors]="[{ backgroundColor: [
+                                '#00e6e6'
+                                
+                              ]}]">
                     </canvas>
-                    </div>
+                    <table class="table">
+                        <tr>
+                            <th>Average</th> <td>{{this.productChart.avrage}} LE</td>
+                          
+                        </tr>
+                    </table>
+                </ng-container>
+                </ng-container>
+                </div>
                </div>
            </div>
 

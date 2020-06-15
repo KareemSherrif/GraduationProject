@@ -63,6 +63,11 @@ import { FooterComponent } from './components/home/footer/footer.component';
 import { WishlistComponent } from './components/user/wishlist/wishlist.component';
 import { WishlistService } from './services/wishlist.service';
 import { ChartsModule } from 'ng2-charts';
+import { CategoryFilterComponent } from './components/products/category-filter/category-filter.component';
+import { FilterComponent } from './components/products/filter/filter.component';
+import { ChartsService } from './services/charts.service';
+import { MomentModule } from 'ngx-moment';
+
 
 @NgModule({
   declarations: [
@@ -89,7 +94,10 @@ import { ChartsModule } from 'ng2-charts';
         SuggestionsComponent,
         UserReviewsComponent,
         FooterComponent,
-        WishlistComponent
+        WishlistComponent,
+        FooterComponent,
+        CategoryFilterComponent,
+        FilterComponent
   ],
   imports: [
     BrowserModule,
@@ -116,15 +124,15 @@ import { ChartsModule } from 'ng2-charts';
     MatAutocompleteModule,
     MatStepperModule,
     AvatarModule,
-    ChartsModule
-   
+    ChartsModule,
+    MomentModule
     
     
    
   ],
   providers: [
      
-        [AreasService, CitiesService, UserInfoService,ProductService,BuyerService,WishlistService],
+        [AreasService, CitiesService, UserInfoService,ProductService,BuyerService,WishlistService,ChartsService],
         UserService,
         SuggestionsService,
       AuthGuard,
