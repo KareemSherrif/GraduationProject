@@ -65,6 +65,9 @@ import { WishlistService } from './services/wishlist.service';
 import { ChartsModule } from 'ng2-charts';
 import { CategoryFilterComponent } from './components/products/category-filter/category-filter.component';
 import { FilterComponent } from './components/products/filter/filter.component';
+import { ChartsService } from './services/charts.service';
+import { MomentModule } from 'ngx-moment';
+
 
 @NgModule({
   declarations: [
@@ -121,15 +124,15 @@ import { FilterComponent } from './components/products/filter/filter.component';
     MatAutocompleteModule,
     MatStepperModule,
     AvatarModule,
-    ChartsModule
-   
+    ChartsModule,
+    MomentModule
     
     
    
   ],
   providers: [
      
-        [AreasService, CitiesService, UserInfoService,ProductService,BuyerService,WishlistService],
+        [AreasService, CitiesService, UserInfoService,ProductService,BuyerService,WishlistService,ChartsService],
         UserService,
         SuggestionsService,
       AuthGuard,

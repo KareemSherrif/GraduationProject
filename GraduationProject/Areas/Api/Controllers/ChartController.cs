@@ -32,18 +32,9 @@ namespace GraduationProject.Areas.Api.Controllers
                 .Take(10)
                 .ToList().GroupBy(a => a.ProductId)
                 .Select(a => 
-                new {ProductId = a.Key, Avrage =a.Average(a=>a.Price), Prices =a.Select(a=>a.Price) , DateTime = a.Select(a=>a.DateAdded)});
+                new {ProductId = a.Key, Avrage =a.Average(a=>a.Price), Prices =a.Select(a=>a.Price) , DateTime = a.Select(a=>a.DateAdded)}).FirstOrDefault();
             
 
-                
-
-            
-
-
-                        
-
-
-          
 
             return Ok(model);
         }

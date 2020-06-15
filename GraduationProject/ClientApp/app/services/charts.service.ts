@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { ProductChart } from '../models/productchart';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +12,6 @@ export class ChartsService {
   }
   GetPriceStatistics(id: number) {
    
-    this.http.get("/api/Chart/" + id);
+    return this.http.get<ProductChart>("/api/Chart/" + id);
   }
 }
