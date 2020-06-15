@@ -216,10 +216,10 @@
                 role="tabpanel"
                 aria-labelledby="contact-tab">
                <div class="chart-responsive">
-                <div style="display: block;">
+                <div style="display: block;" *ngIf="this.productChart != null">
                     <canvas baseChart
-                    [datasets]="barChartData"
-                    [labels]="barChartLabels"
+                    [datasets]="this.productChart.prices"
+                    [labels]="this.productChart.dateTime"
                     [options]="barChartOptions"
                     [legend]="barChartLegend"
                     [chartType]="barChartType">

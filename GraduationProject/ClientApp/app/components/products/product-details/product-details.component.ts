@@ -1,3 +1,4 @@
+import { ProductChart } from './../../../models/productchart';
 import { ToastrService } from 'ngx-toastr';
 import { BuyerService } from './../../../services/buyer.service';
 import { ChatService } from './../../../services/chat.service';
@@ -23,7 +24,7 @@ export class ProductDetailsComponent implements OnInit {
     Acceptance: string;
     soldItem: number;
     userId: string;
-
+    productChart: ProductChart =null;
     constructor(private productService: ProductService,
         private route: ActivatedRoute,
         public userservice: UserService,
@@ -49,9 +50,8 @@ export class ProductDetailsComponent implements OnInit {
       public barChartLabels = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
       public barChartType = 'bar';
       public barChartLegend = true;
-      public barChartData = [
-        {data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A'},
-    ];
+      public barChartData = [65, 59, 80, 81, 56, 55, 40];
+  
     
     ShowChat(data,productId) {
         this.chatMessage.GetData(data.id);
@@ -98,7 +98,7 @@ export class ProductDetailsComponent implements OnInit {
     }
 
     ngOnInit(): void {
-
+     
     }
 
     ngAfterViewInit() {
