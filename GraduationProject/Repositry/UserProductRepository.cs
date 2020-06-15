@@ -29,13 +29,27 @@ namespace GraduationProject.Repositry
                 
         }
 
-        public IEnumerable<UserProduct> GetUserProductsWithImages()
+        public IEnumerable<UserProduct> GetUserProductsWithImages(string id)
         {
-            return context.UserProduct
-                .Include(a => a.UserProductImages)
-                .Where(a => !a.Buys.Select(b => b.UserProductId).Contains(a.Id)
-                || a.Buys.Any(b => b.IsSold == false))
-                .ToList();
+            if(id == null)
+            {
+                return context.UserProduct
+                    .Include(a => a.UserProductImages)
+                    .Where(a => !a.Buys.Select(b => b.UserProductId).Contains(a.Id)
+                    || a.Buys.Any(b => b.IsSold == false))
+                    .ToList();
+            }
+
+            else
+            {
+                return context.UserProduct
+               .Include(a => a.UserProductImages)
+               .Where(a => !a.Buys.Select(b => b.UserProductId).Contains(a.Id)
+               || a.Buys.Any(b => b.IsSold == false))
+               .Where(a => a.UserId != id)
+               .ToList();
+            }
+
         }
 
         public UserProduct GetUserProductDetails(int userProductId)
