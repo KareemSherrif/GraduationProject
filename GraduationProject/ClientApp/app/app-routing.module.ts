@@ -28,7 +28,7 @@ const routes: Routes = [
     { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
     { path: 'profile/:id', component: ProfileComponent },
     { path: 'AddProduct', component: AddProductComponent, canActivate: [AuthGuard] },
-    { path: 'product/ListProduct/:id', component: ListProductsComponent },
+    { path: 'product/ListProduct', component: ListProductsComponent },
     { path: 'Store', component: CategoryFilterComponent },
     { path: 'product/Details/:id', component: ProductDetailsComponent, canActivate: [AuthGuard] },
     { path: 'profile/Edit/Account', component: UserSettingsComponent, canActivate: [AuthGuard] },

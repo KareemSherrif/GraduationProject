@@ -15,7 +15,7 @@ export class ListProductsComponent implements OnInit {
   id;
   filterAttribute;
   test_title;
-  constructor(private productService: ProductService, private route: ActivatedRoute) { }
+  constructor(private productService: ProductService, private route: ActivatedRoute, public WishlistService: WishlistService) { }
 
   ngOnInit(): void {
     this.productService.GetAllProducts()

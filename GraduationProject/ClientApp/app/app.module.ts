@@ -91,7 +91,7 @@ import { FilterComponent } from './components/products/filter/filter.component';
         SuggestionsComponent,
         UserReviewsComponent,
         FooterComponent,
-        WishlistComponent
+        WishlistComponent,
         FooterComponent,
         CategoryFilterComponent,
         FilterComponent

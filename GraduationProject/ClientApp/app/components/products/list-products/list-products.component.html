@@ -8,12 +8,14 @@
                             <div class="col-lg-4 col-md-6">
                                 <div class="single-product">
                                     <div class="product-img">
-                                        <img class="card-img" [src]="'/images/'+p.userProductImages[0].images" alt="product image" />
+                                        <img class="card-img" [src]="'/images/'+p.userProductImages[0].images"
+                                            alt="product image" />
                                         <div class="p_icon">
                                             <a [routerLink]="['/product/Details', p.id]">
                                                 <i class="ti-eye"></i>
                                             </a>
-                                            <a  [ngClass]="{'clickable':true,'link-color':this.WishlistService.IsExist(p)}" (click)="AddToWishList(p)"  >
+                                            <a [ngClass]="{'clickable':true,'link-color':this.WishlistService.IsExist(p)}"
+                                                (click)="AddToWishList(p)">
                                                 <i class="ti-heart"></i>
                                             </a>
                                         </div>
@@ -35,16 +37,16 @@
             <!--====================================Filtration===============================-->
             <div class="col-lg-3">
                 <app-filter></app-filter>
-                <!-- <div class="left_sidebar_area"> -->
-                    <!-- {{test_title}} -->
-                    <!-- <ng-container  *ngFor="let f of test_title"> -->
-                        <!-- <h3>{{f.TitleName}}</h3> -->
-                                <!-- <h3>{{f}}</h3> -->
-                        <!-- <aside class="left_widgets p_filter_widgets">
+                <div class="left_sidebar_area">
+                    {{test_title}}
+                    <ng-container *ngFor="let f of test_title">
+                        <h3>{{f.TitleName}}</h3>
+                        <h3>{{f}}</h3>
+                        <aside class="left_widgets p_filter_widgets">
                             <div class="l_w_title">
                                 {{f}}
-                            </div> -->
-                            <!-- <div class="widgets_inner">
+                            </div>
+                            <div class="widgets_inner">
                                 <ul class="list">
                                     <li>
                                         <a href="#"> {{f.Brand}}</a>
@@ -68,13 +70,13 @@
                                         <a href="#">Meat</a>
                                     </li>
                                 </ul>
-                            </div-->
-                        <!-- </aside> 
+                            </div>
+                        </aside>
 
                     </ng-container>
-                    -->
 
-                    <!-- <aside class="left_widgets p_filter_widgets">
+
+                    <aside class="left_widgets p_filter_widgets">
                         <div class="l_w_title">
                             <h3>Product Brand</h3>
                         </div>
@@ -138,9 +140,8 @@
                             </div>
                         </div>
                     </aside>
-                </div-->
-            </div> 
+                </div>
+            </div>
         </div>
     </div>
 </section>
-
