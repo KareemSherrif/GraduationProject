@@ -24,7 +24,7 @@ namespace GraduationProject.Areas.Api.Controllers
         [HttpGet("{id}")]
         public IActionResult GetAverage(int id)
         {
-            List<ProductChart> charts = new List<ProductChart>();
+          
             var model = context.UserProduct
                 .Include(a => a.Product)
                 .Where(a => a.ProductId == id)
@@ -40,11 +40,5 @@ namespace GraduationProject.Areas.Api.Controllers
         }
         
     }
-    public class ProductChart
-    {
-        public int ID { get; set; }
-        public string Name { get; set; }
-        public DateTime DateTime { get; set; }
-        public decimal AvarageProduct { get; set; }
-    }
+   
 }
