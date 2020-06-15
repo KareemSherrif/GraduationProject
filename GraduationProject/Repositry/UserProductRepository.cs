@@ -33,8 +33,11 @@ namespace GraduationProject.Repositry
         {
             return context.UserProduct
                 .Include(a => a.UserProductImages)
+                .Where(a => !a.Buys.Select(b => b.UserProductId).Contains(a.Id)
+                || a.Buys.Any(b => b.IsSold == false))
                 .ToList();
         }
+
         public UserProduct GetUserProductDetails(int userProductId)
         {
             return context.UserProduct
