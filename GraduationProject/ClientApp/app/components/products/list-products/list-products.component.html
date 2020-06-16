@@ -1,19 +1,33 @@
 <section class="cat_product_area p-5">
     <div class="container">
+        <div class="form-group">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search Here" [(ngModel)]="term">
+                <div class="input-group-append">
+                    <button class="btn" type="button">
+                        <i class="ti-search"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
         <div class="row flex-row-reverse">
+            <!--<div class="col-lg-1">
+            </div>-->
             <div class="col-lg-9">
                 <div class="latest_product_inner">
                     <div class="row">
-                        <ng-container *ngFor="let p of products">
+                        <ng-container *ngFor="let p of products | filter:term">
                             <div class="col-lg-4 col-md-6">
                                 <div class="single-product">
                                     <div class="product-img">
-                        <img class="card-img" [src]="'/images/'+p.userProductImages[0].images" alt="product image" />
+                                        <img class="card-img" [src]="'/images/'+p.userProductImages[0].images"
+                                             alt="product image" />
                                         <div class="p_icon">
                                             <a [routerLink]="['/product/Details', p.id]">
                                                 <i class="ti-eye"></i>
                                             </a>
-                        <!-- <a  [ngClass]="{'clickable':true,'link-color':WishlistService.IsExist(p)}" (click)="AddToWishList(p)"  >
+                                            <a [ngClass]="{'clickable':true,'link-color':this.WishlistService.IsExist(p)}"
+                                               (click)="AddToWishList(p)">
                                                 <i class="ti-heart"></i>
                                             </a> -->
                         </div>
@@ -33,6 +47,9 @@
                 </div>
             </div>
             <!--====================================Filtration===============================-->
+            <!--<div class="col-lg-1">
+            </div>-->
+
             <div class="col-lg-3">
 
                 <!-- <ng-template *ngIf="isOn==true;then categories; else filter"></ng-template> -->
@@ -84,8 +101,8 @@
                             </div-->
                 <!-- </aside> 
 
-                    </ng-container>
-                    -->
+            </ng-container>
+
 
                 <!-- <aside class="left_widgets p_filter_widgets">
                         <div class="l_w_title">
@@ -112,30 +129,30 @@
                         </div>
                     </aside>
 
-                    <aside class="left_widgets p_filter_widgets">
-                        <div class="l_w_title">
-                            <h3>Color Filter</h3>
-                        </div>
-                        <div class="widgets_inner">
-                            <ul class="list">
-                                <li>
-                                    <a href="#">Black</a>
-                                </li>
-                                <li>
-                                    <a href="#">Black Leather</a>
-                                </li>
-                                <li class="active">
-                                    <a href="#">Black with red</a>
-                                </li>
-                                <li>
-                                    <a href="#">Gold</a>
-                                </li>
-                                <li>
-                                    <a href="#">Spacegrey</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </aside>
+            <aside class="left_widgets p_filter_widgets">
+                <div class="l_w_title">
+                    <h3>Color Filter</h3>
+                </div>
+                <div class="widgets_inner">
+                    <ul class="list">
+                        <li>
+                            <a href="#">Black</a>
+                        </li>
+                        <li>
+                            <a href="#">Black Leather</a>
+                        </li>
+                        <li class="active">
+                            <a href="#">Black with red</a>
+                        </li>
+                        <li>
+                            <a href="#">Gold</a>
+                        </li>
+                        <li>
+                            <a href="#">Spacegrey</a>
+                        </li>
+                    </ul>
+                </div>
+            </aside>
 
                     <aside class="left_widgets p_filter_widgets">
                         <div class="l_w_title">

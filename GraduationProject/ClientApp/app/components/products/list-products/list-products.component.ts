@@ -11,12 +11,14 @@ import { filterAttribute } from 'ClientApp/app/models/filterAttribute';
   styleUrls: ['./list-products.component.css']
 })
 export class ListProductsComponent implements OnInit {
-  public products: UserProduct[] = [];
-  id;
-  filterAttribute;
-  test_title;
-  categoryId: number;
-  constructor(private productService: ProductService, private route: ActivatedRoute) { }
+    products: UserProduct[] = [];
+    id;
+    term: string;
+    page = 1;
+    pageSize = 10;
+    filterAttribute;
+    test_title;
+  constructor(private productService: ProductService, private route: ActivatedRoute, public WishlistService: WishlistService) { }
 
   ngOnInit(): void {
     this.productService.GetAllProducts()

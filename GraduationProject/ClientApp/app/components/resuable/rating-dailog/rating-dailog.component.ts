@@ -38,12 +38,13 @@ export class RatingDailogComponent implements OnInit {
       productID:this.data.productId
       
     }
+   
     this.BuyerService.ProductSold(product).subscribe(a => {
       this.router.navigate(['/profile']);
     });
     
-   
-    this.dialogRef.close();
+    this.dialogRef.close(true);
+    
   }
 
 }

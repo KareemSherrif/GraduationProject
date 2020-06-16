@@ -6,4 +6,5 @@ export class BuyersReview {
     condition: number;
     description: string;
     price: number;
+    isReviewed: boolean;
 }

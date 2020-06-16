@@ -60,7 +60,7 @@ namespace GraduationProject.Areas.Api.Controllers
                         Price = model.Price,
                         IsNegotiable = model.IsNegotiable,
                         IsReplacable = model.IsReplacable,
-                        DateAdded = DateTime.Now,
+                        DateAdded = DateTime.Now
                  
                     };
                     foreach (var item in model.Images)
@@ -110,7 +110,8 @@ namespace GraduationProject.Areas.Api.Controllers
         [Route("GetAllProducts")]
         public IActionResult GetAllProducts()
         {
-            var AllProducts = _userProductRepository.GetUserProductsWithImages();
+            string id = User.GetUserIdToken();
+            var AllProducts = _userProductRepository.GetUserProductsWithImages(id);
             return Ok(AllProducts);
         }
 

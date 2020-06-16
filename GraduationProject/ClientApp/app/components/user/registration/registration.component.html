@@ -172,9 +172,9 @@
 				}}</option>
 			</select>
 		</mat-form-field>
-
-		<div class="form-group">
-			<button class="btn btn-success" [disabled]="form.invalid">Submit</button>
+		<div class="form-group pt-3">
+			<button mat-button class="btn-block" mat-flat-button color="primary" [disabled]="form.invalid">
+				<i class="fa fa-sign-in" aria-hidden="true"></i> Login</button>
 		</div>
 	</form>
 </mat-card>

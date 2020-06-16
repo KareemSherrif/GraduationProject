@@ -4,7 +4,7 @@
         <div class="container">
             <nav class="navbar navbar-expand-lg navbar-light w-100 margin-bottom-md ">
                 <!-- Brand and toggle get grouped for better mobile display -->
-                <a class="navbar-brand logo_h" href="#">
+                <a class="navbar-brand logo_h" [routerLink]="['']">
                     <img class="logo" src="/client/img/logo.png" alt="logo"/>
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -18,50 +18,14 @@
                 <div class="collapse navbar-collapse offset w-100" id="navbarSupportedContent">
                     <div class="row w-100 mr-0">
                         <div class="col-lg-7 pr-0">
-                            <ul class="nav navbar-nav margin-20" >
-                                <li class="nav-item submenu dropdown">
-                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
-                                        aria-haspopup="true" aria-expanded="false">Shop</a>
-                                    <ul class="dropdown-menu">
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="category.html">Shop Category</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="single-product.html">Product Details</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="checkout.html">Product Checkout</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="cart.html">Shopping Cart</a>
-                                        </li>
-                                    </ul>
+                            <ul class="nav navbar-nav margin-20" >      
+                                <li class="nav-item">
+                                    <a class="nav-link" [routerLink]="['']">Home</a>
+                                </li> 
+                                <li class="nav-item">
+                                    <a class="nav-link" [routerLink]="['product/ListProduct']">Browse Products</a>
                                 </li>
-                                <li class="nav-item submenu dropdown">
-                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
-                                        aria-haspopup="true" aria-expanded="false">Blog</a>
-                                    <ul class="dropdown-menu">
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="blog.html">Blog</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="single-blog.html">Blog Details</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="nav-item submenu dropdown">
-                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
-                                        aria-haspopup="true" aria-expanded="false">Pages</a>
-                                    <ul class="dropdown-menu">
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="tracking.html">Tracking</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="elements.html">Elements</a>
-                                        </li>
-                                    </ul>
-                                </li>
-
+                                <ng-template *ngIf="this.userService.IsLogin(); then loginleft;"></ng-template>
                             </ul>
 						</div>
 						
@@ -77,6 +41,12 @@
         </div>
     </div>
 </header>
+<ng-template #loginleft>
+    <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/wishlist']">Wishlist</a>
+      </li>
+</ng-template>
+
 <ng-template #login>
 	<li class="nav-item dropdown padding-right-sm">
        
@@ -87,7 +57,7 @@
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" routerLink="/profile">Profile</a>
             <a class="dropdown-item" routerLink="profile/Edit/Account">Account Settings</a>
-            <a class="dropdown-item" routerLink="/UserReviews">Reviews</a>
+            <!-- <a class="dropdown-item" routerLink="/UserReviews">Reviews</a> -->
             <div class="dropdown-divider"></div>
             <a class="dropdown-item logout" (click)="LogOut()"> Logout</a>
           </div>

@@ -1,3 +1,5 @@
+import { ChartsService } from './../../../services/charts.service';
+import { ProductChart } from './../../../models/productchart';
 import { ToastrService } from 'ngx-toastr';
 import { BuyerService } from './../../../services/buyer.service';
 import { ChatService } from './../../../services/chat.service';
@@ -8,6 +10,8 @@ import { ProductService } from '../../../services/product.service';
 import { ActivatedRoute } from '@angular/router';
 import { UserInfoService } from '../../../services/userInfo.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import * as moment from 'moment';
+import { MomentModule } from 'ngx-moment';
 declare var $: any;
 
 @Component({
@@ -23,14 +27,15 @@ export class ProductDetailsComponent implements OnInit {
     Acceptance: string;
     soldItem: number;
     userId: string;
-
+    productChart: ProductChart =null;
     constructor(private productService: ProductService,
         private route: ActivatedRoute,
         public userservice: UserService,
         private chatMessage: ChatService,
         private userInfoService: UserInfoService,
         private BuyerService: BuyerService,
-        private ToastrService: ToastrService) {
+        private ToastrService: ToastrService,
+        private chart:ChartsService) {
         this.id = this.route.snapshot.paramMap.get('id');
         if (this.id) {
             this.productService.GetProductDetails(this.id)
@@ -40,18 +45,23 @@ export class ProductDetailsComponent implements OnInit {
                     console.log(data);
                     this.GetSellerInfo(this.userId);
                 });
+            
+               
         }
     }
     public barChartOptions = {
         scaleShowVerticalLines: false,
         responsive: true
       };
-      public barChartLabels = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
-      public barChartType = 'bar';
+      public barChartLabels = [];
+      public barChartType = 'line';
       public barChartLegend = true;
       public barChartData = [
-        {data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A'},
+        {data: [], label: 'Prices'},
+        
     ];
+  
+  
     
     ShowChat(data,productId) {
         this.chatMessage.GetData(data.id);
@@ -98,7 +108,20 @@ export class ProductDetailsComponent implements OnInit {
     }
 
     ngOnInit(): void {
-
+        console.log(this.product);
+    
+    }
+    RenderChart(productId: number) {
+   
+        this.chart.GetPriceStatistics(productId).subscribe(a => {
+            this.productChart = a;
+            this.barChartData= [{ data: a.prices, label: "prices" }];
+            this.barChartLabels = a.dateTime.map(a => {
+                console.log(moment(a).format())
+                return moment(a).format('L');
+            });
+       
+           });
     }
 
     ngAfterViewInit() {
@@ -109,5 +132,6 @@ export class ProductDetailsComponent implements OnInit {
             });
         });
     }
+    
 
 }
