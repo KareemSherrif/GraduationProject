@@ -20,6 +20,9 @@
                         <div class="col-lg-7 pr-0">
                             <ul class="nav navbar-nav margin-20" >       
                                 <ng-template *ngIf="this.userService.IsLogin(); then loginleft;"></ng-template>
+                                <li class="nav-item">
+                                    <a class="nav-link" [routerLink]="['product/ListProduct']">Browse Products</a>
+                                  </li>
                             </ul>
 						</div>
 						

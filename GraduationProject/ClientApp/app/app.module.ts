@@ -68,6 +68,7 @@ import { FilterComponent } from './components/products/filter/filter.component';
 import { ChartsService } from './services/charts.service';
 import { MomentModule } from 'ngx-moment';
 import { ChatService } from './services/chat.service';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 
 @NgModule({
@@ -126,7 +127,8 @@ import { ChatService } from './services/chat.service';
     MatStepperModule,
     AvatarModule,
     ChartsModule,
-    MomentModule
+    MomentModule,
+    Ng2SearchPipeModule
     
     
    

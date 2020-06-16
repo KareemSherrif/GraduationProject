@@ -110,7 +110,8 @@ namespace GraduationProject.Areas.Api.Controllers
         [Route("GetAllProducts")]
         public IActionResult GetAllProducts()
         {
-            var AllProducts = _userProductRepository.GetUserProductsWithImages();
+            string id = User.GetUserIdToken();
+            var AllProducts = _userProductRepository.GetUserProductsWithImages(id);
             return Ok(AllProducts);
         }
 

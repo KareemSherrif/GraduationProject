@@ -174,6 +174,5 @@ namespace GraduationProject.Areas.Admin.Controllers
                 return BadRequest("An Error Has Occurred.");
             }
         }
-
     }
 }
