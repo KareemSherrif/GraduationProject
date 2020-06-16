@@ -17,8 +17,8 @@ export class ChatService {
   constructor(private http: HttpClient, private UserService: UserService) {
 
     const options: IHttpConnectionOptions = {
-      transport: signalr.HttpTransportType.WebSockets,
-      skipNegotiation: true,
+      transport: signalr.HttpTransportType.LongPolling,
+      skipNegotiation: false,
       accessTokenFactory: () => {
         return this.UserService.CurrentUserToken();
       }
@@ -36,7 +36,10 @@ export class ChatService {
       .then(() => {
         let container = document.getElementById("scrollContainer");
         container.scrollTo(0, container.scrollHeight);
-    })
+      });
+    
+    
+        
      
   }
   public startConnection = () => {
@@ -53,6 +56,9 @@ export class ChatService {
   }
   public OnSeeChat(userID:string) {
     return this.http.put("/api/Chat/ChatApplication/SetRead/" + userID,null);
+  }
+  public Status() {
+    return this.hubConnection.state;
   }
   
 

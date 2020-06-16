@@ -67,6 +67,7 @@ import { CategoryFilterComponent } from './components/products/category-filter/c
 import { FilterComponent } from './components/products/filter/filter.component';
 import { ChartsService } from './services/charts.service';
 import { MomentModule } from 'ngx-moment';
+import { ChatService } from './services/chat.service';
 
 
 @NgModule({
@@ -132,7 +133,7 @@ import { MomentModule } from 'ngx-moment';
   ],
   providers: [
      
-        [AreasService, CitiesService, UserInfoService,ProductService,BuyerService,WishlistService,ChartsService],
+        [AreasService, CitiesService, UserInfoService,ProductService,BuyerService,WishlistService,ChartsService,ChatService],
         UserService,
         SuggestionsService,
       AuthGuard,

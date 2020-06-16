@@ -16,9 +16,8 @@ export class AppComponent {
   title = 'myapp';
   
   constructor(public UserService:UserService,public ChatService:ChatService) {
-    this.ChatService.hubConnection.on("ReciveMessage",  (data)=> {
-      console.log(document.getElementById("chat").classList.contains("display-none"));
-      console.log(data);
+    this.ChatService.hubConnection.on("ReciveMessage", (data) => {
+  
       if (document.getElementById("chat").classList.contains("display-none") || (<HTMLInputElement>document.getElementById("userId")).value != data.sourceID) {
         let newMessage = new newUserMessage();
         newMessage.userId = data.sourceID;
