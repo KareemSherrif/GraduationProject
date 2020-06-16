@@ -102,7 +102,7 @@ export class AddProductComponent implements OnInit {
 	OnFormSubmit() {
 		console.log(this.form.value);
 		this.service.AddProduct(this.form.value).subscribe(a => {
-			this.ToastrService.success("Add Product success", "Successful");
+			this.ToastrService.success("Product Successfully Added", "Successful");
 			this.router.navigate(['']);
 		}, (error: HttpErrorResponse)=>{
 				this.ToastrService.error(error.message);

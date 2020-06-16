@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SuggestionsService } from '../../services/suggestions.service';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-suggestions',
@@ -10,10 +11,11 @@ import { Router } from '@angular/router';
 export class SuggestionsComponent implements OnInit {
 
     constructor(private suggestionService: SuggestionsService,
-        private router: Router) { }
+        private router: Router, private ToastrService: ToastrService) { }
     Save(f) {
         this.suggestionService.AddSuggestion(f.value)
             .subscribe(a => {
+                this.ToastrService.success("Thank You for your Suggestion!", "Successful");
                 this.router.navigate(['/']);
             });
     }

@@ -67,6 +67,7 @@ import { CategoryFilterComponent } from './components/products/category-filter/c
 import { FilterComponent } from './components/products/filter/filter.component';
 import { ChartsService } from './services/charts.service';
 import { MomentModule } from 'ngx-moment';
+import { ChatService } from './services/chat.service';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 
@@ -127,14 +128,12 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     AvatarModule,
     ChartsModule,
     MomentModule,
-    Ng2SearchPipeModule
+      Ng2SearchPipeModule,
     
-    
-   
   ],
   providers: [
      
-        [AreasService, CitiesService, UserInfoService,ProductService,BuyerService,WishlistService,ChartsService],
+        [AreasService, CitiesService, UserInfoService,ProductService,BuyerService,WishlistService,ChartsService,ChatService],
         UserService,
         SuggestionsService,
       AuthGuard,

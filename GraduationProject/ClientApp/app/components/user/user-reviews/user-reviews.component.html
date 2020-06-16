@@ -19,7 +19,7 @@
                 <td>{{item.price}} EGP</td>
                 <td>Sale Confirmed</td>
                 <td>
-                    <button class="btn btn-success" (click)="ReviewNow(item.userId,item.userName,item.productId)">
+                    <button class="btn btn-success" *ngIf="!item.isReviewed" (click)="ReviewNow(item.userId,item.userName,item.productId)">
                         Leave Feedback on Seller</button>
                 </td>
             </tr>
