@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using GraduationProject.Repositry;
 using GraduationProject.Models;
 using GraduationProject.Areas.Api.VIewModels;
+using Microsoft.EntityFrameworkCore.Storage;
 
 namespace GraduationProject.Areas.Api.Controllers
 {
@@ -36,11 +37,11 @@ namespace GraduationProject.Areas.Api.Controllers
         {
             //int i = int.Parse(id);
             Category category = _CategoryRepository.Get(id);
-           // List<Dictionary<string, Object>> filters = _FIlterRepository.GetFilterByCategory(id);
-            List<string> titleNames= _FIlterRepository.GetFilterByCategory(id);
-            List<string> StaticChoices= _FIlterRepository.GetStaticChoices(id);
-            List<string> dynamicChoices= _FIlterRepository.GetDynamicChoices(id);
-            return Ok(new { titleNames , StaticChoices, dynamicChoices});
+            List<Dictionary<string, Object>> filters = _FIlterRepository.GetFilterByCategory(id);
+           // List<string> titleNames= _FIlterRepository.GetFilterByCategory(id);
+            //List<string> StaticChoices= _FIlterRepository.GetStaticChoices(id);
+            //List<string> dynamicChoices= _FIlterRepository.GetDynamicChoices(id);
+            return Ok(filters);
         }
 
         [HttpGet]
@@ -63,23 +64,29 @@ namespace GraduationProject.Areas.Api.Controllers
                     }
                 }
             }
+            if (filterProductViewModel.Rating != 0)
+            {
+                method = method + "inner join Users_Ratings r " +
+                                  " on r.UserId = p.UserId " +
+                                  " and r.Rating >= " + filterProductViewModel.Rating;
+            }
             if (filterProductViewModel.Condition != null || filterProductViewModel.FromPrice != 0 || filterProductViewModel.ToPrice != 0)
             {
-                method = method + " where ";
+                //method = method + " where ";
                 if (filterProductViewModel.Condition != null)
                 {
-                    method = method + " p.condition =";
+                    method = method + " where p.condition =";
                     for (int i = 1; i <= filterProductViewModel.Condition.Count(); i++)
                     {
                         if (filterProductViewModel.Condition[i-1] == "New")
                         {
                             method = method + " 0 ";
                         }
-                        if (filterProductViewModel.Condition[i-1] == "With Box")
+                        if (filterProductViewModel.Condition[i-1] == "Used with Box")
                         {
                             method = method + " 1 ";
                         }
-                        if (filterProductViewModel.Condition[i-1] == "Without Box")
+                        if (filterProductViewModel.Condition[i-1] == "Used without Box")
                         {
                             method = method + " 2 ";
                         }
@@ -105,7 +112,9 @@ namespace GraduationProject.Areas.Api.Controllers
                     method = method + " and p.price <" + filterProductViewModel.ToPrice;
                 }
             }
+ 
             List<UserProduct> products = _FIlterRepository.GetFilterdProducts(method);
+
             return Ok(products);
         }
     }

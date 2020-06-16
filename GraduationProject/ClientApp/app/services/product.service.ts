@@ -43,6 +43,10 @@ export class ProductService {
     return this.http.get<category>("api/Categories");
   }
   GetFilters(id: any){
+    //console.log("category id sent=", id)
     return this.http.get<filterAttribute>("api/Categories/GetCategory/"+id);
+  }
+  GetFilterProducts(quryParams: any){
+    return this.http.get<UserProduct[]>("api/Categories/GetFilterProducts?"+quryParams);
   }
 }

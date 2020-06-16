@@ -1,7 +1,8 @@
 export class filterAttribute{
-    titleNames: string[];
-    staticChoices: string[];
-    dynamicChoices: string[];
+    TitleName: string;
+    FilterType: string;
+    QueryKey: string;
+    Choices: string[];
 }
 
 export class filter{

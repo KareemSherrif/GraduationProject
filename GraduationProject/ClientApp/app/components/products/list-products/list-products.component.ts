@@ -11,23 +11,30 @@ import { filterAttribute } from 'ClientApp/app/models/filterAttribute';
   styleUrls: ['./list-products.component.css']
 })
 export class ListProductsComponent implements OnInit {
-  products: UserProduct[] = [];
+  public products: UserProduct[] = [];
   id;
   filterAttribute;
   test_title;
+  categoryId: number;
   constructor(private productService: ProductService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.productService.GetAllProducts()
       .subscribe(data => {
         this.products = data;
-        //console.log(data);
+        console.log(this.products);
       })
-
+      
+  }
+  filterProductList(data){
+    //this.products.filter
+    this.products=data;
+    console.log(data)
   }
    
-  AddToWishList(userProduct:UserProduct) {
-    this.WishlistService.SetItem(userProduct);
-  }
+  
+  // AddToWishList(userProduct:UserProduct) {
+  //   this.WishlistService.SetItem(userProduct);
+  // }
 
 }

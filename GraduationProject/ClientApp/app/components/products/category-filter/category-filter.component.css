@@ -1,0 +1,11 @@
+
+.checked {
+  color: orange;
+}
+
+.star-btn {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  outline: none;
+}
