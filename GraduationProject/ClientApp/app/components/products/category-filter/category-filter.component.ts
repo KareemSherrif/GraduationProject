@@ -1,4 +1,4 @@
-import { Component, OnInit, Renderer2, Output,EventEmitter } from '@angular/core';
+import { Component, OnInit, Renderer2, Output, EventEmitter } from '@angular/core';
 import { ProductService } from '../../../services/product.service';
 import { category } from 'ClientApp/app/models/Category';
 import { UserProduct } from '../../../models/user-product';
@@ -14,8 +14,8 @@ import { filterDetails } from 'ClientApp/app/models/FilterDetails';
   styleUrls: ['./category-filter.component.css']
 })
 export class CategoryFilterComponent implements OnInit {
-  @Output() filterproducts=new EventEmitter();
-   
+  @Output() filterproducts = new EventEmitter();
+
   categories: category;
   products: UserProduct[] = [];
   catId;
@@ -36,15 +36,16 @@ export class CategoryFilterComponent implements OnInit {
   rateVal(filter, val) {
     //var fstar = document.getElementById("'"+val+"'");
     filter.selectedRating = val;
-    var i =1;
+    var i = 1;
     for (; i <= val; i++) {
       var star = document.getElementById("star" + i);
       star.className = "fa fa-star checked";
     }
-    for(;i<=5;i++){
+    for (; i <= 5; i++) {
       var star = document.getElementById("star" + i);
       star.className = "fa fa-star";
     }
+    this.onFilter();
   }
 
   FilterCategory(catId) {
@@ -69,21 +70,18 @@ export class CategoryFilterComponent implements OnInit {
         console.log(data);
       }
       ));
-    console.log("after function", this.catId);
-    //this.route.navigate(['/product/ListProduct']);  
   }
-  onFilter() {
-    // debugger;
-    console.log("the filter attribute")
-    console.log(this.filterAttribute);
 
+  arr: Array<any> = new Array(5);
+
+  onFilter() {
     var queryParams: string = ""
     this.filterAttribute.forEach(element => {
       if (element.FilterType == "From-To") {
-        if (element.From){
+        if (element.From) {
           queryParams += "FromPrice=" + element.From + "&";
         }
-        if(element.To){
+        if (element.To) {
           queryParams += "ToPrice=" + element.To + "&";
         }
       }
@@ -102,27 +100,20 @@ export class CategoryFilterComponent implements OnInit {
         });
       }
 
-      if (element.FilterType == "Rating" && element.selectedRating !=undefined){
+      console.log(element);
+
+      if (element.FilterType == "Rating" && element.selectedRating != undefined) {
         queryParams += "Rating=" + element.selectedRating + "&";
       }
     });
 
     console.log(queryParams);
+
     this.productService.GetFilterProducts(queryParams)
-    .subscribe(data => {
-      this.products = data;
-      console.log(data);
-      
-      this.filterproducts.emit(data);
-    })
-    
-    // call endpoint
-
-    //this.FromPrice=fil.FromPrice;
-
-    //this.filterDetails.FromPrice=this.FromPrice;
-    // console.log(this.filterDetails.FromPrice);
-    //debugger;
+      .subscribe(data => {
+        this.products = data;
+        this.filterproducts.emit(data);
+      })
   }
 
 

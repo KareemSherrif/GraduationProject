@@ -35,8 +35,8 @@ export class ListProductsComponent implements OnInit {
   }
    
   
-  // AddToWishList(userProduct:UserProduct) {
-  //   this.WishlistService.SetItem(userProduct);
-  // }
+AddToWishList(userProduct:UserProduct) {
+  this.WishlistService.SetItem(userProduct);
+}
 
 }
