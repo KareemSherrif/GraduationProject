@@ -22,8 +22,13 @@
    
    }
    LogOut() {
-     this.userService.Logout();
-     this.chatService.hubConnection.stop();
+     this.chatService.hubConnection.stop().then(a => {
+       this.userService.Logout();
+    
+    });
+    
+    window.location.reload();
+    
   
    }
    ShowDailog(userId: string, UserName: string) {

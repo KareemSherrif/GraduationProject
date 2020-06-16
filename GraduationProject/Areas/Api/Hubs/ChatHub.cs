@@ -56,19 +56,24 @@ namespace GraduationProject.Areas.Api.Hubs
                 Message = message,
                 DestinationUserID = UserID,
                 SourceUserId = ID,
-                DateTimeOfMessage = DateTime.Now
+                DateTimeOfMessage = DateTime.Now,
+                IsSeen =false
 
             };
             ApplicationUser user = context.Users.SingleOrDefault(a => a.Id == UserID);
             _chatRepository.Add(chat);
             _chatRepository.SaveAll();
-            ConnectionUserID connectionUserID = _connectionUserIDs.FirstOrDefault(a => a.UserID == UserID);
+            List<ConnectionUserID> connectionUserID = _connectionUserIDs.Where(a => a.UserID == UserID).ToList();
             if (connectionUserID != null)
             {
                var model = _mapper.Map<ChatMessages, ChatMessageViewModel>(chat);
                 ApplicationUser user1 = context.Users.FirstOrDefault(a => a.Id == ID);
                 model.SourceName =  $"{user1.FirstName} {user1.LastName}";
-                await Clients.Client(connectionUserID.ConnectionID).SendAsync("ReciveMessage", model);
+                foreach (var item in connectionUserID)
+                {
+                    await Clients.Client(item.ConnectionID).SendAsync("ReciveMessage", model);
+                }
+               
               
             }  
          
@@ -87,7 +92,9 @@ namespace GraduationProject.Areas.Api.Hubs
         {
             ConnectionUserID connection = _connectionUserIDs.SingleOrDefault(a => a.ConnectionID == base.Context.ConnectionId);
             _connectionUserIDs.Remove(connection);
-            return base.OnDisconnectedAsync(exception);
+            return Task.CompletedTask;
+           
         }
+      
     }
 }

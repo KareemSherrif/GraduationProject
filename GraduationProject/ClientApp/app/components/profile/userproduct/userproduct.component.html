@@ -7,8 +7,8 @@
 				[Link]="'/buyer'"
 				[productInfo]="item"
 				[clickable]="item.userId == UserService.CurrentUserId()"
-				[ShowLike]="true"
-				[IsLike]="true"
+				[ShowLike]="false"
+				[IsLike]="false"
 				(Onlike)="Example($event)"
 			></app-product-card>
 		</div>
