@@ -11,6 +11,7 @@ import { ActivatedRoute } from '@angular/router';
 import { UserInfoService } from '../../../services/userInfo.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import * as moment from 'moment';
+import { MomentModule } from 'ngx-moment';
 declare var $: any;
 
 @Component({

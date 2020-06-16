@@ -127,10 +127,8 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     AvatarModule,
     ChartsModule,
     MomentModule,
-    Ng2SearchPipeModule
+      Ng2SearchPipeModule,
     
-    
-   
   ],
   providers: [
      

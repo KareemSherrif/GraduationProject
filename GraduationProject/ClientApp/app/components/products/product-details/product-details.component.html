@@ -33,7 +33,7 @@
                                 <span>Seller</span> : {{product.user.firstName}} {{product.user.lastName}}
                             </li>
                             <li class="fontColor">
-                                <span>Date Added</span> : {{product.dateAdded}}
+                                <span>Date Added</span> : {{product.dateAdded | date:'medium'}}
                             </li>
                             <li class="fontColor">
                                 <span>Condition</span> : {{checkCondition(product.condition)}}
