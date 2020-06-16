@@ -13,6 +13,7 @@ import { filterAttribute } from 'ClientApp/app/models/filterAttribute';
 export class ListProductsComponent implements OnInit {
   products: UserProduct[] = [];
   id;
+  term: string;
   filterAttribute;
   test_title;
   constructor(private productService: ProductService, private route: ActivatedRoute, public WishlistService: WishlistService) { }
