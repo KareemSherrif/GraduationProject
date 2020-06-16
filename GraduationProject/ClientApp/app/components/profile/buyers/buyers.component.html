@@ -15,6 +15,7 @@
                     <label class="margin-bottom-10 text-center ">Please mark the user who made the purchase to complete it.</label>
                   <table class="table ">
                     <th>Users</th>
+                    <th></th>
                       <tr *ngFor="let item of buyers">
                             <td>{{item.userName}}</td>
                             <td><button class="btn  btn-dark" (click)="Sold(item.userId,item.userName)">Mark as Buyer</button></td>

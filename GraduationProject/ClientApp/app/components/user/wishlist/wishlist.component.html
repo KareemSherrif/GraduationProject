@@ -1,7 +1,7 @@
 <div class="container container-height mt-5">
 
-
-  <section class="cart_area">
+<h1 class="text-center" style=color:#333333>Wishlist</h1>
+  <section >
     <div class="container">
       <div class="cart_inner">
         <div class="table-responsive">
@@ -20,7 +20,7 @@
                       <img class="image-card" [src]="'images/'+item.userProductImages[0].images" alt="">
                     </div>
                     <div class="media-body">
-                      <p>{{item.name}}</p>
+                      <a [routerLink]="['/product/Details',item.id]">{{item.name}}</a>
                     </div>
                   </div>
                 </td>

@@ -60,7 +60,7 @@ namespace GraduationProject.Areas.Api.Controllers
                         Price = model.Price,
                         IsNegotiable = model.IsNegotiable,
                         IsReplacable = model.IsReplacable,
-                        DateAdded = DateTime.Now,
+                        DateAdded = DateTime.Now
                  
                     };
                     foreach (var item in model.Images)

@@ -123,31 +123,34 @@ html, body {
 @keyframes colorchange {
     0% {
       
-      color: #538AE7;
+      color: #00BFFF;
     }
 
     100% {
       
-      color: #1EE1DB;
+      color: #00BFFF;
     }
   }
 @-webkit-keyframes colorchange {
     0% {
       
-        color: #538AE7;
+        color: 	#00BFFF;
       }
   
       100% {
         
-        color: #1EE1DB;
+        color: 	#00BFFF;
       }
   }
   .container-height{
-      min-height: 100vh;
+      min-height: 85vh;
       height: auto;
   }
   .link-color{
-      background-color: #1EE1DB !important;
+      background-color: #00BFFF !important;
       color:#fff !important;
   }
   
+  .min-height-override{
+    min-height: 515px;
+  }
