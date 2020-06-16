@@ -16,12 +16,18 @@ export class UserReviewsComponent implements OnInit {
   ngOnInit(): void {
     this.BuyerService.GetUserProductToReview().subscribe(a => {
       this.buyersReview = a;
+      console.log(this.buyersReview);
     });
   }
   ReviewNow(userId, userName,productId) {
   
     let dialogRef = this.dialog.open(RatingDailogComponent, { data: { userId, userName, productId: productId } });
-     
+    dialogRef.afterClosed().subscribe(a => {
+       
+      if (a == true) {
+        window.location.reload();
+      }
+    });
   }
 
 
