@@ -9,3 +9,23 @@
   cursor: pointer;
   outline: none;
 }
+
+.From-To{
+  display: inline-flex;
+}
+.From-To-div{
+  padding: 4px;
+}
+
+.left_widgets {
+  margin-bottom: 30px;
+  padding: 10px;
+  border: 1px solid rgb(0, 230, 230);
+}
+
+.star-rating {
+  padding-left: 24px;
+}
+input[type="checkbox"] {
+  margin-right: 12px;
+}

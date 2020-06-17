@@ -68,6 +68,8 @@ export class CategoryFilterComponent implements OnInit {
           }
         });
         console.log(data);
+        this.catId = catId;
+        this.onFilter();
       }
       ));
   }
@@ -106,6 +108,8 @@ export class CategoryFilterComponent implements OnInit {
         queryParams += "Rating=" + element.selectedRating + "&";
       }
     });
+
+    queryParams += "CategoryId=" + this.catId;
 
     console.log(queryParams);
 

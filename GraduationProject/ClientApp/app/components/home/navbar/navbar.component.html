@@ -18,13 +18,7 @@
                 <div class="collapse navbar-collapse offset w-100" id="navbarSupportedContent">
                     <div class="row w-100 mr-0">
                         <div class="col-lg-7 pr-0">
-                            <ul class="nav navbar-nav margin-20" >      
-                                <li class="nav-item">
-                                    <a class="nav-link" [routerLink]="['']">Home</a>
-                                </li> 
-                                <li class="nav-item">
-                                    <a class="nav-link" [routerLink]="['product/ListProduct']">Browse Products</a>
-                                </li>
+                            <ul class="nav navbar-nav margin-20">
                                 <ng-template *ngIf="this.userService.IsLogin(); then loginleft;"></ng-template>
                             </ul>
 						</div>
@@ -43,8 +37,23 @@
 </header>
 <ng-template #loginleft>
     <li class="nav-item">
+        <a class="nav-link" [routerLink]="['']">Home</a>
+    </li>
+
+    <li class="nav-item dropdown">
+
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            PRODUCTS
+
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" routerLink="/AddProduct">Add Product</a>
+            <a class="dropdown-item" routerLink="/product/ListProduct">Browse Products</a>
+        </div>
+    </li>
+    <li class="nav-item">
         <a class="nav-link" [routerLink]="['/wishlist']">Wishlist</a>
-      </li>
+    </li>
 </ng-template>
 
 <ng-template #login>
@@ -87,3 +96,4 @@
 		<a class="nav-link" routerLink="/Login"> Login</a>
 	</li>
 </ng-template>
+

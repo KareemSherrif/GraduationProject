@@ -18,5 +18,6 @@ namespace GraduationProject.Areas.Api.VIewModels
         public int  FromPrice{ get; set; }
         public int ToPrice{ get; set; }
         public int Rating{ get; set; }
+        public int CategoryId{ get; set; }
     }
 }
