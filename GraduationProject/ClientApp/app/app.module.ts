@@ -69,6 +69,8 @@ import { ChartsService } from './services/charts.service';
 import { MomentModule } from 'ngx-moment';
 import { ChatService } from './services/chat.service';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import {MatRadioModule} from '@angular/material/radio';
+import { FilterProductComponent } from './components/filter-product/filter-product.component';
 
 
 @NgModule({
@@ -99,7 +101,9 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
         WishlistComponent,
         FooterComponent,
         CategoryFilterComponent,
-        FilterComponent
+    FilterComponent,
+    FilterProductComponent
+        
   ],
   imports: [
     BrowserModule,
@@ -128,7 +132,8 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     AvatarModule,
     ChartsModule,
     MomentModule,
-      Ng2SearchPipeModule,
+    Ng2SearchPipeModule,
+    MatRadioModule
     
   ],
   providers: [

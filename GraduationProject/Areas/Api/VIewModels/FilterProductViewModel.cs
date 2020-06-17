@@ -7,6 +7,12 @@ namespace GraduationProject.Areas.Api.VIewModels
 {
     public class FilterProductViewModel
     {
+        public FilterProductViewModel()
+        {
+            this.Brand = new List<string>();
+            this.Condition = new List<string>();
+        }
+      
         public List<string> Brand{ get; set; }
         public List<string> Condition{ get; set; }
         public int  FromPrice{ get; set; }
