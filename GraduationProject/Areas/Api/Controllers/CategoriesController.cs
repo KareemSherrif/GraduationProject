@@ -48,70 +48,97 @@ namespace GraduationProject.Areas.Api.Controllers
         [Route("GetFilterProducts")]
         public IActionResult GetFilterProducts([FromQuery] FilterProductViewModel filterProductViewModel)
         {
-            string method = " select p.* from UserProduct p ";
-            if (filterProductViewModel.Brand != null)
+            string method = " SELECT p.* FROM UserProduct p ";
+            string innerJoin = " INNER JOIN Product g ON g.Id = p.ProductId " +
+                                " INNER JOIN Model m ON m.Id = g.ModelId " +
+                                " INNER JOIN Category c ON c.Id = m.CategoryId ";
+            string whereClause = "";
+            if (filterProductViewModel.Brand != null && filterProductViewModel.Brand.Count != 0)
             {
-                method = method + " inner join Product g " +
-                                  " on p.ProductId = g.Id " +
-                                  " inner join dbo.Brand b " +
-                                  " on b.Id = g.BrandId and";
+                innerJoin += " INNER JOIN dbo.Brand b " +
+                                  " ON b.Id = g.BrandId ";
+
+                whereClause += " (b.Name='" + filterProductViewModel.Brand[0] + "' ";
                 for (int i = 1; i <=  filterProductViewModel.Brand.Count(); i++)
                 {
-                    method = method + " b.Name='" + filterProductViewModel.Brand[i-1] + "' ";
-                    if (filterProductViewModel.Brand.Count() > 1 && i != filterProductViewModel.Brand.Count())
-                    {
-                        method = method + " or ";
-                    }
+
+                    whereClause += " OR b.Name='" + filterProductViewModel.Brand[i-1] + "' ";
                 }
+                whereClause += ")";
             }
             if (filterProductViewModel.Rating != 0)
             {
-                method = method + "inner join Users_Ratings r " +
-                                  " on r.UserId = p.UserId " +
-                                  " and r.Rating >= " + filterProductViewModel.Rating;
-            }
-            if (filterProductViewModel.Condition != null || filterProductViewModel.FromPrice != 0 || filterProductViewModel.ToPrice != 0)
-            {
-                //method = method + " where ";
-                if (filterProductViewModel.Condition != null)
+                innerJoin += " LEFT JOIN Users_Ratings r " +
+                             " ON r.UserId = p.UserId ";
+                if(whereClause.Length != 0)
                 {
-                    method = method + " where p.condition =";
-                    for (int i = 1; i <= filterProductViewModel.Condition.Count(); i++)
+                    whereClause += " AND ";
+                }
+                whereClause += " (r.Rating >= " + filterProductViewModel.Rating + " OR r.Rating is NULL)";
+            }
+
+            if (filterProductViewModel.Condition != null && filterProductViewModel.Condition.Count != 0) 
+            {
+                if (whereClause.Length != 0)
+                {
+                    whereClause += " AND ";
+                }
+                //method = method + " where p.condition =";
+                whereClause += " (";
+                for (int i = 0; i < filterProductViewModel.Condition.Count(); i++)
+                {
+                    if(i != 0)
                     {
-                        if (filterProductViewModel.Condition[i-1] == "New")
-                        {
-                            method = method + " 0 ";
-                        }
-                        if (filterProductViewModel.Condition[i-1] == "Used with Box")
-                        {
-                            method = method + " 1 ";
-                        }
-                        if (filterProductViewModel.Condition[i-1] == "Used without Box")
-                        {
-                            method = method + " 2 ";
-                        }
-                        if (filterProductViewModel.Condition.Count() > 1 && i != filterProductViewModel.Condition.Count())
-                        {
-                            method = method + " and ";
-                        }
+                        whereClause += " OR ";
+                    }
+                    whereClause += " p.condition=";
+                    if (filterProductViewModel.Condition[i] == "New")
+                    {
+                        whereClause += " 0 ";
+                    }
+                    if (filterProductViewModel.Condition[i] == "Used with Box")
+                    {
+                        whereClause += " 1 ";
+                    }
+                    if (filterProductViewModel.Condition[i] == "Used without Box")
+                    {
+                        whereClause += " 2 ";
                     }
                 }
-                if (filterProductViewModel.FromPrice != 0)
-                {
-                    method = method + " and ";
-                    method = method + "p.price >" + filterProductViewModel.FromPrice;
-                }
-                else
-                {
-                    method = method + " and ";
-
-                    method = method + "p.price > 0";
-                }
-                if (filterProductViewModel.ToPrice != 0)
-                {
-                    method = method + " and p.price <" + filterProductViewModel.ToPrice;
-                }
+                whereClause += " ) ";
             }
+
+            if (filterProductViewModel.FromPrice != 0)
+            {
+                if (whereClause.Length != 0)
+                {
+                    whereClause += " AND ";
+                }
+                whereClause += "p.price >" + filterProductViewModel.FromPrice;
+
+            }
+
+
+            if (filterProductViewModel.ToPrice != 0)
+            {
+                if (whereClause.Length != 0)
+                {
+                    whereClause += " AND ";
+                }
+                whereClause += "p.price <" + filterProductViewModel.ToPrice;
+
+            }
+
+            if (whereClause.Length != 0)
+            {
+                whereClause += " AND ";
+            }
+
+            whereClause += " c.Id= " + filterProductViewModel.CategoryId;
+
+            whereClause = " WHERE " + whereClause;
+
+            method += innerJoin + whereClause;
  
             List<UserProduct> products = _FIlterRepository.GetFilterdProducts(method);
 

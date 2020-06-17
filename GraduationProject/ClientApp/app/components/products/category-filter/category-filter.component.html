@@ -24,27 +24,29 @@
         <ng-container *ngFor="let f of filterAttribute">
             <aside class="left_widgets p_filter_widgets">
                 <div class="l_w_title">
-                    {{f.TitleName}}
+                   <h3> {{f.TitleName}}</h3>
                 </div>
                 <div *ngIf="f.FilterType === 'From-To'">
-                    <div class="col-md-12">
-                        <label class="col-md-12">From</label>
+                <div class="range_item From-To">
+                    <div class="From-To-div">
+                        <!-- <label class="col-md-6">From</label> -->
                         <input [(ngModel)]="f.From" (ngModelChange)="onFilter()" type="text"
-                            class="col-md-12 form-control" placeholder="From" aria-label="From"
+                            class="form-control" placeholder="From" aria-label="From"
                             aria-describedby="basic-addon1">
                     </div>
-                    <div class="col-md-12">
-                        <label class="col-md-12">To</label>
+                    <div class="From-To-div">
+                        <!-- <label class="col-md-12">To</label> -->
                         <input [(ngModel)]="f.To" (ngModelChange)="onFilter()" type="text"
-                            class="col-md-12 form-control" placeholder="To" aria-label="To"
+                            class="form-control" placeholder="To" aria-label="To"
                             aria-describedby="basic-addon1">
                     </div>
+                </div>
 
                 </div>
 
 
                 <div *ngIf="f.FilterType === 'Rating'">
-                    <div class="container">
+                    <div class="container star-rating">
                         <ng-container *ngFor="let item of arr;let i = index">
                             <button class="star-btn" (click)="rateVal(f, i+1)">
                                 <span [(ngModel)]="f['Rating'+(i+1)]" id="{{'star'+(i+1)}}" class="fa fa-star"></span>
@@ -67,7 +69,7 @@
                             <ng-container  *ngFor="let choice of f.ChoicesToRender">
                                 <li>
                                     <label><input #condition [(ngModel)]="choice.selected" (ngModelChange)="onFilter()"
-                                            type="radio" name="radio1" value="">{{choice.name}}</label>
+                                            type="checkbox" name="radio1" value="">{{choice.name}}</label>
                                 </li>
                             </ng-container>
                         </ul>
@@ -81,7 +83,7 @@
                         <ul class="list">
                             <ng-container *ngFor="let choice of f.ChoicesToRender">
                                 <li>
-                                    <label><input #brand [(ngModel)]="choice.selected" type="radio" name="radio2"
+                                    <label><input #brand [(ngModel)]="choice.selected" type="checkbox" name="radio2"
                                             (ngModelChange)="onFilter()" value="">{{choice.name}}</label>
                                 </li>
                             </ng-container>
