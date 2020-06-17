@@ -29,7 +29,6 @@ export class ListProductsComponent implements OnInit {
       
   }
   filterProductList(data){
-    //this.products.filter
     this.products=data;
     console.log(data)
   }
