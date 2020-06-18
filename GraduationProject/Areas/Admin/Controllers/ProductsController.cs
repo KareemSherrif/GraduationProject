@@ -74,8 +74,6 @@ namespace GraduationProject.Areas.Admin.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    var BrandName = brand.Get(productModel.BrandId).Name;
-                    var ModelName = model.Get(productModel.ModelId).Name;
                     Product newProduct = new Product()
                     {
                         BrandId = productModel.BrandId,
@@ -153,6 +151,7 @@ namespace GraduationProject.Areas.Admin.Controllers
                 CategoryId = GetModel.CategoryId,
                 BrandId = EditProduct.BrandId,
                 ModelId = EditProduct.ModelId,
+                Name = EditProduct.Name,                
                 Categories = new SelectList(category.GetAll(), "Id", "Name"),
                 Brands = new SelectList(brand.GetAll(), "Id", "Name"),
                 ProductAttributes = product.GetCategoryAttributes(GetModel.CategoryId).ToList(),
@@ -169,8 +168,6 @@ namespace GraduationProject.Areas.Admin.Controllers
                 if (ModelState.IsValid)
                 {
                     Product EditProduct = product.Get(productModel.ProductId);
-                    var BrandName = brand.Get(productModel.BrandId).Name;
-                    var ModelName = model.Get(productModel.ModelId).Name;
                     EditProduct.ModelId = productModel.ModelId;
                     EditProduct.BrandId = productModel.BrandId;
                     EditProduct.Name = productModel.Name;
