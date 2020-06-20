@@ -39,6 +39,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="wwwroot\lib\JQVMap\jquery.vmap.js" />
+    <None Include="wwwroot\lib\JQVMap\jquery.vmap.min.js" />
+    <None Include="wwwroot\lib\JQVMap\jquery.vmap.world.js" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.4" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.4" />

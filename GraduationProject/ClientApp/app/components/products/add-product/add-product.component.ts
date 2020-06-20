@@ -10,6 +10,7 @@ import { FormGroup, FormControl, Validators, FormArray } from "@angular/forms";
 import { ImageCroppedEvent } from "ngx-image-cropper";
 import { HttpErrorResponse } from '@angular/common/http';
 import { ProductValidators} from './add-product.validator';
+import { GoogleAnalyticalTrackerService } from 'ClientApp/app/services/google-analytical-tracker.service';
 
 @Component({
 	selector: "app-add-product",
@@ -24,7 +25,9 @@ export class AddProductComponent implements OnInit {
 	
 	constructor(private service: ProductService,
 		private ToastrService: ToastrService,
-	 private router:Router) { }
+		private router: Router, private google:GoogleAnalyticalTrackerService) { 
+		google.eventEmitter("AddProduct", "Product", "click");
+	  }
 
 	form = new FormGroup({
 		name: new FormControl("", Validators.required),
@@ -34,7 +37,8 @@ export class AddProductComponent implements OnInit {
 		productId: new FormControl("", [Validators.required,ProductValidators.ValidationOnSelect]),
 		images: new FormArray([], Validators.required),
 		isNegotiable: new FormControl(false),
-		isReplacable:new FormControl(false)
+		isReplacable: new FormControl(false)
+		
 	});
 
 	imageChangedEvent: any = "";

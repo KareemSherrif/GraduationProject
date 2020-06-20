@@ -70,7 +70,8 @@ import { MomentModule } from 'ngx-moment';
 import { ChatService } from './services/chat.service';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import {MatRadioModule} from '@angular/material/radio';
-import { FilterProductComponent } from './components/filter-product/filter-product.component';
+import { GoogleAnalyticalTrackerService } from './services/google-analytical-tracker.service';
+
 
 
 @NgModule({
@@ -101,8 +102,7 @@ import { FilterProductComponent } from './components/filter-product/filter-produ
         WishlistComponent,
         FooterComponent,
         CategoryFilterComponent,
-    FilterComponent,
-    FilterProductComponent
+    FilterComponent
         
   ],
   imports: [
@@ -138,7 +138,7 @@ import { FilterProductComponent } from './components/filter-product/filter-produ
   ],
   providers: [
      
-        [AreasService, CitiesService, UserInfoService,ProductService,BuyerService,WishlistService,ChartsService,ChatService],
+        [AreasService, CitiesService, UserInfoService,ProductService,BuyerService,WishlistService,ChartsService,ChatService,GoogleAnalyticalTrackerService],
         UserService,
         SuggestionsService,
       AuthGuard,
