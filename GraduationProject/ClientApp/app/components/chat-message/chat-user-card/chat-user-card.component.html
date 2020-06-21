@@ -1,0 +1,9 @@
+<div class="chat_list " #chatList (click)="ActiveUser(chatList)">
+    <div class="chat_people">
+      <div class="chat_img"> <ngx-avatar [name]="this.userMessage.name"></ngx-avatar>  </div>
+      <div class="chat_ib">
+      
+        <h6>{{this.userMessage.name}}</h6>
+      </div>
+    </div>
+  </div>

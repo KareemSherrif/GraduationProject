@@ -1,4 +1,5 @@
-﻿import { UserReviewsComponent } from './components/user/user-reviews/user-reviews.component';
+﻿import { ChatMessageComponent } from './components/chat-message/chat-message.component';
+import { UserReviewsComponent } from './components/user/user-reviews/user-reviews.component';
 import { ProductOwnerGuard } from './guards/product-owner.guard';
 import { AddProductComponent } from './components/products/add-product/add-product.component';
 import { animate } from '@angular/animations';
@@ -35,7 +36,8 @@ const routes: Routes = [
     { path: 'buyer/:id', component: BuyersComponent, canActivate: [ProductOwnerGuard] },
     { path: 'product/suggestion', component: SuggestionsComponent, canActivate: [AuthGuard] },
     { path: 'UserReviews', component: UserReviewsComponent, canActivate: [AuthGuard] },
-    { path: 'wishlist', component: WishlistComponent, canActivate: [AuthGuard] }
+    { path: 'wishlist', component: WishlistComponent, canActivate: [AuthGuard] },
+    {path:'chatmessage',component:ChatMessageComponent,canActivate:[AuthGuard]}
 ];
 
 @NgModule({
