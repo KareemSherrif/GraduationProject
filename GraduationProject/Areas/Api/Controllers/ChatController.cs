@@ -56,6 +56,15 @@ namespace GraduationProject.Areas.Api.Controllers
             _chat.SaveAll();
             return NoContent();
         }
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        [HttpGet]
+        [Route("/ChatApplication/GetContacts")]
+        public IActionResult GetContacts()
+        {
+            string userID = User.GetUserIdToken();
+           return Ok(_mapper.Map<IEnumerable<ApplicationUser>, IEnumerable<UsersUnReadMessageViewModel>>(_chat.GetContacts(userID)));
+
+        }
 
 
 

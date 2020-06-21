@@ -11,7 +11,8 @@ namespace GraduationProject.Repositry
         public IEnumerable<ChatMessages> GetChatMessages(string sourceId, string destination);
         public IEnumerable<ApplicationUser> GetUserUnReadedMessages(string UserID);
         public void SetToRead(string UserID, string destinationUser);
-
+        public IEnumerable<ApplicationUser> GetContacts(string UserID);
+        
        
 
        
