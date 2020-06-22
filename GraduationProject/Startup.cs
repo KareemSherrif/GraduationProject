@@ -76,9 +76,14 @@ namespace GraduationProject
                 a.Password.RequireLowercase = false;
                 a.Password.RequireNonAlphanumeric = false;
                 a.Password.RequireUppercase = false;
+                
             }).AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
 
             services.AddSignalR();
+            services.ConfigureApplicationCookie(a =>
+            {
+                a.LoginPath = "/Identity/Account/Login";
+            });
                 
             services.AddAuthentication().AddCookie()
                 .AddJwtBearer(options =>

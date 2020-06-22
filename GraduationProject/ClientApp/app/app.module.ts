@@ -75,6 +75,7 @@ import { GoogleAnalyticalTrackerService } from "./services/google-analytical-tra
 import { ChatMessageComponent } from "./components/chat-message/chat-message.component";
 import { ChatUserCardComponent } from "./components/chat-message/chat-user-card/chat-user-card.component";
 import { ChatMessageService } from "./services/chat-message.service";
+import { MessageHistoryComponent } from './components/chat-message/message-history/message-history.component';
 
 @NgModule({
 	declarations: [
@@ -107,6 +108,7 @@ import { ChatMessageService } from "./services/chat-message.service";
 		FilterComponent,
 		ChatMessageComponent,
 		ChatUserCardComponent,
+		MessageHistoryComponent,
 	],
 	imports: [
 		BrowserModule,
