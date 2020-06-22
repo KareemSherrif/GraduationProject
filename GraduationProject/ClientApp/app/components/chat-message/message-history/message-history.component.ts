@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { chatMessage } from './../../../models/chat';
+import { UserService } from './../../../services/user.service';
+import { newUserMessage } from './../../../models/newUserMessages';
+import { Component, OnInit, Input } from '@angular/core';
+
 
 @Component({
   selector: 'app-message-history',
@@ -7,9 +11,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MessageHistoryComponent implements OnInit {
 
-  constructor() { }
+ @Input() public chatmessage: chatMessage[] = null;
+ @Input() public userInfo: newUserMessage = null;
+  constructor(public UserService:UserService) { }
 
   ngOnInit(): void {
+    console.log(this.chatmessage);
   }
 
 }

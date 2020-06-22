@@ -17,18 +17,13 @@
                     </div>
                   </div>
                   <div class="inbox_chat">
-                   <app-chat-user-card *ngFor="let item of messages" [userMessage]="item"></app-chat-user-card>
+                   <app-chat-user-card *ngFor="let item of messages" [userMessage]="item" (OnSelectUser)="UserSelected($event)"></app-chat-user-card>
                   
                   </div>
                 </div>
                 <div class="mesgs">
-                  <app-message-history></app-message-history>
-                  <div class="type_msg">
-                    <div class="input_msg_write">
-                      <input type="text" class="write_msg" placeholder="Type a message" />
-                      <button class="msg_send_btn" type="button"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
-                    </div>
-                  </div>
+                  <app-message-history [chatmessage] ="this.historyMessage"></app-message-history>
+                  
                 </div>
               </div>
               

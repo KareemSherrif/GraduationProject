@@ -17,9 +17,7 @@ export class ChatMessageService {
   }
 
   GetData(Id:string) {
-    return this.http.get<chatMessage[]>("/api/Chat/ChatApplication/" + Id)
-      .toPromise()
-      .then(a => this.chatMessage = a as chatMessage[]);
+    return this.http.get<chatMessage[]>("/api/Chat/ChatApplication/" + Id);
   }
 
 }

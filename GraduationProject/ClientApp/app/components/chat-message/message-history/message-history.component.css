@@ -130,3 +130,11 @@ img{ max-width:100%;}
   padding:0px;
 
 }
+.image-default img{
+  display: block;
+  width: 500px;
+}
+.image-default{
+  display: flex;
+  justify-content: center;
+}
