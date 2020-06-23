@@ -1,6 +1,6 @@
 <div class="container-fluid delete-padding">
    
-        
+   
         <div class="messaging delete-padding">
               <div class="inbox_msg">
                 <div class="inbox_people">
@@ -22,7 +22,7 @@
                   </div>
                 </div>
                 <div class="mesgs">
-                  <app-message-history [chatmessage] ="this.historyMessage" [userInfo]="UserMessage"></app-message-history>
+                  <app-message-history [chatmessage] ="this.chatmessage.chatMessage" [userInfo]="UserMessage"></app-message-history>
                   
                 </div>
               </div>

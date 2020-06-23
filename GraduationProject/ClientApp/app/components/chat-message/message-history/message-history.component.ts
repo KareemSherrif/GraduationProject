@@ -1,3 +1,5 @@
+import { Router, ActivatedRoute } from '@angular/router';
+import { ChatMessageService } from './../../../services/chat-message.service';
 import { ChatService } from './../../../services/chat.service';
 import { ChartsService } from './../../../services/charts.service';
 import { chatMessage } from './../../../models/chat';
@@ -15,10 +17,14 @@ export class MessageHistoryComponent implements OnInit {
 
  @Input() public chatmessage: chatMessage[] = null;
  @Input() public userInfo: newUserMessage = null;
-  constructor(public UserService:UserService, public ChatService:ChatService) { }
+  constructor(public UserService: UserService,
+    public ChatService: ChatService,
+    public ChatMessageService: ChatMessageService,
+    private ActivatedRoute:ActivatedRoute) { }
 
   ngOnInit(): void {
-    console.log(this.chatmessage);
+    
+   
   }
   SendIt(message) {
   
@@ -27,8 +33,9 @@ export class MessageHistoryComponent implements OnInit {
     newMessage.sourceID = this.UserService.CurrentUserId();
     newMessage.sourceName = this.UserService.CurrentUserName();
     newMessage.message = message.value;
-    this.chatmessage.push(newMessage);
-    message.value = "";
+    this.ChatMessageService.chatMessage.push(newMessage);
+    (<HTMLInputElement>document.getElementById("sendtxtmessage")).value = "";
+    console.log("ServiceMessages",this.ChatMessageService.chatMessage);
     
 
   }

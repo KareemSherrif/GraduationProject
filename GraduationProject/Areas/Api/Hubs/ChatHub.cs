@@ -89,7 +89,7 @@ namespace GraduationProject.Areas.Api.Hubs
                 UserID = base.Context.User.GetUserIdToken()
             });
 
-            return base.OnConnectedAsync();
+            return Task.CompletedTask;
         }
         public override Task OnDisconnectedAsync(Exception exception)
         {

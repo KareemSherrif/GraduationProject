@@ -32,6 +32,7 @@ export class ChatService {
       if (this.UserService.IsLogin() && this.hubConnection.state == 0) {
         this.hubConnection.start().then(() => {
           console.log("Start new Connection in constructor");
+         
         });
       }
 

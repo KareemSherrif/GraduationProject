@@ -18,6 +18,7 @@ export class ChatMessageComponent implements OnInit {
   ngOnInit(): void {
     this.chatmessage.GetContacts().subscribe(a => {
       this.messages = a;
+   
       console.log(a);
     });
   }
@@ -25,6 +26,7 @@ export class ChatMessageComponent implements OnInit {
   UserSelected(data) {
     this.UserMessage = data;
     this.chatmessage.GetData(data.userId).subscribe(a => {
+      this.chatmessage.chatMessage = a;
       this.historyMessage = a;
     });
   }

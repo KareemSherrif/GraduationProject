@@ -1,6 +1,6 @@
 <ng-template #history>
  <mat-card class="d-flex person-card">
-
+  <input type="hidden" id="currentUserMessage" [value]="userInfo.userId" />
   <ngx-avatar [name]="userInfo.name"></ngx-avatar>  <span class="text-span"> <a [routerLink]="['/profile',userInfo.userId]"> {{this.userInfo.name}}</a></span>
  </mat-card>
 <div class="msg_history">
@@ -28,7 +28,7 @@
 </div>
 <div class="type_msg">
   <div class="input_msg_write" *ngIf="this.ChatService.hubConnection.state ==1">
-    <input type="text" required name="message" ngModel #message="ngModel" class="write_msg" placeholder="Type a message" />
+    <input type="text" id="sendtxtmessage" required name="message" ngModel #message="ngModel" class="write_msg" placeholder="Type a message" />
     <button class="msg_send_btn" [disabled]="message.invalid" type="button"(click)="SendIt(message)"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
   </div>
 </div> 

@@ -2,7 +2,7 @@ import { newUserMessage } from './models/newUserMessages';
 import { ChatService } from './services/chat.service';
 import { UserService } from './services/user.service';
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RouterOutlet, ActivatedRoute } from '@angular/router';
 import { animation } from '@angular/animations';
 
 
@@ -14,10 +14,14 @@ import { animation } from '@angular/animations';
 })
 export class AppComponent {
   title = 'myapp';
+  /**
+   *
+   */
+ 
   
-  constructor(public UserService:UserService,public ChatService:ChatService) {
+  constructor(public UserService:UserService,public ChatService:ChatService,public ActivatedRoute:ActivatedRoute) {
     this.ChatService.hubConnection.on("ReciveMessage", (data) => {
-  
+      
       if (document.getElementById("chat").classList.contains("display-none") || (<HTMLInputElement>document.getElementById("userId")).value != data.sourceID) {
         let newMessage = new newUserMessage();
         newMessage.userId = data.sourceID;

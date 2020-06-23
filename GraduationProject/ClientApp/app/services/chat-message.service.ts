@@ -8,7 +8,7 @@ import { chatMessage } from '../models/chat';
 })
 export class ChatMessageService {
   public ActiveUser: newUserMessage = null;
-  public chatMessage: chatMessage[] = [];
+  public chatMessage: chatMessage[] = null;
   constructor(private http:HttpClient) { }
 
   GetContacts() {
