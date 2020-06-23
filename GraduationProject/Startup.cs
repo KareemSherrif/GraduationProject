@@ -79,7 +79,13 @@ namespace GraduationProject
                 
             }).AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
 
-            services.AddSignalR();
+            services.AddSignalR(a=> {
+                a.EnableDetailedErrors = true;
+                a.MaximumReceiveMessageSize = 65536;
+                a.KeepAliveInterval = TimeSpan.FromMinutes(2);
+                a.ClientTimeoutInterval = TimeSpan.FromMinutes(60);
+                
+            });
             services.ConfigureApplicationCookie(a =>
             {
                 a.LoginPath = "/Identity/Account/Login";

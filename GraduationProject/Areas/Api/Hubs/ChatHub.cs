@@ -48,6 +48,7 @@ namespace GraduationProject.Areas.Api.Hubs
     
         public async Task SendMessage(string message, string UserID)
         {
+           
             string ID = Context.User.GetUserIdToken();
             string Name = Context.User.GetUserName();
            

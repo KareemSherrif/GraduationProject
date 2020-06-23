@@ -138,3 +138,12 @@ img{ max-width:100%;}
   display: flex;
   justify-content: center;
 }
+.text-span{
+  display: inline-block;
+  margin-top: 10px;
+  margin-left: 10px;
+}
+.incoming_msg{
+  padding-left: 5px;
+  padding-top: 5px;
+}

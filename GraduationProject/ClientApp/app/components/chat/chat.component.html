@@ -2,7 +2,7 @@
     <div class="panel-heading top-bar">
         <div class="d-flex ">
         <div class="col-md-8 col-md-8 padding-left-0">
-            <h6 class="panel-title margin-b-0"><span class="ti-comment-alt ml-2"></span> <span id="UserName"></span> {{this.ChatService.hubConnection.state}}</h6>
+            <h6 class="panel-title margin-b-0"><span class="ti-comment-alt ml-2"></span> <span id="UserName"></span></h6>
             <input type="hidden" id="userId" #userID />
         </div>
         <div class="col-md-4 col-xs-3" style="text-align: right;">
@@ -34,9 +34,19 @@
             <div class="d-flex justify-content-around align-items-center">
             <input id="btn-input" required ngModel name="message" #message="ngModel" type="text" class="form-control input-sm chat_input" placeholder="Write your message here...">
             <span class="input-group-btn"> 
-            <button class="btn btn-primary btn-sm btn-margin-0" id="btn-chat" (click)="SendData(userID, message)" [disabled]="message.invalid" >Send</button>
+                <ng-container *ngIf="this.ChatService.hubConnection.state == 0 then error else send">
+
+                </ng-container>
             </span>
         </div>
       
     </div>
 </div>
+
+<ng-template #send>
+    <button class="btn btn-primary btn-sm btn-margin-0" id="btn-chat" (click)="SendData(userID, message)" [disabled]="(message.invalid)" >Send</button>
+</ng-template>
+
+<ng-template #error>
+    <button class="btn btn-danger btn-sm btn-margin-0" id="btn-chat" [disabled]="true">Disconned..</button>
+</ng-template>

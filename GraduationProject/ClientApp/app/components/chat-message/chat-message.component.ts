@@ -1,5 +1,4 @@
 import { chatMessage } from './../../models/chat';
-import { chatMessage } from 'ClientApp/app/models/chat';
 import { newUserMessage } from './../../models/newUserMessages';
 import { ChatMessageService } from './../../services/chat-message.service';
 import { Component, OnInit } from '@angular/core';
@@ -12,7 +11,8 @@ import { Component, OnInit } from '@angular/core';
 export class ChatMessageComponent implements OnInit {
 
   public messages: newUserMessage[] = [];
- public historyMessage: chatMessage[] = null;
+  public historyMessage: chatMessage[] = null;
+  public UserMessage: newUserMessage = null;
   constructor(public chatmessage:ChatMessageService) { }
 
   ngOnInit(): void {
@@ -23,7 +23,7 @@ export class ChatMessageComponent implements OnInit {
   }
 
   UserSelected(data) {
-    console.log(data);
+    this.UserMessage = data;
     this.chatmessage.GetData(data.userId).subscribe(a => {
       this.historyMessage = a;
     });

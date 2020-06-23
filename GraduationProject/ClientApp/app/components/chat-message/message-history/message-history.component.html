@@ -1,4 +1,8 @@
 <ng-template #history>
+ <mat-card class="d-flex person-card">
+
+  <ngx-avatar [name]="userInfo.name"></ngx-avatar>  <span class="text-span"> <a [routerLink]="['/profile',userInfo.userId]"> {{this.userInfo.name}}</a></span>
+ </mat-card>
 <div class="msg_history">
   <ng-container *ngFor="let item of chatmessage">
     <div class="outgoing_msg" *ngIf="item.sourceID == UserService.CurrentUserId()">

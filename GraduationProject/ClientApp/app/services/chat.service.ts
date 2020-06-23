@@ -27,6 +27,15 @@ export class ChatService {
       .configureLogging(signalr.LogLevel.Information)
       .withUrl("chathub",options)
       .build();
+ 
+    setInterval(() => {
+      if (this.UserService.IsLogin() && this.hubConnection.state == 0) {
+        this.hubConnection.start().then(() => {
+          console.log("Start new Connection in constructor");
+        });
+      }
+
+    }, 1000);
      
   }
   GetData(Id:string) {
@@ -39,8 +48,6 @@ export class ChatService {
       });
     
     
-        
-     
   }
   public startConnection = () => {
     this.hubConnection.start()
