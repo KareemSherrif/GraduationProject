@@ -27,9 +27,9 @@
 
 </div>
 <div class="type_msg">
-  <div class="input_msg_write">
-    <input type="text" class="write_msg" placeholder="Type a message" />
-    <button class="msg_send_btn" type="button"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
+  <div class="input_msg_write" *ngIf="this.ChatService.hubConnection.state ==1">
+    <input type="text" required name="message" ngModel #message="ngModel" class="write_msg" placeholder="Type a message" />
+    <button class="msg_send_btn" [disabled]="message.invalid" type="button"(click)="SendIt(message)"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
   </div>
 </div> 
 </ng-template>

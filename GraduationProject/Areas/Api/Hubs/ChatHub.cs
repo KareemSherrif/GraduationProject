@@ -59,6 +59,8 @@ namespace GraduationProject.Areas.Api.Hubs
                 SourceUserId = ID,
                 DateTimeOfMessage = DateTime.Now,
                 IsSeen =false
+                
+                
 
             };
             ApplicationUser user = context.Users.SingleOrDefault(a => a.Id == UserID);

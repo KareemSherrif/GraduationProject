@@ -84,6 +84,7 @@ namespace GraduationProject
                 a.MaximumReceiveMessageSize = 65536;
                 a.KeepAliveInterval = TimeSpan.FromMinutes(2);
                 a.ClientTimeoutInterval = TimeSpan.FromMinutes(60);
+               
                 
             });
             services.ConfigureApplicationCookie(a =>

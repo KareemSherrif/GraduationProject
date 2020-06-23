@@ -67,6 +67,10 @@ export class ChatService {
   public Status() {
     return this.hubConnection.state;
   }
+  public SendMessage2 (message:string , userId:String)  {
+    this.hubConnection.invoke("SendMessage",message,userId);
+  }
+  
   
 
 }
